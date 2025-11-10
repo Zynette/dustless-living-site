@@ -300,6 +300,29 @@ body.dark .nav-mobile {
   color: var(--color-text);
 }
 
+.btn-soft {
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(148, 163, 253, 0.18);
+}
+
+.btn-soft:hover {
+  background: rgba(142, 209, 198, 0.26);
+}
+
+.btn-text {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.btn-text:hover {
+  color: var(--color-primary);
+}
+
 .btn-primary {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: #0f172a;
@@ -1198,6 +1221,78 @@ body.dark .footer {
    Dashboards (Admin/Employee)
    ========================= */
 
+   /* Admin Shop Management */
+
+#adminProductsCard {
+  margin-top: 2rem;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.checkbox-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.product-form-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.admin-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.admin-product-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 14px;
+  background: var(--color-bg-soft);
+  border: 1px solid rgba(148,163,253,0.16);
+}
+
+.admin-product-name {
+  font-weight: 500;
+}
+
+.admin-product-meta {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.admin-product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: flex-end;
+}
+
+.text-danger {
+  color: #dc2626;
+}
+
 .dashboard {
   padding: 5.5rem 1.5rem 3rem;
   min-height: 100vh;
@@ -1427,7 +1522,7 @@ body.dark .footer {
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-soft-strong);
+  box-shadow: var(--shadow-soft);
 }
 
 .product-card img {
@@ -1440,7 +1535,13 @@ body.dark .footer {
 
 .product-name {
   font-weight: 600;
-  color: var(--color-text-strong);
+  color: var(--color-text);
+}
+
+.cart-header,
+.cart-footer {
+  padding: 1.1rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .product-price {
