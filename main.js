@@ -815,21 +815,21 @@ auth.onAuthStateChanged(async (user) => {
 });
 
 function showPublicView() {
-  // show marketing site
+  body.classList.remove('app-mode');
+
   if (publicSite) publicSite.classList.remove('hidden');
   if (headerEl) headerEl.classList.remove('hidden');
   if (footerEl) footerEl.classList.remove('hidden');
 
-  // hide dashboards
   if (employeeDashboard) employeeDashboard.classList.add('hidden');
   if (adminDashboard) adminDashboard.classList.add('hidden');
 
-  // go back to top of site
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showEmployeeView(name, uid) {
-  // hide marketing site, keep header as app nav
+  body.classList.add('app-mode');
+
   if (publicSite) publicSite.classList.add('hidden');
   if (footerEl) footerEl.classList.add('hidden');
   if (headerEl) headerEl.classList.remove('hidden');
@@ -841,7 +841,6 @@ function showEmployeeView(name, uid) {
   if (employeeDashboard) employeeDashboard.classList.remove('hidden');
   if (adminDashboard) adminDashboard.classList.add('hidden');
 
-  // subscribe to this employee's jobs
   if (employeeJobsUnsub) employeeJobsUnsub();
   employeeJobsUnsub = db.collection('jobs')
     .where('assignedTo', '==', uid)
@@ -849,14 +848,14 @@ function showEmployeeView(name, uid) {
       renderEmployeeJobs(snap.docs);
     });
 
-  // scroll into the dashboard so it feels like a separate app
   if (employeeDashboard) {
     employeeDashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
 function showAdminView(name) {
-  // hide marketing site, show only admin panel
+  body.classList.add('app-mode');
+
   if (publicSite) publicSite.classList.add('hidden');
   if (footerEl) footerEl.classList.add('hidden');
   if (headerEl) headerEl.classList.remove('hidden');
@@ -869,14 +868,14 @@ function showAdminView(name) {
   if (adminJobsUnsub) adminJobsUnsub();
   if (adminEmployeesUnsub) adminEmployeesUnsub();
 
-  // Watch employees
+  // employees list
   adminEmployeesUnsub = db.collection('users')
     .where('role', '==', 'employee')
     .onSnapshot(empSnap => {
       const employees = empSnap.docs.map(d => ({ id: d.id, ...d.data() }));
       renderAdminEmployees(empSnap.docs);
 
-      // Watch bookings and compute revenue with live employee list
+      // bookings with live employees
       if (adminBookingsUnsub) adminBookingsUnsub();
       adminBookingsUnsub = db.collection('bookings')
         .orderBy('createdAt', 'desc')
@@ -886,7 +885,7 @@ function showAdminView(name) {
         });
     });
 
-  // Watch jobs for completed jobs panel
+  // completed jobs
   adminJobsUnsub = db.collection('jobs')
     .onSnapshot(snap => {
       renderAdminCompletedJobs(snap.docs);
