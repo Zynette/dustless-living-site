@@ -550,6 +550,8 @@ const adminDashboard = document.getElementById('adminDashboard');
 const employeeWelcome = document.getElementById('employeeWelcome');
 const logoutBtnEmp = document.getElementById('logoutBtnEmp');
 const logoutBtnAdmin = document.getElementById('logoutBtnAdmin');
+
+const body = document.body;
 const publicSite = document.getElementById('publicSite');
 const headerEl = document.querySelector('.header');
 const footerEl = document.querySelector('.footer');
