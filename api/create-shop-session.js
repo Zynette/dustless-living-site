@@ -39,9 +39,8 @@ module.exports = async (req, res) => {
       mode: 'payment',
       payment_method_types: ['card'],
       line_items,
-      const baseUrl = process.env.SITE_URL || 'https://dustlessliving.com';
-      success_url: `${baseUrl}/?shop=success`,
-      cancel_url: `${baseUrl}/?shop=cancel`,
+      success_url: `${process.env.SITE_URL || 'https://dustlessliving.com'}/?shop=success=true`,
+      cancel_url: `${process.env.SITE_URL || 'https://dustlessliving.com'}/?shop=cancelled=true`,
     });
 
     res.status(200).json({ sessionId: session.id });

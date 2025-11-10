@@ -1,25 +1,8 @@
-// MAIN.JS
-// Dustless Living — Marketing + Portal + Shop
-// Sections:
-// 1) Navigation & UI
-// 2) Visual polish (particles, reveal, parallax)
-// 3) Pricing estimator
-// 4) Service modal & gallery
-// 5) Testimonials, FAQ, Chatbot
-// 6) Theme toggle
-// 7) Firebase init & helpers
-// 8) DOM refs (shop, cart, dashboards)
-// 9) Booking / careers / contact forms (+ After Cleaning widget)
-// 10) Auth modal & login
-// 11) Shop: products, modal, cart, eco points
-// 12) Admin & employee dashboards
-// 13) Stripe (deposit + shop checkout)
-// 14) Checkout return handlers
+// main.js
+// Dustless Living — Marketing Site + Portal + Shop
 
 (() => {
-  // Small helpers
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const body = document.body;
 
   // ===============================
   // 1. Navigation & Smooth Scroll
@@ -34,8 +17,8 @@
   }
   window.scrollToSection = scrollToSection;
 
-  const burger = $("#burger");
-  const navMobile = $("#navMobile");
+  const burger = document.getElementById("burger");
+  const navMobile = document.getElementById("navMobile");
 
   if (burger && navMobile) {
     burger.addEventListener("click", () => {
@@ -43,33 +26,33 @@
     });
   }
 
-  $$(".nav a, .nav-mobile a").forEach((link) => {
+  document.querySelectorAll(".nav a, .nav-mobile a").forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
       if (href && href.startsWith("#")) {
         e.preventDefault();
-        scrollToSection(href.slice(1));
+        const id = href.substring(1);
+        scrollToSection(id);
         if (navMobile) navMobile.classList.remove("open");
       }
     });
   });
 
   // ===============================
-  // 2. Visual Polish
+  // 2. Visual Polish (Particles, Reveal, Parallax)
   // ===============================
 
-  // Floating particles
-  const particlesLayer = $("#particlesLayer");
+  const particlesLayer = document.getElementById("particlesLayer");
 
   function createParticle() {
     if (!particlesLayer) return;
     const p = document.createElement("div");
-    p.classList.add("particle");
+    p.className = "particle";
     const size = Math.random() * 4 + 2;
     p.style.width = `${size}px`;
     p.style.height = `${size}px`;
     p.style.left = `${Math.random() * 100}%`;
-    p.style.bottom = "-40px";
+    p.style.bottom = `-40px`;
     p.style.animationDuration = `${10 + Math.random() * 8}s`;
     p.style.opacity = `${0.2 + Math.random() * 0.6}`;
     particlesLayer.appendChild(p);
@@ -81,23 +64,21 @@
     setInterval(createParticle, 700);
   }
 
-  // Scroll reveal
-  const revealEls = $$("[data-reveal]");
-  const revealObserver = new IntersectionObserver(
+  const revealEls = document.querySelectorAll("[data-reveal]");
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.18 }
   );
-  revealEls.forEach((el) => revealObserver.observe(el));
+  revealEls.forEach((el) => observer.observe(el));
 
-  // Parallax hover
-  $$("[data-parallax]").forEach((card) => {
+  document.querySelectorAll("[data-parallax]").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
@@ -113,11 +94,11 @@
   // 3. Pricing Estimator
   // ===============================
 
-  const messSlider = $("#messSlider");
-  const messValue = $("#messValue");
-  const addonWindows = $("#addonWindows");
-  const addonAppliances = $("#addonAppliances");
-  const estimatedPrice = $("#estimatedPrice");
+  const messSlider = document.getElementById("messSlider");
+  const messValue = document.getElementById("messValue");
+  const addonWindows = document.getElementById("addonWindows");
+  const addonAppliances = document.getElementById("addonAppliances");
+  const estimatedPrice = document.getElementById("estimatedPrice");
 
   function calculateBaseEstimate(mess, includeWindows, includeAppliances) {
     const base = 120;
@@ -133,8 +114,8 @@
     const mess = Number(messSlider.value || 1);
     const total = calculateBaseEstimate(
       mess,
-      !!(addonWindows && addonWindows.checked),
-      !!(addonAppliances && addonAppliances.checked)
+      addonWindows?.checked,
+      addonAppliances?.checked
     );
     messValue.textContent = mess;
     estimatedPrice.textContent = `$${total}`;
@@ -146,16 +127,17 @@
     );
   }
   [addonWindows, addonAppliances].forEach((el) => {
-    if (el) el.addEventListener("change", updateEstimator);
+    if (!el) return;
+    el.addEventListener("change", updateEstimator);
   });
   updateEstimator();
 
   // ===============================
-  // 4. Service Modal & Gallery
+  // 4. Service Modal & Gallery Lightbox
   // ===============================
 
-  const modal = $("#serviceModal");
-  const modalContent = $("#serviceModalContent");
+  const serviceModalBackdrop = document.getElementById("serviceModal");
+  const serviceModalContent = document.getElementById("serviceModalContent");
 
   const serviceDetails = {
     residential: {
@@ -197,7 +179,7 @@
         <ul>
           <li>Inside cabinets, fridge & oven (on request).</li>
           <li>Walls spot-cleaned, fixtures detailed.</li>
-          <li>Perfect for listings, inspections & key handovers.</li>
+          <li>Ideal for listings, inspections & key handovers.</li>
         </ul>
         <p><strong>Est. Range:</strong> $200 - $360.</p>
       `,
@@ -216,41 +198,43 @@
   };
 
   function openServiceModal(key) {
-    if (!modal || !modalContent) return;
+    if (!serviceModalBackdrop || !serviceModalContent) return;
     const svc = serviceDetails[key];
     if (!svc) return;
-    modalContent.innerHTML = `
+    serviceModalContent.innerHTML = `
       <h3>${svc.title}</h3>
       ${svc.body}
-      <button class="btn" style="margin-top:0.8rem" onclick="scrollToSection('booking')">
+      <button class="btn btn-primary" style="margin-top:0.8rem" onclick="scrollToSection('booking')">
         Book Your Fresh Start
       </button>
     `;
-    modal.style.display = "flex";
+    serviceModalBackdrop.style.display = "flex";
   }
+
   function closeServiceModal() {
-    if (modal) modal.style.display = "none";
+    if (serviceModalBackdrop) serviceModalBackdrop.style.display = "none";
   }
+
   window.openServiceModal = openServiceModal;
   window.closeServiceModal = closeServiceModal;
 
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeServiceModal();
+  if (serviceModalBackdrop) {
+    serviceModalBackdrop.addEventListener("click", (e) => {
+      if (e.target === serviceModalBackdrop) closeServiceModal();
     });
   }
 
-  // Gallery lightbox
-  const lightbox = $("#lightbox");
-  const lightboxImg = $("#lightboxImg");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
 
-  $$(".gallery-item").forEach((img) => {
+  document.querySelectorAll(".gallery-item").forEach((img) => {
     img.addEventListener("click", () => {
       if (!lightbox || !lightboxImg) return;
       lightboxImg.src = img.src;
       lightbox.style.display = "flex";
     });
   });
+
   function closeLightbox() {
     if (lightbox) lightbox.style.display = "none";
   }
@@ -278,22 +262,12 @@
     },
   ];
 
-  const tText = $("#testimonialText");
-  const tName = $("#testimonialName");
-  const tDots = $("#testimonialDots");
+  const tText = document.getElementById("testimonialText");
+  const tName = document.getElementById("testimonialName");
+  const tDots = document.getElementById("testimonialDots");
   let tIndex = 0;
 
-  function updateTestimonial() {
-    if (!tText || !tName || !tDots) return;
-    const t = testimonials[tIndex];
-    tText.textContent = t.text;
-    tName.textContent = t.name;
-    $$( ":scope > span", tDots).forEach((d, i) => {
-      d.classList.toggle("active", i === tIndex);
-    });
-  }
-
-  function renderTestimonials() {
+  function renderTestimonialsDots() {
     if (!tDots) return;
     tDots.innerHTML = "";
     testimonials.forEach((_, i) => {
@@ -305,30 +279,42 @@
       });
       tDots.appendChild(dot);
     });
-    updateTestimonial();
   }
 
-  renderTestimonials();
-  setInterval(() => {
-    tIndex = (tIndex + 1) % testimonials.length;
-    updateTestimonial();
-  }, 6000);
+  function updateTestimonial() {
+    if (!tText || !tName || !tDots) return;
+    const t = testimonials[tIndex];
+    tText.textContent = t.text;
+    tName.textContent = t.name;
+    [...tDots.children].forEach((d, i) => {
+      d.classList.toggle("active", i === tIndex);
+    });
+  }
 
-  // FAQ accordion
-  $$(".accordion-header").forEach((btn) => {
+  if (tText && tName && tDots) {
+    renderTestimonialsDots();
+    updateTestimonial();
+    setInterval(() => {
+      tIndex = (tIndex + 1) % testimonials.length;
+      updateTestimonial();
+    }, 6000);
+  }
+
+  document.querySelectorAll(".accordion-header").forEach((btn) => {
     btn.addEventListener("click", () => {
       const item = btn.parentElement;
       const open = item.classList.contains("open");
-      $$(".accordion-item").forEach((i) => i.classList.remove("open"));
+      document
+        .querySelectorAll(".accordion-item")
+        .forEach((i) => i.classList.remove("open"));
       if (!open) item.classList.add("open");
     });
   });
 
-  // Chatbot
-  const chatbotToggle = $("#chatbotToggle");
-  const chatbotWindow = $("#chatbotWindow");
-  const chatbotBody = $("#chatbotBody");
-  const chatbotInput = $("#chatbotInput");
+  const chatbotToggle = document.getElementById("chatbotToggle");
+  const chatbotWindow = document.getElementById("chatbotWindow");
+  const chatbotBody = document.getElementById("chatbotBody");
+  const chatbotInput = document.getElementById("chatbotInput");
 
   function botSay(text) {
     if (!chatbotBody) return;
@@ -403,7 +389,6 @@
   if (chatbotToggle) {
     chatbotToggle.addEventListener("click", () => toggleChatbot());
   }
-
   if (chatbotInput) {
     chatbotInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -414,29 +399,28 @@
   }
 
   // ===============================
-  // 6. Theme Toggle
+  // 6. Theme Toggle (Dark / Light)
   // ===============================
 
-  const themeToggle = $("#themeToggle");
-  const themeIcon = $(".theme-icon");
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.querySelector(".theme-icon");
 
   function applyTheme(mode) {
     if (mode === "dark") {
-      document.body.classList.add("dark");
+      body.classList.add("dark");
       if (themeIcon) themeIcon.textContent = "🌙";
     } else {
-      document.body.classList.remove("dark");
+      body.classList.remove("dark");
       if (themeIcon) themeIcon.textContent = "☀️";
     }
   }
 
-  applyTheme(localStorage.getItem("dl-theme") || "light");
+  const storedTheme = localStorage.getItem("dl-theme");
+  applyTheme(storedTheme || "light");
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-      const current = document.body.classList.contains("dark")
-        ? "dark"
-        : "light";
+      const current = body.classList.contains("dark") ? "dark" : "light";
       const next = current === "dark" ? "light" : "dark";
       applyTheme(next);
       localStorage.setItem("dl-theme", next);
@@ -444,7 +428,7 @@
   }
 
   // ===============================
-  // 7. Firebase Init & Helpers
+  // 7. Firebase Init
   // ===============================
 
   const firebaseConfig = {
@@ -457,7 +441,6 @@
   };
 
   firebase.initializeApp(firebaseConfig);
-
   const auth = firebase.auth();
   const db = firebase.firestore();
   const storage = firebase.storage();
@@ -474,66 +457,346 @@
   }
 
   // ===============================
-  // 8. DOM Refs (Shop, Cart, Dashboards)
+  // 8. Shop + Cart + After-Clean Widget
   // ===============================
 
-  // Shop & cart state
+  const shopGrid = document.getElementById("shopGrid");
+  const shopFeaturedRow = document.getElementById("shopFeaturedRow");
+
+  const afterCleanWidget = document.getElementById("afterCleanWidget");
+  const afterCleanProductsEl = document.getElementById("afterCleanProducts");
+
+  const productModalBackdrop = document.getElementById("productModal");
+  const productModalImage = document.getElementById("productModalImage");
+  const productModalName = document.getElementById("productModalName");
+  const productModalCategory = document.getElementById("productModalCategory");
+  const productModalDescription = document.getElementById(
+    "productModalDescription"
+  );
+  const productModalPrice = document.getElementById("productModalPrice");
+  const addToCartBtn = document.getElementById("addToCartBtn");
+  const subscribeSaveBtn = document.getElementById("subscribeSaveBtn");
+  const closeProductModalBtn = document.getElementById("closeProductModal");
+
+  const cartDrawer = document.getElementById("cartDrawer");
+  const openCartBtn = document.getElementById("openCartBtn");
+  const closeCartBtn = document.getElementById("closeCartBtn");
+  const cartItemsEl = document.getElementById("cartItems");
+  const cartSubtotalEl = document.getElementById("cartSubtotal");
+  const cartCountEl = document.getElementById("cartCount");
+  const checkoutCartBtn = document.getElementById("checkoutCartBtn");
+  const cartEcoPointsEl = document.getElementById("cartEcoPoints");
+
   let products = [];
   let cart = [];
   let currentProduct = null;
 
-  // Shop DOM
-  const shopGrid = $("#shopGrid");
-  const shopFeaturedRow = $("#shopFeaturedRow");
+  function renderShopProducts() {
+    if (!shopGrid) return;
+    shopGrid.innerHTML = "";
+    if (shopFeaturedRow) shopFeaturedRow.innerHTML = "";
 
-  // Product modal DOM
-  const productModal = $("#productModal");
-  const closeProductModalBtn = $("#closeProductModal");
-  const productModalImage = $("#productModalImage");
-  const productModalName = $("#productModalName");
-  const productModalCategory = $("#productModalCategory");
-  const productModalDescription = $("#productModalDescription");
-  const productModalPrice = $("#productModalPrice");
-  const addToCartBtn = $("#addToCartBtn");
-  const subscribeSaveBtn = $("#subscribeSaveBtn");
+    products.forEach((p) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.dataset.id = p.id;
+      card.innerHTML = `
+        <img src="${p.imageURL || "/images/og-image.jpg"}" alt="${
+        p.name
+      }" />
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">$${Number(p.price).toFixed(2)}</div>
+        <div>
+          <span class="product-tag">${p.category || "Eco Clean"}</span>
+          ${p.featured ? '<span class="product-tag">★ Staff favourite</span>' : ""}
+        </div>
+        <button class="btn btn-soft btn-sm product-quick-view">View details</button>
+      `;
+      shopGrid.appendChild(card);
 
-  // Cart DOM
-  const cartDrawer = $("#cartDrawer");
-  const openCartBtn = $("#openCartBtn");
-  const closeCartBtn = $("#closeCartBtn");
-  const cartItemsEl = $("#cartItems");
-  const cartSubtotalEl = $("#cartSubtotal");
-  const cartCountEl = $("#cartCount");
-  const checkoutCartBtn = $("#checkoutCartBtn");
-  const cartEcoPointsEl = $("#cartEcoPoints");
+      if (p.featured && shopFeaturedRow) {
+        const pill = document.createElement("div");
+        pill.className = "pill pill-soft";
+        pill.textContent = `${p.name} • $${Number(p.price).toFixed(2)}`;
+        shopFeaturedRow.appendChild(pill);
+      }
+    });
+  }
 
-  // After cleaning widget
-  const afterCleanWidget = $("#afterCleanWidget");
-  const afterCleanProductsEl = $("#afterCleanProducts");
+  function renderAfterCleanRecommendations() {
+    if (!afterCleanWidget || !afterCleanProductsEl || !products.length) return;
+    const featured = products.filter((p) => p.featured);
+    const picks = (featured.length ? featured : products).slice(0, 3);
 
-  // Admin products
-  const productForm = $("#productForm");
-  const adminProductsList = $("#adminProductsList");
-  const cancelEditProductBtn = $("#cancelEditProductBtn");
+    afterCleanProductsEl.innerHTML = "";
+    picks.forEach((p) => {
+      const div = document.createElement("div");
+      div.className = "after-clean-item";
+      div.innerHTML = `
+        <div class="after-clean-title">${p.name}</div>
+        <div class="after-clean-price">$${Number(p.price).toFixed(2)}</div>
+        <button class="link-btn" data-product-id="${p.id}">Add to cart</button>
+      `;
+      afterCleanProductsEl.appendChild(div);
+    });
 
-  // Dashboards & layout
-  const employeeDashboard = $("#employeeDashboard");
-  const adminDashboard = $("#adminDashboard");
-  const employeeWelcome = $("#employeeWelcome");
-  const logoutBtnEmp = $("#logoutBtnEmp");
-  const logoutBtnAdmin = $("#logoutBtnAdmin");
-  const publicSite = $("#publicSite");
-  const headerEl = $(".header");
-  const footerEl = $(".footer");
+    afterCleanWidget.classList.remove("hidden");
 
-  let employeeJobsUnsub = null;
-  let adminBookingsUnsub = null;
-  let adminJobsUnsub = null;
-  let adminEmployeesUnsub = null;
-  let adminProductsUnsub = null;
+    afterCleanProductsEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-product-id]");
+      if (!btn) return;
+      const id = btn.dataset.productId;
+      const product = products.find((p) => p.id === id);
+      if (product) addToCart(product, { subscribe: false });
+    });
+  }
+
+  function openProductModal(p) {
+    if (
+      !productModalBackdrop ||
+      !productModalImage ||
+      !productModalName ||
+      !productModalCategory ||
+      !productModalDescription ||
+      !productModalPrice
+    )
+      return;
+
+    currentProduct = p;
+    productModalImage.src = p.imageURL || "/images/og-image.jpg";
+    productModalImage.alt = p.name;
+    productModalName.textContent = p.name;
+    productModalCategory.textContent = p.category || "Eco Clean";
+    productModalDescription.textContent = p.description || "";
+    productModalPrice.textContent = `$${Number(p.price).toFixed(2)}`;
+    productModalBackdrop.classList.remove("hidden");
+  }
+
+  function closeProductModal() {
+    currentProduct = null;
+    if (productModalBackdrop) productModalBackdrop.classList.add("hidden");
+  }
+
+  if (closeProductModalBtn) {
+    closeProductModalBtn.addEventListener("click", closeProductModal);
+  }
+  if (productModalBackdrop) {
+    productModalBackdrop.addEventListener("click", (e) => {
+      if (e.target === productModalBackdrop) closeProductModal();
+    });
+  }
+
+  if (shopGrid && productModalBackdrop) {
+    shopGrid.addEventListener("click", (e) => {
+      const card = e.target.closest(".product-card");
+      if (!card) return;
+      const id = card.dataset.id;
+      const product = products.find((p) => p.id === id);
+      if (product) openProductModal(product);
+    });
+  }
+
+  function getEcoPoints() {
+    try {
+      const v = localStorage.getItem("dl_eco_points");
+      return v ? parseInt(v, 10) || 0 : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  function setEcoPointsDisplay() {
+    if (cartEcoPointsEl) {
+      cartEcoPointsEl.textContent = getEcoPoints();
+    }
+  }
+
+  function addEcoPoints(points) {
+    const current = getEcoPoints();
+    const next = current + points;
+    localStorage.setItem("dl_eco_points", String(next));
+    setEcoPointsDisplay();
+  }
+
+  function loadCart() {
+    try {
+      const stored = localStorage.getItem("dl_cart");
+      cart = stored ? JSON.parse(stored) : [];
+    } catch {
+      cart = [];
+    }
+    renderCart();
+  }
+
+  function saveCart() {
+    localStorage.setItem("dl_cart", JSON.stringify(cart));
+  }
+
+  function renderCart() {
+    if (!cartItemsEl || !cartSubtotalEl || !cartCountEl) return;
+    cartItemsEl.innerHTML = "";
+
+    if (!cart.length) {
+      cartItemsEl.innerHTML =
+        '<p class="muted">Your basket is feeling a little empty. Add a refill or a favourite spray to keep that Dustless glow.</p>';
+    } else {
+      cart.forEach((item) => {
+        const lineTotal =
+          item.price *
+          item.quantity *
+          (item.subscribe ? 0.9 : 1); // 10% off subs
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-meta">
+              ${item.subscribe ? "Subscribe & Save • " : ""}
+              $${item.price.toFixed(2)} × ${item.quantity}
+            </div>
+          </div>
+          <div class="cart-item-actions">
+            <div class="cart-item-total">$${lineTotal.toFixed(2)}</div>
+            <button class="cart-remove" data-id="${item.id}" data-sub="${
+          item.subscribe
+        }">Remove</button>
+          </div>
+        `;
+        cartItemsEl.appendChild(row);
+      });
+    }
+
+    const subtotal = cart.reduce((sum, item) => {
+      const line =
+        item.price *
+        item.quantity *
+        (item.subscribe ? 0.9 : 1);
+      return sum + line;
+    }, 0);
+
+    cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountEl.textContent = count;
+    setEcoPointsDisplay();
+  }
+
+  function addToCart(product, opts = {}) {
+    if (!product) return;
+    const subscribe = !!opts.subscribe;
+    const existing = cart.find(
+      (item) => item.id === product.id && item.subscribe === subscribe
+    );
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: Number(product.price),
+        subscribe,
+        quantity: 1,
+      });
+    }
+    saveCart();
+    renderCart();
+    openCart();
+  }
+
+  function removeFromCart(id, subscribe) {
+    cart = cart.filter(
+      (item) => !(item.id === id && item.subscribe === subscribe)
+    );
+    saveCart();
+    renderCart();
+  }
+
+  function openCart() {
+    if (cartDrawer) cartDrawer.classList.remove("hidden");
+  }
+
+  function closeCart() {
+    if (cartDrawer) cartDrawer.classList.add("hidden");
+  }
+
+  if (openCartBtn) openCartBtn.addEventListener("click", openCart);
+  if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
+
+  if (cartItemsEl) {
+    cartItemsEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".cart-remove");
+      if (!btn) return;
+      const id = btn.dataset.id;
+      const sub = btn.dataset.sub === "true";
+      removeFromCart(id, sub);
+    });
+  }
+
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener("click", () => {
+      if (currentProduct) addToCart(currentProduct, { subscribe: false });
+      closeProductModal();
+    });
+  }
+  if (subscribeSaveBtn) {
+    subscribeSaveBtn.addEventListener("click", () => {
+      if (currentProduct) addToCart(currentProduct, { subscribe: true });
+      closeProductModal();
+    });
+  }
+
+  async function checkoutCart() {
+    if (!cart.length) return;
+    if (!stripe) {
+      alert("Payment temporarily unavailable. Please contact us directly.");
+      return;
+    }
+    checkoutCartBtn.disabled = true;
+    checkoutCartBtn.textContent = "Redirecting...";
+
+    try {
+      const res = await fetch("/api/create-shop-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: cart }),
+      });
+      if (!res.ok) throw new Error("Checkout failed");
+      const data = await res.json();
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: data.sessionId,
+      });
+      if (error) {
+        alert(error.message || "Unable to start checkout.");
+      }
+    } catch (err) {
+      console.error("Shop checkout error:", err);
+      alert("Unable to start checkout. Please try again.");
+    } finally {
+      checkoutCartBtn.disabled = false;
+      checkoutCartBtn.textContent = "Checkout Securely";
+    }
+  }
+
+  if (checkoutCartBtn) {
+    checkoutCartBtn.addEventListener("click", checkoutCart);
+  }
+
+  function loadProducts() {
+    if (!db || !shopGrid) return;
+    db.collection("products")
+      .orderBy("featured", "desc")
+      .orderBy("name")
+      .onSnapshot((snapshot) => {
+        products = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        renderShopProducts();
+        renderAfterCleanRecommendations();
+      });
+  }
+
+  loadProducts();
+  loadCart();
 
   // ===============================
-  // 9. Booking, Careers, Contact, After Cleaning
+  // 9. Promos & Booking / Careers / Contact
   // ===============================
 
   const PROMO_CONFIG = {
@@ -585,17 +848,17 @@
     };
   }
 
-  const bookingForm = $("#bookingForm");
-  const bookingSuccess = $("#bookingSuccess");
-  const bookingPromoNote = $("#bookingPromoNote");
-  const bookingPaymentNote = $("#bookingPaymentNote");
-  const payDepositBtn = $("#payDepositBtn");
-  const paymentStatus = $("#paymentStatus");
+  const bookingForm = document.getElementById("bookingForm");
+  const bookingSuccess = document.getElementById("bookingSuccess");
+  const bookingPromoNote = document.getElementById("bookingPromoNote");
+  const bookingPaymentNote = document.getElementById("bookingPaymentNote");
+  const payDepositBtn = document.getElementById("payDepositBtn");
+  const paymentStatus = document.getElementById("paymentStatus");
 
-  const careersForm = $("#careersForm");
-  const careersSuccess = $("#careersSuccess");
-  const contactForm = $("#contactForm");
-  const contactSuccess = $("#contactSuccess");
+  const careersForm = document.getElementById("careersForm");
+  const careersSuccess = document.getElementById("careersSuccess");
+  const contactForm = document.getElementById("contactForm");
+  const contactSuccess = document.getElementById("contactSuccess");
 
   if (bookingForm) {
     bookingForm.addEventListener("submit", async (e) => {
@@ -605,7 +868,6 @@
       if (bookingPaymentNote) bookingPaymentNote.textContent = "";
       if (paymentStatus) paymentStatus.textContent = "";
       if (payDepositBtn) payDepositBtn.classList.add("hidden");
-      if (afterCleanWidget) afterCleanWidget.classList.add("hidden");
 
       const formData = Object.fromEntries(new FormData(bookingForm).entries());
       const mess = Number(formData.mess || 5);
@@ -652,16 +914,10 @@
 
         if (bookingPaymentNote && payDepositBtn) {
           bookingPaymentNote.textContent =
-            "Want to secure your spot early? Place a small, secure deposit below (fully credited toward your clean).";
+            "Want to secure your spot early? You can place a small, secure deposit below (fully credited toward your clean).";
           payDepositBtn.classList.remove("hidden");
           payDepositBtn.onclick = () =>
             startDepositPayment(docRef.id, suggestedDeposit);
-        }
-
-        // Show "Buy After Cleaning" recommendations
-        if (afterCleanWidget) {
-          renderAfterCleanRecommendations();
-          afterCleanWidget.classList.remove("hidden");
         }
       } catch (err) {
         console.error("Booking error:", err);
@@ -686,7 +942,7 @@
       await saveToCollection("applications", data);
       careersForm.reset();
       careersSuccess.textContent =
-        "Application received. We’ll reach out if we’re a beautiful fit for each other.";
+        "Application received. We’ll reach out if we’re a good fit for each other.";
       setTimeout(() => (careersSuccess.textContent = ""), 8000);
     });
   }
@@ -704,347 +960,138 @@
   }
 
   // ===============================
-  // 10. Auth Modal & Login
+  // 10. Auth Modal & Role-Based Dashboards
   // ===============================
 
-  const authModal = $("#authModal");
-  const openLogin = $("#openLogin");
-  const openLoginMobile = $("#openLoginMobile");
-  const authClose = $("#authClose");
-  const loginForm = $("#loginForm");
-  const loginStatus = $("#loginStatus");
+  const authModal = document.getElementById("authModal");
+  const openLogin = document.getElementById("openLogin");
+  const openLoginMobile = document.getElementById("openLoginMobile");
+  const authClose = document.getElementById("authClose");
+  const loginForm = document.getElementById("loginForm");
+  const loginStatus = document.getElementById("loginStatus");
 
-  function showAuthModal() {
-    if (authModal) authModal.style.display = "flex";
-  }
-  function hideAuthModal() {
-    if (authModal) authModal.style.display = "none";
-    if (loginStatus) loginStatus.textContent = "";
-    if (loginForm) loginForm.reset();
-  }
+  const publicSite = document.getElementById("publicSite");
+  const headerEl = document.querySelector(".header");
+  const footerEl = document.querySelector(".footer");
+  const appLabel = document.getElementById("appLabel");
 
-  if (openLogin)
-    openLogin.addEventListener("click", (e) => {
-      e.preventDefault();
-      showAuthModal();
-    });
+  const employeeDashboard = document.getElementById("employeeDashboard");
+  const adminDashboard = document.getElementById("adminDashboard");
+  const employeeWelcome = document.getElementById("employeeWelcome");
+  const logoutBtnEmp = document.getElementById("logoutBtnEmp");
+  const logoutBtnAdmin = document.getElementById("logoutBtnAdmin");
 
-  if (openLoginMobile)
-    openLoginMobile.addEventListener("click", (e) => {
-      e.preventDefault();
-      showAuthModal();
-    });
+  const adminEmployeesEl = document.getElementById("adminEmployees");
+  const adminBookingsEl = document.getElementById("adminBookings");
+  const adminCompletedJobsEl = document.getElementById("adminCompletedJobs");
+  const adminRevenueSummaryEl = document.getElementById(
+    "adminRevenueSummary"
+  );
 
-  if (authClose) authClose.addEventListener("click", hideAuthModal);
-  if (authModal) {
-    authModal.addEventListener("click", (e) => {
-      if (e.target === authModal) hideAuthModal();
-    });
-  }
+  const productForm = document.getElementById("productForm");
+  const adminProductsList = document.getElementById("adminProductsList");
+  const cancelEditProductBtn = document.getElementById(
+    "cancelEditProductBtn"
+  );
 
-  if (loginForm && loginStatus) {
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      loginStatus.textContent = "";
-      const email = $("#loginEmail").value.trim();
-      const password = $("#loginPassword").value;
-      try {
-        await auth.signInWithEmailAndPassword(email, password);
-        loginStatus.textContent = "Logged in. Loading your dashboard...";
-        setTimeout(hideAuthModal, 600);
-      } catch (err) {
-        console.error("Login error:", err);
-        loginStatus.textContent =
-          "Login failed. Please check your credentials or contact admin.";
-      }
-    });
-  }
-
-  // ===============================
-  // 11. Shop: Products, Modal, Cart, Eco Points
-  // ===============================
-
-  // Eco Points
-  function getEcoPoints() {
-    try {
-      const v = localStorage.getItem("dl_eco_points");
-      return v ? parseInt(v, 10) || 0 : 0;
-    } catch {
-      return 0;
-    }
-  }
-
-  function addEcoPoints(points) {
-    const current = getEcoPoints();
-    const next = current + points;
-    localStorage.setItem("dl_eco_points", String(next));
-    if (cartEcoPointsEl) cartEcoPointsEl.textContent = next;
-  }
-
-  // Cart helpers
-  function loadCart() {
-    try {
-      const stored = localStorage.getItem("dl_cart");
-      cart = stored ? JSON.parse(stored) : [];
-    } catch {
-      cart = [];
-    }
-    renderCart();
-  }
-
-  function saveCart() {
-    localStorage.setItem("dl_cart", JSON.stringify(cart));
-  }
-
-  function clearCart() {
-    cart = [];
-    saveCart();
-    renderCart();
-  }
-
-  function addToCart(product, { subscribe = false } = {}) {
-    if (!product) return;
-    const existing = cart.find(
-      (item) => item.id === product.id && item.subscribe === !!subscribe
-    );
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        name: product.name,
-        price: Number(product.price),
-        subscribe: !!subscribe,
-        quantity: 1,
-      });
-    }
-    saveCart();
-    renderCart();
-    openCart();
-  }
-
-  function removeFromCart(id, subscribe) {
-    cart = cart.filter(
-      (item) => !(item.id === id && item.subscribe === subscribe)
-    );
-    saveCart();
-    renderCart();
-  }
-
-  function renderCart() {
-    if (!cartItemsEl || !cartCountEl || !cartSubtotalEl) return;
-
-    cartItemsEl.innerHTML = "";
-
-    if (!cart.length) {
-      cartItemsEl.innerHTML =
-        '<p class="muted">Your basket is feeling a little empty. Add a refill or a favourite spray to keep that Dustless glow.</p>';
-    } else {
-      cart.forEach((item) => {
-        const lineTotal =
-          item.price *
-          item.quantity *
-          (item.subscribe ? 0.9 : 1); // 10% off subscribe
-        const row = document.createElement("div");
-        row.className = "cart-item";
-        row.innerHTML = `
-          <div>
-            <div class="cart-item-title">${item.name}</div>
-            <div class="cart-item-meta">
-              ${item.subscribe ? "Subscribe & Save • " : ""}
-              $${item.price.toFixed(2)} × ${item.quantity}
-            </div>
-          </div>
-          <div class="cart-item-actions">
-            <div class="cart-item-total">$${lineTotal.toFixed(2)}</div>
-            <button class="cart-remove" data-id="${item.id}" data-sub="${
-          item.subscribe
-        }">Remove</button>
-          </div>
-        `;
-        cartItemsEl.appendChild(row);
-      });
-    }
-
-    const subtotal = cart.reduce((sum, item) => {
-      const line =
-        item.price *
-        item.quantity *
-        (item.subscribe ? 0.9 : 1);
-      return sum + line;
-    }, 0);
-
-    cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = count;
-    if (cartEcoPointsEl) {
-      cartEcoPointsEl.textContent = getEcoPoints();
-    }
-  }
-
-  function openCart() {
-    if (cartDrawer) cartDrawer.classList.remove("hidden");
-  }
-  function closeCart() {
-    if (cartDrawer) cartDrawer.classList.add("hidden");
-  }
-
-  if (openCartBtn) openCartBtn.addEventListener("click", openCart);
-  if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
-
-  if (cartItemsEl) {
-    cartItemsEl.addEventListener("click", (e) => {
-      const btn = e.target.closest(".cart-remove");
-      if (!btn) return;
-      const id = btn.dataset.id;
-      const sub = btn.dataset.sub === "true";
-      removeFromCart(id, sub);
-    });
-  }
-
-  if (addToCartBtn) {
-    addToCartBtn.addEventListener("click", () => {
-      if (currentProduct) addToCart(currentProduct, { subscribe: false });
-      closeProductModal();
-    });
-  }
-  if (subscribeSaveBtn) {
-    subscribeSaveBtn.addEventListener("click", () => {
-      if (currentProduct) addToCart(currentProduct, { subscribe: true });
-      closeProductModal();
-    });
-  }
-
-  if (cartDrawer) {
-    cartDrawer.addEventListener("click", (e) => {
-      if (e.target === cartDrawer) closeCart();
-    });
-  }
-
-  // Product modal
-  function openProductModal(p) {
-    if (!productModal) return;
-    currentProduct = p;
-    if (productModalImage) {
-      productModalImage.src = p.imageURL;
-      productModalImage.alt = p.name;
-    }
-    if (productModalName) productModalName.textContent = p.name;
-    if (productModalCategory)
-      productModalCategory.textContent = p.category || "Eco Clean";
-    if (productModalDescription)
-      productModalDescription.textContent = p.description || "";
-    if (productModalPrice)
-      productModalPrice.textContent = `$${Number(p.price).toFixed(2)}`;
-    productModal.classList.remove("hidden");
-  }
-
-  function closeProductModal() {
-    if (!productModal) return;
-    currentProduct = null;
-    productModal.classList.add("hidden");
-  }
-
-  if (closeProductModalBtn)
-    closeProductModalBtn.addEventListener("click", closeProductModal);
-
-  if (productModal) {
-    productModal.addEventListener("click", (e) => {
-      if (e.target === productModal) closeProductModal();
-    });
-  }
-
-  // Shop grid click
-  if (shopGrid) {
-    shopGrid.addEventListener("click", (e) => {
-      const card = e.target.closest(".product-card");
-      if (!card) return;
-      const id = card.dataset.id;
-      const product = products.find((p) => p.id === id);
-      if (product) openProductModal(product);
-    });
-  }
-
-  // Load products for public Shop + After Cleaning widget
-  function loadProducts() {
-    if (!db) return;
-    db.collection("products")
-      .orderBy("featured", "desc")
-      .orderBy("name")
-      .onSnapshot((snapshot) => {
-        products = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        renderShopProducts();
-        renderAfterCleanRecommendations();
-      });
-  }
-
-  function renderShopProducts() {
-    if (!shopGrid) return;
-    shopGrid.innerHTML = "";
-    if (shopFeaturedRow) shopFeaturedRow.innerHTML = "";
-
-    products.forEach((p) => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.dataset.id = p.id;
-      card.innerHTML = `
-        <img src="${p.imageURL}" alt="${p.name}" />
-        <div class="product-name">${p.name}</div>
-        <div class="product-price">$${Number(p.price).toFixed(2)}</div>
-        <div>
-          <span class="product-tag">${p.category || "Eco Clean"}</span>
-          ${p.featured ? '<span class="product-tag">★ Staff favourite</span>' : ""}
-        </div>
-        <button class="btn btn-soft btn-sm">View details</button>
-      `;
-      shopGrid.appendChild(card);
-
-      if (p.featured && shopFeaturedRow) {
-        const pill = document.createElement("div");
-        pill.className = "pill pill-soft";
-        pill.textContent = `${p.name} • $${Number(p.price).toFixed(2)}`;
-        shopFeaturedRow.appendChild(pill);
-      }
-    });
-  }
-
-  function renderAfterCleanRecommendations() {
-    if (!afterCleanWidget || !afterCleanProductsEl) return;
-    const featured = products.filter((p) => p.featured);
-    if (!featured.length) {
-      afterCleanWidget.classList.add("hidden");
-      return;
-    }
-    afterCleanProductsEl.innerHTML = "";
-    featured.slice(0, 3).forEach((p) => {
-      const div = document.createElement("div");
-      div.className = "after-clean-item";
-      div.textContent = `${p.name} • $${Number(p.price).toFixed(2)}`;
-      afterCleanProductsEl.appendChild(div);
-    });
-  }
-
-  loadCart();
-  loadProducts();
-
-  // ===============================
-  // 12. Admin & Employee Dashboards
-  // ===============================
+  let employeeJobsUnsub = null;
+  let adminBookingsUnsub = null;
+  let adminJobsUnsub = null;
+  let adminEmployeesUnsub = null;
+  let adminProductsUnsub = null;
+  let productFormBound = false;
 
   function showPublicView() {
-    document.body.classList.remove("app-mode");
-    publicSite && publicSite.classList.remove("hidden");
-    headerEl && headerEl.classList.remove("hidden");
-    footerEl && footerEl.classList.remove("hidden");
-    employeeDashboard && employeeDashboard.classList.add("hidden");
-    adminDashboard && adminDashboard.classList.add("hidden");
+    body.classList.remove("app-mode");
+    if (publicSite) publicSite.classList.remove("hidden");
+    if (headerEl) headerEl.classList.remove("hidden");
+    if (footerEl) footerEl.classList.remove("hidden");
+    if (employeeDashboard) employeeDashboard.classList.add("hidden");
+    if (adminDashboard) adminDashboard.classList.add("hidden");
+    if (appLabel) appLabel.style.display = "none";
+  }
+
+  function showEmployeeView(name, uid) {
+    body.classList.add("app-mode");
+    if (publicSite) publicSite.classList.add("hidden");
+    if (footerEl) footerEl.classList.add("hidden");
+    if (employeeDashboard) employeeDashboard.classList.remove("hidden");
+    if (adminDashboard) adminDashboard.classList.add("hidden");
+    if (headerEl) headerEl.classList.remove("hidden");
+    if (appLabel) appLabel.style.display = "inline-flex";
+    if (employeeWelcome) {
+      employeeWelcome.textContent = `Welcome, ${name}.`;
+    }
+
+    if (employeeJobsUnsub) employeeJobsUnsub();
+    employeeJobsUnsub = db
+      .collection("jobs")
+      .where("assignedTo", "==", uid)
+      .onSnapshot((snap) => {
+        renderEmployeeJobs(snap.docs);
+      });
+
+    employeeDashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function showAdminView(name) {
+    body.classList.add("app-mode");
+    if (publicSite) publicSite.classList.add("hidden");
+    if (footerEl) footerEl.classList.add("hidden");
+    if (adminDashboard) adminDashboard.classList.remove("hidden");
+    if (employeeDashboard) employeeDashboard.classList.add("hidden");
+    if (headerEl) headerEl.classList.remove("hidden");
+    if (appLabel) appLabel.style.display = "inline-flex";
+
+    if (employeeJobsUnsub) employeeJobsUnsub();
+    if (adminBookingsUnsub) adminBookingsUnsub();
+    if (adminJobsUnsub) adminJobsUnsub();
+    if (adminEmployeesUnsub) adminEmployeesUnsub();
+    if (adminProductsUnsub) adminProductsUnsub();
+
+    adminEmployeesUnsub = db
+      .collection("users")
+      .where("role", "in", ["employee", "admin"])
+      .onSnapshot((empSnap) => {
+        const employees = empSnap.docs.map((d) => ({
+          id: d.id,
+          ...d.data(),
+        }));
+
+        renderAdminEmployees(
+          employees.filter((u) => u.role === "employee")
+        );
+
+        if (adminBookingsUnsub) adminBookingsUnsub();
+        adminBookingsUnsub = db
+          .collection("bookings")
+          .orderBy("createdAt", "desc")
+          .onSnapshot((bSnap) => {
+            renderAdminBookings(bSnap.docs, employees);
+            renderAdminRevenueSummary(bSnap.docs);
+          });
+      });
+
+    adminJobsUnsub = db.collection("jobs").onSnapshot((snap) => {
+      renderAdminCompletedJobs(snap.docs);
+    });
+
+    if (!adminProductsUnsub) {
+      adminProductsUnsub = db
+        .collection("products")
+        .orderBy("name")
+        .onSnapshot((snap) => {
+          renderAdminProducts(snap.docs);
+        });
+    }
+
+    initAdminProductsForm();
+    loadCart();
+    adminDashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function renderEmployeeJobs(docs) {
-    const container = $("#employeeJobsList");
+    const container = document.getElementById("employeeJobsList");
     if (!container) return;
     container.innerHTML = "";
     if (!docs.length) {
@@ -1052,7 +1099,6 @@
         "No jobs assigned yet. Check back soon or contact admin.";
       return;
     }
-
     docs.forEach((doc) => {
       const job = doc.data();
       const div = document.createElement("div");
@@ -1081,7 +1127,7 @@
         </div>
       `;
 
-      const [btnIn, btnDone] = div.querySelectorAll("button");
+      const [btnIn, btnDone] = div.querySelectorAll(".job-actions button");
       const uploadBtn = div.querySelector(".job-upload button");
       const beforeInput = div.querySelector('input[data-type="before"]');
       const afterInput = div.querySelector('input[data-type="after"]');
@@ -1093,7 +1139,7 @@
         updateJobStatus(doc.id, "completed")
       );
       uploadBtn.addEventListener("click", () =>
-        handleJobUpload(doc.id, beforeInput.files[0], afterInput.files[0])
+        handleJobUpload(doc.id, beforeInput.files[0], afterFile = afterInput.files[0])
       );
 
       container.appendChild(div);
@@ -1136,34 +1182,31 @@
     }
   }
 
-  function renderAdminEmployees(docs) {
-    const container = $("#adminEmployees");
-    if (!container) return;
-    container.innerHTML = "";
-    if (!docs.length) {
-      container.textContent = "No employees registered yet.";
+  function renderAdminEmployees(employeeUsers) {
+    if (!adminEmployeesEl) return;
+    adminEmployeesEl.innerHTML = "";
+    if (!employeeUsers.length) {
+      adminEmployeesEl.textContent = "No employees registered yet.";
       return;
     }
     const ul = document.createElement("ul");
     ul.style.fontSize = "0.8rem";
-    docs.forEach((doc) => {
-      const u = doc.data();
+    employeeUsers.forEach((u) => {
       const li = document.createElement("li");
       li.textContent = `${u.name || u.email} (${u.role || "employee"})`;
       ul.appendChild(li);
     });
-    container.appendChild(ul);
+    adminEmployeesEl.appendChild(ul);
   }
 
   function renderAdminCompletedJobs(docs) {
-    const container = $("#adminCompletedJobs");
-    if (!container) return;
-    container.innerHTML = "";
+    if (!adminCompletedJobsEl) return;
+    adminCompletedJobsEl.innerHTML = "";
     const completed = docs.filter(
       (d) => (d.data().status || "") === "completed"
     );
     if (!completed.length) {
-      container.textContent = "No completed jobs logged yet.";
+      adminCompletedJobsEl.textContent = "No completed jobs logged yet.";
       return;
     }
     completed.slice(0, 6).forEach((doc) => {
@@ -1173,14 +1216,13 @@
       div.textContent = `${j.clientName || "Client"} • ${
         j.service || ""
       } • ${j.date || ""} (${j.address || ""})`;
-      container.appendChild(div);
+      adminCompletedJobsEl.appendChild(div);
     });
   }
 
   function renderAdminRevenueSummary(bookingsDocs) {
-    const container = $("#adminRevenueSummary");
-    if (!container) return;
-    container.innerHTML = "";
+    if (!adminRevenueSummaryEl) return;
+    adminRevenueSummaryEl.innerHTML = "";
     let totalEst = 0;
     let confirmed = 0;
     let deposits = 0;
@@ -1189,11 +1231,12 @@
       const b = doc.data();
       if (b.estimatedPrice) totalEst += Number(b.estimatedPrice);
       if (b.status === "confirmed") confirmed++;
-      if (b.depositStatus === "paid")
+      if (b.depositStatus === "paid") {
         deposits += Number(b.depositAmount || 0);
+      }
     });
 
-    container.innerHTML = `
+    adminRevenueSummaryEl.innerHTML = `
       <p>Total estimated value of bookings: <strong>$${totalEst.toFixed(
         2
       )}</strong></p>
@@ -1224,11 +1267,10 @@
   }
 
   function renderAdminBookings(bookingsDocs, employees) {
-    const container = $("#adminBookings");
-    if (!container) return;
-    container.innerHTML = "";
+    if (!adminBookingsEl) return;
+    adminBookingsEl.innerHTML = "";
     if (!bookingsDocs.length) {
-      container.textContent = "No bookings yet.";
+      adminBookingsEl.textContent = "No bookings yet.";
       return;
     }
 
@@ -1251,7 +1293,7 @@
       </thead>
       <tbody></tbody>
     `;
-    const tbody = $("tbody", table);
+    const tbody = table.querySelector("tbody");
 
     bookingsDocs.forEach((doc) => {
       const b = doc.data();
@@ -1282,11 +1324,12 @@
           <select class="assign-select">
             <option value="">Assign</option>
             ${employees
+              .filter((e) => e.role === "employee")
               .map(
                 (e) =>
                   `<option value="${e.id}" ${
                     e.id === b.assignedTo ? "selected" : ""
-                  }>${e.name}</option>`
+                  }>${e.name || e.email}</option>`
               )
               .join("")}
           </select>
@@ -1297,15 +1340,14 @@
         </td>
       `;
 
-      const assignSelect = $(".assign-select", tr);
-      const confirmBtn = $(".btn-confirm", tr);
-      const syncBtn = $(".btn-sync", tr);
+      const assignSelect = tr.querySelector(".assign-select");
+      const confirmBtn = tr.querySelector(".btn-confirm");
+      const syncBtn = tr.querySelector(".btn-sync");
 
       assignSelect.addEventListener("change", async () => {
         const empId = assignSelect.value;
         if (!empId) return;
         await db.collection("bookings").doc(doc.id).update({ assignedTo: empId });
-
         await db.collection("jobs").add({
           bookingId: doc.id,
           assignedTo: empId,
@@ -1343,7 +1385,7 @@
       tbody.appendChild(tr);
     });
 
-    container.appendChild(table);
+    adminBookingsEl.appendChild(table);
   }
 
   function renderAdminProducts(docs) {
@@ -1361,7 +1403,7 @@
       row.innerHTML = `
         <div class="admin-product-main">
           <div class="admin-product-name">${p.name}
-            <span class="pill pill-soft">${p.category || ""}</span>
+            ${p.category ? `<span class="pill pill-soft">${p.category}</span>` : ""}
           </div>
           <div class="admin-product-meta">
             $${Number(p.price).toFixed(2)} • Stock: ${p.stock ?? "—"}
@@ -1377,152 +1419,142 @@
     });
   }
 
-  let adminProductHandlersAttached = false;
-  function attachAdminProductHandlers() {
-    if (adminProductHandlersAttached || !productForm || !adminProductsList)
-      return;
-    adminProductHandlersAttached = true;
+  function initAdminProductsForm() {
+    if (!productForm || productFormBound) return;
+    productFormBound = true;
 
     productForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const id = $("#productId").value.trim();
+      const id = document.getElementById("productId").value.trim();
       const data = {
-        name: $("#productName").value.trim(),
-        category: $("#productCategory").value.trim(),
-        price: parseFloat($("#productPrice").value),
-        imageURL: $("#productImage").value.trim(),
-        description: $("#productDescription").value.trim(),
-        stock: parseInt($("#productStock").value || "0", 10),
-        featured: $("#productFeatured").checked,
+        name: document.getElementById("productName").value.trim(),
+        category: document.getElementById("productCategory").value.trim(),
+        price: parseFloat(
+          document.getElementById("productPrice").value || "0"
+        ),
+        imageURL: document.getElementById("productImage").value.trim(),
+        description: document
+          .getElementById("productDescription")
+          .value.trim(),
+        stock: parseInt(
+          document.getElementById("productStock").value || "0",
+          10
+        ),
+        featured: document.getElementById("productFeatured").checked,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       };
       try {
         if (id) {
           await db.collection("products").doc(id).update(data);
         } else {
-          data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+          data.createdAt =
+            firebase.firestore.FieldValue.serverTimestamp();
           await db.collection("products").add(data);
         }
         productForm.reset();
-        $("#productId").value = "";
+        document.getElementById("productId").value = "";
       } catch (err) {
         console.error("Error saving product", err);
-        alert("Unable to save product. Check your connection or permissions.");
+        alert(
+          "Unable to save product. Check your connection or Firestore rules."
+        );
       }
     });
 
     if (cancelEditProductBtn) {
       cancelEditProductBtn.addEventListener("click", () => {
         productForm.reset();
-        $("#productId").value = "";
+        document.getElementById("productId").value = "";
       });
     }
 
-    adminProductsList.addEventListener("click", async (e) => {
-      const editId = e.target.dataset.edit;
-      const delId = e.target.dataset.del;
-      if (editId) {
-        const doc = await db.collection("products").doc(editId).get();
-        if (!doc.exists) return;
-        const p = doc.data();
-        $("#productId").value = doc.id;
-        $("#productName").value = p.name || "";
-        $("#productCategory").value = p.category || "";
-        $("#productPrice").value = p.price || "";
-        $("#productImage").value = p.imageURL || "";
-        $("#productDescription").value = p.description || "";
-        $("#productStock").value = p.stock ?? "";
-        $("#productFeatured").checked = !!p.featured;
-        productForm.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      if (delId) {
-        if (!confirm("Delete this product?")) return;
-        try {
-          await db.collection("products").doc(delId).delete();
-        } catch (err) {
-          console.error(err);
-          alert("Unable to delete product.");
+    if (adminProductsList) {
+      adminProductsList.addEventListener("click", async (e) => {
+        const editId = e.target.dataset.edit;
+        const delId = e.target.dataset.del;
+        if (editId) {
+          const doc = await db.collection("products").doc(editId).get();
+          if (!doc.exists) return;
+          const p = doc.data();
+          document.getElementById("productId").value = doc.id;
+          document.getElementById("productName").value = p.name || "";
+          document.getElementById("productCategory").value =
+            p.category || "";
+          document.getElementById("productPrice").value =
+            p.price || "";
+          document.getElementById("productImage").value =
+            p.imageURL || "";
+          document.getElementById("productDescription").value =
+            p.description || "";
+          document.getElementById("productStock").value =
+            p.stock ?? "";
+          document.getElementById("productFeatured").checked =
+            !!p.featured;
+          productForm.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
+        if (delId) {
+          if (!confirm("Delete this product?")) return;
+          try {
+            await db.collection("products").doc(delId).delete();
+          } catch (err) {
+            console.error(err);
+            alert("Unable to delete product.");
+          }
+        }
+      });
+    }
+  }
+
+  function showAuthModal() {
+    if (authModal) authModal.style.display = "flex";
+  }
+
+  function hideAuthModal() {
+    if (authModal) authModal.style.display = "none";
+    if (loginStatus) loginStatus.textContent = "";
+    if (loginForm) loginForm.reset();
+  }
+
+  if (openLogin) {
+    openLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthModal();
+    });
+  }
+  if (openLoginMobile) {
+    openLoginMobile.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthModal();
+    });
+  }
+  if (authClose) authClose.addEventListener("click", hideAuthModal);
+  if (authModal) {
+    authModal.addEventListener("click", (e) => {
+      if (e.target === authModal) hideAuthModal();
+    });
+  }
+
+  if (loginForm && loginStatus) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loginStatus.textContent = "";
+      const email = document.getElementById("loginEmail").value.trim();
+      const password =
+        document.getElementById("loginPassword").value;
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        loginStatus.textContent =
+          "Logged in. Loading your dashboard...";
+        setTimeout(hideAuthModal, 600);
+      } catch (err) {
+        console.error("Login error:", err);
+        loginStatus.textContent =
+          "Login failed. Please check your credentials or contact admin.";
       }
     });
-  }
-
-  function showEmployeeView(name, uid) {
-    document.body.classList.add("app-mode");
-    publicSite && publicSite.classList.add("hidden");
-    footerEl && footerEl.classList.add("hidden");
-    headerEl && headerEl.classList.remove("hidden");
-    adminDashboard && adminDashboard.classList.add("hidden");
-    employeeDashboard && employeeDashboard.classList.remove("hidden");
-    if (employeeWelcome) {
-      employeeWelcome.textContent = `Welcome, ${name}.`;
-    }
-
-    if (employeeJobsUnsub) employeeJobsUnsub();
-    employeeJobsUnsub = db
-      .collection("jobs")
-      .where("assignedTo", "==", uid)
-      .onSnapshot((snap) => {
-        renderEmployeeJobs(snap.docs);
-      });
-
-    employeeDashboard &&
-      employeeDashboard.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function showAdminView(name) {
-    document.body.classList.add("app-mode");
-    publicSite && publicSite.classList.add("hidden");
-    footerEl && footerEl.classList.add("hidden");
-    headerEl && headerEl.classList.remove("hidden");
-    employeeDashboard && employeeDashboard.classList.add("hidden");
-    adminDashboard && adminDashboard.classList.remove("hidden");
-
-    if (employeeJobsUnsub) employeeJobsUnsub();
-    if (adminBookingsUnsub) adminBookingsUnsub();
-    if (adminJobsUnsub) adminJobsUnsub();
-    if (adminEmployeesUnsub) adminEmployeesUnsub();
-    if (adminProductsUnsub) adminProductsUnsub();
-
-    adminEmployeesUnsub = db
-      .collection("users")
-      .where("role", "in", ["employee", "admin"])
-      .onSnapshot((empSnap) => {
-        const employees = empSnap.docs.map((d) => ({
-          id: d.id,
-          ...d.data(),
-        }));
-
-        renderAdminEmployees(
-          empSnap.docs.filter((d) => d.data().role === "employee")
-        );
-
-        // Products for admin management
-        attachAdminProductHandlers();
-        adminProductsUnsub = db
-          .collection("products")
-          .orderBy("name")
-          .onSnapshot((snap) => {
-            renderAdminProducts(snap.docs);
-          });
-
-        // Bookings & revenue
-        if (adminBookingsUnsub) adminBookingsUnsub();
-        adminBookingsUnsub = db
-          .collection("bookings")
-          .orderBy("createdAt", "desc")
-          .onSnapshot((bSnap) => {
-            renderAdminBookings(bSnap.docs, employees);
-            renderAdminRevenueSummary(bSnap.docs);
-          });
-      });
-
-    adminJobsUnsub = db.collection("jobs").onSnapshot((snap) => {
-      renderAdminCompletedJobs(snap.docs);
-    });
-
-    adminDashboard &&
-      adminDashboard.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   async function logout() {
@@ -1559,15 +1591,15 @@
   });
 
   // ===============================
-  // 13. Stripe (Deposit + Shop)
+  // 11. Stripe (Deposits & Shop)
   // ===============================
-
-  const STRIPE_PUBLISHABLE_KEY =
-    "pk_test_51SRR4wCGoVa5tJgfKPOgH29gweovgM87uDESzEa5d7D4frgxAqWTkhcMnudBDZS893e4eaEy30FevtxUBTqTDSgS00LsCUMty9";
 
   let stripe = null;
   if (window.Stripe) {
-    stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    // TODO: put your live publishable key here
+    stripe = Stripe(
+      "pk_test_51SRR4wCGoVa5tJgfKPOgH29gweovgM87uDESzEa5d7D4frgxAqWTkhcMnudBDZS893e4eaEy30FevtxUBTqTDSgS00LsCUMty9"
+    );
   }
 
   async function startDepositPayment(bookingId, depositAmount) {
@@ -1610,87 +1642,30 @@
   }
   window.startDepositPayment = startDepositPayment;
 
-  async function checkoutCart() {
-    if (!stripe) {
-      alert("Payment temporarily unavailable. Please contact us directly.");
-      return;
-    }
-    if (!cart.length) return;
-
-    if (checkoutCartBtn) {
-      checkoutCartBtn.disabled = true;
-      checkoutCartBtn.textContent = "Redirecting...";
-    }
-
-    try {
-      const res = await fetch("/api/create-shop-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: cart }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.sessionId) {
-        throw new Error(data.error || "Checkout failed");
-      }
-      const result = await stripe.redirectToCheckout({
-        sessionId: data.sessionId,
-      });
-      if (result.error) {
-        alert(result.error.message || "Unable to start checkout.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Unable to start checkout. Please try again.");
-    } finally {
-      if (checkoutCartBtn) {
-        checkoutCartBtn.disabled = false;
-        checkoutCartBtn.textContent = "Checkout Securely";
-      }
-    }
-  }
-
-  if (checkoutCartBtn) {
-    checkoutCartBtn.addEventListener("click", checkoutCart);
-  }
-
   // ===============================
-  // 14. Checkout Return Handlers
+  // 12. Handle Checkout Return (Deposits)
   // ===============================
 
   (async function handleCheckoutReturn() {
     const params = new URLSearchParams(window.location.search);
-
-    // Deposit flow
     const payment = params.get("payment");
     const bookingId = params.get("bookingId");
-    if (payment && bookingId && paymentStatus) {
-      try {
-        if (payment === "success") {
-          await db.collection("bookings").doc(bookingId).update({
-            depositStatus: "paid",
-          });
-          paymentStatus.textContent =
-            "Deposit received securely. Thank you — your booking is prioritized, and we’ll confirm shortly.";
-        } else if (payment === "cancel") {
-          paymentStatus.textContent =
-            "Payment canceled. Your booking request is still pending review.";
-        }
-      } catch (err) {
-        console.error("Post-checkout Firestore update error:", err);
-      }
-    }
 
-    // Shop flow
-    const shopStatus = params.get("shop");
-    if (shopStatus === "success") {
-      addEcoPoints(10);
-      clearCart();
-      alert(
-        "Thank you for choosing our eco-friendly products. Your order is on its way, and you’ve earned Eco Points for caring for your home gently."
-      );
-    }
-    if (shopStatus === "cancelled") {
-      // No-op; optional message
+    if (!payment || !bookingId || !paymentStatus) return;
+
+    try {
+      if (payment === "success") {
+        await db.collection("bookings").doc(bookingId).update({
+          depositStatus: "paid",
+        });
+        paymentStatus.textContent =
+          "Deposit received securely. Thank you — your booking is prioritized, and we’ll confirm shortly.";
+      } else if (payment === "cancel") {
+        paymentStatus.textContent =
+          "Payment canceled. Your booking request is still pending review.";
+      }
+    } catch (err) {
+      console.error("Post-checkout Firestore update error:", err);
     }
   })();
 })();
