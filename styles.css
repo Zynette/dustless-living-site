@@ -1109,30 +1109,68 @@ body.dark .footer {
     var(--color-bg);
 }
 
-.dashboard .section-header h2 {
-  font-size: 1.6rem;
+.dashboard h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.25rem;
 }
 
-.dashboard-card {
-  padding: 1.2rem 1.3rem;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-soft);
-  margin-bottom: 1.4rem;
+.dashboard p.section-subtitle {
+  margin-bottom: 1.8rem;
+  color: var(--color-muted);
 }
 
-.dashboard-card {
+/*.dashboard-card {
   padding: 1.2rem 1.3rem;
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
   background: var(--color-bg-soft);
-}
+}*/
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.3rem;
+  /* Wide screens: bookings gets extra width, others stay readable */
+  grid-template-columns: minmax(380px, 2.2fr) repeat(3, minmax(260px, 1.4fr));
+  gap: 1.5rem;
+  align-items: stretch;
+  max-width: 1320px;       /* center the whole grid */
+  margin: 0 auto 0 auto;
+}
+
+/* Large but not huge screens: use 2 columns */
+@media (max-width: 1200px) {
+  #adminDashboard .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+
+  /* Bookings card spans full width on top */
+  #adminDashboard .dashboard-card:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablets & small laptops: still 2 columns, better stacking */
+@media (max-width: 900px) {
+  .dashboard {
+    padding: 4.5rem 1rem 2.5rem;
+  }
+
+  #adminDashboard .dashboard-grid,
+  #employeeDashboard .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  #adminDashboard .dashboard-card:first-child {
+    grid-column: auto;
+  }
+}
+
+/* Extra small screens: cards full width, jobs readable */
+@media (max-width: 700px) {
+  .job-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Employee jobs list */
