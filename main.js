@@ -823,19 +823,21 @@ function showPublicView() {
   // hide dashboards
   if (employeeDashboard) employeeDashboard.classList.add('hidden');
   if (adminDashboard) adminDashboard.classList.add('hidden');
+
+  // go back to top of site
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showEmployeeView(name, uid) {
-  // hide marketing site
+  // hide marketing site, keep header as app nav
   if (publicSite) publicSite.classList.add('hidden');
   if (footerEl) footerEl.classList.add('hidden');
-  // keep header for branding + logout
   if (headerEl) headerEl.classList.remove('hidden');
 
-  // show employee dashboard
   if (employeeWelcome) {
     employeeWelcome.textContent = `Welcome, ${name}.`;
   }
+
   if (employeeDashboard) employeeDashboard.classList.remove('hidden');
   if (adminDashboard) adminDashboard.classList.add('hidden');
 
@@ -847,40 +849,34 @@ function showEmployeeView(name, uid) {
       renderEmployeeJobs(snap.docs);
     });
 
-  // scroll into view so it feels like a new app
+  // scroll into the dashboard so it feels like a separate app
   if (employeeDashboard) {
     employeeDashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
 function showAdminView(name) {
-  // hide marketing site
+  // hide marketing site, show only admin panel
   if (publicSite) publicSite.classList.add('hidden');
   if (footerEl) footerEl.classList.add('hidden');
   if (headerEl) headerEl.classList.remove('hidden');
 
-  // show admin dashboard
   if (employeeDashboard) employeeDashboard.classList.add('hidden');
   if (adminDashboard) adminDashboard.classList.remove('hidden');
 
-  if (adminDashboard) {
-    adminDashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // clear previous listeners
   if (employeeJobsUnsub) employeeJobsUnsub();
   if (adminBookingsUnsub) adminBookingsUnsub();
   if (adminJobsUnsub) adminJobsUnsub();
   if (adminEmployeesUnsub) adminEmployeesUnsub();
 
-  // watch employees
+  // Watch employees
   adminEmployeesUnsub = db.collection('users')
     .where('role', '==', 'employee')
     .onSnapshot(empSnap => {
       const employees = empSnap.docs.map(d => ({ id: d.id, ...d.data() }));
       renderAdminEmployees(empSnap.docs);
 
-      // watch bookings with current employees list
+      // Watch bookings and compute revenue with live employee list
       if (adminBookingsUnsub) adminBookingsUnsub();
       adminBookingsUnsub = db.collection('bookings')
         .orderBy('createdAt', 'desc')
@@ -890,11 +886,15 @@ function showAdminView(name) {
         });
     });
 
-  // watch jobs for completed list
+  // Watch jobs for completed jobs panel
   adminJobsUnsub = db.collection('jobs')
     .onSnapshot(snap => {
       renderAdminCompletedJobs(snap.docs);
     });
+
+  if (adminDashboard) {
+    adminDashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // ===============================
