@@ -9,7 +9,7 @@
     </title>
     <meta
       name="description"
-      content="Dustless Living provides professional residential and commercial cleaning services across Hamilton and Burlington, Ontario. Deep cleans, move-in/move-out, and premium maintenance care."
+      content="Dustless Living delivers calm, detail-focused cleaning for homes, rentals, and small businesses in Hamilton & Burlington. Deep cleans, move-in/move-out, recurring care & more."
     />
     <meta
       name="keywords"
@@ -67,18 +67,20 @@
         <nav class="nav">
           <a href="#home" class="nav-link">Home</a>
           <a href="#services" class="nav-link">Services</a>
+          <a href="#promos" class="nav-link">Promos</a>
           <a href="#pricing" class="nav-link">Pricing</a>
-          <a href="#booking" class="nav-link">Book Now</a>
+          <a href="#shop" class="nav-link">Shop</a>
+          <a href="#booking" class="nav-link">Book</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#careers" class="nav-link">Careers</a>
           <a href="#contact" class="nav-link">Contact</a>
-          <a href="#login" class="nav-link" id="openLogin">Employee Login</a>
+          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
         </nav>
         <button
           class="btn btn-outline btn-sm nav-cta"
           onclick="scrollToSection('booking')"
         >
-          Request a Quote
+          Get My Personalized Cleaning Plan
         </button>
         <button class="burger" id="burger" aria-label="Open navigation">
           <span></span><span></span><span></span>
@@ -87,73 +89,166 @@
       <nav class="nav-mobile" id="navMobile">
         <a href="#home" class="nav-link">Home</a>
         <a href="#services" class="nav-link">Services</a>
+        <a href="#promos" class="nav-link">Promos</a>
         <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="#booking" class="nav-link">Book Now</a>
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#booking" class="nav-link">Book</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#careers" class="nav-link">Careers</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="#login" class="nav-link" id="openLoginMobile"
-          >Employee Login</a
-        >
+        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
       </nav>
     </header>
 
-    <!-- Hero / Home -->
+    <!-- MAIN -->
     <main id="home">
       <!-- Public-facing marketing site -->
       <div id="publicSite">
-        <!-- Hero / Home -->
+        <!-- Hero -->
         <section class="hero section" data-reveal>
           <div class="container hero-inner">
             <div class="hero-copy">
               <p class="eyebrow">
-                Hamilton & Burlington • Residential & Commercial
+                Hamilton &amp; Burlington • Homes • Rentals • Small Businesses
               </p>
               <h1>A Clean Space. A Clear Mind.</h1>
               <p class="hero-subtitle">
-                Professional, detail-focused cleaning services for homes and
-                businesses — designed for people who care about quality, trust,
-                and peace of mind.
+                Come home to calm. Dustless Living delivers careful, consistent,
+                and trustworthy cleaning — so you can focus on the moments that
+                matter, not the mess.
               </p>
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
                   onclick="scrollToSection('booking')"
                 >
-                  Request a Quote
+                  Book Your Fresh Start
                 </button>
                 <button
                   class="btn btn-ghost"
-                  onclick="scrollToSection('services')"
+                  onclick="scrollToSection('pricing')"
                 >
-                  View Services
+                  Get My Personalized Cleaning Plan
                 </button>
               </div>
               <div class="hero-badges">
-                <span>✓ Insured & Trusted</span>
-                <span>✓ Eco-Conscious Options</span>
-                <span>✓ Flexible Scheduling</span>
+                <span>✓ Insured &amp; detail-focused</span>
+                <span>✓ Respectful of your home &amp; privacy</span>
+                <span>✓ Flexible for busy schedules</span>
               </div>
+              <p class="hero-soft-line">
+                Because your home deserves rest too 💚
+              </p>
             </div>
             <div class="hero-visual">
               <div class="hero-card glass" data-parallax>
-                <h3>Today’s Satisfaction Meter</h3>
+                <h3>Today’s Peace-of-Mind Meter</h3>
                 <div class="satisfaction-meter" id="satisfactionMeter">
                   <div class="satisfaction-fill"></div>
                 </div>
-                <p>Hover to see how clean feels.</p>
+                <p>Hover to feel how “dustless” looks.</p>
               </div>
               <div class="hero-card glass" data-parallax>
-                <p class="stat-label">Average Deep Clean</p>
-                <p class="stat-value">~ $180 - $260</p>
-                <p class="stat-note">Based on home size & mess level.</p>
+                <p class="stat-label">Typical Deep Clean</p>
+                <p class="stat-value">~ $180 – $260</p>
+                <p class="stat-note">
+                  Adjusted fairly for size, mess &amp; add-ons.
+                </p>
               </div>
               <div class="hero-card glass" data-parallax>
                 <p class="stat-label">Service Area</p>
-                <p class="stat-value">Hamilton & Burlington</p>
-                <p class="stat-note">Condos, homes, offices & more.</p>
+                <p class="stat-value">Hamilton &amp; Burlington</p>
+                <p class="stat-note">Condos, homes, offices &amp; Airbnbs.</p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- Promos -->
+        <section
+          id="promos"
+          class="section promos"
+          aria-label="Promos & Rewards"
+          data-reveal
+        >
+          <div class="container">
+            <div class="section-header">
+              <h2>Calm Pricing, Thoughtful Rewards</h2>
+              <p>
+                No gimmicks. Just simple ways to say thank you to new guests,
+                loyal homes, and kind referrals.
+              </p>
+            </div>
+
+            <div class="promos-grid">
+              <article class="promo-card">
+                <h3>Fresh Start Reset</h3>
+                <p class="promo-tag">Code: FRESHSTART</p>
+                <p>
+                  First time booking a full deep clean? Take
+                  <strong>$25 off</strong> your reset visit. A gentle nudge to
+                  finally hand the scrub brush over.
+                </p>
+                <p class="promo-footnote">
+                  Applies once per household on qualifying deep cleans.
+                </p>
+              </article>
+
+              <article class="promo-card">
+                <h3>Stay Clean Club</h3>
+                <p class="promo-tag">Code: STAYCLEAN</p>
+                <p>
+                  Choose bi-weekly or monthly visits and enjoy a
+                  <strong>10% loyalty rate</strong>
+                  while your recurring service stays active.
+                </p>
+                <p class="promo-footnote">
+                  Ideal for busy schedules, families &amp; long-term care.
+                </p>
+              </article>
+
+              <article class="promo-card">
+                <h3>Refer &amp; Relax</h3>
+                <p class="promo-tag">Code: REFERRELAX</p>
+                <p>
+                  Love your clean? When your friend books with your name, you
+                  both receive <strong>$25 off</strong> your next visit.
+                </p>
+                <p class="promo-footnote">
+                  Because good homes deserve good recommendations.
+                </p>
+              </article>
+
+              <article class="promo-card">
+                <h3>Midweek Reset</h3>
+                <p class="promo-tag">Code: MIDWEEK</p>
+                <p>
+                  Flexible on timing? Book on a Tuesday or Wednesday and enjoy
+                  <strong>15% off</strong> your standard clean.
+                </p>
+                <p class="promo-footnote">
+                  Perfect for those who like a midweek breath of fresh air.
+                </p>
+              </article>
+
+              <article class="promo-card">
+                <h3>Seasonal Deep-Clean Bundle</h3>
+                <p class="promo-tag">Code: SEASONAL</p>
+                <p>
+                  Pair a full deep clean with interior windows and take
+                  <strong>$20 off</strong> the combined total.
+                </p>
+                <p class="promo-footnote">
+                  A calm reset for new seasons, moves, or renovations.
+                </p>
+              </article>
+            </div>
+
+            <p class="promos-note">
+              Add your code in the booking form. We’ll quietly apply the best
+              fit to your confirmed quote — no stacking, no pressure, always
+              transparent.
+            </p>
           </div>
         </section>
 
@@ -162,18 +257,18 @@
           <div class="container">
             <div class="section-header">
               <h2>Services</h2>
-              <p>Tailored cleaning solutions for every kind of space.</p>
+              <p>
+                Thoughtful cleaning tailored to your routine, your standards,
+                and your peace of mind.
+              </p>
             </div>
             <div class="services-grid">
-              <div
-                class="service-card"
-                data-service="residential"
-                data-parallax
-              >
+              <div class="service-card" data-parallax>
                 <div class="icon-circle">🏡</div>
                 <h3>Residential Cleaning</h3>
                 <p>
-                  Recurring or one-time home cleaning with hotel-level detail.
+                  Weekly, bi-weekly, or one-time visits that keep your home
+                  light, fresh, and low-stress.
                 </p>
                 <button
                   class="link-btn"
@@ -182,10 +277,13 @@
                   View Details
                 </button>
               </div>
-              <div class="service-card" data-service="commercial" data-parallax>
+              <div class="service-card" data-parallax>
                 <div class="icon-circle">🏢</div>
-                <h3>Commercial Cleaning</h3>
-                <p>Offices, studios & small businesses cleaned after hours.</p>
+                <h3>Commercial &amp; Studio</h3>
+                <p>
+                  Quiet, reliable after-hours care for offices, salons, and
+                  studios that welcome clients daily.
+                </p>
                 <button
                   class="link-btn"
                   onclick="openServiceModal('commercial')"
@@ -193,26 +291,32 @@
                   View Details
                 </button>
               </div>
-              <div class="service-card" data-service="deep" data-parallax>
+              <div class="service-card" data-parallax>
                 <div class="icon-circle">🧽</div>
-                <h3>Deep Cleaning</h3>
-                <p>Top-to-bottom reset of kitchens, baths & hidden corners.</p>
+                <h3>Deep Cleaning Reset</h3>
+                <p>
+                  Detailed top-to-bottom clean for kitchens, baths &amp; every
+                  overlooked corner.
+                </p>
                 <button class="link-btn" onclick="openServiceModal('deep')">
                   View Details
                 </button>
               </div>
-              <div class="service-card" data-service="move" data-parallax>
+              <div class="service-card" data-parallax>
                 <div class="icon-circle">🚚</div>
                 <h3>Move-In / Move-Out</h3>
-                <p>Checklist-ready cleans for landlords, tenants & realtors.</p>
+                <p>
+                  Stress-free transitions for tenants, landlords &amp; realtors:
+                  checklist-ready results.
+                </p>
                 <button class="link-btn" onclick="openServiceModal('move')">
                   View Details
                 </button>
               </div>
-              <div class="service-card" data-service="addons" data-parallax>
+              <div class="service-card" data-parallax>
                 <div class="icon-circle">✨</div>
-                <h3>Add-Ons</h3>
-                <p>Fridge, oven, interior windows, baseboards & more.</p>
+                <h3>Thoughtful Add-Ons</h3>
+                <p>Fridge, oven, windows, baseboards &amp; more — as needed.</p>
                 <button class="link-btn" onclick="openServiceModal('addons')">
                   View Details
                 </button>
@@ -236,64 +340,83 @@
               <div class="section-header">
                 <h2>Smart Pricing Estimator</h2>
                 <p>
-                  Transparent, flexible pricing based on effort — not guesswork.
+                  A calm, transparent estimate based on effort — so you know
+                  what to expect before we arrive.
                 </p>
               </div>
               <ul class="pricing-notes">
+                <li>Base rate starts at <strong>$120</strong>.</li>
+                <li>Mess level + home details adjust the estimate fairly.</li>
                 <li>
-                  Base rate starts at <strong>$120</strong> for standard cleans.
+                  Promos &amp; loyalty rewards apply on top where eligible.
                 </li>
                 <li>
-                  Mild mess? Lower end. Heavy mess or larger homes? Estimator
-                  adjusts.
-                </li>
-                <li>
-                  Final quote confirmed via message after reviewing your
-                  details.
+                  Final quote is confirmed personally via text/email before any
+                  charge.
                 </li>
               </ul>
             </div>
             <div class="pricing-card glass">
               <label class="label">
-                Mess Level (1 = spotless, 10 = very messy)
+                Mess Level (1 = almost clean, 10 = very messy)
                 <span id="messValue">5</span>
               </label>
               <input type="range" id="messSlider" min="1" max="10" value="5" />
               <div class="addon-options">
                 <label>
                   <input type="checkbox" id="addonWindows" />
-                  Include Interior Windows (+$20)
+                  Interior Windows (+$20)
                 </label>
                 <label>
                   <input type="checkbox" id="addonAppliances" />
-                  Include Appliances: Fridge/Oven (+$15)
+                  Fridge/Oven Detail (+$15)
                 </label>
               </div>
               <div class="estimate-output">
-                <p>Estimated Price</p>
+                <p>Estimated Visit Total</p>
                 <h3 id="estimatedPrice">$170</h3>
                 <p class="estimate-caption">
-                  This is a live estimate. We’ll confirm exact pricing once we
-                  know your space.
+                  Use this as a guide. Tell us about your space and we’ll send a
+                  tailored plan.
                 </p>
               </div>
               <button
                 class="btn btn-primary"
                 onclick="scrollToSection('booking')"
               >
-                Lock This In & Request a Quote
+                Get My Personalized Cleaning Plan
               </button>
             </div>
           </div>
         </section>
 
-        <!-- Booking Section + Deposit -->
+        <!-- Shop -->
+        <section id="shop" class="section shop-section" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>Dustless Living Home Care</h2>
+              <p class="section-subtitle">
+                Eco-kind cleaners, refills, and tools we actually trust in your
+                home — bottled with the same care we bring on every visit.
+              </p>
+            </div>
+
+            <!-- Featured row -->
+            <div id="shopFeaturedRow" class="shop-featured-row"></div>
+
+            <!-- Product grid populated from Firestore -->
+            <div id="shopGrid" class="shop-grid"></div>
+          </div>
+        </section>
+
+        <!-- Booking -->
         <section id="booking" class="section" data-reveal>
           <div class="container">
             <div class="section-header">
-              <h2>Book Your Cleaning</h2>
+              <h2>Book Your Fresh Start</h2>
               <p>
-                Share a few details — we’ll respond promptly with confirmation.
+                Share a few details and we’ll follow up promptly with a
+                confirmed quote and schedule. No pressure, no spam.
               </p>
             </div>
             <form id="bookingForm" class="form card">
@@ -336,18 +459,28 @@
                   <label>Mess Level (1-10)</label>
                   <input type="number" name="mess" min="1" max="10" required />
                 </div>
+                <div class="field">
+                  <label>Promo / Referral Code (optional)</label>
+                  <input
+                    type="text"
+                    name="promoCode"
+                    id="promoCodeInput"
+                    placeholder="FRESHSTART, STAYCLEAN, REFERRELAX, MIDWEEK, SEASONAL"
+                  />
+                </div>
               </div>
               <div class="field">
                 <label>Additional Details</label>
                 <textarea
                   name="message"
                   rows="3"
-                  placeholder="Pets? Parking? Sq ft? Special requests?"
+                  placeholder="Pets? Parking? Sq ft? Access notes? Anything we should know to take better care of your space."
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary">
-                Submit Booking Request
+                Get My Personalized Cleaning Plan
               </button>
+              <p id="bookingPromoNote" class="form-note"></p>
               <p id="bookingSuccess" class="form-success"></p>
               <p id="bookingPaymentNote" class="form-note"></p>
               <button
@@ -359,6 +492,21 @@
               </button>
               <p id="paymentStatus" class="form-success"></p>
             </form>
+            <p class="form-note">
+              We turn mess into peace of mind — kindly share accurate details so
+              we can quote fairly and avoid surprises for both of us.
+            </p>
+
+            <!-- After Cleaning widget (filled from featured products) -->
+            <div id="afterCleanWidget" class="after-clean-widget hidden">
+              <h3>Keep the Calm Going</h3>
+              <p>
+                Loved how your home felt? Our favourite Dustless Living sprays
+                and refills are handmade in small batches — gentle on lungs,
+                fierce on grime.
+              </p>
+              <div id="afterCleanProducts" class="after-clean-products"></div>
+            </div>
           </div>
         </section>
 
@@ -368,30 +516,31 @@
             <div class="about-text">
               <h2>About Dustless Living</h2>
               <p>
-                Dustless Living began as a solo passion project by
-                <strong>Antonette Petallo</strong>, balancing tech, school, and
-                a commitment to creating calming, spotless spaces for busy
-                people in Hamilton.
+                Dustless Living began as a one-woman service by
+                <strong>Antonette Petallo</strong>, a detail-oriented cleaner
+                with a background in tech support and a soft spot for calm,
+                organized spaces.
               </p>
               <p>
-                What started as a personal cleaning service has grown into a
-                trusted, detail-obsessed local brand serving homes, rentals, and
-                businesses across Hamilton & Burlington — with the same care,
-                consistency, and respect as day one.
+                Today, Dustless Living supports homes, landlords, students, busy
+                families, and small businesses across Hamilton &amp; Burlington
+                — thoughtfully, respectfully, and without shortcuts.
               </p>
               <p>
-                Our mission is simple:
-                <strong>a clean space, a clear mind</strong>. We believe in
-                transparent pricing, respectful communication, and leaving every
-                client feeling lighter the moment we step out the door.
+                Our promise is simple:
+                <strong
+                  >a clean space that feels safe, respected, and cared
+                  for</strong
+                >. No rushed “in-and-out” jobs, no hidden fees. Just reliable
+                people doing careful work.
               </p>
             </div>
             <div class="about-visual" data-parallax>
               <div class="about-photo-bg"></div>
               <div class="about-overlay-card glass">
-                <p>Locally owned & woman-led</p>
-                <p>Serving Hamilton & Burlington</p>
-                <p>Trusted by homes, landlords & small businesses</p>
+                <p>Locally owned &amp; woman-led</p>
+                <p>Trusted in Hamilton &amp; Burlington</p>
+                <p>Because your peace of mind matters</p>
               </div>
             </div>
           </div>
@@ -403,9 +552,9 @@
             <div>
               <h2>Join the Dustless Living Team</h2>
               <p>
-                We’re building a small, reliable team that cares about details,
-                respect, and client experience. Flexible hours. Honest
-                expectations.
+                We’re building a small, respectful team that values trust,
+                communication, and detail. If you care about leaving spaces
+                better than you found them, we’d like to meet you.
               </p>
               <ul class="career-list">
                 <li>
@@ -463,8 +612,8 @@
         <section id="gallery" class="section" data-reveal>
           <div class="container">
             <div class="section-header">
-              <h2>Before & After Highlights</h2>
-              <p>Real transformations from Dustless Living clients.</p>
+              <h2>Before &amp; After Highlights</h2>
+              <p>Real spaces, real clients, real relief.</p>
             </div>
             <div class="gallery-grid">
               <img
@@ -493,8 +642,8 @@
                 class="gallery-item"
               />
               <img
-                src="/images/kitchen-after.jpg"
-                alt="Clean kitchen"
+                src="/images/og-image.jpg"
+                alt="Clean, calm living space"
                 class="gallery-item"
               />
             </div>
@@ -529,15 +678,16 @@
                     Do you bring your own supplies?
                   </button>
                   <div class="accordion-body">
-                    Yes. We arrive fully equipped. If you prefer specific
-                    products, we’re happy to use them.
+                    Yes. We arrive fully equipped with quality products. If you
+                    have sensitivities or preferred products, we’re happy to use
+                    them.
                   </div>
                 </div>
                 <div class="accordion-item">
                   <button class="accordion-header">Are you insured?</button>
                   <div class="accordion-body">
-                    Yes. Dustless Living operates with liability coverage and a
-                    strong respect for your space.
+                    Yes. Dustless Living operates with coverage and a careful
+                    respect for your belongings and privacy.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -545,9 +695,9 @@
                     How does pricing work?
                   </button>
                   <div class="accordion-body">
-                    We use a base rate plus effort-based adjustments (mess
-                    level, size, add-ons). No surprise fees — you see it
-                    upfront.
+                    We combine a base rate with effort-based factors: mess
+                    level, size, and add-ons. You’ll see a clear estimate before
+                    you commit.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -555,8 +705,8 @@
                     Do you offer recurring cleans?
                   </button>
                   <div class="accordion-body">
-                    Yes. Weekly, bi-weekly, and monthly maintenance cleans are
-                    available, with first visit often as a deep clean.
+                    Yes. Weekly, bi-weekly, and monthly options are available,
+                    with loyalty pricing through our Stay Clean Club.
                   </div>
                 </div>
               </div>
@@ -568,10 +718,10 @@
         <section id="contact" class="section" data-reveal>
           <div class="container contact-layout">
             <div>
-              <h2>Contact & Service Area</h2>
+              <h2>Contact &amp; Service Area</h2>
               <p>
-                Ready to book, ask a question, or partner for
-                rentals/airbnbs/offices? We’d love to hear from you.
+                Ready to book, ask a question, or partner for rentals/Airbnbs or
+                offices? Reach out — we respond thoughtfully, not with spam.
               </p>
               <ul class="contact-list">
                 <li>
@@ -585,7 +735,8 @@
                   >
                 </li>
                 <li>
-                  <strong>Service Area:</strong> Hamilton & Burlington, Ontario
+                  <strong>Service Area:</strong> Hamilton &amp; Burlington,
+                  Ontario
                 </li>
               </ul>
               <form id="contactForm" class="form card">
@@ -613,8 +764,7 @@
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46029.653!2d-79.92!3d43.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c9b9b3bb!2sHamilton%2C%20ON!5e0!3m2!1sen!2sca!4v0000000000000"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-              >
-              </iframe>
+              ></iframe>
             </div>
           </div>
         </section>
@@ -625,7 +775,10 @@
         <div class="container">
           <div class="section-header">
             <h2>Team Dashboard</h2>
-            <p>View and update your assigned jobs.</p>
+            <p class="section-subtitle">
+              View your assigned jobs, update statuses, and upload before/after
+              photos.
+            </p>
           </div>
           <div class="dashboard-card glass">
             <div class="dashboard-header">
@@ -636,7 +789,8 @@
             </div>
             <div id="employeeJobsList" class="jobs-list"></div>
             <p class="dashboard-note">
-              Upload before/after photos per job when completed.
+              Please mark jobs accurately and upload photos only with client
+              consent.
             </p>
           </div>
         </div>
@@ -647,14 +801,17 @@
         <div class="container">
           <div class="section-header">
             <h2>Admin Control Panel</h2>
-            <p>
-              Manage bookings, assignments, jobs & revenue for Dustless Living.
+            <p class="section-subtitle">
+              Centralize bookings, assignments, job tracking, deposits,
+              products, and calendar sync for Dustless Living.
             </p>
           </div>
+
+          <!-- Top grid -->
           <div class="dashboard-grid">
             <div class="dashboard-card glass">
               <div class="dashboard-header">
-                <h3>Bookings</h3>
+                <h3>Bookings Overview</h3>
                 <button class="btn btn-sm btn-outline" id="logoutBtnAdmin">
                   Logout
                 </button>
@@ -662,17 +819,84 @@
               <div id="adminBookings"></div>
             </div>
             <div class="dashboard-card glass">
-              <h3>Team & Assignments</h3>
+              <h3>Team &amp; Roles</h3>
               <div id="adminEmployees"></div>
             </div>
             <div class="dashboard-card glass">
-              <h3>Completed Jobs & Feedback</h3>
+              <h3>Completed Jobs</h3>
               <div id="adminCompletedJobs"></div>
             </div>
             <div class="dashboard-card glass">
-              <h3>Revenue Summary</h3>
+              <h3>Revenue Snapshot</h3>
               <div id="adminRevenueSummary"></div>
             </div>
+          </div>
+
+          <!-- Products management -->
+          <div class="dashboard-card glass" id="adminProductsCard">
+            <h3>Shop Products</h3>
+            <p class="form-note">
+              Manage eco-friendly sprays, refills &amp; tools. These feed the
+              public Shop and “Buy After Cleaning” recommendations.
+            </p>
+
+            <form id="productForm">
+              <input type="hidden" id="productId" />
+              <div class="form-grid">
+                <div class="field">
+                  <label>Name</label>
+                  <input type="text" id="productName" required />
+                </div>
+                <div class="field">
+                  <label>Category</label>
+                  <input type="text" id="productCategory" required />
+                </div>
+                <div class="field">
+                  <label>Price (e.g. 14.99)</label>
+                  <input type="number" id="productPrice" step="0.01" required />
+                </div>
+                <div class="field">
+                  <label>Stock</label>
+                  <input type="number" id="productStock" min="0" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Image URL</label>
+                <input
+                  type="url"
+                  id="productImage"
+                  placeholder="https://... or /images/product.jpg"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea
+                  id="productDescription"
+                  rows="2"
+                  placeholder="Short, kind description"
+                  required
+                ></textarea>
+              </div>
+              <div class="field">
+                <label>
+                  <input type="checkbox" id="productFeatured" />
+                  Feature this product on Shop &amp; After Cleaning widget
+                </label>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-sm">Save Product</button>
+                <button
+                  type="button"
+                  class="btn-text btn-sm"
+                  id="cancelEditProductBtn"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+
+            <div id="adminProductsList" class="admin-products-list"></div>
           </div>
         </div>
       </section>
@@ -687,6 +911,7 @@
         </div>
         <div class="footer-links">
           <a href="#services">Services</a>
+          <a href="#promos">Promos</a>
           <a href="#pricing">Pricing</a>
           <a href="#booking">Book</a>
           <a href="#careers">Careers</a>
@@ -703,7 +928,7 @@
       </div>
     </footer>
 
-    <!-- AI Cleaning Cost Chatbot -->
+    <!-- Chatbot -->
     <div class="chatbot" id="chatbot">
       <button class="chatbot-toggle" id="chatbotToggle">💬</button>
       <div class="chatbot-window" id="chatbotWindow">
@@ -718,9 +943,47 @@
           <input
             type="text"
             id="chatbotInput"
-            placeholder="Tell us mess level (1-10) & home size..."
+            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
           />
           <button onclick="handleChatbotMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal-backdrop hidden">
+      <div class="modal product-modal">
+        <button class="modal-close" id="closeProductModal">&times;</button>
+        <div class="product-modal-body">
+          <div class="product-modal-image-wrap">
+            <img
+              id="productModalImage"
+              src=""
+              alt=""
+              class="product-modal-image"
+            />
+          </div>
+          <div class="product-modal-info">
+            <h3 id="productModalName"></h3>
+            <p id="productModalCategory" class="pill pill-soft"></p>
+            <p id="productModalDescription" class="modal-description"></p>
+            <div class="product-modal-price-wrap">
+              <span id="productModalPrice" class="product-modal-price"></span>
+              <span class="product-modal-subcopy">
+                Refillable • Low-tox • Pet-safe
+              </span>
+            </div>
+            <div class="product-modal-actions">
+              <button class="btn" id="addToCartBtn">Add to Cart</button>
+              <button class="btn btn-soft" id="subscribeSaveBtn">
+                Subscribe &amp; Save 10%
+              </button>
+            </div>
+            <p class="product-modal-note">
+              Every purchase plants a tiny seed of calm — Eco Points quietly
+              reward regulars who choose greener cleaning.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -729,8 +992,8 @@
     <div class="modal-backdrop" id="authModal">
       <div class="modal auth-modal glass">
         <button class="modal-close" id="authClose">×</button>
-        <h3>Dustless Living Portal</h3>
-        <p class="auth-subtitle">For team members and admin only.</p>
+        <h3>Dustless Living Team Portal</h3>
+        <p class="auth-subtitle">Secure access for employees and admin.</p>
         <form id="loginForm" class="form">
           <div class="field">
             <label>Email</label>
@@ -744,11 +1007,42 @@
           <p id="loginStatus" class="form-success"></p>
         </form>
         <p class="auth-note">
-          Accounts are created internally by Dustless Living. If you’re a new
-          hire, please contact Antonette for access.
+          Accounts are created internally. If you are new staff, please contact
+          Antonette for portal access.
         </p>
       </div>
     </div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer hidden">
+      <div class="cart-header">
+        <h3>Your Dustless Basket</h3>
+        <button class="cart-close" id="closeCartBtn">&times;</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-line">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="cart-eco-line">
+            <span class="eco-label">Eco Points</span>
+            <span id="cartEcoPoints">0</span>
+          </div>
+        </div>
+        <button class="btn btn-full" id="checkoutCartBtn">
+          Checkout Securely
+        </button>
+        <p class="cart-secure-note">Processed via encrypted Stripe checkout.</p>
+      </div>
+    </div>
+
+    <!-- Cart FAB -->
+    <button id="openCartBtn" class="cart-fab">
+      <span class="cart-icon">🛒</span>
+      <span id="cartCount" class="cart-count">0</span>
+    </button>
 
     <!-- Scripts: Firebase (Compat) + Stripe -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
