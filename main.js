@@ -2113,7 +2113,6 @@ auth.onAuthStateChanged(async (user) => {
 
   let stripe = null;
   if (window.Stripe) {
-    // TODO: put your live publishable key here
     stripe = Stripe(
       "pk_test_51SRR4wCGoVa5tJgfKPOgH29gweovgM87uDESzEa5d7D4frgxAqWTkhcMnudBDZS893e4eaEy30FevtxUBTqTDSgS00LsCUMty9"
     );

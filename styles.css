@@ -2029,6 +2029,50 @@ body.app-mode .cart-drawer {
   color: #dc2626;
 }
 
+@media (max-width: 600px) {
+  .header-inner {
+    padding: 0.5rem; /* Add some padding for mobile */
+  }
+
+  .btn {
+    margin-top: 0.5rem; /* Add margin for spacing */
+  }
+}
+
+/* Extra-small screens: fix wide header + long CTAs */
+@media (max-width: 480px) {
+  /* Allow button text to wrap on very small screens */
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Make hero CTAs stack and fill width nicely */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Make the big “Get My Personalized Cleaning Plan” submit buttons comfy */
+  .booking-card form button.btn-primary,
+  .quote-form button.btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Tame the nav CTA in the header so it doesn’t stretch the layout */
+  .nav-cta {
+    font-size: 0.78rem;
+    padding: 0.55rem 0.9rem;
+    max-width: 190px;
+  }
+}
+
 .muted {
   color: var(--color-muted);
 }
