@@ -90,6 +90,23 @@
     });
   });
 
+    // ===============================
+  // 2b. Before / After Slider
+  // ===============================
+
+  const beforeAfterSlider = document.getElementById("beforeAfterSlider");
+  const beforeAfterAfterImg = document.getElementById("beforeAfterAfterImg");
+
+  if (beforeAfterSlider && beforeAfterAfterImg) {
+    const updateBA = () => {
+      const v = Number(beforeAfterSlider.value || 50);
+      // Reveal more of "after" as slider moves right
+      beforeAfterAfterImg.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+    };
+    beforeAfterSlider.addEventListener("input", updateBA);
+    updateBA();
+  }
+
   // ===============================
   // 3. Pricing Estimator
   // ===============================
@@ -131,6 +148,157 @@
     el.addEventListener("change", updateEstimator);
   });
   updateEstimator();
+
+    // ===============================
+  // 3b. Online Quote Calculator (quote.html)
+  // ===============================
+
+  const quoteForm = document.getElementById("quoteForm");
+  const quoteConditionSlider = document.getElementById("quoteConditionSlider");
+  const quoteConditionValue = document.getElementById("quoteConditionValue");
+  const quotePriceEl = document.getElementById("quotePrice");
+  const quoteHoursEl = document.getElementById("quoteHours");
+  const quoteDepositEl = document.getElementById("quoteDeposit");
+  const quoteSummaryEl = document.getElementById("quoteSummary");
+  const quoteStatusEl = document.getElementById("quoteStatus");
+
+  if (quoteConditionSlider && quoteConditionValue) {
+    const updateCond = () => {
+      quoteConditionValue.textContent = quoteConditionSlider.value;
+    };
+    quoteConditionSlider.addEventListener("input", updateCond);
+    updateCond();
+  }
+
+  function calculateQuoteEstimate(input) {
+    // Base by home type
+    let base = 120;
+    if (input.homeType === "townhouse") base = 140;
+    if (input.homeType === "detached") base = 160;
+
+    // Bedrooms / baths adjustments
+    const beds = Number(input.bedrooms || 0);
+    const baths = Number(input.bathrooms || 1);
+    base += Math.max(0, beds - 2) * 15;
+    base += Math.max(0, baths - 1) * 12;
+
+    // Mess level
+    const cond = Number(input.condition || 5);
+    base += cond * 10;
+
+    // Pets
+    if (input.pets === "some") base += 15;
+    if (input.pets === "many") base += 30;
+
+    // Location travel
+    let travelFee = 0;
+    if (input.location === "burlington" || input.location === "stoney-creek")
+      travelFee = 10;
+    if (input.location === "waterdown" || input.location === "ancaster")
+      travelFee = 15;
+
+    // Add-ons
+    let addonsTotal = 0;
+    if (input.addonWindows) addonsTotal += 25;
+    if (input.addonFridge) addonsTotal += 15;
+    if (input.addonOven) addonsTotal += 20;
+    if (input.addonBaseboards) addonsTotal += 25;
+    if (input.addonLaundry) addonsTotal += 20;
+    if (input.addonGarage) addonsTotal += 30;
+
+    const subtotal = base + travelFee + addonsTotal;
+
+    // Hours estimate (very rough)
+    let hours = 2.5 + beds * 0.4 + baths * 0.4 + cond * 0.15;
+    if (addonsTotal > 0) hours += 0.5;
+    if (input.pets === "many") hours += 0.5;
+
+    const total = Math.round(subtotal / 5) * 5;
+    const deposit = Math.max(40, Math.round(total * 0.2));
+
+    return {
+      total,
+      deposit,
+      hoursMin: Math.max(2, (hours - 0.5).toFixed(1)),
+      hoursMax: (hours + 0.5).toFixed(1),
+    };
+  }
+
+  if (quoteForm && quotePriceEl && quoteHoursEl && quoteDepositEl) {
+    quoteForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (quoteStatusEl) quoteStatusEl.textContent = "";
+
+      const fd = new FormData(quoteForm);
+      const data = Object.fromEntries(fd.entries());
+
+      // Convert addon checkboxes to booleans
+      data.addonWindows = fd.get("addonWindows") !== null;
+      data.addonFridge = fd.get("addonFridge") !== null;
+      data.addonOven = fd.get("addonOven") !== null;
+      data.addonBaseboards = fd.get("addonBaseboards") !== null;
+      data.addonLaundry = fd.get("addonLaundry") !== null;
+      data.addonGarage = fd.get("addonGarage") !== null;
+
+      const estimate = calculateQuoteEstimate(data);
+
+      quotePriceEl.textContent = `$${estimate.total}`;
+      quoteDepositEl.textContent = `$${estimate.deposit}`;
+      quoteHoursEl.textContent = `${estimate.hoursMin} – ${estimate.hoursMax} hrs`;
+
+      if (quoteSummaryEl) {
+        quoteSummaryEl.textContent =
+          "This is a ballpark estimate based on the details you shared. We’ll confirm in writing before you commit.";
+      }
+
+            // DUSTLESS ASSISTANT: Save lead to Firestore
+      const leadPayload = {
+        ...data,
+        name: data.name || data.fullName || "",
+        serviceType: data.service || data.serviceType || "",
+        conditionLevel: Number(data.condition || data.mess || 5),
+        pets: data.pets || "",
+        locationArea: data.location || "",
+        addOns: [
+          data.addonWindows && "Interior windows",
+          data.addonFridge && "Inside fridge",
+          data.addonOven && "Oven",
+          data.addonBaseboards && "Baseboards",
+          data.addonLaundry && "Laundry",
+          data.addonGarage && "Garage",
+        ].filter(Boolean),
+        estimateTotal: estimate.total,
+        estimateDeposit: estimate.deposit,
+        estimateHoursMin: estimate.hoursMin,
+        estimateHoursMax: estimate.hoursMax,
+        status: "new",
+        source: "quoteForm",
+      };
+
+      try {
+        // keep your original raw bucket
+        await saveToCollection("quoteLeads", leadPayload);
+
+        // new normalized leads collection for Dustless Assistant
+        await saveToCollection("leads", leadPayload);
+
+        if (quoteStatusEl) {
+          quoteStatusEl.textContent =
+            "Saved. We’ll review and follow up by email/text with next steps.";
+        }
+      } catch (err) {
+        console.error("Save lead error:", err);
+        if (quoteStatusEl) {
+          quoteStatusEl.textContent =
+            "Could not save your estimate right now. We’ll follow up manually.";
+        }
+      }
+
+      setTimeout(() => {
+        if (quoteStatusEl) quoteStatusEl.textContent = "";
+      }, 9000);
+    });
+  }
 
   // ===============================
   // 4. Service Modal & Gallery Lightbox
@@ -440,10 +608,77 @@
     appId: "1:257617681555:web:f4fc2f6a86def413098166",
   };
 
-  firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const db = firebase.firestore();
   const storage = firebase.storage();
+
+  /**
+   * DUSTLESS ASSISTANT – Firestore Data Model (reference only)
+   *
+   * leads (collection "leads")
+   * {
+   *   name,                // string
+   *   email,               // string
+   *   phone,               // string
+   *   address,             // optional
+   *   serviceType,         // e.g. "Residential", "Move-Out"
+   *   source,              // "quoteForm" | "contactForm" | "manual"
+   *   conditionLevel,      // 1–10 (number, optional)
+   *   pets,                // string/enum (optional)
+   *   locationArea,        // "hamilton" | "burlington" | etc.
+   *   addOns,              // array of strings
+   *   estimateTotal,       // number
+   *   estimateDeposit,     // number
+   *   estimateHoursMin,    // number
+   *   estimateHoursMax,    // number
+   *   status,              // "new" | "quoted" | "converted" | "lost"
+   *   notes,               // free text from you
+   *   createdAt            // serverTimestamp
+   * }
+   *
+   * clients (collection "clients")
+   * {
+   *   name,
+   *   email,
+   *   phone,
+   *   address,
+   *   notes,
+   *   source,              // "bookingForm" | "convertedLead" | etc.
+   *   status,              // "active" | "prospect" | "inactive"
+   *   lastBookingId,       // Firestore doc id (optional)
+   *   lastBookingDate,     // string / ISO date (optional)
+   *   createdAt
+   * }
+   *
+   * bookings (collection "bookings") – already in use
+   * {
+   *   name, email, phone, address,
+   *   date, time,
+   *   service, mess,
+   *   promoCode, promoLabel, promoDiscount,
+   *   estimatedPrice, depositAmount,
+   *   status,              // "pending" | "confirmed" | "completed" | "cancelled"
+   *   depositStatus,       // "unpaid" | "pending" | "paid"
+   *   photoUrls: [],
+   *   assignedTo,          // employee user id
+   *   createdAt
+   * }
+   *
+   * jobs (collection "jobs") – already in use
+   * {
+   *   bookingId,
+   *   assignedTo,
+   *   clientName,
+   *   address,
+   *   date, time,
+   *   service,
+   *   status,              // "assigned" | "in-progress" | "completed"
+   *   beforePhotoUrl,
+   *   afterPhotoUrl,
+   *   createdAt
+   * }
+   */
 
   async function saveToCollection(collection, data) {
     try {
@@ -859,8 +1094,9 @@
   const careersSuccess = document.getElementById("careersSuccess");
   const contactForm = document.getElementById("contactForm");
   const contactSuccess = document.getElementById("contactSuccess");
+  const bookingPhotosInput = document.getElementById("bookingPhotos");
 
-  if (bookingForm) {
+    if (bookingForm) {
     bookingForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (bookingSuccess) bookingSuccess.textContent = "";
@@ -869,10 +1105,20 @@
       if (paymentStatus) paymentStatus.textContent = "";
       if (payDepositBtn) payDepositBtn.classList.add("hidden");
 
-      const formData = Object.fromEntries(new FormData(bookingForm).entries());
+      const fd = new FormData(bookingForm);
+      const formData = Object.fromEntries(fd.entries());
       const mess = Number(formData.mess || 5);
 
-      const baseEstimate = calculateBaseEstimate(mess, false, false);
+      // Optional: reuse add-on names if you add checkboxes later
+      const includeWindows = fd.get("addonWindows") !== null;
+      const includeAppliances = fd.get("addonAppliances") !== null;
+
+      const baseEstimate = calculateBaseEstimate(
+        mess,
+        includeWindows,
+        includeAppliances
+      );
+
       const promoCode = (formData.promoCode || "").trim().toUpperCase();
       const { total: finalEstimate, promo } = applyPromo(
         promoCode,
@@ -882,6 +1128,24 @@
         40,
         Math.round(finalEstimate * 0.2)
       );
+
+      // Upload up to 3 photos if provided
+      let photoUrls = [];
+      if (bookingPhotosInput && bookingPhotosInput.files.length) {
+        const files = Array.from(bookingPhotosInput.files).slice(0, 3);
+        for (const file of files) {
+          try {
+            const ref = storage
+              .ref()
+              .child(`booking-photos/${Date.now()}-${file.name}`);
+            await ref.put(file);
+            const url = await ref.getDownloadURL();
+            photoUrls.push(url);
+          } catch (err) {
+            console.error("Booking photo upload error:", err);
+          }
+        }
+      }
 
       const booking = {
         ...formData,
@@ -893,6 +1157,9 @@
         depositAmount: suggestedDeposit,
         status: "pending",
         depositStatus: "unpaid",
+        photoUrls,
+        addonWindows: includeWindows,
+        addonAppliances: includeAppliances,
       };
 
       try {
@@ -902,6 +1169,24 @@
         });
 
         bookingForm.reset();
+
+                // DUSTLESS ASSISTANT: ensure client exists/updated
+        try {
+          await saveToCollection("clients", {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            notes: formData.notes || "",
+            source: "bookingForm",
+            status: "active",
+            lastBookingId: docRef.id,
+            lastBookingDate: formData.date || "",
+          });
+        } catch (clientErr) {
+          console.error("Client save error:", clientErr);
+          // Non-blocking: booking still succeeds even if this fails
+        }
 
         if (bookingSuccess) {
           bookingSuccess.textContent =
@@ -935,23 +1220,22 @@
     });
   }
 
-  if (careersForm && careersSuccess) {
-    careersForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(careersForm).entries());
-      await saveToCollection("applications", data);
-      careersForm.reset();
-      careersSuccess.textContent =
-        "Application received. We’ll reach out if we’re a good fit for each other.";
-      setTimeout(() => (careersSuccess.textContent = ""), 8000);
-    });
-  }
-
   if (contactForm && contactSuccess) {
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(contactForm).entries());
       await saveToCollection("contacts", data);
+
+      // DUSTLESS ASSISTANT: also treat this as a soft lead
+      await saveToCollection("leads", {
+        name: data.name || "",
+        email: data.email || "",
+        phone: data.phone || "",
+        notes: data.message || data.notes || "",
+        source: "contactForm",
+        status: "new",
+      });
+
       contactForm.reset();
       contactSuccess.textContent =
         "Message sent. We’ll get back to you shortly.";
@@ -987,6 +1271,9 @@
   const adminRevenueSummaryEl = document.getElementById(
     "adminRevenueSummary"
   );
+  // DUSTLESS ASSISTANT: new admin panels
+  const adminLeadsEl = document.getElementById("adminLeads");
+  const adminClientsEl = document.getElementById("adminClients");
 
   const productForm = document.getElementById("productForm");
   const adminProductsList = document.getElementById("adminProductsList");
@@ -999,6 +1286,10 @@
   let adminJobsUnsub = null;
   let adminEmployeesUnsub = null;
   let adminProductsUnsub = null;
+  // DUSTLESS ASSISTANT: live listeners
+  let adminLeadsUnsub = null;
+  let adminClientsUnsub = null;
+  // DUSTLESS ASSISTANT: guard so we only bind product form events once
   let productFormBound = false;
 
   function showPublicView() {
@@ -1048,6 +1339,8 @@
     if (adminJobsUnsub) adminJobsUnsub();
     if (adminEmployeesUnsub) adminEmployeesUnsub();
     if (adminProductsUnsub) adminProductsUnsub();
+    if (adminLeadsUnsub) adminLeadsUnsub();
+    if (adminClientsUnsub) adminClientsUnsub();
 
     adminEmployeesUnsub = db
       .collection("users")
@@ -1072,6 +1365,22 @@
           });
       });
 
+          // DUSTLESS ASSISTANT: live leads list (all sources)
+    adminLeadsUnsub = db
+      .collection("leads")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((leadSnap) => {
+        renderAdminLeads(leadSnap.docs);
+      });
+
+    // DUSTLESS ASSISTANT: clients list
+    adminClientsUnsub = db
+      .collection("clients")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((clientSnap) => {
+        renderAdminClients(clientSnap.docs);
+      });
+
     adminJobsUnsub = db.collection("jobs").onSnapshot((snap) => {
       renderAdminCompletedJobs(snap.docs);
     });
@@ -1089,6 +1398,21 @@
     loadCart();
     adminDashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  function hideAuthModal() {
+  if (authModal) authModal.classList.add("hidden");
+  if (loginForm) loginForm.reset();
+  if (loginStatus) loginStatus.textContent = "";
+}
+
+function logout() {
+  auth.signOut().then(() => {
+    showPublicView();
+    if (authModal) authModal.classList.add("hidden");
+  }).catch((err) => {
+    console.error("Logout error:", err);
+  });
+}
 
   function renderEmployeeJobs(docs) {
     const container = document.getElementById("employeeJobsList");
@@ -1197,6 +1521,160 @@
       ul.appendChild(li);
     });
     adminEmployeesEl.appendChild(ul);
+  }
+
+    // DUSTLESS ASSISTANT: Admin leads table
+  function renderAdminLeads(leadDocs) {
+    if (!adminLeadsEl) return;
+    adminLeadsEl.innerHTML = "";
+
+    if (!leadDocs.length) {
+      adminLeadsEl.textContent =
+        "No leads yet. When someone submits the quote or contact form, they’ll appear here.";
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.className = "admin-table";
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Service</th>
+          <th>Area</th>
+          <th>Mess</th>
+          <th>Est. $</th>
+          <th>Status</th>
+          <th>Source</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector("tbody");
+
+    leadDocs.forEach((doc) => {
+      const l = doc.data();
+      const tr = document.createElement("tr");
+
+      const status = l.status || "new";
+      const mess = l.conditionLevel ?? l.condition ?? "-";
+      const area = l.locationArea || l.location || "";
+      const estimate = l.estimateTotal || "-";
+
+      tr.innerHTML = `
+        <td>${l.name || l.fullName || ""}</td>
+        <td>${l.serviceType || l.service || ""}</td>
+        <td>${area}</td>
+        <td>${mess}</td>
+        <td>${estimate}</td>
+        <td><span class="admin-chip">${status}</span></td>
+        <td>${l.source || "quoteForm"}</td>
+        <td>
+          <button class="btn btn-sm btn-outline lead-quoted">Quoted</button>
+          <button class="btn btn-sm btn-outline lead-convert">Convert</button>
+          <button class="btn btn-sm btn-outline lead-lost">Lost</button>
+        </td>
+      `;
+
+      const btnQuoted = tr.querySelector(".lead-quoted");
+      const btnConvert = tr.querySelector(".lead-convert");
+      const btnLost = tr.querySelector(".lead-lost");
+
+      btnQuoted.addEventListener("click", () =>
+        updateLeadStatus(doc.id, "quoted")
+      );
+      btnLost.addEventListener("click", () =>
+        updateLeadStatus(doc.id, "lost")
+      );
+      btnConvert.addEventListener("click", () =>
+        convertLeadToClient(doc.id, l)
+      );
+
+      tbody.appendChild(tr);
+    });
+
+    adminLeadsEl.appendChild(table);
+  }
+
+  // DUSTLESS ASSISTANT: Admin clients table
+  function renderAdminClients(clientDocs) {
+    if (!adminClientsEl) return;
+    adminClientsEl.innerHTML = "";
+
+    if (!clientDocs.length) {
+      adminClientsEl.textContent =
+        "No clients recorded yet. When bookings are created or leads are converted, clients will appear here.";
+      return;
+    }
+
+    const table = document.createElement("table");
+    table.className = "admin-table";
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th>Source</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector("tbody");
+
+    clientDocs.forEach((doc) => {
+      const c = doc.data();
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${c.name || ""}</td>
+        <td>
+          ${c.email || ""}<br />
+          <span class="muted">${c.phone || ""}</span>
+        </td>
+        <td>${c.address || ""}</td>
+        <td><span class="admin-chip">${c.status || "active"}</span></td>
+        <td>${c.source || ""}</td>
+        <td>${c.notes || ""}</td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+    adminClientsEl.appendChild(table);
+  }
+
+  // DUSTLESS ASSISTANT: Lead / client helpers
+  async function updateLeadStatus(leadId, status) {
+    try {
+      await db.collection("leads").doc(leadId).update({ status });
+    } catch (err) {
+      console.error("Update lead status error:", err);
+      alert("Unable to update lead status.");
+    }
+  }
+
+  async function convertLeadToClient(leadId, leadData) {
+    try {
+      await db.collection("clients").add({
+        name: leadData.name || leadData.fullName || "",
+        email: leadData.email || "",
+        phone: leadData.phone || "",
+        address: leadData.address || "",
+        notes: leadData.notes || "",
+        source: "convertedLead",
+        status: "active",
+        fromLeadId: leadId,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      await updateLeadStatus(leadId, "converted");
+    } catch (err) {
+      console.error("Convert lead error:", err);
+      alert("Unable to convert lead.");
+    }
   }
 
   function renderAdminCompletedJobs(docs) {
@@ -1569,26 +2047,65 @@
   if (logoutBtnEmp) logoutBtnEmp.addEventListener("click", logout);
   if (logoutBtnAdmin) logoutBtnAdmin.addEventListener("click", logout);
 
-  auth.onAuthStateChanged(async (user) => {
-    if (!user) {
-      showPublicView();
-      return;
-    }
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
     try {
       const userDoc = await db.collection("users").doc(user.uid).get();
-      const data = userDoc.data() || {};
-      const role = data.role || "employee";
-      const name = data.name || user.email || "Team Member";
+      const userData = userDoc.data();
+      const role = userData?.role || "user";
+
       if (role === "admin") {
-        showAdminView(name);
+        showAdminView(userData?.name || "Admin");
+        hideAuthModal();
+      } else if (role === "employee") {
+        showEmployeeView(userData?.name || "Employee", user.uid);
+        hideAuthModal();
       } else {
-        showEmployeeView(name, user.uid);
+        showPublicView();
+        logout();
       }
     } catch (err) {
-      console.error("Error loading user role:", err);
+      console.error("Error fetching user role:", err);
       showPublicView();
     }
-  });
+  } else {
+    showPublicView();
+  }
+});
+
+    // ===============================
+  // 10b. DUSTLESS ASSISTANT – Automation Hooks (email / Zapier)
+  // ===============================
+
+  /**
+   * scheduleReminderForBooking
+   * Called after a deposit is paid.
+   * Later you can plug this into:
+   *  - a serverless function that creates a 24h-reminder email
+   *  - or Zapier/Make watching Firestore "bookings" where status == confirmed
+   */
+  function scheduleReminderForBooking(bookingId) {
+    // TODO: Implement via:
+    // - Firestore "tasks" collection processed by a scheduled Cloud Function
+    // - or Zapier/Make scenario watching Firestore for new confirmed bookings
+    console.debug("[Automation] scheduleReminderForBooking", bookingId);
+  }
+
+  /**
+   * scheduleReviewRequestForBooking
+   * Trigger a thank-you + review request after job completion.
+   * You can call this from the admin when you mark a booking/job as completed.
+   */
+  function scheduleReviewRequestForBooking(bookingId) {
+    // TODO: Implement via:
+    // - Scheduled function 24–48h after 'completed'
+    // - Email provider (SendGrid, MailerSend, etc.)
+    console.debug("[Automation] scheduleReviewRequestForBooking", bookingId);
+  }
+    function scheduleLeadFollowUp(leadId) {
+    // TODO: watch Firestore "leads" where status == "new" for > 2 days
+    console.debug("[Automation] scheduleLeadFollowUp", leadId);
+  }
 
   // ===============================
   // 11. Stripe (Deposits & Shop)
@@ -1654,12 +2171,19 @@
     if (!payment || !bookingId || !paymentStatus) return;
 
     try {
-      if (payment === "success") {
+            if (payment === "success") {
         await db.collection("bookings").doc(bookingId).update({
           depositStatus: "paid",
+          status: "confirmed",
         });
+
+        // DUSTLESS ASSISTANT: hooks for reminders + calendar + thank-you
+        scheduleReminderForBooking(bookingId);
+        scheduleReviewRequestForBooking(bookingId);
+        syncBookingToCalendar(bookingId);
+
         paymentStatus.textContent =
-          "Deposit received securely. Thank you — your booking is prioritized, and we’ll confirm shortly.";
+          "Deposit received securely. Thank you — your booking is confirmed and we’ll follow up with details.";
       } else if (payment === "cancel") {
         paymentStatus.textContent =
           "Payment canceled. Your booking request is still pending review.";

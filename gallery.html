@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Dustless Living | Premium Cleaning Service in Hamilton & Burlington
+    </title>
+    <meta
+      name="description"
+      content="Dustless Living delivers calm, detail-focused cleaning for homes, rentals, and small businesses in Hamilton & Burlington. Deep cleans, move-in/move-out, recurring care & more."
+    />
+    <meta
+      name="keywords"
+      content="Hamilton cleaning service, Burlington cleaning, Dustless Living, house cleaning Hamilton, commercial cleaning Burlington, deep cleaning, move out clean"
+    />
+    <meta name="author" content="Dustless Living" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Dustless Living | Premium Cleaning Services"
+    />
+    <meta
+      property="og:description"
+      content="A clean space. A clear mind. Premium home & business cleaning in Hamilton & Burlington."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dustlessliving.com/" />
+    <meta
+      property="og:image"
+      content="https://dustlessliving.com/images/og-image.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Floating Dust Particles Background -->
+    <div class="particles-layer" id="particlesLayer"></div>
+
+    <!-- Dark/Light Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">☀️</span>
+    </button>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <div class="logo">
+          <span class="logo-mark">DL</span>
+          <span class="logo-text">Dustless Living</span>
+          <span class="app-label" id="appLabel">Portal</span>
+        </div>
+        <nav class="nav">
+          <a href="index.html#home" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
+          <a href="quote.html" class="nav-link">Get a Quote</a>
+          <a href="shop.html" class="nav-link">Eco Shop</a>
+          <a href="gallery.html" class="nav-link">Before &amp; After</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="policies.html" class="nav-link">Policies</a>
+          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
+        </nav>
+        <button
+          class="btn btn-outline btn-sm nav-cta"
+          onclick="scrollToSection('booking')"
+        >
+          Get My Personalized Cleaning Plan
+        </button>
+
+        <button class="burger" id="burger" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="navMobile">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="quote.html" class="nav-link">Get a Quote</a>
+        <a href="shop.html" class="nav-link">Eco Shop</a>
+        <a href="gallery.html" class="nav-link">Before &amp; After</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="policies.html" class="nav-link">Policies</a>
+        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main id="home">
+      <div id="publicsite">
+        <!-- Results / Before & After Slider -->
+        <section id="results" class="section section-soft-bg" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>See the Dustless Difference</h2>
+              <p>
+                Slide to compare real before &amp; after results from homes,
+                rentals, and move-outs we’ve reset across Hamilton &amp;
+                Burlington.
+              </p>
+            </div>
+
+            <div class="before-after glass">
+              <div class="before-after-inner">
+                <img
+                  src="/images/before1.jpg"
+                  alt="Before cleaning – cluttered room"
+                  class="before-after-img before-after-img-before"
+                />
+                <img
+                  src="/images/after1.jpg"
+                  alt="After cleaning – calm, reset room"
+                  class="before-after-img before-after-img-after"
+                  id="beforeAfterAfterImg"
+                />
+              </div>
+
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                id="beforeAfterSlider"
+                aria-label="Slide to compare before and after"
+                class="before-after-slider"
+              />
+
+              <div class="before-after-label before-after-label-left">
+                Before
+              </div>
+              <div class="before-after-label before-after-label-right">
+                After
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Gallery -->
+        <section id="gallery" class="section" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>Before &amp; After Highlights</h2>
+              <p>Real spaces, real clients, real relief.</p>
+            </div>
+            <div class="gallery-grid">
+              <img
+                src="/images/before1.jpg"
+                alt="Before clean"
+                class="gallery-item"
+              />
+              <img
+                src="/images/after1.jpg"
+                alt="After clean"
+                class="gallery-item"
+              />
+              <img
+                src="/images/before2.jpg"
+                alt="Before clean"
+                class="gallery-item"
+              />
+              <img
+                src="/images/after2.jpg"
+                alt="After clean"
+                class="gallery-item"
+              />
+              <img
+                src="/images/bathroom-after.jpg"
+                alt="Sparkling bathroom"
+                class="gallery-item"
+              />
+              <img
+                src="/images/og-image.jpg"
+                alt="Clean, calm living space"
+                class="gallery-item"
+              />
+            </div>
+          </div>
+          <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+              <button class="lightbox-close" onclick="closeLightbox()">
+                ×
+              </button>
+              <img id="lightboxImg" src="" alt="Preview" />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark">DL</span>
+          <span class="logo-text">Dustless Living</span>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#promos">Promos</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#booking">Book</a>
+          <a href="#careers">Careers</a>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Yelp">⭐</a>
+          <a href="#" aria-label="Google Business">🅶</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2025 Dustless Living | All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot" id="chatbot">
+      <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+      <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+          <h4>Dustless Quote Assistant</h4>
+          <button class="chatbot-close" onclick="toggleChatbot(false)">
+            ×
+          </button>
+        </div>
+        <div class="chatbot-body" id="chatbotBody"></div>
+        <div class="chatbot-input">
+          <input
+            type="text"
+            id="chatbotInput"
+            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
+          />
+          <button onclick="handleChatbotMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal-backdrop hidden">
+      <div class="modal product-modal">
+        <button class="modal-close" id="closeProductModal">&times;</button>
+        <div class="product-modal-body">
+          <div class="product-modal-image-wrap">
+            <img
+              id="productModalImage"
+              src=""
+              alt=""
+              class="product-modal-image"
+            />
+          </div>
+          <div class="product-modal-info">
+            <h3 id="productModalName"></h3>
+            <p id="productModalCategory" class="pill pill-soft"></p>
+            <p id="productModalDescription" class="modal-description"></p>
+            <div class="product-modal-price-wrap">
+              <span id="productModalPrice" class="product-modal-price"></span>
+              <span class="product-modal-subcopy">
+                Refillable • Low-tox • Pet-safe
+              </span>
+            </div>
+            <div class="product-modal-actions">
+              <button class="btn" id="addToCartBtn">Add to Cart</button>
+              <button class="btn btn-soft" id="subscribeSaveBtn">
+                Subscribe &amp; Save 10%
+              </button>
+            </div>
+            <p class="product-modal-note">
+              Every order supports sustainable supplies for our clients’ homes.
+              Eco Points quietly reward your good habits.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-backdrop" id="authModal">
+      <div class="modal auth-modal glass">
+        <button class="modal-close" id="authClose">×</button>
+        <h3>Dustless Living Team Portal</h3>
+        <p class="auth-subtitle">Secure access for employees and admin.</p>
+        <form id="loginForm" class="form">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <p id="loginStatus" class="form-success"></p>
+        </form>
+        <p class="auth-note">
+          Accounts are created internally. If you are new staff, please contact
+          Antonette for portal access.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer hidden">
+      <div class="cart-header">
+        <h3>Your Dustless Basket</h3>
+        <button class="cart-close" id="closeCartBtn">&times;</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-line">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="cart-eco-line">
+            <span class="eco-label">Eco Points</span>
+            <span id="cartEcoPoints">0</span>
+          </div>
+        </div>
+        <button class="btn btn-full" id="checkoutCartBtn">
+          Checkout Securely
+        </button>
+        <p class="cart-secure-note">Processed via encrypted Stripe checkout.</p>
+      </div>
+    </div>
+
+    <!-- Cart FAB -->
+    <button id="openCartBtn" class="cart-fab">
+      <span class="cart-icon">🛒</span>
+      <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <!-- Scripts: Firebase (Compat) + Stripe -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Main JS -->
+    <script src="/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Dustless Living | Premium Cleaning Service in Hamilton & Burlington
+    </title>
+    <meta
+      name="description"
+      content="Dustless Living delivers calm, detail-focused cleaning for homes, rentals, and small businesses in Hamilton & Burlington. Deep cleans, move-in/move-out, recurring care & more."
+    />
+    <meta
+      name="keywords"
+      content="Hamilton cleaning service, Burlington cleaning, Dustless Living, house cleaning Hamilton, commercial cleaning Burlington, deep cleaning, move out clean"
+    />
+    <meta name="author" content="Dustless Living" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Dustless Living | Premium Cleaning Services"
+    />
+    <meta
+      property="og:description"
+      content="A clean space. A clear mind. Premium home & business cleaning in Hamilton & Burlington."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dustlessliving.com/" />
+    <meta
+      property="og:image"
+      content="https://dustlessliving.com/images/og-image.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Floating Dust Particles Background -->
+    <div class="particles-layer" id="particlesLayer"></div>
+
+    <!-- Dark/Light Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">☀️</span>
+    </button>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <div class="logo">
+          <span class="logo-mark">DL</span>
+          <span class="logo-text">Dustless Living</span>
+          <span class="app-label" id="appLabel">Portal</span>
+        </div>
+        <nav class="nav">
+          <a href="index.html#home" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
+          <a href="quote.html" class="nav-link">Quote</a>
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="policies.html" class="nav-link">Policies</a>
+          <a href="careers.html" class="nav-link">Careers</a>
+          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
+        </nav>
+        <button
+          class="btn btn-outline btn-sm nav-cta"
+          onclick="scrollToSection('booking')"
+        >
+          Get My Personalized Cleaning Plan
+        </button>
+
+        <button class="burger" id="burger" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="navMobile">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="quote.html" class="nav-link">Quote</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="policies.html" class="nav-link">Policies</a>
+        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main id="home">
+      <div id="publicsite">
+        <section id="faq" class="section section-soft-bg" data-reveal>
+          <div class="container testimonials-faq-layout">
+            <!-- Left column: intro -->
+            <div>
+              <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>
+                  Honest answers to the things people actually ask about having
+                  their home or rental cleaned by Dustless Living.
+                </p>
+              </div>
+
+              <p class="muted">
+                Still unsure if your situation fits? You can always send photos
+                with your booking or use the Online Quote Calculator so we can
+                give you a calm, realistic plan for your space.
+              </p>
+
+              <div class="faq-chip-list">
+                <span class="faq-chip">What’s included?</span>
+                <span class="faq-chip">Do I need to prep?</span>
+                <span class="faq-chip">Pets &amp; kids</span>
+                <span class="faq-chip">Weekends &amp; evenings</span>
+                <span class="faq-chip">Move-out &amp; Airbnb</span>
+              </div>
+
+              <p class="faq-note">
+                For the fine print (cancellations, lockouts, damage, eco product
+                disclosure), please see our
+                <a href="policies.html">Service Policies</a>.
+              </p>
+            </div>
+
+            <!-- Right column: accordion -->
+            <div>
+              <div class="accordion" id="faqAccordion">
+                <!-- Q1 -->
+                <div class="accordion-item open">
+                  <button type="button" class="accordion-header">
+                    What’s included in a standard clean?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      A standard clean is ideal for homes that are lived-in but
+                      not extremely messy. It focuses on:
+                    </p>
+                    <ul>
+                      <li>Dusting reachable surfaces and decor</li>
+                      <li>Wiping counters, tables, and visible fingerprints</li>
+                      <li>
+                        Bathroom refresh (toilet, sink, tub/shower, mirrors)
+                      </li>
+                      <li>
+                        Kitchen refresh (stovetop wipe, exterior of appliances,
+                        sink)
+                      </li>
+                      <li>Spot vacuuming/sweeping &amp; mopping main floors</li>
+                      <li>
+                        Light tidying such as straightening pillows and blankets
+                      </li>
+                    </ul>
+                    <p>
+                      It’s meant to keep things maintained between deeper resets
+                      – perfect for recurring weekly, bi-weekly, or monthly
+                      visits.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    What’s the difference between a deep clean and a standard
+                    clean?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Deep cleans go further into the “hidden” areas that
+                      collect dust, grease, and buildup. In addition to
+                      everything in a standard clean, a deep clean may include:
+                    </p>
+                    <ul>
+                      <li>Baseboards, door frames, and switch plates</li>
+                      <li>Inside microwave and small appliances</li>
+                      <li>More detailed bathroom scrubbing and descaling</li>
+                      <li>
+                        Extra time for tough areas like shower grout, stove
+                        knobs, and backsplashes
+                      </li>
+                      <li>
+                        Extra tidying in high-traffic spaces (entryway, living
+                        room, kitchen)
+                      </li>
+                    </ul>
+                    <p>
+                      For most first-time visits,
+                      <strong>we recommend a deep clean first</strong>, then
+                      lighter recurring maintenance afterwards.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Do you always require a deep clean for first-time clients?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Not always, but often. The first visit is where we “reset”
+                      your space so it’s easier (and cheaper) to maintain
+                      afterward.
+                    </p>
+                    <p>
+                      If your home is already very tidy and just needs light
+                      upkeep, we may start with a standard clean. If there is
+                      visible buildup, clutter, or it has been a long time since
+                      your last professional clean, a deep clean or
+                      move-in/move-out style visit is usually recommended.
+                    </p>
+                    <p>
+                      You can use the
+                      <a href="quote.html">Online Quote Calculator</a> and rate
+                      your mess level from 1–10 to help us decide together.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    What’s not included, or needs a separate quote?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      To keep everyone safe and realistic, some tasks are
+                      outside our normal scope or require a custom quote:
+                    </p>
+                    <ul>
+                      <li>
+                        Heavy decluttering, hoarding situations, or large trash
+                        removal
+                      </li>
+                      <li>
+                        Biohazards (animal waste, infestations, strong nicotine,
+                        mold, bodily fluids)
+                      </li>
+                      <li>
+                        Large furniture moving, appliance disconnection, or
+                        handyman-style repairs
+                      </li>
+                      <li>
+                        Exterior windows, high ladder work, or outdoor power
+                        washing
+                      </li>
+                    </ul>
+                    <p>
+                      If you’re unsure, send photos or mention it in your
+                      booking notes and we’ll let you know if it’s something we
+                      can do or refer out.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    How does your pricing work and what is the “condition level”
+                    1–10?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Pricing is a mix of
+                      <strong>home size, mess level, add-ons, and travel</strong
+                      >. During quoting, we ask you to rate your home from 1–10:
+                    </p>
+                    <ul>
+                      <li>
+                        <strong>1–3</strong> — already tidy, just needs a reset
+                      </li>
+                      <li>
+                        <strong>4–6</strong> — average lived-in mess (most
+                        homes)
+                      </li>
+                      <li>
+                        <strong>7–8</strong> — heavy mess, lots of buildup or
+                        clutter
+                      </li>
+                      <li>
+                        <strong>9–10</strong> — very challenging / requires
+                        extra time
+                      </li>
+                    </ul>
+                    <p>
+                      This helps us estimate realistic hours and energy. Final
+                      pricing is always confirmed with you before we lock
+                      anything in.
+                    </p>
+                    <p>
+                      You can play with different scenarios inside the
+                      <a href="pricing.html">Pricing &amp; Estimator</a> page.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Do I need to be home during the clean?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      It’s completely up to you. Many clients prefer to be away
+                      at work or errands and come home to a finished space.
+                    </p>
+                    <p>You have three options:</p>
+                    <ul>
+                      <li>Be home and let us in personally</li>
+                      <li>Provide a door code or buzz code</li>
+                      <li>Use a lockbox or trusted neighbour for key access</li>
+                    </ul>
+                    <p>
+                      All access details are kept private and only used for your
+                      bookings.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    What should I do before you arrive?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      No need to “pre-clean” for your cleaner. But a few small
+                      steps help us spend more time on actual cleaning:
+                    </p>
+                    <ul>
+                      <li>
+                        Do basic tidying of dishes and laundry where possible
+                      </li>
+                      <li>
+                        Clear floors of toys, clothes, and personal belongings
+                        as much as you can
+                      </li>
+                      <li>
+                        Put away important documents, cash, and valuables so
+                        nothing is accidentally moved
+                      </li>
+                      <li>
+                        Make sure we know about any alarms, pets, or parking
+                        instructions
+                      </li>
+                    </ul>
+                    <p>
+                      If life is chaotic and you can’t tidy beforehand, just let
+                      us know — we’ll adjust expectations and the quote
+                      together.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Do you bring your own supplies and equipment?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Yes. Dustless Living brings our own eco-leaning cleaning
+                      products and basic tools so you don’t have to think about
+                      it.
+                    </p>
+                    <p>
+                      If you prefer we use your vacuum, mop, or a specific
+                      product due to allergies or building rules, just mention
+                      it in your booking notes and we’ll follow your preference.
+                    </p>
+                    <p>
+                      Our goal is to keep things simple, safe, and respectful
+                      for your home.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Are your products safe for pets, kids, and scent-sensitive
+                    homes?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      We lean toward
+                      <strong>low-tox, pet-conscious, and kid-friendly</strong>
+                      formulas and avoid using harsh products unless absolutely
+                      necessary for heavy buildup.
+                    </p>
+                    <p>
+                      If someone in your home has asthma, allergies, or is
+                      sensitive to fragrance, please tell us in advance. We can:
+                    </p>
+                    <ul>
+                      <li>
+                        Use fragrance-free or gentler options where possible
+                      </li>
+                      <li>Ventilate more carefully while we work</li>
+                      <li>Avoid specific ingredients you list</li>
+                    </ul>
+                    <p>
+                      You can also opt for our future fragrance-free product
+                      line via the <a href="eco.html">Eco &amp; Safety page</a>.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    What is your cancellation policy?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      You can reschedule or cancel up to
+                      <strong>48 hours before</strong> your appointment at no
+                      charge.
+                    </p>
+                    <p>
+                      Last-minute changes (less than 48 hours), same-day
+                      cancellations, or lockouts may be charged a partial fee,
+                      especially for deep cleans and first-time visits where a
+                      large time block was reserved for you.
+                    </p>
+                    <p>
+                      Full details are listed on our
+                      <a href="policies.html">Service Policies</a> page.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Do you clean Airbnbs, rentals, or move-in/move-out homes?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Yes. We offer <strong>Airbnb turnover</strong> and
+                      <strong>move-in/move-out</strong> cleans with add-ons like
+                      inside fridge, oven, cabinets, and more detailed staging.
+                    </p>
+                    <p>
+                      These visits usually take longer than a standard clean and
+                      benefit from photos so we can plan laundry, bed changes,
+                      and inventory checks if needed.
+                    </p>
+                    <p>
+                      Please mention if you’re a landlord or host when booking
+                      so we can tailor the checklist to your property.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Do you offer recurring service or discounts?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Yes. After your first visit, you can move to weekly,
+                      bi-weekly, or monthly maintenance cleans. Recurring
+                      clients are usually on a <strong>lower rate</strong> than
+                      one-time deep cleans because we’re maintaining rather than
+                      resetting.
+                    </p>
+                    <p>
+                      We also run occasional promos like Fresh Start offers,
+                      referral rewards, and loyalty perks. You can find the
+                      current ones on the home page or in your reminder emails.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="accordion-item">
+                  <button type="button" class="accordion-header">
+                    Which areas do you serve and are there travel fees?
+                  </button>
+                  <div class="accordion-body">
+                    <p>
+                      Our main service area includes
+                      <strong
+                        >Hamilton, Burlington, Waterdown, Stoney Creek, and
+                        Ancaster</strong
+                      >.
+                    </p>
+                    <p>
+                      For homes that require longer transit, complex parking, or
+                      multiple trips, a small travel fee may apply. This will
+                      always be mentioned in your quote first — no surprise fees
+                      on cleaning day.
+                    </p>
+                    <p>
+                      You can see a quick overview on the map on our home page
+                      or ask directly when you request a quote.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="faq-note">
+                Didn’t see your question here? Message us on social, send a note
+                with your quote request, or use the chat bubble in the corner to
+                ask something specific about your home.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark">DL</span>
+          <span class="logo-text">Dustless Living</span>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#promos">Promos</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#booking">Book</a>
+          <a href="#careers">Careers</a>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Yelp">⭐</a>
+          <a href="#" aria-label="Google Business">🅶</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2025 Dustless Living | All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot" id="chatbot">
+      <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+      <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+          <h4>Dustless Quote Assistant</h4>
+          <button class="chatbot-close" onclick="toggleChatbot(false)">
+            ×
+          </button>
+        </div>
+        <div class="chatbot-body" id="chatbotBody"></div>
+        <div class="chatbot-input">
+          <input
+            type="text"
+            id="chatbotInput"
+            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
+          />
+          <button onclick="handleChatbotMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal-backdrop hidden">
+      <div class="modal product-modal">
+        <button class="modal-close" id="closeProductModal">&times;</button>
+        <div class="product-modal-body">
+          <div class="product-modal-image-wrap">
+            <img
+              id="productModalImage"
+              src=""
+              alt=""
+              class="product-modal-image"
+            />
+          </div>
+          <div class="product-modal-info">
+            <h3 id="productModalName"></h3>
+            <p id="productModalCategory" class="pill pill-soft"></p>
+            <p id="productModalDescription" class="modal-description"></p>
+            <div class="product-modal-price-wrap">
+              <span id="productModalPrice" class="product-modal-price"></span>
+              <span class="product-modal-subcopy">
+                Refillable • Low-tox • Pet-safe
+              </span>
+            </div>
+            <div class="product-modal-actions">
+              <button class="btn" id="addToCartBtn">Add to Cart</button>
+              <button class="btn btn-soft" id="subscribeSaveBtn">
+                Subscribe &amp; Save 10%
+              </button>
+            </div>
+            <p class="product-modal-note">
+              Every order supports sustainable supplies for our clients’ homes.
+              Eco Points quietly reward your good habits.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-backdrop" id="authModal">
+      <div class="modal auth-modal glass">
+        <button class="modal-close" id="authClose">×</button>
+        <h3>Dustless Living Team Portal</h3>
+        <p class="auth-subtitle">Secure access for employees and admin.</p>
+        <form id="loginForm" class="form">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required />
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <p id="loginStatus" class="form-success"></p>
+        </form>
+        <p class="auth-note">
+          Accounts are created internally. If you are new staff, please contact
+          Antonette for portal access.
+        </p>
+      </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer hidden">
+      <div class="cart-header">
+        <h3>Your Dustless Basket</h3>
+        <button class="cart-close" id="closeCartBtn">&times;</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-line">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="cart-eco-line">
+            <span class="eco-label">Eco Points</span>
+            <span id="cartEcoPoints">0</span>
+          </div>
+        </div>
+        <button class="btn btn-full" id="checkoutCartBtn">
+          Checkout Securely
+        </button>
+        <p class="cart-secure-note">Processed via encrypted Stripe checkout.</p>
+      </div>
+    </div>
+
+    <!-- Cart FAB -->
+    <button id="openCartBtn" class="cart-fab">
+      <span class="cart-icon">🛒</span>
+      <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <!-- Scripts: Firebase (Compat) + Stripe -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Main JS -->
+    <script src="/main.js"></script>
+  </body>
+</html>

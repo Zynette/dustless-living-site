@@ -417,8 +417,9 @@ body.dark .nav-mobile {
 
 .theme-toggle {
   position: fixed;
-  right: 1.4rem;
-  bottom: 6.5rem;
+  /* move it left so it doesn't sit under the cart */
+  right: 1.4 rem;     /* was 1.4rem */
+  bottom: 10.4rem;    /* align vertically with the cart FAB */
   z-index: 80;
   width: 40px;
   height: 40px;
@@ -906,6 +907,61 @@ select:focus {
   column-gap: 0.75rem;
 }
 
+/* Before / After slider */
+
+.before-after {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  padding: 1rem;
+}
+
+.before-after-inner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.before-after-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.before-after-img-after {
+  clip-path: inset(0 0 0 50%);
+  transition: clip-path 0.25s ease;
+}
+
+.before-after-slider {
+  width: 100%;
+  margin-top: 0.9rem;
+}
+
+.before-after-label {
+  position: absolute;
+  top: 1.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.before-after-label-left {
+  left: 1.8rem;
+}
+
+.before-after-label-right {
+  right: 1.8rem;
+}
+
+
 .gallery-item {
   width: 100%;
   margin-bottom: 0.75rem;
@@ -955,8 +1011,112 @@ select:focus {
 }
 
 /* =========================
+   Policies Layout
+   ========================= */
+
+.policy-hero {
+  max-width: 720px;
+}
+
+.policy-hero p {
+  color: var(--color-muted);
+}
+
+.policy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+  align-items: center;
+}
+
+.policy-updated {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.policy-card {
+  padding: 1.4rem 1.5rem;
+}
+
+.policy-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.policy-tagline {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 0.8rem;
+}
+
+.policy-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.policy-card li {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.policy-callout {
+  margin-top: 2.2rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--color-border-soft);
+  background: var(--color-bg-alt);
+}
+
+.policy-callout h3 {
+  margin-bottom: 0.4rem;
+}
+
+.policy-disclaimer {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 800px) {
+  .policy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================
    Testimonials & FAQ
    ========================= */
+
+   .faq-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.faq-chip {
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+}
+
+.faq-note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
 
 .testimonials-faq-layout {
   display: grid;
@@ -1319,52 +1479,49 @@ body.dark .footer {
   background: var(--color-bg-soft);
 }
 
-/* Main admin grid:
-   Desktop: bookings wide + 3 summary cards
+/* Main admin grid
+   Desktop: 2 columns, Bookings column wider
+   Smaller screens: stack into a single column
 */
-
 .dashboard-grid {
   display: grid;
-  grid-template-columns: minmax(380px, 2.2fr) repeat(3, minmax(260px, 1.4fr));
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
   gap: 1.5rem;
-  align-items: stretch;
-  max-width: 1320px;
+  align-items: flex-start;
+  max-width: 1160px;
   margin: 0 auto;
 }
 
-/* Keep first card full-height */
-.dashboard-grid .dashboard-card:first-child {
-  overflow: hidden;
+/* Make each card flex so inner content grows naturally */
+.dashboard-grid .dashboard-card {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Medium screens: two columns */
-
-@media (max-width: 1200px) {
-  #adminDashboard .dashboard-grid {
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
-  }
-
-  #adminDashboard .dashboard-grid .dashboard-card:first-child {
-    grid-column: 1 / -1;
-  }
+/* Let the “Bookings Overview” card breathe a bit more */
+.dashboard-grid .dashboard-card:first-child {
+  min-height: 100%;
 }
 
 /* Tablets & below: single column */
-
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .dashboard {
     padding: 4.5rem 1rem 2.5rem;
   }
 
-  #adminDashboard .dashboard-grid,
-  #employeeDashboard .dashboard-grid {
+  .dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.2rem;
   }
+}
 
-  #adminDashboard .dashboard-grid .dashboard-card:first-child {
-    grid-column: auto;
-  }
+/* Fine-tune the Bookings Overview column */
+#adminDashboard .dashboard-card .dashboard-header h3 {
+  margin-bottom: 0.6rem;
+}
+
+#adminDashboard .dashboard-card .dashboard-card {
+  margin-top: 0.7rem;
 }
 
 /* Jobs list */
@@ -1431,6 +1588,14 @@ body.dark .footer {
 .job-upload button {
   padding: 0.25rem 0.55rem;
   font-size: 0.7rem;
+}
+
+/* ===== DUSTLESS ASSISTANT (Admin Dashboard) ===== */
+
+.admin-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-top: 0.1rem;
 }
 
 /* Admin tables & chips */
