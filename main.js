@@ -10,7 +10,10 @@
 
   function scrollToSection(id) {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) {
+      window.location.href = `index.html#${id}`;
+      return;
+    }
     const headerOffset = 80;
     const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
@@ -150,153 +153,531 @@
   updateEstimator();
 
     // ===============================
-  // 3b. Online Quote Calculator (quote.html)
+  // 3b. SmartQuote Wizard (quote.html)
   // ===============================
 
-  const quoteForm = document.getElementById("quoteForm");
-  const quoteConditionSlider = document.getElementById("quoteConditionSlider");
-  const quoteConditionValue = document.getElementById("quoteConditionValue");
-  const quotePriceEl = document.getElementById("quotePrice");
-  const quoteHoursEl = document.getElementById("quoteHours");
-  const quoteDepositEl = document.getElementById("quoteDeposit");
-  const quoteSummaryEl = document.getElementById("quoteSummary");
-  const quoteStatusEl = document.getElementById("quoteStatus");
+  const smartquoteForm = document.getElementById("smartquoteForm");
 
-  if (quoteConditionSlider && quoteConditionValue) {
-    const updateCond = () => {
-      quoteConditionValue.textContent = quoteConditionSlider.value;
+  if (smartquoteForm) {
+    const wizardSteps = Array.from(
+      smartquoteForm.querySelectorAll(".wizard-step")
+    );
+    const wizardNextBtn = document.getElementById("wizardNextBtn");
+    const wizardBackBtn = document.getElementById("wizardBackBtn");
+    const wizardStepLabelEl = document.getElementById("wizardStepLabel");
+    const wizardStepTitleEl = document.getElementById("wizardStepTitle");
+    const wizardProgressFill = document.getElementById("wizardProgressFill");
+    const thankYouPanel = document.getElementById("smartquoteThankYou");
+    const summaryEl = document.getElementById("smartquoteSummary");
+    const reviewBackLink = document.getElementById("reviewBackLink");
+    const conditionSlider = document.getElementById("conditionLevel");
+    const conditionValue = document.getElementById("conditionValue");
+    const photoRoomUploads = document.getElementById("photoRoomUploads");
+    const photoUploadSection = document.getElementById("photoUploadSection");
+    const videoUploadSection = document.getElementById("videoUploadSection");
+    const descriptionSection = document.getElementById("descriptionSection");
+    const walkthroughVideoInput = document.getElementById("walkthroughVideo");
+    const mediaDescriptionInput = document.getElementById("mediaDescription");
+    const roomCountInputs =
+      smartquoteForm.querySelectorAll("[data-room-count]");
+    const commonAreaInputs =
+      smartquoteForm.querySelectorAll("input[name='commonAreas']");
+    const commonAreaOtherInput =
+      document.getElementById("commonAreaOther") || null;
+    const wizardProgress =
+      smartquoteForm.closest(".smartquote-card")?.querySelector(
+        ".wizard-progress"
+      ) || null;
+    let currentStep = 1;
+    const totalSteps = wizardSteps.length;
+    let lastRoomSignature = "";
+
+    function updateConditionLabel() {
+      if (conditionSlider && conditionValue) {
+        conditionValue.textContent = conditionSlider.value;
+      }
+    }
+    if (conditionSlider) {
+      conditionSlider.addEventListener("input", updateConditionLabel);
+      updateConditionLabel();
+    }
+
+    function findFieldWrapper(input) {
+      return (
+        input.closest(".field") ||
+        input.closest(".toggle-field") ||
+        input.closest("fieldset")
+      );
+    }
+
+    function setFieldError(input, message) {
+      const wrapper = findFieldWrapper(input);
+      if (!wrapper) return;
+      const errorEl = wrapper.querySelector(".field-error");
+      if (errorEl) errorEl.textContent = message || "";
+      wrapper.classList.toggle("has-error", Boolean(message));
+    }
+
+    function validateRadioGroup(name) {
+      const radios = Array.from(
+        smartquoteForm.querySelectorAll(`input[name="${name}"]`)
+      );
+      if (!radios.length) return true;
+      const isValid = radios.some((radio) => radio.checked);
+      setFieldError(radios[0], isValid ? "" : "Select an option");
+      return isValid;
+    }
+
+    function validateField(input) {
+      if (!input || input.disabled || !input.hasAttribute("required")) {
+        return true;
+      }
+      if (input.type === "radio") return validateRadioGroup(input.name);
+      let isValid = true;
+      let message = "";
+      const value = (input.value || "").trim();
+      if (input.type === "email") {
+        isValid = value.length > 0 && input.checkValidity();
+        message = isValid ? "" : "Enter a valid email";
+      } else if (input.type === "file") {
+        isValid = input.files && input.files.length > 0;
+      } else {
+        isValid = value.length > 0;
+      }
+      if (!isValid && !message) message = "This field is required";
+      setFieldError(input, message);
+      return isValid;
+    }
+
+    function getStepEl(step) {
+      return wizardSteps.find(
+        (el) => Number(el.dataset.step) === Number(step)
+      );
+    }
+
+    function validateStep(step) {
+      const stepEl = getStepEl(step);
+      if (!stepEl) return true;
+      let isValid = true;
+      const requiredElements = stepEl.querySelectorAll("[required]");
+      const handledRadioGroups = new Set();
+      requiredElements.forEach((input) => {
+        if (input.type === "radio") {
+          if (handledRadioGroups.has(input.name)) return;
+          handledRadioGroups.add(input.name);
+          if (!validateRadioGroup(input.name)) isValid = false;
+        } else if (!validateField(input)) {
+          isValid = false;
+        }
+      });
+      return isValid;
+    }
+
+    function updateControls() {
+      if (wizardBackBtn) wizardBackBtn.disabled = currentStep === 1;
+      if (wizardNextBtn) {
+        wizardNextBtn.textContent =
+          currentStep === totalSteps ? "Submit for Smart Quote" : "Next step";
+      }
+    }
+
+    function updateProgressMeta() {
+      if (wizardStepLabelEl) {
+        wizardStepLabelEl.textContent = `Step ${currentStep} of ${totalSteps}`;
+      }
+      const active = getStepEl(currentStep);
+      if (wizardStepTitleEl) {
+        wizardStepTitleEl.textContent =
+          active?.dataset.title || `Step ${currentStep}`;
+      }
+      if (wizardProgressFill) {
+        const progress =
+          totalSteps <= 1 ? 100 : ((currentStep - 1) / (totalSteps - 1)) * 100;
+        wizardProgressFill.style.width = `${progress}%`;
+      }
+    }
+
+    function setStep(step) {
+      currentStep = Math.min(Math.max(step, 1), totalSteps);
+      wizardSteps.forEach((el) => {
+        el.classList.toggle(
+          "active",
+          Number(el.dataset.step) === Number(currentStep)
+        );
+      });
+      updateProgressMeta();
+      updateControls();
+      if (currentStep === 3) renderPhotoUploads();
+      if (currentStep === totalSteps) populateSummary();
+    }
+
+    function updateMediaSections(value) {
+      if (!value) return;
+      const showingPhotos = value === "photos";
+      const showingVideo = value === "video";
+      if (photoUploadSection)
+        photoUploadSection.classList.toggle("hidden", !showingPhotos);
+      if (videoUploadSection)
+        videoUploadSection.classList.toggle("hidden", !showingVideo);
+      if (descriptionSection)
+        descriptionSection.classList.toggle("hidden", value !== "description");
+      if (walkthroughVideoInput)
+        walkthroughVideoInput.required = showingVideo;
+      if (mediaDescriptionInput) {
+        mediaDescriptionInput.required = value === "description";
+        if (value !== "description") setFieldError(mediaDescriptionInput, "");
+      }
+      if (value === "photos") renderPhotoUploads();
+    }
+
+    function getCommonAreas() {
+      const values = [];
+      commonAreaInputs.forEach((input) => {
+        if (input.type === "hidden" && input.value) {
+          values.push(input.value);
+        } else if (input.checked) {
+          values.push(input.value);
+        }
+      });
+      const other = (commonAreaOtherInput?.value || "").trim();
+      if (other) values.push(other);
+      return [...new Set(values)];
+    }
+
+    function buildRoomSignature() {
+      const bedroomCount =
+        Number(document.getElementById("bedroomCount")?.value) || 0;
+      const fullBaths =
+        Number(document.getElementById("fullBathCount")?.value) || 0;
+      const halfBaths =
+        Number(document.getElementById("halfBathCount")?.value) || 0;
+      return JSON.stringify({
+        bedrooms: bedroomCount,
+        fullBaths,
+        halfBaths,
+        areas: getCommonAreas().sort(),
+      });
+    }
+
+    function buildRoomList() {
+      const rooms = [];
+      const bedrooms =
+        Number(document.getElementById("bedroomCount")?.value) || 0;
+      const fullBaths =
+        Number(document.getElementById("fullBathCount")?.value) || 0;
+      const halfBaths =
+        Number(document.getElementById("halfBathCount")?.value) || 0;
+      for (let i = 1; i <= bedrooms; i++) rooms.push(`Bedroom ${i}`);
+      for (let i = 1; i <= fullBaths; i++) rooms.push(`Full bathroom ${i}`);
+      for (let i = 1; i <= halfBaths; i++) rooms.push(`Half bathroom ${i}`);
+      getCommonAreas().forEach((area) => {
+        if (!rooms.includes(area)) rooms.push(area);
+      });
+      return rooms;
+    }
+
+    function renderPhotoUploads(force = false) {
+      if (!photoRoomUploads) return;
+      const signature = buildRoomSignature();
+      if (!force && signature === lastRoomSignature) return;
+      lastRoomSignature = signature;
+      const rooms = buildRoomList();
+      photoRoomUploads.innerHTML = "";
+      if (!rooms.length) {
+        photoRoomUploads.innerHTML =
+          '<p class="muted">Add bedrooms or select common areas above to unlock photo uploads.</p>';
+        return;
+      }
+      rooms.forEach((room, index) => {
+        const slug = `${room
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")}-${index}`;
+        const wrapper = document.createElement("div");
+        wrapper.className = "room-upload";
+        wrapper.dataset.roomName = room;
+        wrapper.innerHTML = `
+          <h4>${room}</h4>
+          <div class="field">
+            <label for="clutter-${slug}">Clutter level</label>
+            <select id="clutter-${slug}" class="room-clutter-select" data-room="${room}">
+              <option value="Tidy">Tidy</option>
+              <option value="Some items">Some items</option>
+              <option value="Messy">Messy</option>
+              <option value="Very messy">Very messy</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="photo-${slug}">Room photo</label>
+            <input type="file" id="photo-${slug}" class="room-photo-input" name="roomPhotos" data-room="${room}" accept="image/*" />
+          </div>
+          <p class="room-tip">Stand at the doorway and capture as much of the room and floor as possible.</p>
+        `;
+        photoRoomUploads.appendChild(wrapper);
+      });
+    }
+
+    function formatDate(date) {
+      if (!date) return "No date selected";
+      const parsed = new Date(date);
+      if (Number.isNaN(parsed.getTime())) return date;
+      return parsed.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+    }
+
+    const extrasLabels = {
+      insideFridge: "Inside fridge",
+      insideOven: "Inside oven",
+      insideCabinets: "Inside cabinets",
+      degreaseStove: "Heavy stove degrease",
+      windows: "Interior windows",
+      baseboards: "Baseboards",
+      spotWalls: "Spot clean walls/doors",
+      laundryFold: "Laundry folding",
+      dishes: "Dishes",
+      changeBedding: "Change bedding",
+      petHair: "Pet hair focus",
+      fragranceFree: "Fragrance-free products",
     };
-    quoteConditionSlider.addEventListener("input", updateCond);
-    updateCond();
-  }
 
-  function calculateQuoteEstimate(input) {
-    // Base by home type
-    let base = 120;
-    if (input.homeType === "townhouse") base = 140;
-    if (input.homeType === "detached") base = 160;
+    function formatExtras(extras) {
+      if (!extras.length) return "No extras selected";
+      return extras.map((key) => extrasLabels[key] || key).join(", ");
+    }
 
-    // Bedrooms / baths adjustments
-    const beds = Number(input.bedrooms || 0);
-    const baths = Number(input.bathrooms || 1);
-    base += Math.max(0, beds - 2) * 15;
-    base += Math.max(0, baths - 1) * 12;
+    function formatMediaSummary(data) {
+      if (data.mediaChoice === "video") {
+        const fileName = data.mediaFiles[0]?.fileName || "Video pending";
+        return `Walkthrough video: ${fileName}`;
+      }
+      if (data.mediaChoice === "description") {
+        const snippet =
+          data.mediaFiles[0]?.content?.slice(0, 120) || "Description coming";
+        return `Will describe: ${snippet}`;
+      }
+      const uploadedCount = data.mediaFiles.filter(
+        (item) => item.fileName
+      ).length;
+      return `Room photos selected (${uploadedCount} of ${data.mediaFiles.length})`;
+    }
 
-    // Mess level
-    const cond = Number(input.condition || 5);
-    base += cond * 10;
+    function collectSmartquoteData() {
+      const fd = new FormData(smartquoteForm);
+      const extras = Array.from(
+        smartquoteForm.querySelectorAll("input[name='extras']:checked")
+      ).map((input) => input.value);
+      const mediaChoice = fd.get("mediaOption") || "photos";
+      const roomUploads = Array.from(
+        photoRoomUploads?.querySelectorAll(".room-upload") || []
+      ).map((section) => {
+        const room = section.dataset.roomName;
+        const fileInput = section.querySelector(".room-photo-input");
+        const clutterSelect = section.querySelector(".room-clutter-select");
+        const file = fileInput?.files?.[0] || null;
+        return {
+          room,
+          fileName: file?.name || "",
+          file,
+          clutter: clutterSelect?.value || "Tidy",
+        };
+      });
 
-    // Pets
-    if (input.pets === "some") base += 15;
-    if (input.pets === "many") base += 30;
-
-    // Location travel
-    let travelFee = 0;
-    if (input.location === "burlington" || input.location === "stoney-creek")
-      travelFee = 10;
-    if (input.location === "waterdown" || input.location === "ancaster")
-      travelFee = 15;
-
-    // Add-ons
-    let addonsTotal = 0;
-    if (input.addonWindows) addonsTotal += 25;
-    if (input.addonFridge) addonsTotal += 15;
-    if (input.addonOven) addonsTotal += 20;
-    if (input.addonBaseboards) addonsTotal += 25;
-    if (input.addonLaundry) addonsTotal += 20;
-    if (input.addonGarage) addonsTotal += 30;
-
-    const subtotal = base + travelFee + addonsTotal;
-
-    // Hours estimate (very rough)
-    let hours = 2.5 + beds * 0.4 + baths * 0.4 + cond * 0.15;
-    if (addonsTotal > 0) hours += 0.5;
-    if (input.pets === "many") hours += 0.5;
-
-    const total = Math.round(subtotal / 5) * 5;
-    const deposit = Math.max(40, Math.round(total * 0.2));
-
-    return {
-      total,
-      deposit,
-      hoursMin: Math.max(2, (hours - 0.5).toFixed(1)),
-      hoursMax: (hours + 0.5).toFixed(1),
-    };
-  }
-
-  if (quoteForm && quotePriceEl && quoteHoursEl && quoteDepositEl) {
-    quoteForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (quoteStatusEl) quoteStatusEl.textContent = "";
-
-      const fd = new FormData(quoteForm);
-      const data = Object.fromEntries(fd.entries());
-
-      // Convert addon checkboxes to booleans
-      data.addonWindows = fd.get("addonWindows") !== null;
-      data.addonFridge = fd.get("addonFridge") !== null;
-      data.addonOven = fd.get("addonOven") !== null;
-      data.addonBaseboards = fd.get("addonBaseboards") !== null;
-      data.addonLaundry = fd.get("addonLaundry") !== null;
-      data.addonGarage = fd.get("addonGarage") !== null;
-
-      const estimate = calculateQuoteEstimate(data);
-
-      quotePriceEl.textContent = `$${estimate.total}`;
-      quoteDepositEl.textContent = `$${estimate.deposit}`;
-      quoteHoursEl.textContent = `${estimate.hoursMin} – ${estimate.hoursMax} hrs`;
-
-      if (quoteSummaryEl) {
-        quoteSummaryEl.textContent =
-          "This is a ballpark estimate based on the details you shared. We’ll confirm in writing before you commit.";
+      let mediaDetails = roomUploads;
+      if (mediaChoice === "video") {
+        const videoFile = walkthroughVideoInput?.files?.[0] || null;
+        mediaDetails = videoFile
+          ? [{ fileName: videoFile.name, file: videoFile, type: "video" }]
+          : [];
+      }
+      if (mediaChoice === "description") {
+        const content = (mediaDescriptionInput?.value || "").trim();
+        mediaDetails = content ? [{ type: "text", content }] : [];
       }
 
-            // DUSTLESS ASSISTANT: Save lead to Firestore
-      const leadPayload = {
-        ...data,
-        name: data.name || data.fullName || "",
-        serviceType: data.service || data.serviceType || "",
-        conditionLevel: Number(data.condition || data.mess || 5),
-        pets: data.pets || "",
-        locationArea: data.location || "",
-        addOns: [
-          data.addonWindows && "Interior windows",
-          data.addonFridge && "Inside fridge",
-          data.addonOven && "Oven",
-          data.addonBaseboards && "Baseboards",
-          data.addonLaundry && "Laundry",
-          data.addonGarage && "Garage",
-        ].filter(Boolean),
-        estimateTotal: estimate.total,
-        estimateDeposit: estimate.deposit,
-        estimateHoursMin: estimate.hoursMin,
-        estimateHoursMax: estimate.hoursMax,
-        status: "new",
-        source: "quoteForm",
+      return {
+        basicInfo: {
+          name: (fd.get("name") || "").trim(),
+          email: (fd.get("email") || "").trim(),
+          phone: (fd.get("phone") || "").trim(),
+          address: (fd.get("address") || "").trim(),
+          homeType: fd.get("homeType") || "",
+          preferredDate: fd.get("preferredDate") || "",
+          urgency: fd.get("urgency") || "",
+        },
+        homeDetails: {
+          livingLength: fd.get("livingLength") || "",
+          commonAreas: getCommonAreas(),
+          otherNotes: (commonAreaOtherInput?.value || "").trim(),
+        },
+        rooms: {
+          bedrooms: Number(fd.get("bedrooms") || 0),
+          fullBaths: Number(fd.get("fullBaths") || 0),
+          halfBaths: Number(fd.get("halfBaths") || 0),
+        },
+        mediaChoice,
+        mediaFiles: mediaDetails,
+        condition: Number(fd.get("conditionLevel") || 1),
+        extras,
+        hasPets: fd.get("hasPets") === "yes",
+        hasKids: fd.get("hasKids") === "yes",
+        submittedAt: new Date().toISOString(),
       };
+    }
 
-      try {
-        // keep your original raw bucket
-        await saveToCollection("quoteLeads", leadPayload);
+    function populateSummary() {
+      if (!summaryEl) return;
+      const data = collectSmartquoteData();
+      const urgencyMap = {
+        today: "Today / Tomorrow",
+        week: "This Week",
+        flexible: "Flexible",
+      };
+      summaryEl.innerHTML = `
+        <div class="review-block">
+          <h4>Contact & address</h4>
+          <ul>
+            <li>${data.basicInfo.name || "Name pending"}</li>
+            <li>${data.basicInfo.email || "Email pending"}</li>
+            <li>${data.basicInfo.phone || "No phone provided"}</li>
+            <li>${data.basicInfo.address || "Address pending"}</li>
+            <li>Home type: ${data.basicInfo.homeType || "–"}</li>
+            <li>Preferred date: ${formatDate(data.basicInfo.preferredDate)}</li>
+            <li>Urgency: ${urgencyMap[data.basicInfo.urgency] || "Flexible"}</li>
+          </ul>
+        </div>
+        <div class="review-block">
+          <h4>Home & rooms</h4>
+          <ul>
+            <li>${data.rooms.bedrooms} bedrooms</li>
+            <li>${data.rooms.fullBaths} full bath(s), ${
+              data.rooms.halfBaths
+            } half bath(s)</li>
+            <li>Common areas: ${
+              data.homeDetails.commonAreas.join(", ") || "Kitchen"
+            }</li>
+            <li>Lived in: ${data.homeDetails.livingLength || "Not shared"}</li>
+            ${
+              data.homeDetails.otherNotes
+                ? `<li>Other: ${data.homeDetails.otherNotes}</li>`
+                : ""
+            }
+          </ul>
+        </div>
+        <div class="review-block">
+          <h4>Media & condition</h4>
+          <ul>
+            <li>${formatMediaSummary(data)}</li>
+            <li>Condition: ${data.condition}/10</li>
+            <li>Extras: ${formatExtras(data.extras)}</li>
+            <li>Pets at home: ${data.hasPets ? "Yes" : "No"}</li>
+            <li>Kids at home: ${data.hasKids ? "Yes" : "No"}</li>
+          </ul>
+        </div>
+      `;
+    }
 
-        // new normalized leads collection for Dustless Assistant
-        await saveToCollection("leads", leadPayload);
-
-        if (quoteStatusEl) {
-          quoteStatusEl.textContent =
-            "Saved. We’ll review and follow up by email/text with next steps.";
-        }
-      } catch (err) {
-        console.error("Save lead error:", err);
-        if (quoteStatusEl) {
-          quoteStatusEl.textContent =
-            "Could not save your estimate right now. We’ll follow up manually.";
-        }
+    wizardNextBtn?.addEventListener("click", () => {
+      if (currentStep === totalSteps) {
+        smartquoteForm.requestSubmit();
+        return;
       }
+      if (validateStep(currentStep)) {
+        setStep(currentStep + 1);
+      }
+    });
 
-      setTimeout(() => {
-        if (quoteStatusEl) quoteStatusEl.textContent = "";
-      }, 9000);
+    wizardBackBtn?.addEventListener("click", () => {
+      setStep(currentStep - 1);
+    });
+
+    reviewBackLink?.addEventListener("click", () => {
+      setStep(totalSteps - 1);
+    });
+
+    smartquoteForm.addEventListener("change", (event) => {
+      const target = event.target;
+      if (
+        !(
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement ||
+          target instanceof HTMLSelectElement
+        )
+      )
+        return;
+      if (target.name === "mediaOption") {
+        updateMediaSections(target.value);
+      }
+      if (target.hasAttribute("required")) validateField(target);
+    });
+
+    smartquoteForm.addEventListener("input", (event) => {
+      const target = event.target;
+      if (
+        !(
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement
+        )
+      )
+        return;
+      if (target === mediaDescriptionInput && target.hasAttribute("required")) {
+        validateField(target);
+      }
+    });
+
+    roomCountInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        lastRoomSignature = "";
+        renderPhotoUploads(true);
+      });
+    });
+
+    commonAreaInputs.forEach((input) => {
+      if (input.type !== "checkbox") return;
+      input.addEventListener("change", () => {
+        lastRoomSignature = "";
+        renderPhotoUploads(true);
+      });
+    });
+
+    commonAreaOtherInput?.addEventListener("input", () => {
+      lastRoomSignature = "";
+      renderPhotoUploads(true);
+    });
+
+    renderPhotoUploads(true);
+    updateMediaSections(
+      smartquoteForm.querySelector("input[name='mediaOption']:checked")?.value ||
+        "photos"
+    );
+    setStep(1);
+
+    smartquoteForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!validateStep(totalSteps)) {
+        setStep(currentStep);
+        return;
+      }
+      const payload = collectSmartquoteData();
+      console.log("SmartQuote submission", payload);
+      try {
+        await saveToCollection("smartquoteLeads", {
+          ...payload.basicInfo,
+          homeDetails: payload.homeDetails,
+          rooms: payload.rooms,
+          conditionLevel: payload.condition,
+          extras: payload.extras,
+          mediaChoice: payload.mediaChoice,
+          submittedAt: payload.submittedAt,
+          source: "smartquoteWizard",
+        });
+      } catch (err) {
+        console.warn("SmartQuote save skipped:", err);
+      }
+      smartquoteForm.classList.add("hidden");
+      wizardProgress?.classList.add("hidden");
+      if (thankYouPanel) thankYouPanel.hidden = false;
     });
   }
 
@@ -715,10 +1096,17 @@
 
   const cartDrawer = document.getElementById("cartDrawer");
   const openCartBtn = document.getElementById("openCartBtn");
+  const openCartHeaderBtn = document.getElementById("openCartHeader");
   const closeCartBtn = document.getElementById("closeCartBtn");
   const cartItemsEl = document.getElementById("cartItems");
   const cartSubtotalEl = document.getElementById("cartSubtotal");
   const cartCountEl = document.getElementById("cartCount");
+  const headerCartCount = document.getElementById("headerCartCount");
+  const headerChatToggle = document.getElementById("headerChatToggle");
+  const messMeterSlider = document.getElementById("messMeterSlider");
+  const messMeterValue = document.getElementById("messMeterValue");
+  const messMeterMessage = document.getElementById("messMeterMessage");
+  const decorBubblesContainer = document.getElementById("decorBubbles");
   const checkoutCartBtn = document.getElementById("checkoutCartBtn");
   const cartEcoPointsEl = document.getElementById("cartEcoPoints");
 
@@ -735,11 +1123,13 @@
       const card = document.createElement("div");
       card.className = "product-card";
       card.dataset.id = p.id;
-      card.innerHTML = `
-        <img src="${p.imageURL || "/images/og-image.jpg"}" alt="${
-        p.name
-      }" />
-        <div class="product-name">${p.name}</div>
+          card.innerHTML = `
+      <img
+        src="${p.imageURL || "/images/og-image.jpg"}"
+        alt="${p.name}"
+        onerror="this.src='/images/og-image.jpg'; this.onerror=null;"
+      />
+      <div class="product-name">${p.name}</div>
         <div class="product-price">$${Number(p.price).toFixed(2)}</div>
         <div>
           <span class="product-tag">${p.category || "Eco Clean"}</span>
@@ -805,11 +1195,15 @@
     productModalDescription.textContent = p.description || "";
     productModalPrice.textContent = `$${Number(p.price).toFixed(2)}`;
     productModalBackdrop.classList.remove("hidden");
+    productModalBackdrop.style.display = "flex";
   }
 
   function closeProductModal() {
     currentProduct = null;
-    if (productModalBackdrop) productModalBackdrop.classList.add("hidden");
+    if (productModalBackdrop) {
+      productModalBackdrop.classList.add("hidden");
+      productModalBackdrop.style.display = "none";
+    }
   }
 
   if (closeProductModalBtn) {
@@ -912,7 +1306,27 @@
     cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCountEl.textContent = count;
+    if (headerCartCount) headerCartCount.textContent = count;
     setEcoPointsDisplay();
+  }
+
+  function updateMessMeterMessage(value) {
+    const v = Number(value);
+    if (messMeterValue) messMeterValue.textContent = v;
+    if (!messMeterMessage) return;
+    if (v <= 3) {
+      messMeterMessage.textContent =
+        "Just a light reset. A standard clean might be plenty.";
+    } else if (v <= 6) {
+      messMeterMessage.textContent =
+        "Lived-in and loved. Deep Clean Reset recommended.";
+    } else if (v <= 8) {
+      messMeterMessage.textContent =
+        "We’ll focus on grease, grout, and baseboards for you.";
+    } else {
+      messMeterMessage.textContent =
+        "No judgment. Deep clean + add-ons will help you breathe again.";
+    }
   }
 
   function addToCart(product, opts = {}) {
@@ -954,7 +1368,105 @@
   }
 
   if (openCartBtn) openCartBtn.addEventListener("click", openCart);
+  if (openCartHeaderBtn) openCartHeaderBtn.addEventListener("click", openCart);
+  if (headerChatToggle) {
+    headerChatToggle.addEventListener("click", () => toggleChatbot());
+  }
   if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
+  if (messMeterSlider) {
+    updateMessMeterMessage(messMeterSlider.value);
+    messMeterSlider.addEventListener("input", (e) =>
+      updateMessMeterMessage(e.target.value)
+    );
+  }
+
+  // Decorative bubbles
+  if (decorBubblesContainer) {
+    const bubbleCount = 14;
+    const bubbles = [];
+    const canvasHeight = document.body.scrollHeight;
+
+    function createBubble(idx) {
+      const bubble = document.createElement("div");
+      bubble.className = "decor-bubble";
+      const size = 40 + Math.random() * 80;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      const hue = 150 + Math.random() * 40;
+      bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), hsla(${hue}, 60%, 80%, 0.5))`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      const yPos = Math.random() * canvasHeight * 0.8;
+      bubble.dataset.y = yPos;
+      bubble.style.top = `${yPos}px`;
+      bubble.dataset.vx = (Math.random() - 0.5) * 0.15;
+      bubble.dataset.vy = (Math.random() - 0.5) * 0.2;
+      bubble.dataset.floatOffset = Math.random() * 360;
+      bubble.style.pointerEvents = "auto";
+      bubble.addEventListener("click", () => popBubble(idx));
+      decorBubblesContainer.appendChild(bubble);
+      bubbles[idx] = bubble;
+    }
+
+    function popBubble(idx) {
+      const bubble = bubbles[idx];
+      if (!bubble) return;
+      bubble.classList.add("popping");
+      bubble.addEventListener(
+        "animationend",
+        () => {
+          bubble.remove();
+          setTimeout(() => createBubble(idx), 600);
+        },
+        { once: true }
+      );
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY + window.scrollY;
+    });
+
+    function animateBubbles() {
+      bubbles.forEach((bubble) => {
+        if (!bubble || bubble.classList.contains("popping")) return;
+        const rect = bubble.getBoundingClientRect();
+        const currentY = parseFloat(bubble.dataset.y);
+        const floatOffset = parseFloat(bubble.dataset.floatOffset);
+        const vx = parseFloat(bubble.dataset.vx);
+        const vy = parseFloat(bubble.dataset.vy);
+        const floatY =
+          Math.sin((Date.now() / 5000) + floatOffset) * 5 + currentY + vy * 0.4;
+        const floatX =
+          parseFloat(bubble.style.left) +
+          vx * 0.6 +
+          Math.cos((Date.now() / 5200) + floatOffset) * 0.2;
+
+        bubble.style.top = `${floatY}px`;
+        bubble.style.left = `${floatX}%`;
+        bubble.dataset.y = floatY;
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = floatY;
+        const dx = centerX - mouseX;
+        const dy = centerY - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          const repel = (160 - dist) / 160;
+          bubble.style.transform = `translate(${
+            dx * repel * 0.02
+          }px, ${dy * repel * 0.02}px)`;
+        } else {
+          bubble.style.transform = "";
+        }
+      });
+      requestAnimationFrame(animateBubbles);
+    }
+
+    for (let i = 0; i < bubbleCount; i++) createBubble(i);
+    requestAnimationFrame(animateBubbles);
+  }
 
   if (cartItemsEl) {
     cartItemsEl.addEventListener("click", (e) => {
@@ -1014,17 +1526,53 @@
   if (checkoutCartBtn) {
     checkoutCartBtn.addEventListener("click", checkoutCart);
   }
+  
+  // DUSTLESS ASSISTANT: Products listener
+  let productsListener = null;
 
   function loadProducts() {
-    if (!db || !shopGrid) return;
-    db.collection("products")
+    // Only require Firestore; specific UI bits are checked inside the render functions
+    if (!db) return;
+
+    if (productsListener) {
+      productsListener();
+      productsListener = null;
+    }
+
+        productsListener = db
+      .collection("products")
+      // Single-field orderBy → no composite index required
       .orderBy("featured", "desc")
-      .orderBy("name")
-      .onSnapshot((snapshot) => {
-        products = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        renderShopProducts();
-        renderAfterCleanRecommendations();
-      });
+      .onSnapshot(
+        (snapshot) => {
+          products = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          // Optional: sort again in JS so featured items stay on top,
+          // and within each group they’re alphabetical by name
+          products.sort((a, b) => {
+            const fa = a.featured ? 1 : 0;
+            const fb = b.featured ? 1 : 0;
+
+            // keep featured=true above featured=false
+            if (fa !== fb) return fb - fa;
+
+            const nameA = (a.name || "").toLowerCase();
+            const nameB = (b.name || "").toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+
+          renderShopProducts();
+          renderAfterCleanRecommendations();
+        },
+        (err) => {
+          console.error("Error listening to products:", err);
+        }
+      );
   }
 
   loadProducts();
@@ -1095,6 +1643,7 @@
   const contactForm = document.getElementById("contactForm");
   const contactSuccess = document.getElementById("contactSuccess");
   const bookingPhotosInput = document.getElementById("bookingPhotos");
+  const careersResumeInput = document.getElementById("resumeFile");
 
     if (bookingForm) {
     bookingForm.addEventListener("submit", async (e) => {
@@ -1240,6 +1789,52 @@
       contactSuccess.textContent =
         "Message sent. We’ll get back to you shortly.";
       setTimeout(() => (contactSuccess.textContent = ""), 8000);
+    });
+  }
+
+  if (careersForm && careersSuccess) {
+    careersForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      careersSuccess.textContent = "";
+
+      const fd = new FormData(careersForm);
+      const resumeFile = careersResumeInput?.files?.[0] || null;
+      const entries = [...fd.entries()].filter(
+        ([key]) => key !== "resumeFile"
+      );
+      const data = Object.fromEntries(entries);
+
+      let resumeUrl = "";
+      if (resumeFile) {
+        try {
+          const ref = storage
+            .ref()
+            .child(`careers-resumes/${Date.now()}-${resumeFile.name}`);
+          await ref.put(resumeFile);
+          resumeUrl = await ref.getDownloadURL();
+        } catch (err) {
+          console.error("Resume upload error:", err);
+        }
+      }
+
+      try {
+        await saveToCollection("careers", {
+          ...data,
+          resumeUrl,
+          status: "new",
+          source: "careersForm",
+        });
+        careersForm.reset();
+        careersSuccess.textContent =
+          "Application received. We’ll be in touch within a few days.";
+      } catch (err) {
+        console.error("Careers submission error:", err);
+        careersSuccess.textContent =
+          "We couldn’t save your application right now. Please try again soon.";
+      }
+      setTimeout(() => {
+        careersSuccess.textContent = "";
+      }, 8000);
     });
   }
 
@@ -1463,7 +2058,7 @@ function logout() {
         updateJobStatus(doc.id, "completed")
       );
       uploadBtn.addEventListener("click", () =>
-        handleJobUpload(doc.id, beforeInput.files[0], afterFile = afterInput.files[0])
+        handleJobUpload(doc.id, beforeInput.files[0], afterInput.files[0])
       );
 
       container.appendChild(div);
@@ -2191,4 +2786,16 @@ auth.onAuthStateChanged(async (user) => {
       console.error("Post-checkout Firestore update error:", err);
     }
   })();
+
+  // ===============================
+// DUSTLESS ASSISTANT – Public shop bootstrap
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Only load products on pages that have any shop-related element
+  if (shopGrid || shopFeaturedRow || afterCleanWidget) {
+    loadProducts();
+  }
+});
+
 })();

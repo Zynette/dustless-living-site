@@ -51,38 +51,48 @@
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
 
-    <!-- Dark/Light Mode Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">☀️</span>
-    </button>
-
     <!-- Header -->
-    <header class="header" id="header">
+        <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
           <span class="logo-mark">DL</span>
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
-        <nav class="nav">
+        <nav class="nav nav-primary">
           <a href="index.html#home" class="nav-link">Home</a>
           <a href="services.html" class="nav-link">Services</a>
-          <a href="pricing.html" class="nav-link">Pricing</a>
-          <a href="quote.html" class="nav-link">Get a Quote</a>
-          <a href="shop.html" class="nav-link">Eco Shop</a>
-          <a href="gallery.html" class="nav-link">Before &amp; After</a>
-          <a href="about.html" class="nav-link">About</a>
+          <a href="quote.html" class="nav-link">Pricing</a>
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
           <a href="faq.html" class="nav-link">FAQ</a>
-          <a href="policies.html" class="nav-link">Policies</a>
-          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
         </nav>
-        <button
-          class="btn btn-outline btn-sm nav-cta"
-          onclick="scrollToSection('booking')"
-        >
-          Get My Personalized Cleaning Plan
-        </button>
-
+        <div class="header-actions">
+          <button
+            class="btn btn-primary nav-cta"
+            onclick="window.location.href='quote.html#smartquote'"
+          >
+            Get My Free Quote
+          </button>
+          <div class="header-icons">
+            <button class="icon-btn" id="headerChatToggle" aria-label="Open chat">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="10" cy="19" r="1.4"></circle>
+                <circle cx="16" cy="19" r="1.4"></circle>
+              </svg>
+              <span class="cart-count-badge" id="headerCartCount">0</span>
+            </button>
+            <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+              <span class="theme-icon">☀️</span>
+            </button>
+          </div>
+        </div>
         <button class="burger" id="burger" aria-label="Open navigation">
           <span></span><span></span><span></span>
         </button>
@@ -90,14 +100,16 @@
       <nav class="nav-mobile" id="navMobile">
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="quote.html" class="nav-link">Get a Quote</a>
-        <a href="shop.html" class="nav-link">Eco Shop</a>
-        <a href="gallery.html" class="nav-link">Before &amp; After</a>
-        <a href="about.html" class="nav-link">About</a>
+        <a href="quote.html" class="nav-link">Pricing</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="faq.html" class="nav-link">FAQ</a>
-        <a href="policies.html" class="nav-link">Policies</a>
-        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
+        <button
+          class="btn btn-primary btn-full"
+          onclick="window.location.href='quote.html#smartquote'"
+        >
+          Get My Free Quote
+        </button>
       </nav>
     </header>
 
@@ -333,16 +345,45 @@
           <a href="#careers">Careers</a>
         </div>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook">📘</a>
-          <a href="#" aria-label="Instagram">📸</a>
-          <a href="#" aria-label="Yelp">⭐</a>
-          <a href="#" aria-label="Google Business">🅶</a>
+          <a
+            href="https://www.instagram.com/"
+            class="social-btn"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            >IG</a
+          >
+          <a
+            href="https://www.linkedin.com/"
+            class="social-btn"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >in</a
+          >
+          <a
+            href="https://www.facebook.com/"
+            class="social-btn"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            >f</a
+          >
+          <a
+            href="https://www.tiktok.com/"
+            class="social-btn"
+            aria-label="TikTok"
+            target="_blank"
+            rel="noopener noreferrer"
+            >t</a
+          >
         </div>
       </div>
       <div class="container footer-bottom">
         <p>© 2025 Dustless Living | All Rights Reserved.</p>
       </div>
     </footer>
+
 
     <!-- Chatbot -->
     <div class="chatbot" id="chatbot">

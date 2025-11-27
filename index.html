@@ -52,38 +52,48 @@
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
 
-    <!-- Dark/Light Mode Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">☀️</span>
-    </button>
-
     <!-- Header -->
-    <header class="header" id="header">
+        <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
           <span class="logo-mark">DL</span>
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
-        <nav class="nav">
+        <nav class="nav nav-primary">
           <a href="index.html#home" class="nav-link">Home</a>
           <a href="services.html" class="nav-link">Services</a>
-          <a href="quote.html" class="nav-link">Pricing Calculator</a>
+          <a href="quote.html" class="nav-link">Pricing</a>
           <a href="shop.html" class="nav-link">Shop</a>
           <a href="gallery.html" class="nav-link">Gallery</a>
-          <a href="about.html" class="nav-link">About</a>
           <a href="faq.html" class="nav-link">FAQ</a>
-          <a href="policies.html" class="nav-link">Policies</a>
-          <a href="careers.html" class="nav-link">Careers</a>
-          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
         </nav>
-        <button
-          class="btn btn-outline btn-sm nav-cta"
-          onclick="scrollToSection('booking')"
-        >
-          Get My Personalized Cleaning Plan
-        </button>
-
+        <div class="header-actions">
+          <button
+            class="btn btn-primary nav-cta"
+            onclick="window.location.href='quote.html#smartquote'"
+          >
+            Get My Free Quote
+          </button>
+          <div class="header-icons">
+            <button class="icon-btn" id="headerChatToggle" aria-label="Open chat">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="10" cy="19" r="1.4"></circle>
+                <circle cx="16" cy="19" r="1.4"></circle>
+              </svg>
+              <span class="cart-count-badge" id="headerCartCount">0</span>
+            </button>
+            <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+              <span class="theme-icon">☀️</span>
+            </button>
+          </div>
+        </div>
         <button class="burger" id="burger" aria-label="Open navigation">
           <span></span><span></span><span></span>
         </button>
@@ -91,13 +101,16 @@
       <nav class="nav-mobile" id="navMobile">
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="quote.html" class="nav-link">Pricing Calculator</a>
+        <a href="quote.html" class="nav-link">Pricing</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="about.html" class="nav-link">About</a>
         <a href="faq.html" class="nav-link">FAQ</a>
-        <a href="policies.html" class="nav-link">Policies</a>
-        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
+        <button
+          class="btn btn-primary btn-full"
+          onclick="window.location.href='quote.html#smartquote'"
+        >
+          Get My Free Quote
+        </button>
       </nav>
     </header>
 
@@ -106,66 +119,376 @@
       <!-- Public-facing marketing site -->
       <div id="publicSite">
         <!-- Hero -->
-        <section class="hero section" data-reveal>
+        <section class="hero section section-clean" data-reveal>
+      <div class="hero-sparkles" aria-hidden="true"></div>
+      <div class="decor-bubbles" id="decorBubbles"></div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="eyebrow">
-                Budget-Friendly Premium Eco Cleaning • Hamilton &amp;
-                Surrounding Areas
-              </p>
-              <h1>Premium Eco-Friendly Home &amp; Commercial Cleaning.</h1>
+              <p class="eyebrow">Dustless Living • Since 2019</p>
+              <h1>Premium Eco Cleaning for Calm, Real-Life Homes.</h1>
               <p class="hero-subtitle">
-                Dustless Living keeps homes, rentals, and small businesses
-                calmly clean using pet-safe, baby-safe, low-tox cleaners —
-                handmade in small batches.
+                Hi, we’re the neighbours who stock plant-based, low-tox
+                cleaners and treat your home like it’s ours. Pet-safe, baby-safe
+                and always respectful of your routine.
               </p>
-
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
-                  onclick="scrollToSection('booking')"
+                  onclick="window.location.href='quote.html#smartquote'"
                 >
                   Get My Free Quote
                 </button>
                 <button
-                  class="btn btn-soft"
-                  onclick="window.location.href='shop.html'"
+                  class="btn btn-outline"
+                  onclick="scrollToSection('services')"
                 >
-                  Shop Eco Cleaners
+                  View Services
                 </button>
               </div>
-
-              <div class="hero-badges">
-                <span>🐾 Pet-safe formulas</span>
-                <span>👶 Baby &amp; allergy-conscious</span>
-                <span>🧴 Small-batch, locally made</span>
+              <div class="hero-process-strip">
+                <div>
+                  <span>01</span>
+                  Tell us about your space
+                </div>
+                <div>
+                  <span>02</span>
+                  We confirm your quote &amp; visit
+                </div>
+                <div>
+                  <span>03</span>
+                  You come home to a reset space
+                </div>
               </div>
-
-              <p class="hero-soft-line">
-                Trusted by busy families, students, and small businesses across
-                Hamilton &amp; Surrounding Areas.
-              </p>
             </div>
             <div class="hero-visual">
-              <div class="hero-card glass" data-parallax>
-                <h3>Today’s Peace-of-Mind Meter</h3>
-                <div class="satisfaction-meter" id="satisfactionMeter">
-                  <div class="satisfaction-fill"></div>
+              <div class="hero-photo glass" data-parallax>
+                <img
+                  src="/images/after1.jpg"
+                  alt="Fresh living room after Dustless clean"
+                />
+                <div class="hero-room-label glass">
+                  After a Dustless Deep Clean — Hamilton, 2BR Apartment
                 </div>
-                <p>Hover to feel how “dustless” looks.</p>
               </div>
-              <div class="hero-card glass" data-parallax>
-                <p class="stat-label">Typical Deep Clean</p>
-                <p class="stat-value">~ $180 – $260</p>
-                <p class="stat-note">
-                  Adjusted fairly for size, mess &amp; add-ons.
+            </div>
+          </div>
+        </section>
+
+        <!-- Room Focus -->
+        <section class="hero-bubbles section" data-reveal>
+          <div class="container hero-bubbles-inner">
+            <div class="hero-bubble">
+              <span class="bubble-icon" aria-hidden="true">🧽</span>
+              <div>
+                <p class="bubble-title">Typical Deep Clean</p>
+                <p class="bubble-text">~ $180 – $260</p>
+              </div>
+            </div>
+            <div class="hero-bubble">
+              <span class="bubble-icon" aria-hidden="true">📍</span>
+              <div>
+                <p class="bubble-title">Hamilton &amp; area</p>
+                <p class="bubble-text">Condos, homes, studios &amp; rentals</p>
+              </div>
+            </div>
+            <div class="hero-bubble">
+              <span class="bubble-icon" aria-hidden="true">🌱</span>
+              <div>
+                <p class="bubble-title">Pet &amp; baby-safe</p>
+                <p class="bubble-text">Low-tox • insured • allergy kind</p>
+              </div>
+            </div>
+          </div>
+          <div class="container trust-pills">
+            <div class="trust-pill">
+              <span aria-hidden="true">🧪</span>
+              WHMIS-trained for safe product handling
+            </div>
+            <div class="trust-pill">
+              <span aria-hidden="true">📜</span>
+              CMI-certified cleaning practices
+            </div>
+            <div class="trust-pill">
+              <span aria-hidden="true">🛡️</span>
+              Insured &amp; background checked
+            </div>
+          </div>
+        </section>
+
+        <!-- First Visit Timeline -->
+        <section class="section safety-trust" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>Safety, Training &amp; Trust</h2>
+              <p>We show up trained, insured, and ready to care for your space with confidence.</p>
+            </div>
+            <div class="safety-grid">
+              <article class="safety-card glass">
+                <div class="safety-icon" aria-hidden="true">🧪</div>
+                <h3>WHMIS-trained</h3>
+                <p>Proper handling of cleaning products in Canadian homes &amp; workplaces.</p>
+              </article>
+              <article class="safety-card glass">
+                <div class="safety-icon" aria-hidden="true">📜</div>
+                <h3>CMI-certified cleaning</h3>
+                <p>Formal training in modern cleaning standards and procedures.</p>
+              </article>
+              <article class="safety-card glass">
+                <div class="safety-icon" aria-hidden="true">🛡️</div>
+                <h3>Insured &amp; background checked</h3>
+                <p>So you can hand over the keys and relax knowing we’re fully vetted.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="firstVisit" class="section section-light" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>Your First Dustless Visit, Step by Step</h2>
+              <p>Exactly what happens from arrival to the calm, final walkthrough.</p>
+            </div>
+            <div class="timeline">
+              <article class="timeline-step glass">
+                <div class="timeline-icon">01</div>
+                <h3>Arrival &amp; Quick Walkthrough</h3>
+                <p>We greet you (or your trusted contact) and walk the space to note requests.</p>
+              </article>
+              <article class="timeline-step glass">
+                <div class="timeline-icon">02</div>
+                <h3>Declutter &amp; Prep</h3>
+                <p>Surfaces are cleared, gear set up, and we stage each room so cleaning is efficient.</p>
+              </article>
+              <article class="timeline-step glass">
+                <div class="timeline-icon">03</div>
+                <h3>Deep Clean Focus Zones</h3>
+                <p>Kitchens, baths, and high-traffic areas receive detail time and custom add-ons.</p>
+              </article>
+              <article class="timeline-step glass">
+                <div class="timeline-icon">04</div>
+                <h3>Detail &amp; Finishing Touches</h3>
+                <p>Floors are reset, chrome shines, and textiles are fluffed for a boutique finish.</p>
+              </article>
+              <article class="timeline-step glass">
+                <div class="timeline-icon">05</div>
+                <h3>Final Walkthrough &amp; Care Tips</h3>
+                <p>We review the space, share gentle care notes, and confirm next steps.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Snapshot -->
+        <section class="section section-light service-snapshot" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <p class="eyebrow">Thoughtful Services</p>
+              <h2>Choose the clean that fits your home’s current season.</h2>
+            </div>
+            <div class="service-snapshot-grid">
+              <article class="service-snapshot-card glass">
+                <span class="service-icon" aria-hidden="true">RC</span>
+                <h3>Residential Cleaning</h3>
+                <p>Weekly, bi-weekly, or calming one-time refresh visits.</p>
+                <p class="service-perfect">Perfect for busy families &amp; roommates.</p>
+                <ul class="service-checklist">
+                  <li>Surfaces dusted + styled</li>
+                  <li>Kitchen &amp; bath refresh</li>
+                  <li>Floors vacuumed &amp; mopped</li>
+                </ul>
+                <a href="services.html" class="link-btn">Included checklist</a>
+              </article>
+              <article class="service-snapshot-card glass">
+                <span class="service-icon" aria-hidden="true">DC</span>
+                <h3>Deep Clean Reset</h3>
+                <p>Grease, grout, baseboards &amp; high-touch surfaces reset.</p>
+                <p class="service-perfect">Perfect for lived-in homes &amp; season changes.</p>
+                <ul class="service-checklist">
+                  <li>Degreased stove &amp; backsplash</li>
+                  <li>Scrubbed sinks &amp; grout</li>
+                  <li>Baseboards &amp; doors wiped</li>
+                  <li>Interior fridge/oven optional</li>
+                </ul>
+                <a href="services.html#deep" class="link-btn">View details</a>
+              </article>
+              <article class="service-snapshot-card glass">
+                <span class="service-icon" aria-hidden="true">MM</span>
+                <h3>Move-In / Move-Out</h3>
+                <p>Checklist-ready cleans for stress-free keys &amp; listings.</p>
+                <p class="service-perfect">Perfect for landlords &amp; renters.</p>
+                <ul class="service-checklist">
+                  <li>Inside cabinets &amp; closets</li>
+                  <li>Appliances detailed</li>
+                  <li>Walls &amp; trim wiped</li>
+                  <li>Floors swept, vacuumed, mopped</li>
+                </ul>
+                <a href="services.html#move" class="link-btn">View details</a>
+              </article>
+              <article class="service-snapshot-card glass">
+                <span class="service-icon" aria-hidden="true">OS</span>
+                <h3>Office &amp; Studio</h3>
+                <p>Quiet after-hours or early resets for client spaces.</p>
+                <p class="service-perfect">Perfect for studios, salons &amp; clinics.</p>
+                <ul class="service-checklist">
+                  <li>Desks &amp; reception wiped</li>
+                  <li>Restrooms sanitized</li>
+                  <li>Floors + waste bins handled</li>
+                </ul>
+                <a href="services.html#commercial" class="link-btn">
+                  View details
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mess Level Slider -->
+        <section id="messMeter" class="section mess-meter section-soft-bg" data-reveal>
+          <div class="container">
+            <div class="mess-meter-card glass">
+              <div>
+                <p class="eyebrow">How dusty is your place?</p>
+                <h2>Slide to tell us the current vibe.</h2>
+                <p>
+                  We’ll still ask for photos in the booking form, but this gives you a feel for the
+                  service tier and add-ons we recommend.
                 </p>
               </div>
-              <div class="hero-card glass" data-parallax>
-                <p class="stat-label">Service Area</p>
-                <p class="stat-value">Hamilton &amp; Surrounding Areas</p>
-                <p class="stat-note">Condos, homes, offices &amp; Airbnbs.</p>
+              <div class="mess-meter-control">
+                <label for="messMeterSlider">Mess level: <span id="messMeterValue">5</span>/10</label>
+                <input
+                  type="range"
+                  id="messMeterSlider"
+                  min="1"
+                  max="10"
+                  value="5"
+                />
+                <p id="messMeterMessage" class="mess-meter-message">
+                  Lived-in and loved. Deep Clean Reset recommended.
+                </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trust Bar -->
+        <section class="trust-bar" data-reveal aria-label="Trust Badges">
+            <div class="container trust-bar-inner">
+              <div class="trust-item">
+                <span class="trust-icon" aria-hidden="true"></span>
+                <p>Insured &amp; Reliable</p>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon" aria-hidden="true"></span>
+                <p>Eco-Friendly Cleaners</p>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon" aria-hidden="true"></span>
+                <p>Pet &amp; Baby-Safe</p>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon" aria-hidden="true"></span>
+                <p>5-Star Client Feedback</p>
+              </div>
+            </div>
+        </section>
+
+        <!-- What’s Included -->
+        <section
+          id="whatsIncluded"
+          class="section whats-included section-clean"
+          data-reveal
+        >
+          <div class="container whats-included-grid">
+            <div>
+              <p class="eyebrow">What We Handle</p>
+              <h2>Every clean includes a calm, detailed checklist.</h2>
+              <p class="muted">
+                Add-ons (interior windows, fridge, oven, laundry) are always
+                quoted fairly based on time and scope — no surprises.
+              </p>
+            </div>
+            <div class="checklist-grid">
+              <ul class="checklist">
+                <li><span class="check-icon">✔</span>Kitchens &amp; appliances</li>
+                <li><span class="check-icon">✔</span>Bathrooms &amp; tile</li>
+                <li><span class="check-icon">✔</span>Living &amp; bedrooms</li>
+                <li><span class="check-icon">✔</span>Dusting &amp; surfaces</li>
+              </ul>
+              <ul class="checklist">
+                <li><span class="check-icon">✔</span>Floors &amp; baseboards</li>
+                <li><span class="check-icon">✔</span>Interior windows</li>
+                <li><span class="check-icon">✔</span>High-touch points</li>
+                <li><span class="check-icon">✔</span>Entry &amp; reset styling</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Results / Before & After Slider (moved up) -->
+        <section id="results" class="section section-soft-bg" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <h2>See the Before &amp; After Calm</h2>
+              <p>
+                Slide to compare real results from rentals, family homes, and
+                move-outs across Hamilton &amp; surrounding areas.
+              </p>
+            </div>
+
+            <div class="before-after before-after-feature glass">
+              <div class="before-after-inner">
+                <img
+                  src="/images/before1.jpg"
+                  alt="Before cleaning – cluttered room"
+                  class="before-after-img before-after-img-before"
+                />
+                <img
+                  src="/images/after1.jpg"
+                  alt="After cleaning – calm, reset room"
+                  class="before-after-img before-after-img-after"
+                  id="beforeAfterAfterImg"
+                />
+              </div>
+
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                id="beforeAfterSlider"
+                aria-label="Slide to compare before and after"
+                class="before-after-slider"
+              />
+
+              <div class="before-after-label before-after-label-left">
+                Before
+              </div>
+              <div class="before-after-label before-after-label-right">
+                After
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Eco Promise -->
+        <section class="section eco-promise section-clean" data-reveal>
+          <div class="container eco-promise-inner">
+            <div>
+              <p class="eyebrow">Eco Promise</p>
+              <h2>Low-tox, small-batch, always respectful.</h2>
+              <p>
+                Every bottle we bring is mixed in tiny batches, tested on our own
+                homes, and safe for paws, toddlers, and lungs.
+              </p>
+            </div>
+            <div class="eco-promise-grid">
+              <span class="eco-pill">Plant-based concentrates</span>
+              <span class="eco-pill">Low-tox &amp; low-scent</span>
+              <span class="eco-pill">Small-batch refills</span>
+              <span class="eco-pill">Pet &amp; kid-friendly</span>
+              <span class="eco-pill">Made in Hamilton</span>
+              <span class="eco-pill">Refillable bottles</span>
             </div>
           </div>
         </section>
@@ -173,7 +496,7 @@
         <!-- Promos -->
         <section
           id="promos"
-          class="section promos"
+          class="section promos section-light"
           aria-label="Promos & Rewards"
           data-reveal
         >
@@ -186,67 +509,55 @@
               </p>
             </div>
 
-            <div class="promos-grid">
-              <article class="promo-card">
+            <div class="promos-grid refined">
+              <article class="promo-card glass">
+                <span class="promo-label">New Clients</span>
                 <h3>Fresh Start Reset</h3>
-                <p class="promo-tag">Code: FRESHSTART</p>
                 <p>
-                  First time booking a full deep clean? Take
-                  <strong>$25 off</strong> your reset visit. A gentle nudge to
-                  finally hand the scrub brush over.
+                  First deep clean receives <strong>$25 off</strong> — perfect
+                  for a gentle reset before recurring care.
                 </p>
-                <p class="promo-footnote">
-                  Applies once per household on qualifying deep cleans.
-                </p>
+                <div class="promo-code">Code: FRESHSTART</div>
               </article>
 
-              <article class="promo-card">
+              <article class="promo-card glass">
+                <span class="promo-label">Loyalty</span>
                 <h3>Stay Clean Club</h3>
-                <p class="promo-tag">Code: STAYCLEAN</p>
                 <p>
-                  Choose bi-weekly or monthly visits and enjoy a
-                  <strong>10% loyalty rate</strong>
-                  while your recurring service stays active.
+                  Bi-weekly or monthly visits stay at a calm
+                  <strong>10% loyalty rate</strong> while active.
                 </p>
-                <p class="promo-footnote">
-                  Ideal for busy schedules, families &amp; long-term care.
-                </p>
+                <div class="promo-code">Code: STAYCLEAN</div>
               </article>
 
-              <article class="promo-card">
+              <article class="promo-card glass">
+                <span class="promo-label">Referral</span>
                 <h3>Refer &amp; Relax</h3>
-                <p class="promo-tag">Code: REFERRELAX</p>
                 <p>
-                  Love your clean? When your friend books with your name, you
-                  both receive <strong>$25 off</strong> your next visit.
+                  Share the calm. You and your friend each enjoy
+                  <strong>$25 off</strong> the next visit.
                 </p>
-                <p class="promo-footnote">
-                  Because good homes deserve good recommendations.
-                </p>
+                <div class="promo-code">Code: REFERRELAX</div>
               </article>
 
-              <article class="promo-card">
+              <article class="promo-card glass">
+                <span class="promo-label">Midweek Special</span>
                 <h3>Midweek Reset</h3>
-                <p class="promo-tag">Code: MIDWEEK</p>
                 <p>
-                  Flexible on timing? Book on a Tuesday or Wednesday and enjoy
-                  <strong>15% off</strong> your standard clean.
+                  Flexible schedule? Tuesdays &amp; Wednesdays receive
+                  <strong>15% off</strong>.
                 </p>
-                <p class="promo-footnote">
-                  Perfect for those who like a midweek breath of fresh air.
-                </p>
+                <div class="promo-code">Code: MIDWEEK</div>
               </article>
 
-              <article class="promo-card">
-                <h3>Seasonal Deep-Clean Bundle</h3>
-                <p class="promo-tag">Code: SEASONAL</p>
+              <article class="promo-card glass">
+                <span class="promo-label">Seasonal Bundle</span>
+                <h3>Deep-Clean + Windows</h3>
                 <p>
-                  Pair a full deep clean with interior windows and take
-                  <strong>$20 off</strong> the combined total.
+                  Combine a deep clean with interior windows for
+                  <strong>$20 off</strong>.
                 </p>
-                <p class="promo-footnote">
-                  A calm reset for new seasons, moves, or renovations.
-                </p>
+                <div class="promo-code">Code: SEASONAL</div>
               </article>
             </div>
 
@@ -255,6 +566,75 @@
               fit to your confirmed quote — no stacking, no pressure, always
               transparent.
             </p>
+          </div>
+        </section>
+
+        <!-- Meet Your Cleaner -->
+        <section class="section meet-cleaner" data-reveal>
+          <div class="container meet-cleaner-card glass">
+            <div class="meet-cleaner-photo">
+              <img
+                src="/images/og-image.jpg"
+                alt="Antonette from Dustless Living"
+              />
+            </div>
+            <div class="meet-cleaner-copy">
+              <p class="eyebrow">Meet Your Cleaner</p>
+              <h3>Hi, I’m Antonette — owner &amp; lead cleaner.</h3>
+              <p>
+                I started Dustless Living to bring intentional, eco-friendly
+                cleaning to Hamilton homes that crave calm. Every job is handled
+                by myself or our tightly trained team, with respectful care for
+                your routines, pets, and treasures.
+              </p>
+              <p class="muted">
+                We promise tidy communication, transparent pricing, and
+                follow-through you can feel after we leave.
+              </p>
+              <ul class="meet-highlights">
+                <li>Fully insured &amp; background checked</li>
+                <li>Pet whisperer &amp; plant lover</li>
+                <li>Replies within 1 business day</li>
+              </ul>
+              <div class="social-mini">
+                <a
+                  href="https://www.instagram.com/"
+                  class="social-btn"
+                  aria-label="Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IG
+                </a>
+                <a
+                  href="https://www.linkedin.com/"
+                  class="social-btn"
+                  aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  in
+                </a>
+                <a
+                  href="https://www.facebook.com/"
+                  class="social-btn"
+                  aria-label="Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  f
+                </a>
+                <a
+                  href="https://www.tiktok.com/"
+                  class="social-btn"
+                  aria-label="TikTok"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  t
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -270,7 +650,7 @@
             </div>
             <div class="services-grid">
               <div class="service-card" data-parallax>
-                <div class="icon-circle">🏡</div>
+                <div class="icon-circle" aria-hidden="true">RC</div>
                 <h3>Residential Cleaning</h3>
                 <p>
                   Weekly, bi-weekly, or one-time visits that keep your home
@@ -284,7 +664,7 @@
                 </button>
               </div>
               <div class="service-card" data-parallax>
-                <div class="icon-circle">🏢</div>
+                <div class="icon-circle" aria-hidden="true">CS</div>
                 <h3>Commercial &amp; Studio</h3>
                 <p>
                   Quiet, reliable after-hours care for offices, salons, and
@@ -298,7 +678,7 @@
                 </button>
               </div>
               <div class="service-card" data-parallax>
-                <div class="icon-circle">🧽</div>
+                <div class="icon-circle" aria-hidden="true">DC</div>
                 <h3>Deep Cleaning Reset</h3>
                 <p>
                   Detailed top-to-bottom clean for kitchens, baths &amp; every
@@ -309,7 +689,7 @@
                 </button>
               </div>
               <div class="service-card" data-parallax>
-                <div class="icon-circle">🚚</div>
+                <div class="icon-circle" aria-hidden="true">MM</div>
                 <h3>Move-In / Move-Out</h3>
                 <p>
                   Stress-free transitions for tenants, landlords &amp; realtors:
@@ -320,7 +700,7 @@
                 </button>
               </div>
               <div class="service-card" data-parallax>
-                <div class="icon-circle">✨</div>
+                <div class="icon-circle" aria-hidden="true">AO</div>
                 <h3>Thoughtful Add-Ons</h3>
                 <p>Fridge, oven, windows, baseboards &amp; more — as needed.</p>
                 <button class="link-btn" onclick="openServiceModal('addons')">
@@ -358,164 +738,576 @@
           </div>
         </section>
 
-        <!-- Booking -->
-        <section id="booking" class="section" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <h2>Book Your Fresh Start</h2>
-              <p>
-                Share a few details and we’ll follow up promptly with a
-                confirmed quote and schedule. No pressure, no spam.
-              </p>
-            </div>
-            <form id="bookingForm" class="form card">
-              <div class="form-grid">
-                <div class="field">
-                  <label>Full Name</label>
-                  <input type="text" name="name" required />
-                </div>
-                <div class="field">
-                  <label>Email</label>
-                  <input type="email" name="email" required />
-                </div>
-                <div class="field">
-                  <label>Phone</label>
-                  <input type="tel" name="phone" required />
-                </div>
-                <div class="field">
-                  <label>Address (Hamilton & Surrounding Areas)</label>
-                  <input type="text" name="address" required />
-                </div>
-                <div class="field">
-                  <label>Preferred Date</label>
-                  <input type="date" name="date" required />
-                </div>
-                <div class="field">
-                  <label>Preferred Time</label>
-                  <input type="time" name="time" required />
-                </div>
-                <div class="field">
-                  <label>Service Type</label>
-                  <select name="service">
-                    <option value="Residential">Residential</option>
-                    <option value="Commercial">Commercial</option>
-                    <option value="Deep Cleaning">Deep Cleaning</option>
-                    <option value="Move-In/Move-Out">Move-In/Move-Out</option>
-                    <option value="Other">Other / Custom</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label>Mess Level (1-10)</label>
-                  <input type="number" name="mess" min="1" max="10" required />
-                </div>
-                <div class="field">
-                  <label>Promo / Referral Code (optional)</label>
-                  <input
-                    type="text"
-                    name="promoCode"
-                    id="promoCodeInput"
-                    placeholder="FRESHSTART, STAYCLEAN, REFERRELAX, MIDWEEK, SEASONAL"
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label>Photos (optional)</label>
-                <input
-                  type="file"
-                  id="bookingPhotos"
-                  name="bookingPhotos"
-                  accept="image/*"
-                  multiple
-                />
-                <p class="form-note">
-                  You can attach up to 3 quick photos — this helps us quote
-                  fairly and plan the right time/energy for your space.
-                </p>
-              </div>
-
-              <div class="field">
-                <label>Additional Details</label>
-                <textarea
-                  name="message"
-                  rows="3"
-                  placeholder="Pets? Parking? Sq ft? Access notes? Anything we should know to take better care of your space."
-                ></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                Get My Personalized Cleaning Plan
-              </button>
-              <p id="bookingPromoNote" class="form-note"></p>
-              <p id="bookingSuccess" class="form-success"></p>
-              <p id="bookingPaymentNote" class="form-note"></p>
-              <button
-                type="button"
-                id="payDepositBtn"
-                class="btn btn-outline hidden"
-              >
-                Pay Secure Deposit
-              </button>
-              <p id="paymentStatus" class="form-success"></p>
-            </form>
-            <p class="form-note">
-              We turn mess into peace of mind — kindly share accurate details so
-              we can quote fairly and avoid surprises for both of us.
+        <!-- SmartQuote Wizard -->
+        <section id="booking" class="section smartquote-section" data-reveal>
+          <div class="container section-header">
+            <p class="eyebrow">Dustless Living SmartQuote™</p>
+            <h2>SmartQuote™ – Guided Cleaning Estimate</h2>
+            <p class="section-subtitle">
+              Takes about 3–5 minutes. Photos optional. Share how you live so we can
+              prepare the right crew, timing, and care.
             </p>
-
-            <!-- After Cleaning widget (filled from featured products) -->
-            <div id="afterCleanWidget" class="after-clean-widget hidden">
-              <h3>Keep the Calm Going</h3>
-              <p>
-                Loved how your home felt? Our favourite Dustless Living sprays
-                and refills are handmade in small batches — gentle on lungs,
-                fierce on grime.
-              </p>
-              <div id="afterCleanProducts" class="after-clean-products"></div>
-            </div>
           </div>
-        </section>
 
-        <!-- Results / Before & After Slider -->
-        <section id="results" class="section section-soft-bg" data-reveal>
           <div class="container">
-            <div class="section-header">
-              <h2>See the Dustless Difference</h2>
-              <p>
-                Slide to compare real before &amp; after results from homes,
-                rentals, and move-outs we’ve reset across Hamilton &amp;
-                Surrounding Areas.
-              </p>
-            </div>
-
-            <div class="before-after glass">
-              <div class="before-after-inner">
-                <img
-                  src="/images/before1.jpg"
-                  alt="Before cleaning – cluttered room"
-                  class="before-after-img before-after-img-before"
-                />
-                <img
-                  src="/images/after1.jpg"
-                  alt="After cleaning – calm, reset room"
-                  class="before-after-img before-after-img-after"
-                  id="beforeAfterAfterImg"
-                />
+            <div class="smartquote-card glass">
+              <div class="wizard-progress">
+                <div>
+                  <p class="wizard-step-label" id="wizardStepLabel">
+                    Step 1 of 5
+                  </p>
+                  <p class="wizard-step-title" id="wizardStepTitle">Basic Info</p>
+                </div>
+                <div class="wizard-progress-bar">
+                  <span id="wizardProgressFill"></span>
+                </div>
               </div>
 
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="50"
-                id="beforeAfterSlider"
-                aria-label="Slide to compare before and after"
-                class="before-after-slider"
-              />
+              <form id="smartquoteForm" class="wizard-form" novalidate>
+                <!-- Step 1 -->
+                <div
+                  class="wizard-step active"
+                  data-step="1"
+                  data-title="Basic Info"
+                >
+                  <div class="step-intro">
+                    <h3>Basic Info</h3>
+                    <p>We’ll use this to follow up within 12 hours.</p>
+                  </div>
+                  <div class="form-grid">
+                    <div class="field required">
+                      <label for="clientName">Name *</label>
+                      <input
+                        type="text"
+                        id="clientName"
+                        name="name"
+                        placeholder="Full name"
+                        required
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field required">
+                      <label for="clientEmail">Email *</label>
+                      <input
+                        type="email"
+                        id="clientEmail"
+                        name="email"
+                        placeholder="you@email.com"
+                        required
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field">
+                      <label for="clientPhone">Phone</label>
+                      <input
+                        type="tel"
+                        id="clientPhone"
+                        name="phone"
+                        placeholder="Optional"
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field">
+                      <label for="clientAddress">Full Address</label>
+                      <input
+                        type="text"
+                        id="clientAddress"
+                        name="address"
+                        placeholder="Street, city, postal"
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                  </div>
 
-              <div class="before-after-label before-after-label-left">
-                Before
-              </div>
-              <div class="before-after-label before-after-label-right">
-                After
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="homeType">Home Type</label>
+                      <select id="homeType" name="homeType">
+                        <option value="Apartment">Apartment</option>
+                        <option value="Condo">Condo</option>
+                        <option value="Townhouse">Townhouse</option>
+                        <option value="Detached">Detached</option>
+                        <option value="Bungalow">Bungalow</option>
+                        <option value="Basement unit">Basement unit</option>
+                      </select>
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field">
+                      <label for="preferredDate">Preferred cleaning date</label>
+                      <input type="date" id="preferredDate" name="preferredDate" />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label>Urgency</label>
+                    <div class="pill-group" role="radiogroup">
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="urgency"
+                          value="today"
+                          required
+                        />
+                        <span>Today / Tomorrow</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="urgency" value="week" />
+                        <span>This Week</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="urgency" value="flexible" />
+                        <span>Flexible</span>
+                      </label>
+                    </div>
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="wizard-step" data-step="2" data-title="Space Details">
+                  <div class="step-intro">
+                    <h3>Space Details</h3>
+                    <p>Let us know the rooms and timeline we’re walking into.</p>
+                  </div>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="bedroomCount">Bedrooms</label>
+                      <input
+                        type="number"
+                        id="bedroomCount"
+                        name="bedrooms"
+                        min="0"
+                        max="6"
+                        value="2"
+                        data-room-count="bedrooms"
+                      />
+                    </div>
+                    <div class="field">
+                      <label for="fullBathCount">Full bathrooms</label>
+                      <input
+                        type="number"
+                        id="fullBathCount"
+                        name="fullBaths"
+                        min="0"
+                        max="4"
+                        value="1"
+                        data-room-count="fullBaths"
+                      />
+                    </div>
+                    <div class="field">
+                      <label for="halfBathCount">Half bathrooms</label>
+                      <input
+                        type="number"
+                        id="halfBathCount"
+                        name="halfBaths"
+                        min="0"
+                        max="3"
+                        value="0"
+                        data-room-count="halfBaths"
+                      />
+                    </div>
+                  </div>
+
+                  <fieldset class="field checklist-field">
+                    <legend>Common areas checklist</legend>
+                    <p class="field-hint">Kitchen is always included.</p>
+                    <div class="pill-checkbox-grid">
+                      <label class="pill-checkbox pill-checkbox-locked">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Kitchen"
+                          checked
+                          disabled
+                        />
+                        <span>Kitchen</span>
+                      </label>
+                      <input type="hidden" name="commonAreas" value="Kitchen" />
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Living room"
+                        />
+                        <span>Living room</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Dining area"
+                        />
+                        <span>Dining area</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Hallways / Stairs"
+                        />
+                        <span>Hallways / Stairs</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Basement"
+                        />
+                        <span>Basement</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Office"
+                        />
+                        <span>Office</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Laundry room"
+                        />
+                        <span>Laundry room</span>
+                      </label>
+                    </div>
+                    <div class="field">
+                      <label for="commonAreaOther">Other space</label>
+                      <input
+                        type="text"
+                        id="commonAreaOther"
+                        name="commonAreaOther"
+                        placeholder="e.g. Mudroom, play room"
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="field">
+                    <legend>How long have you lived here?</legend>
+                    <div class="pill-group pill-group-wrap">
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="Just moved in"
+                          required
+                        />
+                        <span>Just moved in</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="livingLength" value="< 1 year" />
+                        <span>&lt; 1 year</span>
+                      </label>
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="1–3 years"
+                        />
+                        <span>1–3 years</span>
+                      </label>
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="> 3 years"
+                        />
+                        <span>&gt; 3 years</span>
+                      </label>
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="Tenant just moved out"
+                        />
+                        <span>Tenant just moved out</span>
+                      </label>
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="Preparing to sell"
+                        />
+                        <span>Preparing to sell</span>
+                      </label>
+                    </div>
+                    <small class="field-error" aria-live="polite"></small>
+                  </fieldset>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                  class="wizard-step"
+                  data-step="3"
+                  data-title="Room-by-Room Overview"
+                >
+                  <div class="step-intro">
+                    <h3>Room-by-Room + Media</h3>
+                    <p>Show us your space with quick photos or notes.</p>
+                  </div>
+                  <div class="field">
+                    <label>How will you show your home?</label>
+                    <div class="pill-group pill-group-wrap" role="radiogroup">
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="mediaOption"
+                          value="photos"
+                          checked
+                          required
+                        />
+                        <span>Upload photos per room</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="mediaOption" value="video" />
+                        <span>Upload walkthrough video</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="mediaOption" value="description" />
+                        <span>Skip, I’ll describe it</span>
+                      </label>
+                    </div>
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+
+                  <div
+                    class="media-block"
+                    id="photoUploadSection"
+                    role="group"
+                    aria-live="polite"
+                  >
+                    <p class="media-helper">
+                      We’ll create a mini upload slot for each room you told us
+                      about. Quick snapshots help us quote accurately.
+                    </p>
+                    <div id="photoRoomUploads" class="room-upload-grid"></div>
+                  </div>
+
+                  <div class="media-block hidden" id="videoUploadSection">
+                    <label class="field">
+                      <span>Walkthrough video (one clip)</span>
+                      <input
+                        type="file"
+                        id="walkthroughVideo"
+                        name="walkthroughVideo"
+                        accept="video/*"
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </label>
+                    <p class="media-helper">
+                      Walk from your entrance through main areas, slowly panning
+                      the camera. Natural light is perfect.
+                    </p>
+                  </div>
+
+                  <div class="media-block hidden" id="descriptionSection">
+                    <label class="field">
+                      <span>Describe your space</span>
+                      <textarea
+                        id="mediaDescription"
+                        name="mediaDescription"
+                        rows="4"
+                        placeholder="Share flooring type, mess level, and any trouble spots..."
+                      ></textarea>
+                      <small class="field-error" aria-live="polite"></small>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="wizard-step" data-step="4" data-title="Condition & Extras">
+                  <div class="step-intro">
+                    <h3>Condition & Extras</h3>
+                    <p>Tell us how lived-in it feels and any extra love needed.</p>
+                  </div>
+                  <div class="field slider-field">
+                    <label for="conditionLevel">Condition level</label>
+                    <input
+                      type="range"
+                      id="conditionLevel"
+                      name="conditionLevel"
+                      min="1"
+                      max="10"
+                      value="4"
+                    />
+                    <div class="slider-labels">
+                      <span>1 – Light tidy</span>
+                      <strong id="conditionValue">4</strong>
+                      <span>10 – Extreme</span>
+                    </div>
+                    <ul class="condition-scale">
+                      <li><strong>1–2:</strong> Light tidy / already clean</li>
+                      <li><strong>3–4:</strong> Normal lived-in</li>
+                      <li><strong>5–6:</strong> Messy / needs deep clean</li>
+                      <li><strong>7–8:</strong> Very messy</li>
+                      <li><strong>9–10:</strong> Extreme / heavy deep clean</li>
+                    </ul>
+                  </div>
+
+                  <div class="extras-grid">
+                    <fieldset>
+                      <legend>Kitchen extras</legend>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="insideFridge"
+                        />
+                        <span>Inside fridge</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="insideOven" />
+                        <span>Inside oven</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="insideCabinets"
+                        />
+                        <span>Inside cabinets</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="degreaseStove" />
+                        <span>Heavy degrease stove top</span>
+                      </label>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Whole home</legend>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="windows" />
+                        <span>Windows (interior)</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="baseboards" />
+                        <span>Baseboards</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="spotWalls" />
+                        <span>Spot clean walls / doors</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="laundryFold" />
+                        <span>Laundry folding</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="dishes" />
+                        <span>Dishes</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="changeBedding" />
+                        <span>Change bedding</span>
+                      </label>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Special focus</legend>
+                      <label class="pill-checkbox">
+                        <input type="checkbox" name="extras" value="petHair" />
+                        <span>Pet hair focus</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="fragranceFree"
+                        />
+                        <span>Fragrance-free / allergy friendly</span>
+                      </label>
+                    </fieldset>
+                  </div>
+
+                  <div class="toggle-grid">
+                    <div class="toggle-field">
+                      <p>Pets at home?</p>
+                      <div class="pill-group">
+                        <label class="pill-option">
+                          <input type="radio" name="hasPets" value="yes" required />
+                          <span>Yes</span>
+                        </label>
+                        <label class="pill-option">
+                          <input type="radio" name="hasPets" value="no" />
+                          <span>No</span>
+                        </label>
+                      </div>
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="toggle-field">
+                      <p>Kids at home?</p>
+                      <div class="pill-group">
+                        <label class="pill-option">
+                          <input type="radio" name="hasKids" value="yes" required />
+                          <span>Yes</span>
+                        </label>
+                        <label class="pill-option">
+                          <input type="radio" name="hasKids" value="no" />
+                          <span>No</span>
+                        </label>
+                      </div>
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="wizard-step" data-step="5" data-title="Review & Submit">
+                  <div class="step-intro">
+                    <h3>Review & Submit</h3>
+                    <p>Take a quick glance before sending.</p>
+                  </div>
+                  <div id="smartquoteSummary" class="review-summary">
+                    <p class="muted">
+                      We’ll summarize your details here when you reach this step.
+                    </p>
+                  </div>
+                  <p class="review-note">
+                    This is an estimated quote based on the info provided. Final
+                    price may adjust slightly if the condition is different in
+                    person.
+                  </p>
+                  <button
+                    type="button"
+                    class="link-btn"
+                    id="reviewBackLink"
+                  >
+                    Back and edit
+                  </button>
+                </div>
+
+                <div class="wizard-controls">
+                  <button
+                    type="button"
+                    class="btn btn-soft"
+                    id="wizardBackBtn"
+                    aria-label="Go to previous step"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="wizardNextBtn"
+                    aria-label="Go to next step"
+                  >
+                    Next step
+                  </button>
+                </div>
+              </form>
+
+              <div class="wizard-thankyou" id="smartquoteThankYou" hidden>
+                <h3>Thank you!</h3>
+                <p>
+                  Your SmartQuote request has been received. We’ll email you
+                  within 12 hours with a personalized quote and next steps.
+                </p>
+                <button
+                  class="btn btn-soft"
+                  onclick="window.location.href='index.html#services'"
+                >
+                  Browse services
+                </button>
               </div>
             </div>
           </div>
@@ -862,10 +1654,38 @@
           <a href="#careers">Careers</a>
         </div>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook">📘</a>
-          <a href="#" aria-label="Instagram">📸</a>
-          <a href="#" aria-label="Yelp">⭐</a>
-          <a href="#" aria-label="Google Business">🅶</a>
+          <a
+            href="https://www.instagram.com/"
+            class="social-btn"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            >IG</a
+          >
+          <a
+            href="https://www.linkedin.com/"
+            class="social-btn"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >in</a
+          >
+          <a
+            href="https://www.facebook.com/"
+            class="social-btn"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            >f</a
+          >
+          <a
+            href="https://www.tiktok.com/"
+            class="social-btn"
+            aria-label="TikTok"
+            target="_blank"
+            rel="noopener noreferrer"
+            >t</a
+          >
         </div>
       </div>
       <div class="container footer-bottom">

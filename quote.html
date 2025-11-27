@@ -49,38 +49,48 @@
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
 
-    <!-- Dark/Light Mode Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">☀️</span>
-    </button>
-
     <!-- Header -->
-    <header class="header" id="header">
+        <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
           <span class="logo-mark">DL</span>
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
-        <nav class="nav">
+        <nav class="nav nav-primary">
           <a href="index.html#home" class="nav-link">Home</a>
           <a href="services.html" class="nav-link">Services</a>
-          <a href="pricing.html" class="nav-link">Pricing</a>
-          <a href="quote.html" class="nav-link">Get a Quote</a>
-          <a href="shop.html" class="nav-link">Eco Shop</a>
-          <a href="gallery.html" class="nav-link">Before &amp; After</a>
-          <a href="about.html" class="nav-link">About</a>
+          <a href="quote.html" class="nav-link">Pricing</a>
+          <a href="shop.html" class="nav-link">Shop</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
           <a href="faq.html" class="nav-link">FAQ</a>
-          <a href="policies.html" class="nav-link">Policies</a>
-          <a href="#login" class="nav-link" id="openLogin">Team Login</a>
         </nav>
-        <button
-          class="btn btn-outline btn-sm nav-cta"
-          onclick="scrollToSection('booking')"
-        >
-          Get My Personalized Cleaning Plan
-        </button>
-
+        <div class="header-actions">
+          <button
+            class="btn btn-primary nav-cta"
+            onclick="window.location.href='quote.html#smartquote'"
+          >
+            Get My Free Quote
+          </button>
+          <div class="header-icons">
+            <button class="icon-btn" id="headerChatToggle" aria-label="Open chat">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
+              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
+                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="10" cy="19" r="1.4"></circle>
+                <circle cx="16" cy="19" r="1.4"></circle>
+              </svg>
+              <span class="cart-count-badge" id="headerCartCount">0</span>
+            </button>
+            <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+              <span class="theme-icon">☀️</span>
+            </button>
+          </div>
+        </div>
         <button class="burger" id="burger" aria-label="Open navigation">
           <span></span><span></span><span></span>
         </button>
@@ -88,194 +98,592 @@
       <nav class="nav-mobile" id="navMobile">
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="quote.html" class="nav-link">Get a Quote</a>
-        <a href="shop.html" class="nav-link">Eco Shop</a>
-        <a href="gallery.html" class="nav-link">Before &amp; After</a>
-        <a href="about.html" class="nav-link">About</a>
+        <a href="quote.html" class="nav-link">Pricing</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="faq.html" class="nav-link">FAQ</a>
-        <a href="policies.html" class="nav-link">Policies</a>
-        <a href="#login" class="nav-link" id="openLoginMobile">Team Login</a>
+        <button
+          class="btn btn-primary btn-full"
+          onclick="window.location.href='quote.html#smartquote'"
+        >
+          Get My Free Quote
+        </button>
       </nav>
     </header>
 
     <!-- MAIN -->
     <main id="home">
-      <section class="section" data-reveal>
+      <section class="section smartquote-section" id="smartquote" data-reveal>
         <div class="container section-header">
-          <h1>Online Quote Calculator</h1>
-          <p>
-            Share a few details about your space and we’ll generate a calm,
-            transparent estimate — including mess level, add-ons, and travel. No
-            spam, ever.
+          <p class="eyebrow">Dustless Living SmartQuote™</p>
+          <h1>SmartQuote™ – Guided Cleaning Estimate</h1>
+          <p class="section-subtitle">
+            Takes about 3–5 minutes. Photos optional. Share how you live so we can
+            prepare the right crew, timing, and care.
           </p>
         </div>
 
-        <div class="container pricing-layout">
-          <!-- Left: Form -->
-          <form id="quoteForm" class="card">
-            <div class="form-grid">
-              <div class="field">
-                <label>Full Name</label>
-                <input type="text" name="name" required />
+        <div class="container">
+          <div class="smartquote-card glass">
+            <div class="wizard-progress">
+              <div>
+                <p class="wizard-step-label" id="wizardStepLabel">
+                  Step 1 of 5
+                </p>
+                <p class="wizard-step-title" id="wizardStepTitle">Basic Info</p>
               </div>
-              <div class="field">
-                <label>Email</label>
-                <input type="email" name="email" required />
-              </div>
-              <div class="field">
-                <label>Phone</label>
-                <input type="tel" name="phone" required />
-              </div>
-              <div class="field">
-                <label>Home Type</label>
-                <select name="homeType" required>
-                  <option value="condo">Condo / Apartment</option>
-                  <option value="townhouse">Townhouse</option>
-                  <option value="detached">Detached / Semi</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Bedrooms</label>
-                <input
-                  type="number"
-                  name="bedrooms"
-                  min="0"
-                  max="8"
-                  value="2"
-                />
-              </div>
-              <div class="field">
-                <label>Bathrooms</label>
-                <input
-                  type="number"
-                  name="bathrooms"
-                  min="1"
-                  max="5"
-                  value="1"
-                />
-              </div>
-              <div class="field">
-                <label>Condition (1 = tidy, 10 = very messy)</label>
-                <input
-                  type="range"
-                  name="condition"
-                  min="1"
-                  max="10"
-                  value="5"
-                  id="quoteConditionSlider"
-                />
-              </div>
-              <div class="field">
-                <label></label>
-                <span class="muted"
-                  >Mess level: <span id="quoteConditionValue">5</span>/10</span
-                >
-              </div>
-              <div class="field">
-                <label>Pets</label>
-                <select name="pets">
-                  <option value="none">No pets</option>
-                  <option value="some">1–2 pets</option>
-                  <option value="many">3+ pets / heavy fur</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Location</label>
-                <select name="location" required>
-                  <option value="hamilton">Hamilton</option>
-                  <option value="burlington">Burlington</option>
-                  <option value="stoney-creek">Stoney Creek</option>
-                  <option value="waterdown">Waterdown</option>
-                  <option value="ancaster">Ancaster</option>
-                </select>
+              <div class="wizard-progress-bar">
+                <span id="wizardProgressFill"></span>
               </div>
             </div>
 
-            <div class="field">
-              <label>Add-ons</label>
-              <div class="addon-options">
-                <label
-                  ><input type="checkbox" name="addonWindows" /> Interior
-                  windows</label
-                >
-                <label
-                  ><input type="checkbox" name="addonFridge" /> Inside
-                  fridge</label
-                >
-                <label
-                  ><input type="checkbox" name="addonOven" /> Oven detail</label
-                >
-                <label
-                  ><input type="checkbox" name="addonBaseboards" /> Baseboards
-                  &amp; trims</label
-                >
-                <label
-                  ><input type="checkbox" name="addonLaundry" /> Laundry / linen
-                  reset</label
-                >
-                <label
-                  ><input type="checkbox" name="addonGarage" /> Garage /
-                  entryway reset</label
-                >
+            <form id="smartquoteForm" class="wizard-form" novalidate>
+              <!-- Step 1 -->
+              <div
+                class="wizard-step active"
+                data-step="1"
+                data-title="Basic Info"
+              >
+                <div class="step-intro">
+                  <h3>Basic Info</h3>
+                  <p>We’ll use this to follow up within 12 hours.</p>
+                </div>
+                <div class="form-grid">
+                  <div class="field required">
+                    <label for="clientName">Name *</label>
+                    <input
+                      type="text"
+                      id="clientName"
+                      name="name"
+                      placeholder="Full name"
+                      required
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                  <div class="field required">
+                    <label for="clientEmail">Email *</label>
+                    <input
+                      type="email"
+                      id="clientEmail"
+                      name="email"
+                      placeholder="you@email.com"
+                      required
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                  <div class="field">
+                    <label for="clientPhone">Phone</label>
+                    <input
+                      type="tel"
+                      id="clientPhone"
+                      name="phone"
+                      placeholder="Optional"
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                  <div class="field">
+                    <label for="clientAddress">Full Address</label>
+                    <input
+                      type="text"
+                      id="clientAddress"
+                      name="address"
+                      placeholder="Street, city, postal"
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="homeType">Home Type</label>
+                    <select id="homeType" name="homeType">
+                      <option value="Apartment">Apartment</option>
+                      <option value="Condo">Condo</option>
+                      <option value="Townhouse">Townhouse</option>
+                      <option value="Detached">Detached</option>
+                      <option value="Bungalow">Bungalow</option>
+                      <option value="Basement unit">Basement unit</option>
+                    </select>
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                  <div class="field">
+                    <label for="preferredDate">Preferred cleaning date</label>
+                    <input type="date" id="preferredDate" name="preferredDate" />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>Urgency</label>
+                  <div class="pill-group" role="radiogroup">
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="urgency"
+                        value="today"
+                        required
+                      />
+                      <span>Today / Tomorrow</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="urgency" value="week" />
+                      <span>This Week</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="urgency" value="flexible" />
+                      <span>Flexible</span>
+                    </label>
+                  </div>
+                  <small class="field-error" aria-live="polite"></small>
+                </div>
               </div>
-            </div>
 
-            <div class="field">
-              <label>Preferred Date</label>
-              <input type="date" name="date" />
-            </div>
-            <div class="field">
-              <label>Notes</label>
-              <textarea
-                name="notes"
-                rows="3"
-                placeholder="Sq ft, parking, pets, special requests..."
-              ></textarea>
-            </div>
+              <!-- Step 2 -->
+              <div class="wizard-step" data-step="2" data-title="Space Details">
+                <div class="step-intro">
+                  <h3>Space Details</h3>
+                  <p>Let us know the rooms and timeline we’re walking into.</p>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="bedroomCount">Bedrooms</label>
+                    <input
+                      type="number"
+                      id="bedroomCount"
+                      name="bedrooms"
+                      min="0"
+                      max="6"
+                      value="2"
+                      data-room-count="bedrooms"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="fullBathCount">Full bathrooms</label>
+                    <input
+                      type="number"
+                      id="fullBathCount"
+                      name="fullBaths"
+                      min="0"
+                      max="4"
+                      value="1"
+                      data-room-count="fullBaths"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="halfBathCount">Half bathrooms</label>
+                    <input
+                      type="number"
+                      id="halfBathCount"
+                      name="halfBaths"
+                      min="0"
+                      max="3"
+                      value="0"
+                      data-room-count="halfBaths"
+                    />
+                  </div>
+                </div>
 
-            <button type="submit" class="btn btn-primary btn-full">
-              Calculate My Estimate
-            </button>
-            <p id="quoteStatus" class="form-success"></p>
-          </form>
+                <fieldset class="field checklist-field">
+                  <legend>Common areas checklist</legend>
+                  <p class="field-hint">Kitchen is always included.</p>
+                  <div class="pill-checkbox-grid">
+                    <label class="pill-checkbox pill-checkbox-locked">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Kitchen"
+                        checked
+                        disabled
+                      />
+                      <span>Kitchen</span>
+                    </label>
+                    <input type="hidden" name="commonAreas" value="Kitchen" />
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Living room"
+                      />
+                      <span>Living room</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Dining area"
+                      />
+                      <span>Dining area</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Hallways / Stairs"
+                      />
+                      <span>Hallways / Stairs</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Basement"
+                      />
+                      <span>Basement</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Office"
+                      />
+                      <span>Office</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="commonAreas"
+                        value="Laundry room"
+                      />
+                      <span>Laundry room</span>
+                    </label>
+                  </div>
+                  <div class="field">
+                    <label for="commonAreaOther">Other space</label>
+                    <input
+                      type="text"
+                      id="commonAreaOther"
+                      name="commonAreaOther"
+                      placeholder="e.g. Mudroom, play room"
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                </fieldset>
 
-          <!-- Right: Estimate -->
-          <aside class="card">
-            <h2>Estimated Visit</h2>
-            <p class="muted" id="quoteSummary">
-              Fill in your details to see a live estimate.
-            </p>
+                <fieldset class="field">
+                  <legend>How long have you lived here?</legend>
+                  <div class="pill-group pill-group-wrap">
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="livingLength"
+                        value="Just moved in"
+                        required
+                      />
+                      <span>Just moved in</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="livingLength" value="< 1 year" />
+                      <span>&lt; 1 year</span>
+                    </label>
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="livingLength"
+                        value="1–3 years"
+                      />
+                      <span>1–3 years</span>
+                    </label>
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="livingLength"
+                        value="> 3 years"
+                      />
+                      <span>&gt; 3 years</span>
+                    </label>
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="livingLength"
+                        value="Tenant just moved out"
+                      />
+                      <span>Tenant just moved out</span>
+                    </label>
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="livingLength"
+                        value="Preparing to sell"
+                      />
+                      <span>Preparing to sell</span>
+                    </label>
+                  </div>
+                  <small class="field-error" aria-live="polite"></small>
+                </fieldset>
+              </div>
 
-            <div style="margin-top: 1rem">
-              <p class="label">
-                <span>Estimated price</span>
-                <strong id="quotePrice">$0</strong>
+              <!-- Step 3 -->
+              <div
+                class="wizard-step"
+                data-step="3"
+                data-title="Room-by-Room Overview"
+              >
+                <div class="step-intro">
+                  <h3>Room-by-Room + Media</h3>
+                  <p>Show us your space with quick photos or notes.</p>
+                </div>
+                <div class="field">
+                  <label>How will you show your home?</label>
+                  <div class="pill-group pill-group-wrap" role="radiogroup">
+                    <label class="pill-option">
+                      <input
+                        type="radio"
+                        name="mediaOption"
+                        value="photos"
+                        checked
+                        required
+                      />
+                      <span>Upload photos per room</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="mediaOption" value="video" />
+                      <span>Upload walkthrough video</span>
+                    </label>
+                    <label class="pill-option">
+                      <input type="radio" name="mediaOption" value="description" />
+                      <span>Skip, I’ll describe it</span>
+                    </label>
+                  </div>
+                  <small class="field-error" aria-live="polite"></small>
+                </div>
+
+                <div
+                  class="media-block"
+                  id="photoUploadSection"
+                  role="group"
+                  aria-live="polite"
+                >
+                  <p class="media-helper">
+                    We’ll create a mini upload slot for each room you told us
+                    about. Quick snapshots help us quote accurately.
+                  </p>
+                  <div id="photoRoomUploads" class="room-upload-grid"></div>
+                </div>
+
+                <div class="media-block hidden" id="videoUploadSection">
+                  <label class="field">
+                    <span>Walkthrough video (one clip)</span>
+                    <input
+                      type="file"
+                      id="walkthroughVideo"
+                      name="walkthroughVideo"
+                      accept="video/*"
+                    />
+                    <small class="field-error" aria-live="polite"></small>
+                  </label>
+                  <p class="media-helper">
+                    Walk from your entrance through main areas, slowly panning
+                    the camera. Natural light is perfect.
+                  </p>
+                </div>
+
+                <div class="media-block hidden" id="descriptionSection">
+                  <label class="field">
+                    <span>Describe your space</span>
+                    <textarea
+                      id="mediaDescription"
+                      name="mediaDescription"
+                      rows="4"
+                      placeholder="Share flooring type, mess level, and any trouble spots..."
+                    ></textarea>
+                    <small class="field-error" aria-live="polite"></small>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="wizard-step" data-step="4" data-title="Condition & Extras">
+                <div class="step-intro">
+                  <h3>Condition & Extras</h3>
+                  <p>Tell us how lived-in it feels and any extra love needed.</p>
+                </div>
+                <div class="field slider-field">
+                  <label for="conditionLevel">Condition level</label>
+                  <input
+                    type="range"
+                    id="conditionLevel"
+                    name="conditionLevel"
+                    min="1"
+                    max="10"
+                    value="4"
+                  />
+                  <div class="slider-labels">
+                    <span>1 – Light tidy</span>
+                    <strong id="conditionValue">4</strong>
+                    <span>10 – Extreme</span>
+                  </div>
+                  <ul class="condition-scale">
+                    <li><strong>1–2:</strong> Light tidy / already clean</li>
+                    <li><strong>3–4:</strong> Normal lived-in</li>
+                    <li><strong>5–6:</strong> Messy / needs deep clean</li>
+                    <li><strong>7–8:</strong> Very messy</li>
+                    <li><strong>9–10:</strong> Extreme / heavy deep clean</li>
+                  </ul>
+                </div>
+
+                <div class="extras-grid">
+                  <fieldset>
+                    <legend>Kitchen extras</legend>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="extras"
+                        value="insideFridge"
+                      />
+                      <span>Inside fridge</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="insideOven" />
+                      <span>Inside oven</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="extras"
+                        value="insideCabinets"
+                      />
+                      <span>Inside cabinets</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="degreaseStove" />
+                      <span>Heavy degrease stove top</span>
+                    </label>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Whole home</legend>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="windows" />
+                      <span>Windows (interior)</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="baseboards" />
+                      <span>Baseboards</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="spotWalls" />
+                      <span>Spot clean walls / doors</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="laundryFold" />
+                      <span>Laundry folding</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="dishes" />
+                      <span>Dishes</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="changeBedding" />
+                      <span>Change bedding</span>
+                    </label>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Special focus</legend>
+                    <label class="pill-checkbox">
+                      <input type="checkbox" name="extras" value="petHair" />
+                      <span>Pet hair focus</span>
+                    </label>
+                    <label class="pill-checkbox">
+                      <input
+                        type="checkbox"
+                        name="extras"
+                        value="fragranceFree"
+                      />
+                      <span>Fragrance-free / allergy friendly</span>
+                    </label>
+                  </fieldset>
+                </div>
+
+                <div class="toggle-grid">
+                  <div class="toggle-field">
+                    <p>Pets at home?</p>
+                    <div class="pill-group">
+                      <label class="pill-option">
+                        <input type="radio" name="hasPets" value="yes" required />
+                        <span>Yes</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="hasPets" value="no" />
+                        <span>No</span>
+                      </label>
+                    </div>
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                  <div class="toggle-field">
+                    <p>Kids at home?</p>
+                    <div class="pill-group">
+                      <label class="pill-option">
+                        <input type="radio" name="hasKids" value="yes" required />
+                        <span>Yes</span>
+                      </label>
+                      <label class="pill-option">
+                        <input type="radio" name="hasKids" value="no" />
+                        <span>No</span>
+                      </label>
+                    </div>
+                    <small class="field-error" aria-live="polite"></small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 5 -->
+              <div class="wizard-step" data-step="5" data-title="Review & Submit">
+                <div class="step-intro">
+                  <h3>Review & Submit</h3>
+                  <p>Take a quick glance before sending.</p>
+                </div>
+                <div id="smartquoteSummary" class="review-summary">
+                  <p class="muted">
+                    We’ll summarize your details here when you reach this step.
+                  </p>
+                </div>
+                <p class="review-note">
+                  This is an estimated quote based on the info provided. Final
+                  price may adjust slightly if the condition is different in
+                  person.
+                </p>
+                <button
+                  type="button"
+                  class="link-btn"
+                  id="reviewBackLink"
+                >
+                  Back and edit
+                </button>
+              </div>
+
+              <div class="wizard-controls">
+                <button
+                  type="button"
+                  class="btn btn-soft"
+                  id="wizardBackBtn"
+                  aria-label="Go to previous step"
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="wizardNextBtn"
+                  aria-label="Go to next step"
+                >
+                  Next step
+                </button>
+              </div>
+            </form>
+
+            <div class="wizard-thankyou" id="smartquoteThankYou" hidden>
+              <h3>Thank you!</h3>
+              <p>
+                Your SmartQuote request has been received. We’ll email you
+                within 12 hours with a personalized quote and next steps.
               </p>
-              <p class="label">
-                <span>Estimated hours</span>
-                <strong id="quoteHours">–</strong>
-              </p>
-              <p class="label">
-                <span>Suggested deposit (20%)</span>
-                <strong id="quoteDeposit">$0</strong>
-              </p>
+              <button
+                class="btn btn-soft"
+                onclick="window.location.href='index.html#services'"
+              >
+                Browse services
+              </button>
             </div>
-
-            <p class="estimate-caption">
-              Final pricing is confirmed after we review your details and photos
-              (if provided).
-            </p>
-
-            <button
-              type="button"
-              class="btn btn-soft btn-full"
-              id="quoteBookBtn"
-              onclick="window.location.href='index.html#booking'"
-            >
-              Book This Estimate
-            </button>
-          </aside>
+          </div>
         </div>
       </section>
     </main>
@@ -295,16 +703,45 @@
           <a href="#careers">Careers</a>
         </div>
         <div class="footer-social">
-          <a href="#" aria-label="Facebook">📘</a>
-          <a href="#" aria-label="Instagram">📸</a>
-          <a href="#" aria-label="Yelp">⭐</a>
-          <a href="#" aria-label="Google Business">🅶</a>
+          <a
+            href="https://www.instagram.com/"
+            class="social-btn"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            >IG</a
+          >
+          <a
+            href="https://www.linkedin.com/"
+            class="social-btn"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >in</a
+          >
+          <a
+            href="https://www.facebook.com/"
+            class="social-btn"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            >f</a
+          >
+          <a
+            href="https://www.tiktok.com/"
+            class="social-btn"
+            aria-label="TikTok"
+            target="_blank"
+            rel="noopener noreferrer"
+            >t</a
+          >
         </div>
       </div>
       <div class="container footer-bottom">
         <p>© 2025 Dustless Living | All Rights Reserved.</p>
       </div>
     </footer>
+
 
     <!-- Chatbot -->
     <div class="chatbot" id="chatbot">
