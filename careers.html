@@ -48,12 +48,13 @@
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
+    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
-        <header class="header" id="header">
+    <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
@@ -73,20 +74,25 @@
             Get My Free Quote
           </button>
           <div class="header-icons">
-            <button class="icon-btn" id="headerChatToggle" aria-label="Open chat">
+            <button
+              class="icon-btn"
+              id="headerChatToggle"
+              aria-label="Open chat"
+            >
               <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
               </svg>
             </button>
-            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle cx="10" cy="19" r="1.4"></circle>
-                <circle cx="16" cy="19" r="1.4"></circle>
-              </svg>
-              <span class="cart-count-badge" id="headerCartCount">0</span>
-            </button>
-            <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+            <button
+              class="icon-btn theme-toggle-btn"
+              id="themeToggle"
+              aria-label="Toggle dark mode"
+            >
               <span class="theme-icon">☀️</span>
             </button>
           </div>
@@ -107,6 +113,9 @@
           onclick="window.location.href='quote.html#smartquote'"
         >
           Get My Free Quote
+        </button>
+        <button class="btn btn-soft btn-full" id="openLoginMobile">
+          Team Login
         </button>
       </nav>
     </header>
@@ -188,15 +197,14 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#promos">Promos</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book</a>
-          <a href="#careers">Careers</a>
+          <a href="services.html">Services</a>
+          <a href="quote.html">SmartQuote</a>
+          <a href="quote.html#smartquote">Book</a>
+          <a href="#">Careers</a>
         </div>
         <div class="footer-social">
           <a
@@ -238,25 +246,64 @@
       </div>
     </footer>
 
-
-    <!-- Chatbot -->
+    <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
       <button class="chatbot-toggle" id="chatbotToggle">💬</button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-          <h4>Dustless Quote Assistant</h4>
+          <h4>Dustless Lead Collector</h4>
           <button class="chatbot-close" onclick="toggleChatbot(false)">
             ×
           </button>
         </div>
-        <div class="chatbot-body" id="chatbotBody"></div>
-        <div class="chatbot-input">
-          <input
-            type="text"
-            id="chatbotInput"
-            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
-          />
-          <button onclick="handleChatbotMessage()">Send</button>
+        <div class="chatbot-body">
+          <form id="chatbotLeadForm" class="chatbot-form">
+            <label>
+              <span>Name *</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email *</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Optional" />
+            </label>
+            <label>
+              <span>Service interest</span>
+              <select name="service">
+                <option value="Deep clean">Deep clean / first visit</option>
+                <option value="Maintenance clean">Maintenance clean</option>
+                <option value="Move clean">Move-in / Move-out</option>
+                <option value="Commercial clean">Commercial / studio</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="This week">This week</option>
+                <option value="Next 2 weeks">Next 2 weeks</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea
+                name="notes"
+                rows="2"
+                placeholder="Share rooms, pets, or anything you'd like me to know..."
+              ></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-full">
+              Send details
+            </button>
+            <p class="chatbot-hint">
+              You’ll hear back within 12 hours with next steps.
+            </p>
+            <p id="chatbotLeadStatus" class="chatbot-status"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -350,7 +397,7 @@
     </div>
 
     <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab">
+    <button id="openCartBtn" class="cart-fab hidden">
       <span class="cart-icon">🛒</span>
       <span id="cartCount" class="cart-count">0</span>
     </button>

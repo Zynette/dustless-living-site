@@ -50,12 +50,13 @@
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
+    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
         <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
@@ -80,14 +81,6 @@
                 <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </button>
-            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle cx="10" cy="19" r="1.4"></circle>
-                <circle cx="16" cy="19" r="1.4"></circle>
-              </svg>
-              <span class="cart-count-badge" id="headerCartCount">0</span>
-            </button>
             <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
               <span class="theme-icon">☀️</span>
             </button>
@@ -110,6 +103,9 @@
         >
           Get My Free Quote
         </button>
+        <button class="btn btn-soft btn-full" id="openLoginMobile">
+          Team Login
+        </button>
       </nav>
     </header>
 
@@ -124,7 +120,7 @@
               <h2>Services</h2>
               <p>
                 Thoughtful cleaning tailored to your routine, your standards,
-                and your peace of mind.
+                and your peace of mind — handled by me, with a helper shadowing soon.
               </p>
             </div>
             <div class="services-grid">
@@ -186,6 +182,109 @@
                   View Details
                 </button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-light service-basics" data-reveal>
+          <div class="container service-basics-grid">
+            <div>
+              <p class="eyebrow">Included with every visit</p>
+              <h3>The Dustless detailed checklist.</h3>
+              <ul class="checklist">
+                <li><span class="check-icon">✔</span>Declutter &amp; surface reset in each room</li>
+                <li><span class="check-icon">✔</span>Kitchen degrease, backsplash wipe, appliance fronts</li>
+                <li><span class="check-icon">✔</span>Bathroom sanitize, tile &amp; glass polish</li>
+                <li><span class="check-icon">✔</span>Baseboards, trim, switches, and handles</li>
+                <li><span class="check-icon">✔</span>Floors vacuumed &amp; mopped with your tools</li>
+                <li><span class="check-icon">✔</span>Final style touches + aftercare text</li>
+              </ul>
+            </div>
+            <div class="service-kit-card glass">
+              <h4>Supplies we bring</h4>
+              <ul>
+                <li>Plant-based cleaners + microfiber rotations</li>
+                <li>Detail brushes &amp; hand tools (vacuum/mop stay in your home)</li>
+                <li>Dry-steam unit for grout, tile, and upholstery</li>
+                <li>Pet-hair + allergen attachments</li>
+              </ul>
+              <p class="muted">Have allergies or favourite products? Let us know and we’ll happily use them. Please keep your vacuum and mop ready so we can use your tools for healthy, house-specific care.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section service-addons" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <p class="eyebrow">Steam &amp; specialty care</p>
+              <h3>Add-ons for deeper resets.</h3>
+              <p>Perfect for seasonal refreshes, real-estate listings, or when the grout just needs extra love.</p>
+            </div>
+            <div class="service-addons-grid">
+              <article class="glass">
+                <h4>Steam detailing</h4>
+                <ul>
+                  <li>Showers, tubs, grout, and tile</li>
+                  <li>Gunk-free stove grates + oven rails</li>
+                  <li>Upholstery + pet zones (quick dry)</li>
+                </ul>
+                <p class="muted">Chemical-free sanitizing for allergy-prone homes.</p>
+              </article>
+              <article class="glass">
+                <h4>Inside appliances</h4>
+                <ul>
+                  <li>Refrigerator interior + seals</li>
+                  <li>Oven + racks with steam assist</li>
+                  <li>Dishwasher filter refresh</li>
+                </ul>
+              </article>
+              <article class="glass">
+                <h4>Move prep</h4>
+                <ul>
+                  <li>Inside cabinets, closets, drawers</li>
+                  <li>Walls, doors, and baseboard wipe-down</li>
+                  <li>Garage / storage sweeps</li>
+                </ul>
+              </article>
+              <article class="glass">
+                <h4>Homekeeping extras</h4>
+                <ul>
+                  <li>Bed linen changes &amp; towel refresh</li>
+                  <li>Light laundry folding</li>
+                  <li>Plant watering / pet treat refills</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section service-flow section-soft-bg" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <p class="eyebrow">How booking works</p>
+              <h3>Cleaning service built for real life.</h3>
+            </div>
+            <div class="service-flow-grid">
+              <article class="glass">
+                <span class="flow-step">1</span>
+                <h4>Send your SmartQuote™</h4>
+                <p>Tell us about rooms, flooring, pets, and priorities. Photos are optional but helpful.</p>
+              </article>
+              <article class="glass">
+                <span class="flow-step">2</span>
+                <h4>Personal follow-up</h4>
+                <p>We confirm price, timing, and add-ons via text or email within 12 hours.</p>
+              </article>
+              <article class="glass">
+                <span class="flow-step">3</span>
+                <h4>Cleaning day</h4>
+                <p>We arrive with our kit, follow the checklist, and adjust quietly around your schedule.</p>
+              </article>
+              <article class="glass">
+                <span class="flow-step">4</span>
+                <h4>Aftercare recap</h4>
+                <p>Receive photos, notes, and suggested maintenance between visits.</p>
+              </article>
             </div>
           </div>
         </section>
@@ -334,15 +433,14 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#promos">Promos</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book</a>
-          <a href="#careers">Careers</a>
+          <a href="services.html">Services</a>
+          <a href="quote.html">SmartQuote</a>
+          <a href="quote.html#smartquote">Book</a>
+          <a href="#">Careers</a>
         </div>
         <div class="footer-social">
           <a
@@ -385,24 +483,60 @@
     </footer>
 
 
-    <!-- Chatbot -->
+    <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
       <button class="chatbot-toggle" id="chatbotToggle">💬</button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-          <h4>Dustless Quote Assistant</h4>
+          <h4>Dustless Lead Collector</h4>
           <button class="chatbot-close" onclick="toggleChatbot(false)">
             ×
           </button>
         </div>
-        <div class="chatbot-body" id="chatbotBody"></div>
-        <div class="chatbot-input">
-          <input
-            type="text"
-            id="chatbotInput"
-            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
-          />
-          <button onclick="handleChatbotMessage()">Send</button>
+        <div class="chatbot-body">
+          <form id="chatbotLeadForm" class="chatbot-form">
+            <label>
+              <span>Name *</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email *</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Optional" />
+            </label>
+            <label>
+              <span>Service interest</span>
+              <select name="service">
+                <option value="Deep clean">Deep clean / first visit</option>
+                <option value="Maintenance clean">Maintenance clean</option>
+                <option value="Move clean">Move-in / Move-out</option>
+                <option value="Commercial clean">Commercial / studio</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="This week">This week</option>
+                <option value="Next 2 weeks">Next 2 weeks</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea
+                name="notes"
+                rows="2"
+                placeholder="Share rooms, pets, or anything you'd like me to know..."
+              ></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-full">Send details</button>
+            <p class="chatbot-hint">You’ll hear back within 12 hours with next steps.</p>
+            <p id="chatbotLeadStatus" class="chatbot-status"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -496,7 +630,7 @@
     </div>
 
     <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab">
+    <button id="openCartBtn" class="cart-fab hidden">
       <span class="cart-icon">🛒</span>
       <span id="cartCount" class="cart-count">0</span>
     </button>

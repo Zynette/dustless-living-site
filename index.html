@@ -51,12 +51,13 @@
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
+    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
-        <header class="header" id="header">
+    <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
@@ -76,20 +77,25 @@
             Get My Free Quote
           </button>
           <div class="header-icons">
-            <button class="icon-btn" id="headerChatToggle" aria-label="Open chat">
+            <button
+              class="icon-btn"
+              id="headerChatToggle"
+              aria-label="Open chat"
+            >
               <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
               </svg>
             </button>
-            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle cx="10" cy="19" r="1.4"></circle>
-                <circle cx="16" cy="19" r="1.4"></circle>
-              </svg>
-              <span class="cart-count-badge" id="headerCartCount">0</span>
-            </button>
-            <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+            <button
+              class="icon-btn theme-toggle-btn"
+              id="themeToggle"
+              aria-label="Toggle dark mode"
+            >
               <span class="theme-icon">☀️</span>
             </button>
           </div>
@@ -111,6 +117,9 @@
         >
           Get My Free Quote
         </button>
+        <button class="btn btn-soft btn-full" id="openLoginMobile">
+          Team Login
+        </button>
       </nav>
     </header>
 
@@ -120,17 +129,23 @@
       <div id="publicSite">
         <!-- Hero -->
         <section class="hero section section-clean" data-reveal>
-      <div class="hero-sparkles" aria-hidden="true"></div>
-      <div class="decor-bubbles" id="decorBubbles"></div>
+          <div class="hero-sparkles" aria-hidden="true"></div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="eyebrow">Dustless Living • Since 2019</p>
-              <h1>Premium Eco Cleaning for Calm, Real-Life Homes.</h1>
-              <p class="hero-subtitle">
-                Hi, we’re the neighbours who stock plant-based, low-tox
-                cleaners and treat your home like it’s ours. Pet-safe, baby-safe
-                and always respectful of your routine.
-              </p>
+              <div class="hero-text">
+                <p class="eyebrow">Hamilton &amp; Surrounding Areas</p>
+                <h1>
+                  Personal Eco Cleaning for Homes &amp; Small Businesses.<br />Trusted,
+                  Pet-Safe, and Detailed with Care.
+                </h1>
+                <p class="hero-subtitle">
+                  Hi, I’m Antonette — your personal cleaner behind Dustless
+                  Living. I use plant-based, low-tox cleaners, offer steam
+                  detailing for deep refreshes, and use your vacuum and mop to
+                  avoid cross-home contamination. Pet-safe, baby-safe, always
+                  handled with care.
+                </p>
+              </div>
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
@@ -145,72 +160,18 @@
                   View Services
                 </button>
               </div>
-              <div class="hero-process-strip">
-                <div>
-                  <span>01</span>
-                  Tell us about your space
-                </div>
-                <div>
-                  <span>02</span>
-                  We confirm your quote &amp; visit
-                </div>
-                <div>
-                  <span>03</span>
-                  You come home to a reset space
-                </div>
-              </div>
             </div>
-            <div class="hero-visual">
-              <div class="hero-photo glass" data-parallax>
-                <img
-                  src="/images/after1.jpg"
-                  alt="Fresh living room after Dustless clean"
-                />
-                <div class="hero-room-label glass">
-                  After a Dustless Deep Clean — Hamilton, 2BR Apartment
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Room Focus -->
-        <section class="hero-bubbles section" data-reveal>
-          <div class="container hero-bubbles-inner">
-            <div class="hero-bubble">
-              <span class="bubble-icon" aria-hidden="true">🧽</span>
-              <div>
-                <p class="bubble-title">Typical Deep Clean</p>
-                <p class="bubble-text">~ $180 – $260</p>
-              </div>
-            </div>
-            <div class="hero-bubble">
-              <span class="bubble-icon" aria-hidden="true">📍</span>
-              <div>
-                <p class="bubble-title">Hamilton &amp; area</p>
-                <p class="bubble-text">Condos, homes, studios &amp; rentals</p>
-              </div>
-            </div>
-            <div class="hero-bubble">
-              <span class="bubble-icon" aria-hidden="true">🌱</span>
-              <div>
-                <p class="bubble-title">Pet &amp; baby-safe</p>
-                <p class="bubble-text">Low-tox • insured • allergy kind</p>
-              </div>
-            </div>
-          </div>
-          <div class="container trust-pills">
-            <div class="trust-pill">
-              <span aria-hidden="true">🧪</span>
-              WHMIS-trained for safe product handling
-            </div>
-            <div class="trust-pill">
-              <span aria-hidden="true">📜</span>
-              CMI-certified cleaning practices
-            </div>
-            <div class="trust-pill">
-              <span aria-hidden="true">🛡️</span>
-              Insured &amp; background checked
+            <div class="hero-media" data-reveal>
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="/images/og-image.jpg"
+              >
+                <source src="/videos/cleanarea.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </section>
@@ -220,23 +181,34 @@
           <div class="container">
             <div class="section-header">
               <h2>Safety, Training &amp; Trust</h2>
-              <p>We show up trained, insured, and ready to care for your space with confidence.</p>
+              <p>
+                You get the same trained hands every visit — I’m here now, with
+                one carefully chosen helper joining later this year.
+              </p>
             </div>
             <div class="safety-grid">
               <article class="safety-card glass">
                 <div class="safety-icon" aria-hidden="true">🧪</div>
                 <h3>WHMIS-trained</h3>
-                <p>Proper handling of cleaning products in Canadian homes &amp; workplaces.</p>
+                <p>
+                  Proper handling of cleaning products in Canadian homes &amp;
+                  workplaces.
+                </p>
               </article>
               <article class="safety-card glass">
                 <div class="safety-icon" aria-hidden="true">📜</div>
                 <h3>CMI-certified cleaning</h3>
-                <p>Formal training in modern cleaning standards and procedures.</p>
+                <p>
+                  Formal training in modern cleaning standards and procedures.
+                </p>
               </article>
               <article class="safety-card glass">
-                <div class="safety-icon" aria-hidden="true">🛡️</div>
-                <h3>Insured &amp; background checked</h3>
-                <p>So you can hand over the keys and relax knowing we’re fully vetted.</p>
+                <div class="safety-icon" aria-hidden="true">🤝</div>
+                <h3>Solo care + future helper</h3>
+                <p>
+                  I’m the one who shows up, and any future teammate will shadow
+                  alongside me before working in your home.
+                </p>
               </article>
             </div>
           </div>
@@ -246,33 +218,51 @@
           <div class="container">
             <div class="section-header">
               <h2>Your First Dustless Visit, Step by Step</h2>
-              <p>Exactly what happens from arrival to the calm, final walkthrough.</p>
+              <p>
+                Exactly what happens from arrival to the calm, final
+                walkthrough.
+              </p>
             </div>
             <div class="timeline">
               <article class="timeline-step glass">
                 <div class="timeline-icon">01</div>
                 <h3>Arrival &amp; Quick Walkthrough</h3>
-                <p>We greet you (or your trusted contact) and walk the space to note requests.</p>
+                <p>
+                  I greet you (or your trusted contact) and walk the space to
+                  note requests.
+                </p>
               </article>
               <article class="timeline-step glass">
                 <div class="timeline-icon">02</div>
                 <h3>Declutter &amp; Prep</h3>
-                <p>Surfaces are cleared, gear set up, and we stage each room so cleaning is efficient.</p>
+                <p>
+                  I pre-treat trouble spots, clear surfaces, and stage each room
+                  so cleaning is efficient.
+                </p>
               </article>
               <article class="timeline-step glass">
                 <div class="timeline-icon">03</div>
                 <h3>Deep Clean Focus Zones</h3>
-                <p>Kitchens, baths, and high-traffic areas receive detail time and custom add-ons.</p>
+                <p>
+                  Kitchens, baths, and high-traffic areas receive slow detail
+                  time and the add-ons you booked.
+                </p>
               </article>
               <article class="timeline-step glass">
                 <div class="timeline-icon">04</div>
                 <h3>Detail &amp; Finishing Touches</h3>
-                <p>Floors are reset, chrome shines, and textiles are fluffed for a boutique finish.</p>
+                <p>
+                  Floors are reset, chrome shines, and textiles are fluffed for
+                  a boutique finish.
+                </p>
               </article>
               <article class="timeline-step glass">
                 <div class="timeline-icon">05</div>
                 <h3>Final Walkthrough &amp; Care Tips</h3>
-                <p>We review the space, share gentle care notes, and confirm next steps.</p>
+                <p>
+                  I text you photos, leave gentle care notes, and confirm the
+                  next visit (or future team support).
+                </p>
               </article>
             </div>
           </div>
@@ -284,43 +274,69 @@
             <div class="section-header">
               <p class="eyebrow">Thoughtful Services</p>
               <h2>Choose the clean that fits your home’s current season.</h2>
+              <p class="muted">
+                Every visit is handled by the same familiar hands (with a
+                helper-in-training shadowing soon) using plant-based kits. Steam
+                add-ons are reserved for first-time deep cleans or by request,
+                and I rely on your vacuum/mop to keep each home’s tools
+                separate.
+              </p>
             </div>
             <div class="service-snapshot-grid">
               <article class="service-snapshot-card glass">
                 <span class="service-icon" aria-hidden="true">RC</span>
                 <h3>Residential Cleaning</h3>
-                <p>Weekly, bi-weekly, or calming one-time refresh visits.</p>
-                <p class="service-perfect">Perfect for busy families &amp; roommates.</p>
+                <p>
+                  Weekly, bi-weekly, or calming one-time refresh visits with the
+                  same familiar care.
+                </p>
+                <p class="service-perfect">
+                  Perfect for busy families &amp; roommates.
+                </p>
                 <ul class="service-checklist">
                   <li>Surfaces dusted + styled</li>
                   <li>Kitchen &amp; bath refresh</li>
-                  <li>Floors vacuumed &amp; mopped</li>
+                  <li>
+                    Floors vacuumed &amp; mopped with your equipment (steam
+                    add-on for first-time deep cleans)
+                  </li>
                 </ul>
                 <a href="services.html" class="link-btn">Included checklist</a>
               </article>
               <article class="service-snapshot-card glass">
                 <span class="service-icon" aria-hidden="true">DC</span>
                 <h3>Deep Clean Reset</h3>
-                <p>Grease, grout, baseboards &amp; high-touch surfaces reset.</p>
-                <p class="service-perfect">Perfect for lived-in homes &amp; season changes.</p>
+                <p>
+                  Grease, grout, baseboards &amp; high-touch surfaces reset with
+                  eco products and optional steam add-ons for first visits.
+                </p>
+                <p class="service-perfect">
+                  Perfect for lived-in homes &amp; season changes.
+                </p>
                 <ul class="service-checklist">
                   <li>Degreased stove &amp; backsplash</li>
                   <li>Scrubbed sinks &amp; grout</li>
                   <li>Baseboards &amp; doors wiped</li>
-                  <li>Interior fridge/oven optional</li>
+                  <li>
+                    Interior fridge/oven + steam spot-treat (first-time add-on)
+                  </li>
                 </ul>
                 <a href="services.html#deep" class="link-btn">View details</a>
               </article>
               <article class="service-snapshot-card glass">
                 <span class="service-icon" aria-hidden="true">MM</span>
                 <h3>Move-In / Move-Out</h3>
-                <p>Checklist-ready cleans for stress-free keys &amp; listings.</p>
-                <p class="service-perfect">Perfect for landlords &amp; renters.</p>
+                <p>
+                  Checklist-ready cleans for stress-free keys &amp; listings.
+                </p>
+                <p class="service-perfect">
+                  Perfect for landlords &amp; renters.
+                </p>
                 <ul class="service-checklist">
                   <li>Inside cabinets &amp; closets</li>
                   <li>Appliances detailed</li>
                   <li>Walls &amp; trim wiped</li>
-                  <li>Floors swept, vacuumed, mopped</li>
+                  <li>Floors swept, vacuumed, mopped with your tools</li>
                 </ul>
                 <a href="services.html#move" class="link-btn">View details</a>
               </article>
@@ -328,11 +344,15 @@
                 <span class="service-icon" aria-hidden="true">OS</span>
                 <h3>Office &amp; Studio</h3>
                 <p>Quiet after-hours or early resets for client spaces.</p>
-                <p class="service-perfect">Perfect for studios, salons &amp; clinics.</p>
+                <p class="service-perfect">
+                  Perfect for studios, salons &amp; clinics.
+                </p>
                 <ul class="service-checklist">
                   <li>Desks &amp; reception wiped</li>
                   <li>Restrooms sanitized</li>
-                  <li>Floors + waste bins handled</li>
+                  <li>
+                    Floors + waste bins handled (steam only for booked add-ons)
+                  </li>
                 </ul>
                 <a href="services.html#commercial" class="link-btn">
                   View details
@@ -340,57 +360,6 @@
               </article>
             </div>
           </div>
-        </section>
-
-        <!-- Mess Level Slider -->
-        <section id="messMeter" class="section mess-meter section-soft-bg" data-reveal>
-          <div class="container">
-            <div class="mess-meter-card glass">
-              <div>
-                <p class="eyebrow">How dusty is your place?</p>
-                <h2>Slide to tell us the current vibe.</h2>
-                <p>
-                  We’ll still ask for photos in the booking form, but this gives you a feel for the
-                  service tier and add-ons we recommend.
-                </p>
-              </div>
-              <div class="mess-meter-control">
-                <label for="messMeterSlider">Mess level: <span id="messMeterValue">5</span>/10</label>
-                <input
-                  type="range"
-                  id="messMeterSlider"
-                  min="1"
-                  max="10"
-                  value="5"
-                />
-                <p id="messMeterMessage" class="mess-meter-message">
-                  Lived-in and loved. Deep Clean Reset recommended.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Trust Bar -->
-        <section class="trust-bar" data-reveal aria-label="Trust Badges">
-            <div class="container trust-bar-inner">
-              <div class="trust-item">
-                <span class="trust-icon" aria-hidden="true"></span>
-                <p>Insured &amp; Reliable</p>
-              </div>
-              <div class="trust-item">
-                <span class="trust-icon" aria-hidden="true"></span>
-                <p>Eco-Friendly Cleaners</p>
-              </div>
-              <div class="trust-item">
-                <span class="trust-icon" aria-hidden="true"></span>
-                <p>Pet &amp; Baby-Safe</p>
-              </div>
-              <div class="trust-item">
-                <span class="trust-icon" aria-hidden="true"></span>
-                <p>5-Star Client Feedback</p>
-              </div>
-            </div>
         </section>
 
         <!-- What’s Included -->
@@ -410,161 +379,91 @@
             </div>
             <div class="checklist-grid">
               <ul class="checklist">
-                <li><span class="check-icon">✔</span>Kitchens &amp; appliances</li>
+                <li>
+                  <span class="check-icon">✔</span>Kitchens &amp; appliances
+                </li>
                 <li><span class="check-icon">✔</span>Bathrooms &amp; tile</li>
                 <li><span class="check-icon">✔</span>Living &amp; bedrooms</li>
                 <li><span class="check-icon">✔</span>Dusting &amp; surfaces</li>
               </ul>
               <ul class="checklist">
-                <li><span class="check-icon">✔</span>Floors &amp; baseboards</li>
+                <li>
+                  <span class="check-icon">✔</span>Floors &amp; baseboards
+                </li>
                 <li><span class="check-icon">✔</span>Interior windows</li>
                 <li><span class="check-icon">✔</span>High-touch points</li>
-                <li><span class="check-icon">✔</span>Entry &amp; reset styling</li>
+                <li>
+                  <span class="check-icon">✔</span>Entry &amp; reset styling
+                </li>
+                <li>
+                  <span class="check-icon">✔</span>Steam detailing upon request
+                </li>
               </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Results / Before & After Slider (moved up) -->
-        <section id="results" class="section section-soft-bg" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <h2>See the Before &amp; After Calm</h2>
-              <p>
-                Slide to compare real results from rentals, family homes, and
-                move-outs across Hamilton &amp; surrounding areas.
-              </p>
-            </div>
-
-            <div class="before-after before-after-feature glass">
-              <div class="before-after-inner">
-                <img
-                  src="/images/before1.jpg"
-                  alt="Before cleaning – cluttered room"
-                  class="before-after-img before-after-img-before"
-                />
-                <img
-                  src="/images/after1.jpg"
-                  alt="After cleaning – calm, reset room"
-                  class="before-after-img before-after-img-after"
-                  id="beforeAfterAfterImg"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value="50"
-                id="beforeAfterSlider"
-                aria-label="Slide to compare before and after"
-                class="before-after-slider"
-              />
-
-              <div class="before-after-label before-after-label-left">
-                Before
-              </div>
-              <div class="before-after-label before-after-label-right">
-                After
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Eco Promise -->
-        <section class="section eco-promise section-clean" data-reveal>
-          <div class="container eco-promise-inner">
-            <div>
-              <p class="eyebrow">Eco Promise</p>
-              <h2>Low-tox, small-batch, always respectful.</h2>
-              <p>
-                Every bottle we bring is mixed in tiny batches, tested on our own
-                homes, and safe for paws, toddlers, and lungs.
-              </p>
-            </div>
-            <div class="eco-promise-grid">
-              <span class="eco-pill">Plant-based concentrates</span>
-              <span class="eco-pill">Low-tox &amp; low-scent</span>
-              <span class="eco-pill">Small-batch refills</span>
-              <span class="eco-pill">Pet &amp; kid-friendly</span>
-              <span class="eco-pill">Made in Hamilton</span>
-              <span class="eco-pill">Refillable bottles</span>
             </div>
           </div>
         </section>
 
         <!-- Promos -->
         <section
-          id="promos"
+          id="pricing"
           class="section promos section-light"
-          aria-label="Promos & Rewards"
+          aria-label="Pricing Snapshot"
           data-reveal
         >
           <div class="container">
             <div class="section-header">
-              <h2>Calm Pricing, Thoughtful Rewards</h2>
+              <h2>Pricing Snapshot</h2>
               <p>
-                No gimmicks. Just simple ways to say thank you to new guests,
-                loyal homes, and kind referrals.
+                One set of careful hands (soon a helper shadowing) means pricing
+                is simple: transparent hourly blocks with add-ons only when you
+                request them.
               </p>
             </div>
 
             <div class="promos-grid refined">
               <article class="promo-card glass">
-                <span class="promo-label">New Clients</span>
-                <h3>Fresh Start Reset</h3>
+                <span class="promo-label">Studios &amp; 1BR</span>
+                <h3>Reset Visit</h3>
                 <p>
-                  First deep clean receives <strong>$25 off</strong> — perfect
-                  for a gentle reset before recurring care.
+                  Typically <strong>$140–$190</strong> for 2.5–3.5 hours,
+                  including kitchens, baths, and the main living area.
                 </p>
-                <div class="promo-code">Code: FRESHSTART</div>
               </article>
 
               <article class="promo-card glass">
-                <span class="promo-label">Loyalty</span>
-                <h3>Stay Clean Club</h3>
+                <span class="promo-label">Family Homes</span>
+                <h3>Deep Clean</h3>
                 <p>
-                  Bi-weekly or monthly visits stay at a calm
-                  <strong>10% loyalty rate</strong> while active.
+                  <strong>$220–$320</strong> covers 4–5 hours. Steam detailing
+                  is an add-on and typically reserved for first-time deep cleans
+                  or when you request it.
                 </p>
-                <div class="promo-code">Code: STAYCLEAN</div>
               </article>
 
               <article class="promo-card glass">
-                <span class="promo-label">Referral</span>
-                <h3>Refer &amp; Relax</h3>
+                <span class="promo-label">Move Ins/Outs</span>
+                <h3>Checklist Ready</h3>
                 <p>
-                  Share the calm. You and your friend each enjoy
-                  <strong>$25 off</strong> the next visit.
+                  <strong>$300+</strong> depending on size/access. Includes
+                  inside cabinets, appliances, and optional steam add-ons.
                 </p>
-                <div class="promo-code">Code: REFERRELAX</div>
               </article>
 
               <article class="promo-card glass">
-                <span class="promo-label">Midweek Special</span>
-                <h3>Midweek Reset</h3>
+                <span class="promo-label">Add-ons</span>
+                <h3>Custom Care</h3>
                 <p>
-                  Flexible schedule? Tuesdays &amp; Wednesdays receive
-                  <strong>15% off</strong>.
+                  Steam upholstery, inside fridge/oven, laundry folding, and
+                  window tracks are quoted individually (usually $20–$45) and
+                  best suited for first-time deep cleans.
                 </p>
-                <div class="promo-code">Code: MIDWEEK</div>
-              </article>
-
-              <article class="promo-card glass">
-                <span class="promo-label">Seasonal Bundle</span>
-                <h3>Deep-Clean + Windows</h3>
-                <p>
-                  Combine a deep clean with interior windows for
-                  <strong>$20 off</strong>.
-                </p>
-                <div class="promo-code">Code: SEASONAL</div>
               </article>
             </div>
 
             <p class="promos-note">
-              Add your code in the booking form. We’ll quietly apply the best
-              fit to your confirmed quote — no stacking, no pressure, always
-              transparent.
+              Exact quotes arrive within 12 hours of your SmartQuote™
+              submission. I never charge surprise fees — just honest labour
+              estimates based on real photos and notes.
             </p>
           </div>
         </section>
@@ -583,16 +482,17 @@
               <h3>Hi, I’m Antonette — owner &amp; lead cleaner.</h3>
               <p>
                 I started Dustless Living to bring intentional, eco-friendly
-                cleaning to Hamilton homes that crave calm. Every job is handled
-                by myself or our tightly trained team, with respectful care for
-                your routines, pets, and treasures.
+                cleaning to Hamilton homes that crave calm. Every job stays on
+                my calendar so you always know who’s coming by, with respectful
+                care for your routines, pets, and treasures.
               </p>
               <p class="muted">
-                We promise tidy communication, transparent pricing, and
-                follow-through you can feel after we leave.
+                Expect tidy communication, transparent pricing, and
+                follow-through you can feel after I leave — and when a helper
+                joins later this year, they’ll be trained beside me so it still
+                feels like inviting a neighbour in.
               </p>
               <ul class="meet-highlights">
-                <li>Fully insured &amp; background checked</li>
                 <li>Pet whisperer &amp; plant lover</li>
                 <li>Replies within 1 business day</li>
               </ul>
@@ -653,8 +553,8 @@
                 <div class="icon-circle" aria-hidden="true">RC</div>
                 <h3>Residential Cleaning</h3>
                 <p>
-                  Weekly, bi-weekly, or one-time visits that keep your home
-                  light, fresh, and low-stress.
+                  Weekly, bi-weekly, or one-time visits led by the same familiar
+                  face to keep your home light, fresh, and low-stress.
                 </p>
                 <button
                   class="link-btn"
@@ -668,7 +568,8 @@
                 <h3>Commercial &amp; Studio</h3>
                 <p>
                   Quiet, reliable after-hours care for offices, salons, and
-                  studios that welcome clients daily.
+                  studios that welcome clients daily, with steam sanitizing
+                  available.
                 </p>
                 <button
                   class="link-btn"
@@ -682,7 +583,8 @@
                 <h3>Deep Cleaning Reset</h3>
                 <p>
                   Detailed top-to-bottom clean for kitchens, baths &amp; every
-                  overlooked corner.
+                  overlooked corner, finished with eco products and optional
+                  steam detail.
                 </p>
                 <button class="link-btn" onclick="openServiceModal('deep')">
                   View Details
@@ -693,7 +595,7 @@
                 <h3>Move-In / Move-Out</h3>
                 <p>
                   Stress-free transitions for tenants, landlords &amp; realtors:
-                  checklist-ready results.
+                  checklist-ready results with steam-ready disinfecting.
                 </p>
                 <button class="link-btn" onclick="openServiceModal('move')">
                   View Details
@@ -702,7 +604,10 @@
               <div class="service-card" data-parallax>
                 <div class="icon-circle" aria-hidden="true">AO</div>
                 <h3>Thoughtful Add-Ons</h3>
-                <p>Fridge, oven, windows, baseboards &amp; more — as needed.</p>
+                <p>
+                  Fridge, oven, windows, baseboards &amp; steam detailing for
+                  tile or upholstery — as needed.
+                </p>
                 <button class="link-btn" onclick="openServiceModal('addons')">
                   View Details
                 </button>
@@ -720,7 +625,7 @@
         </div>
 
         <!-- Shop -->
-        <section id="shop" class="section shop-section" data-reveal>
+        <section id="shop" class="section shop-section hidden" data-reveal>
           <div class="container">
             <div class="section-header">
               <h2>Dustless Living Home Care</h2>
@@ -744,8 +649,8 @@
             <p class="eyebrow">Dustless Living SmartQuote™</p>
             <h2>SmartQuote™ – Guided Cleaning Estimate</h2>
             <p class="section-subtitle">
-              Takes about 3–5 minutes. Photos optional. Share how you live so we can
-              prepare the right crew, timing, and care.
+              Takes about 3–5 minutes. Photos optional. Share how you live so I
+              can plan the timing now (and loop in my helper when it’s time).
             </p>
           </div>
 
@@ -756,7 +661,9 @@
                   <p class="wizard-step-label" id="wizardStepLabel">
                     Step 1 of 5
                   </p>
-                  <p class="wizard-step-title" id="wizardStepTitle">Basic Info</p>
+                  <p class="wizard-step-title" id="wizardStepTitle">
+                    Basic Info
+                  </p>
                 </div>
                 <div class="wizard-progress-bar">
                   <span id="wizardProgressFill"></span>
@@ -834,7 +741,11 @@
                     </div>
                     <div class="field">
                       <label for="preferredDate">Preferred cleaning date</label>
-                      <input type="date" id="preferredDate" name="preferredDate" />
+                      <input
+                        type="date"
+                        id="preferredDate"
+                        name="preferredDate"
+                      />
                       <small class="field-error" aria-live="polite"></small>
                     </div>
                   </div>
@@ -865,10 +776,16 @@
                 </div>
 
                 <!-- Step 2 -->
-                <div class="wizard-step" data-step="2" data-title="Space Details">
+                <div
+                  class="wizard-step"
+                  data-step="2"
+                  data-title="Space Details"
+                >
                   <div class="step-intro">
                     <h3>Space Details</h3>
-                    <p>Let us know the rooms and timeline we’re walking into.</p>
+                    <p>
+                      Let us know the rooms and timeline we’re walking into.
+                    </p>
                   </div>
                   <div class="form-grid">
                     <div class="field">
@@ -998,7 +915,11 @@
                         <span>Just moved in</span>
                       </label>
                       <label class="pill-option">
-                        <input type="radio" name="livingLength" value="< 1 year" />
+                        <input
+                          type="radio"
+                          name="livingLength"
+                          value="< 1 year"
+                        />
                         <span>&lt; 1 year</span>
                       </label>
                       <label class="pill-option">
@@ -1066,7 +987,11 @@
                         <span>Upload walkthrough video</span>
                       </label>
                       <label class="pill-option">
-                        <input type="radio" name="mediaOption" value="description" />
+                        <input
+                          type="radio"
+                          name="mediaOption"
+                          value="description"
+                        />
                         <span>Skip, I’ll describe it</span>
                       </label>
                     </div>
@@ -1118,10 +1043,16 @@
                 </div>
 
                 <!-- Step 4 -->
-                <div class="wizard-step" data-step="4" data-title="Condition & Extras">
+                <div
+                  class="wizard-step"
+                  data-step="4"
+                  data-title="Condition & Extras"
+                >
                   <div class="step-intro">
                     <h3>Condition & Extras</h3>
-                    <p>Tell us how lived-in it feels and any extra love needed.</p>
+                    <p>
+                      Tell us how lived-in it feels and any extra love needed.
+                    </p>
                   </div>
                   <div class="field slider-field">
                     <label for="conditionLevel">Condition level</label>
@@ -1159,7 +1090,11 @@
                         <span>Inside fridge</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="insideOven" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="insideOven"
+                        />
                         <span>Inside oven</span>
                       </label>
                       <label class="pill-checkbox">
@@ -1171,7 +1106,11 @@
                         <span>Inside cabinets</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="degreaseStove" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="degreaseStove"
+                        />
                         <span>Heavy degrease stove top</span>
                       </label>
                     </fieldset>
@@ -1182,15 +1121,27 @@
                         <span>Windows (interior)</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="baseboards" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="baseboards"
+                        />
                         <span>Baseboards</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="spotWalls" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="spotWalls"
+                        />
                         <span>Spot clean walls / doors</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="laundryFold" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="laundryFold"
+                        />
                         <span>Laundry folding</span>
                       </label>
                       <label class="pill-checkbox">
@@ -1198,7 +1149,11 @@
                         <span>Dishes</span>
                       </label>
                       <label class="pill-checkbox">
-                        <input type="checkbox" name="extras" value="changeBedding" />
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="changeBedding"
+                        />
                         <span>Change bedding</span>
                       </label>
                     </fieldset>
@@ -1224,7 +1179,12 @@
                       <p>Pets at home?</p>
                       <div class="pill-group">
                         <label class="pill-option">
-                          <input type="radio" name="hasPets" value="yes" required />
+                          <input
+                            type="radio"
+                            name="hasPets"
+                            value="yes"
+                            required
+                          />
                           <span>Yes</span>
                         </label>
                         <label class="pill-option">
@@ -1238,7 +1198,12 @@
                       <p>Kids at home?</p>
                       <div class="pill-group">
                         <label class="pill-option">
-                          <input type="radio" name="hasKids" value="yes" required />
+                          <input
+                            type="radio"
+                            name="hasKids"
+                            value="yes"
+                            required
+                          />
                           <span>Yes</span>
                         </label>
                         <label class="pill-option">
@@ -1252,14 +1217,19 @@
                 </div>
 
                 <!-- Step 5 -->
-                <div class="wizard-step" data-step="5" data-title="Review & Submit">
+                <div
+                  class="wizard-step"
+                  data-step="5"
+                  data-title="Review & Submit"
+                >
                   <div class="step-intro">
                     <h3>Review & Submit</h3>
                     <p>Take a quick glance before sending.</p>
                   </div>
                   <div id="smartquoteSummary" class="review-summary">
                     <p class="muted">
-                      We’ll summarize your details here when you reach this step.
+                      We’ll summarize your details here when you reach this
+                      step.
                     </p>
                   </div>
                   <p class="review-note">
@@ -1267,11 +1237,7 @@
                     price may adjust slightly if the condition is different in
                     person.
                   </p>
-                  <button
-                    type="button"
-                    class="link-btn"
-                    id="reviewBackLink"
-                  >
+                  <button type="button" class="link-btn" id="reviewBackLink">
                     Back and edit
                   </button>
                 </div>
@@ -1313,56 +1279,6 @@
           </div>
         </section>
 
-        <!-- Gallery -->
-        <section id="gallery" class="section" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <h2>Before &amp; After Highlights</h2>
-              <p>Real spaces, real clients, real relief.</p>
-            </div>
-            <div class="gallery-grid">
-              <img
-                src="/images/before1.jpg"
-                alt="Before clean"
-                class="gallery-item"
-              />
-              <img
-                src="/images/after1.jpg"
-                alt="After clean"
-                class="gallery-item"
-              />
-              <img
-                src="/images/before2.jpg"
-                alt="Before clean"
-                class="gallery-item"
-              />
-              <img
-                src="/images/after2.jpg"
-                alt="After clean"
-                class="gallery-item"
-              />
-              <img
-                src="/images/bathroom-after.jpg"
-                alt="Sparkling bathroom"
-                class="gallery-item"
-              />
-              <img
-                src="/images/og-image.jpg"
-                alt="Clean, calm living space"
-                class="gallery-item"
-              />
-            </div>
-          </div>
-          <div class="lightbox" id="lightbox">
-            <div class="lightbox-content">
-              <button class="lightbox-close" onclick="closeLightbox()">
-                ×
-              </button>
-              <img id="lightboxImg" src="" alt="Preview" />
-            </div>
-          </div>
-        </section>
-
         <!-- Testimonials + FAQ -->
         <section class="section section-soft-bg" data-reveal>
           <div class="container testimonials-faq-layout">
@@ -1380,38 +1296,58 @@
               <div class="accordion" id="faqAccordion">
                 <div class="accordion-item">
                   <button class="accordion-header">
-                    Do you bring your own supplies?
+                    Is it just you, or do you have a team?
                   </button>
                   <div class="accordion-body">
-                    Yes. We arrive fully equipped with quality products. If you
-                    have sensitivities or preferred products, we’re happy to use
-                    them.
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <button class="accordion-header">Are you insured?</button>
-                  <div class="accordion-body">
-                    Yes. Dustless Living operates with coverage and a careful
-                    respect for your belongings and privacy.
+                    It’s just me for now. I’m training one helper who will
+                    shadow me on select visits before working solo. You’ll
+                    always know who is coming, and I’ll be on-site for every
+                    first clean.
                   </div>
                 </div>
                 <div class="accordion-item">
                   <button class="accordion-header">
-                    How does pricing work?
+                    What should I budget for a visit?
                   </button>
                   <div class="accordion-body">
-                    We combine a base rate with effort-based factors: mess
-                    level, size, and add-ons. You’ll see a clear estimate before
-                    you commit.
+                    Most recurring homes land between $140–$190, while deep
+                    cleans range from $220–$320 depending on size and add-ons.
+                    Once I see your SmartQuote™ details (rooms, photos, timing),
+                    I’ll email a firm estimate before we book.
                   </div>
                 </div>
                 <div class="accordion-item">
                   <button class="accordion-header">
-                    Do you offer recurring cleans?
+                    Do you bring supplies and steam equipment?
                   </button>
                   <div class="accordion-body">
-                    Yes. Weekly, bi-weekly, and monthly options are available,
-                    with loyalty pricing through our Stay Clean Club.
+                    Yes — plant-based concentrates, microfiber rotations, and my
+                    dry-steam unit travel with me. To avoid cross-home
+                    contamination, I always use the vacuum and mop you keep
+                    on-site (please have them handy). Steam is an add-on for
+                    first-time deep cleans or by request. If you have favourite
+                    products or sensitivities, I’m happy to use yours instead.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    How do reschedules or cancellations work?
+                  </button>
+                  <div class="accordion-body">
+                    Life happens! Please give me 48 hours notice so I can refill
+                    the slot. Same-day cancellations incur a $40 fee because
+                    I’ve already set aside the time and mixed products.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Will you travel outside Hamilton?
+                  </button>
+                  <div class="accordion-body">
+                    I regularly service Hamilton, Burlington, Stoney Creek, and
+                    nearby towns. If you’re farther out, just mention it in your
+                    quote form — I’ll let you know if a small travel fee
+                    applies.
                   </div>
                 </div>
               </div>
@@ -1426,7 +1362,8 @@
               <h2>Contact &amp; Service Area</h2>
               <p>
                 Ready to book, ask a question, or partner for rentals/Airbnbs or
-                offices? Reach out — we respond thoughtfully, not with spam.
+                offices? Reach out — you’ll hear back from me directly, never a
+                call centre.
               </p>
               <ul class="contact-list">
                 <li>
@@ -1643,15 +1580,14 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#promos">Promos</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book</a>
-          <a href="#careers">Careers</a>
+          <a href="services.html">Services</a>
+          <a href="quote.html">SmartQuote</a>
+          <a href="quote.html#smartquote">Book</a>
+          <a href="#">Careers</a>
         </div>
         <div class="footer-social">
           <a
@@ -1693,24 +1629,64 @@
       </div>
     </footer>
 
-    <!-- Chatbot -->
+    <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
       <button class="chatbot-toggle" id="chatbotToggle">💬</button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-          <h4>Dustless Quote Assistant</h4>
+          <h4>Dustless Lead Collector</h4>
           <button class="chatbot-close" onclick="toggleChatbot(false)">
             ×
           </button>
         </div>
-        <div class="chatbot-body" id="chatbotBody"></div>
-        <div class="chatbot-input">
-          <input
-            type="text"
-            id="chatbotInput"
-            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
-          />
-          <button onclick="handleChatbotMessage()">Send</button>
+        <div class="chatbot-body">
+          <form id="chatbotLeadForm" class="chatbot-form">
+            <label>
+              <span>Name *</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email *</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Optional" />
+            </label>
+            <label>
+              <span>Service interest</span>
+              <select name="service">
+                <option value="Deep clean">Deep clean / first visit</option>
+                <option value="Maintenance clean">Maintenance clean</option>
+                <option value="Move clean">Move-in / Move-out</option>
+                <option value="Commercial clean">Commercial / studio</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="This week">This week</option>
+                <option value="Next 2 weeks">Next 2 weeks</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea
+                name="notes"
+                rows="2"
+                placeholder="Share rooms, pets, or anything you'd like me to know..."
+              ></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-full">
+              Send details
+            </button>
+            <p class="chatbot-hint">
+              You’ll hear back within 12 hours with next steps.
+            </p>
+            <p id="chatbotLeadStatus" class="chatbot-status"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -1804,7 +1780,7 @@
     </div>
 
     <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab">
+    <button id="openCartBtn" class="cart-fab hidden">
       <span class="cart-icon">🛒</span>
       <span id="cartCount" class="cart-count">0</span>
     </button>

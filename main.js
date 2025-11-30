@@ -73,7 +73,8 @@
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove("visible");
         }
       });
     },
@@ -862,62 +863,15 @@
 
   const chatbotToggle = document.getElementById("chatbotToggle");
   const chatbotWindow = document.getElementById("chatbotWindow");
-  const chatbotBody = document.getElementById("chatbotBody");
-  const chatbotInput = document.getElementById("chatbotInput");
+  const chatbotLeadForm = document.getElementById("chatbotLeadForm");
+  const chatbotLeadStatus = document.getElementById("chatbotLeadStatus");
 
-  function botSay(text) {
-    if (!chatbotBody) return;
-    const div = document.createElement("div");
-    div.className = "chatbot-msg bot";
-    div.textContent = text;
-    chatbotBody.appendChild(div);
-    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  function setChatbotStatus(message = "", type = "") {
+    if (!chatbotLeadStatus) return;
+    chatbotLeadStatus.textContent = message;
+    chatbotLeadStatus.classList.remove("success", "error");
+    if (type) chatbotLeadStatus.classList.add(type);
   }
-
-  function userSay(text) {
-    if (!chatbotBody) return;
-    const div = document.createElement("div");
-    div.className = "chatbot-msg user";
-    div.textContent = text;
-    chatbotBody.appendChild(div);
-    chatbotBody.scrollTop = chatbotBody.scrollHeight;
-  }
-
-  function estimateFromMessage(msg) {
-    const messMatch = msg.match(/(\d{1,2})/);
-    const mess = messMatch
-      ? Math.min(Math.max(parseInt(messMatch[1], 10), 1), 10)
-      : 5;
-
-    let base = 120;
-    if (/condo|apartment/i.test(msg)) base = 120;
-    if (/townhouse/i.test(msg)) base = 140;
-    if (/house|detached|semi/i.test(msg)) base = 160;
-
-    const brMatch = msg.match(/(\d+)\s*bed/i);
-    if (brMatch) {
-      const br = parseInt(brMatch[1], 10);
-      base += (br - 2) * 15;
-    }
-    const total = base + mess * 10;
-    return Math.max(100, Math.round(total / 5) * 5);
-  }
-
-  function handleChatbotMessage() {
-    if (!chatbotInput) return;
-    const text = chatbotInput.value.trim();
-    if (!text) return;
-    userSay(text);
-    chatbotInput.value = "";
-    const est = estimateFromMessage(text);
-    setTimeout(() => {
-      botSay(`A calm estimate for that space is around $${est}.`);
-      botSay(
-        "For an exact quote, share your details in the booking form and we’ll respond personally."
-      );
-    }, 400);
-  }
-  window.handleChatbotMessage = handleChatbotMessage;
 
   function toggleChatbot(force) {
     if (!chatbotWindow) return;
@@ -926,25 +880,14 @@
         ? force
         : chatbotWindow.style.display !== "flex";
     chatbotWindow.style.display = show ? "flex" : "none";
-    if (show && chatbotBody && chatbotBody.children.length === 0) {
-      botSay("Hi! I can help you estimate your clean.");
-      botSay(
-        "Tell me: home type (condo/house), bedrooms, and mess level (1-10)."
-      );
+    if (show) {
+      setChatbotStatus("", "");
     }
   }
   window.toggleChatbot = toggleChatbot;
 
   if (chatbotToggle) {
     chatbotToggle.addEventListener("click", () => toggleChatbot());
-  }
-  if (chatbotInput) {
-    chatbotInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleChatbotMessage();
-      }
-    });
   }
 
   // ===============================
@@ -993,6 +936,55 @@
   const auth = firebase.auth();
   const db = firebase.firestore();
   const storage = firebase.storage();
+
+  function initChatbotLeadForm() {
+    if (!chatbotLeadForm || chatbotLeadForm.dataset.bound === "true") return;
+
+    chatbotLeadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(chatbotLeadForm);
+      const name = (formData.get("name") || "").trim();
+      const email = (formData.get("email") || "").trim();
+      const phone = (formData.get("phone") || "").trim();
+      const service = (formData.get("service") || "General clean").trim();
+      const timeline = (formData.get("timeline") || "Flexible").trim();
+      const notes = (formData.get("notes") || "").trim();
+
+      if (!email) {
+        setChatbotStatus(
+          "Please include an email so I can follow up.",
+          "error"
+        );
+        return;
+      }
+
+      try {
+        setChatbotStatus("Sending...", "");
+        await db.collection("leads").add({
+          name,
+          email,
+          phone,
+          serviceType: service,
+          timeline,
+          notes,
+          source: "leadWidget",
+          status: "new",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        setChatbotStatus("Thanks! I’ll reply within 12 hours.", "success");
+        chatbotLeadForm.reset();
+      } catch (err) {
+        console.error("Lead capture error:", err);
+        setChatbotStatus(
+          "Something went wrong. Email dustlessliving@gmail.com instead.",
+          "error"
+        );
+      }
+    });
+
+    chatbotLeadForm.dataset.bound = "true";
+  }
+  initChatbotLeadForm();
 
   /**
    * DUSTLESS ASSISTANT – Firestore Data Model (reference only)
@@ -1384,7 +1376,12 @@
   if (decorBubblesContainer) {
     const bubbleCount = 14;
     const bubbles = [];
-    const canvasHeight = document.body.scrollHeight;
+    let canvasHeight = document.documentElement.scrollHeight;
+
+    const updateCanvasSize = () => {
+      canvasHeight = document.documentElement.scrollHeight;
+    };
+    window.addEventListener("resize", updateCanvasSize);
 
     function createBubble(idx) {
       const bubble = document.createElement("div");
@@ -1395,12 +1392,13 @@
       const hue = 150 + Math.random() * 40;
       bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), hsla(${hue}, 60%, 80%, 0.5))`;
       bubble.style.left = `${Math.random() * 100}%`;
-      const yPos = Math.random() * canvasHeight * 0.8;
+      const yPos = Math.random() * canvasHeight;
       bubble.dataset.y = yPos;
       bubble.style.top = `${yPos}px`;
-      bubble.dataset.vx = (Math.random() - 0.5) * 0.15;
-      bubble.dataset.vy = (Math.random() - 0.5) * 0.2;
+      bubble.dataset.vx = (Math.random() - 0.5) * 0.08;
+      bubble.dataset.vy = (Math.random() - 0.5) * 0.12;
       bubble.dataset.floatOffset = Math.random() * 360;
+      bubble.dataset.floatSpeed = 7000 + Math.random() * 4000;
       bubble.style.pointerEvents = "auto";
       bubble.addEventListener("click", () => popBubble(idx));
       decorBubblesContainer.appendChild(bubble);
@@ -1415,7 +1413,7 @@
         "animationend",
         () => {
           bubble.remove();
-          setTimeout(() => createBubble(idx), 600);
+          setTimeout(() => createBubble(idx), 800);
         },
         { once: true }
       );
@@ -1429,23 +1427,34 @@
     });
 
     function animateBubbles() {
+      const now = Date.now();
       bubbles.forEach((bubble) => {
-        if (!bubble || bubble.classList.contains("popping")) return;
+        if (!bubble) return;
         const rect = bubble.getBoundingClientRect();
         const currentY = parseFloat(bubble.dataset.y);
         const floatOffset = parseFloat(bubble.dataset.floatOffset);
         const vx = parseFloat(bubble.dataset.vx);
         const vy = parseFloat(bubble.dataset.vy);
+        const floatSpeed = parseFloat(bubble.dataset.floatSpeed);
         const floatY =
-          Math.sin((Date.now() / 5000) + floatOffset) * 5 + currentY + vy * 0.4;
-        const floatX =
+          Math.sin(now / floatSpeed + floatOffset) * 6 + currentY + vy * 0.3;
+        let floatLeftPercent =
           parseFloat(bubble.style.left) +
-          vx * 0.6 +
-          Math.cos((Date.now() / 5200) + floatOffset) * 0.2;
+          vx * 0.4 +
+          Math.cos(now / (floatSpeed + 800) + floatOffset) * 0.15;
+
+        if (floatLeftPercent < -5) floatLeftPercent = 105;
+        if (floatLeftPercent > 105) floatLeftPercent = -5;
 
         bubble.style.top = `${floatY}px`;
-        bubble.style.left = `${floatX}%`;
+        bubble.style.left = `${floatLeftPercent}%`;
         bubble.dataset.y = floatY;
+
+        if (floatY < -120 || floatY > canvasHeight + 120) {
+          const resetY = Math.random() * canvasHeight;
+          bubble.dataset.y = resetY;
+          bubble.style.top = `${resetY}px`;
+        }
 
         const centerX = rect.left + rect.width / 2;
         const centerY = floatY;

@@ -50,12 +50,13 @@
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
+    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
         <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
@@ -80,14 +81,6 @@
                 <path d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </button>
-            <button class="icon-btn cart-icon-btn" id="openCartHeader" aria-label="View cart">
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path d="M4 5h1.5l1.2 9h9.6l1.2-7H6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-                <circle cx="10" cy="19" r="1.4"></circle>
-                <circle cx="16" cy="19" r="1.4"></circle>
-              </svg>
-              <span class="cart-count-badge" id="headerCartCount">0</span>
-            </button>
             <button class="icon-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
               <span class="theme-icon">☀️</span>
             </button>
@@ -110,6 +103,9 @@
         >
           Get My Free Quote
         </button>
+        <button class="btn btn-soft btn-full" id="openLoginMobile">
+          Team Login
+        </button>
       </nav>
     </header>
 
@@ -125,7 +121,8 @@
                 Dustless Living began as a one-woman service by
                 <strong>Antonette</strong>, a detail-oriented cleaner with a
                 background in tech support and a soft spot for calm, organized
-                spaces.
+                spaces. It’s still personal today, with a second set of hands in
+                training to join for busier weeks.
               </p>
               <p>
                 Today, Dustless Living supports homes, landlords, students, busy
@@ -151,6 +148,101 @@
             </div>
           </div>
         </section>
+
+        <section class="section" data-reveal>
+          <div class="container">
+            <div class="section-header">
+              <p class="eyebrow">Cleaning-first focus</p>
+              <h2>Every decision revolves around healthier homes.</h2>
+              <p>
+                From the supplies we mix to the rotations we schedule, Dustless Living is run like
+                a boutique cleaning studio — not a gig marketplace. You always know who’s walking in
+                the door and which checklist they’re following.
+              </p>
+            </div>
+            <div class="about-pillars-grid">
+              <article class="glass">
+                <h3>Personal routines</h3>
+                <p>
+                  We keep notes on pet names, crib nap times, and appliance finishes so every visit
+                  feels like the same respectful neighbour stopping by.
+                </p>
+              </article>
+              <article class="glass">
+                <h3>Steam &amp; low-tox</h3>
+                <p>
+                  Pro-grade steam tools step in for grout, tile, toys, and soft goods when chemicals
+                  aren’t welcome. Otherwise, we rely on plant-based concentrates and refills.
+                </p>
+              </article>
+              <article class="glass">
+                <h3>Calm communication</h3>
+                <p>
+                  You get confirmations, arrival texts, and a short aftercare recap with photos so
+                  you’re never guessing what was completed.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section about-supplies section-light" data-reveal>
+          <div class="container about-supplies-grid">
+            <div>
+              <p class="eyebrow">Supplies &amp; standards</p>
+              <h3>We arrive self-contained.</h3>
+              <p class="muted">
+                You never have to stock specialty products. I restock the DL Clean Kit before every visit,
+                sanitize all tools between homes, and use your vacuum/mop so we don’t carry germs across households.
+              </p>
+              <ul class="checklist">
+                <li><span class="check-icon">✔</span>Color-coded microfiber sets &amp; detail brushes</li>
+                <li><span class="check-icon">✔</span>Glass, wood, and stone-safe blends</li>
+                <li><span class="check-icon">✔</span>Dry-steam wand for sanitizing</li>
+                <li><span class="check-icon">✔</span>Dedicated pet-hair attachments</li>
+                <li><span class="check-icon">✔</span>Your vacuum &amp; mop stay on-site to avoid cross contamination</li>
+              </ul>
+            </div>
+            <div class="about-supplies-card glass">
+              <h4>Visit rhythm</h4>
+              <ul>
+                <li>Arrival walkthrough &amp; priorities</li>
+                <li>Declutter, dust, detail surfaces</li>
+                <li>Kitchen + bath deep focus</li>
+                <li>Floors vacuumed / mopped using your equipment</li>
+                <li>Steam add-ons if booked</li>
+                <li>Final styling + recap text</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section about-service-area section-soft-bg" data-reveal>
+          <div class="container about-service-area-inner glass">
+            <div>
+              <p class="eyebrow">Service map</p>
+              <h3>Hamilton, Burlington, Stoney Creek &amp; nearby towns.</h3>
+              <p>
+                Condos, rentals, family homes, and boutique studios are all part of our regular
+                routes. Need occasional AirBnB flips or realtor-ready cleans? We can help there, too.
+              </p>
+            </div>
+            <div class="about-service-area-list">
+              <div>
+                <strong>Typical response</strong>
+                <p>Quotes within 12 hours • Visits within 2–7 days</p>
+              </div>
+              <div>
+                <strong>Availability</strong>
+                <p>Mon–Fri 8am–6pm • Select Saturdays for move-outs</p>
+              </div>
+              <div>
+                <strong>Contact</strong>
+                <p><a href="tel:+12894017321">289-401-7321</a> • dustlessliving@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -158,15 +250,14 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark">DL</span>
+          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
           <span class="logo-text">Dustless Living</span>
         </div>
         <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#promos">Promos</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book</a>
-          <a href="#careers">Careers</a>
+          <a href="services.html">Services</a>
+          <a href="quote.html">SmartQuote</a>
+          <a href="quote.html#smartquote">Book</a>
+          <a href="#">Careers</a>
         </div>
         <div class="footer-social">
           <a
@@ -209,24 +300,60 @@
     </footer>
 
 
-    <!-- Chatbot -->
+    <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
       <button class="chatbot-toggle" id="chatbotToggle">💬</button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-          <h4>Dustless Quote Assistant</h4>
+          <h4>Dustless Lead Collector</h4>
           <button class="chatbot-close" onclick="toggleChatbot(false)">
             ×
           </button>
         </div>
-        <div class="chatbot-body" id="chatbotBody"></div>
-        <div class="chatbot-input">
-          <input
-            type="text"
-            id="chatbotInput"
-            placeholder="Tell us home type, beds &amp; mess level (1–10)..."
-          />
-          <button onclick="handleChatbotMessage()">Send</button>
+        <div class="chatbot-body">
+          <form id="chatbotLeadForm" class="chatbot-form">
+            <label>
+              <span>Name *</span>
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email *</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Optional" />
+            </label>
+            <label>
+              <span>Service interest</span>
+              <select name="service">
+                <option value="Deep clean">Deep clean / first visit</option>
+                <option value="Maintenance clean">Maintenance clean</option>
+                <option value="Move clean">Move-in / Move-out</option>
+                <option value="Commercial clean">Commercial / studio</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="This week">This week</option>
+                <option value="Next 2 weeks">Next 2 weeks</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea
+                name="notes"
+                rows="2"
+                placeholder="Share rooms, pets, or anything you'd like me to know..."
+              ></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-full">Send details</button>
+            <p class="chatbot-hint">You’ll hear back within 12 hours with next steps.</p>
+            <p id="chatbotLeadStatus" class="chatbot-status"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -320,7 +447,7 @@
     </div>
 
     <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab">
+    <button id="openCartBtn" class="cart-fab hidden">
       <span class="cart-icon">🛒</span>
       <span id="cartCount" class="cart-count">0</span>
     </button>
