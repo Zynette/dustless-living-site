@@ -5,27 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Dustless Living | Budget-Friendly Premium Cleaning Service in Hamilton &
-      Surrounding Areas
+      Dustless Living Cleaning Services | Hamilton & Burlington Cleaning
     </title>
     <meta
       name="description"
-      content="Dustless Living delivers calm, detail-focused cleaning for homes, rentals, and small businesses in Hamilton & Surrounding Areas. Deep cleans, move-in/move-out, recurring care & more."
+      content="Dustless Living Cleaning Services provides residential, deep cleaning, move-in/move-out, office, studio, commercial, and rental cleaning in Hamilton, Burlington, and surrounding areas. Owner-led, steam-first, low-tox care."
     />
     <meta
       name="keywords"
-      content="Hamilton cleaning service, Burlington cleaning, Dustless Living, house cleaning Hamilton, commercial cleaning Burlington, deep cleaning, move out clean"
+      content="Hamilton cleaning service, Burlington cleaning service, house cleaning Hamilton, house cleaning Burlington, deep cleaning Hamilton, deep cleaning Burlington, move out cleaning Hamilton, move in cleaning Burlington, office cleaning Hamilton, studio cleaning Burlington, Airbnb cleaning Hamilton, commercial cleaning Hamilton, Commercial Cleaning Burlington, rental cleaning Burlington, steam cleaning Hamilton, eco-friendly cleaning Hamilton, Dustless Living Cleaning Services"
     />
-    <meta name="author" content="Dustless Living" />
+    <meta name="author" content="Dustless Living Cleaning Services" />
 
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Dustless Living | Budget-Friendly Premium Cleaning Services"
+      content="Dustless Living Cleaning Services | Hamilton & Burlington Cleaning"
     />
     <meta
       property="og:description"
-      content="A clean space. A clear mind. Budget-Friendly home & business cleaning in Hamilton & Surrounding Areas."
+      content="Owner-led, steam-first cleaning for homes, offices, studios, and rentals in Hamilton, Burlington, and nearby towns."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dustlessliving.com/" />
@@ -35,7 +34,7 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,58 +44,121 @@
       rel="stylesheet"
     />
 
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
     <!-- Styles -->
     <link rel="stylesheet" href="/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Dustless Living Cleaning Services",
+        "telephone": "+1-289-401-7321",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hamilton",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        },
+        "areaServed": [
+          "Hamilton, ON",
+          "Burlington, ON",
+          "Ancaster, ON",
+          "Dundas, ON",
+          "Stoney Creek, ON",
+          "Flamborough, ON",
+          "Glanbrook, ON",
+          "Waterdown, ON",
+          "Binbrook, ON",
+          "Mount Hope, ON",
+          "Aldershot, ON",
+          "Brant Hills, ON",
+          "Headon Forest, ON",
+          "The Orchard, ON",
+          "Dynes, ON"
+        ],
+        "serviceType": [
+          "Residential cleaning",
+          "Deep cleaning",
+          "Move-in/move-out cleaning",
+          "Office cleaning",
+          "Studio cleaning",
+          "Rental turnover cleaning",
+          "Airbnb cleaning"
+        ],
+        "url": "https://dustlessliving.com/"
+      }
+    </script>
   </head>
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
-    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
     <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
+          <img
+            src="/images/favicon.png"
+            alt="Dustless Living logo"
+            class="logo-icon"
+          />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
         <nav class="nav nav-primary">
-          <a href="index.html#home" class="nav-link">Home</a>
-          <a href="services.html" class="nav-link">Services</a>
-          <a href="quote.html" class="nav-link">Pricing</a>
-          <a href="shop.html" class="nav-link">Shop</a>
-          <a href="gallery.html" class="nav-link">Gallery</a>
-          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#serviceArea" class="nav-link">Service Area</a>
+          <a href="#reviews" class="nav-link">Reviews</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
           <button
             class="btn btn-primary nav-cta"
-            onclick="window.location.href='quote.html#smartquote'"
+            onclick="window.location.href='index.html#booking'"
           >
             Get My Free Quote
           </button>
           <div class="header-icons">
             <button
-              class="icon-btn"
-              id="headerChatToggle"
-              aria-label="Open chat"
-            >
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path
-                  d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </button>
-            <button
               class="icon-btn theme-toggle-btn"
               id="themeToggle"
               aria-label="Toggle dark mode"
             >
-              <span class="theme-icon">☀️</span>
+              <span class="theme-icon" aria-hidden="true">
+                <svg
+                  class="icon-svg theme-icon-svg theme-icon-sun"
+                  viewBox="0 0 24 24"
+                  role="presentation"
+                  focusable="false"
+                >
+                  <circle cx="12" cy="12" r="4.2"></circle>
+                  <line x1="12" y1="3" x2="12" y2="1"></line>
+                  <line x1="12" y1="23" x2="12" y2="21"></line>
+                  <line x1="4.2" y1="4.2" x2="2.8" y2="2.8"></line>
+                  <line x1="21.2" y1="21.2" x2="19.8" y2="19.8"></line>
+                  <line x1="3" y1="12" x2="1" y2="12"></line>
+                  <line x1="23" y1="12" x2="21" y2="12"></line>
+                  <line x1="4.2" y1="19.8" x2="2.8" y2="21.2"></line>
+                  <line x1="21.2" y1="4.2" x2="19.8" y2="2.8"></line>
+                </svg>
+                <svg
+                  class="icon-svg theme-icon-svg theme-icon-moon"
+                  viewBox="0 0 24 24"
+                  role="presentation"
+                  focusable="false"
+                >
+                  <path
+                    d="M20.8 14.2A8.2 8.2 0 0 1 9.8 3.2a8.3 8.3 0 1 0 11 11z"
+                  ></path>
+                </svg>
+              </span>
             </button>
           </div>
         </div>
@@ -104,22 +166,47 @@
           <span></span><span></span><span></span>
         </button>
       </div>
-      <nav class="nav-mobile" id="navMobile">
-        <a href="index.html#home" class="nav-link">Home</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="quote.html" class="nav-link">Pricing</a>
-        <a href="shop.html" class="nav-link">Shop</a>
-        <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="faq.html" class="nav-link">FAQ</a>
-        <button
-          class="btn btn-primary btn-full"
-          onclick="window.location.href='quote.html#smartquote'"
-        >
-          Get My Free Quote
-        </button>
-        <button class="btn btn-soft btn-full" id="openLoginMobile">
-          Team Login
-        </button>
+      <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+        <div class="nav-mobile-panel">
+          <div class="nav-mobile-top">
+            <div class="nav-mobile-brand">
+              <img
+                src="/images/favicon.png"
+                alt="Dustless Living logo"
+                class="logo-icon"
+              />
+              <span>Dustless Living</span>
+            </div>
+            <button
+              class="nav-mobile-close"
+              id="navClose"
+              aria-label="Close menu"
+            >
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <div class="nav-mobile-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#serviceArea" class="nav-link">Service Area</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+          <button
+            class="btn btn-primary btn-full"
+            onclick="window.location.href='index.html#booking'"
+          >
+            Get My Free Quote
+          </button>
+          <button
+            class="btn btn-outline btn-full"
+            onclick="window.location.href='#home'"
+          >
+            Home
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -129,27 +216,41 @@
       <div id="publicSite">
         <!-- Hero -->
         <section class="hero section section-clean" data-reveal>
-          <div class="hero-sparkles" aria-hidden="true"></div>
+          <div class="hero-background" aria-hidden="true">
+            <video
+              class="hero-background-video"
+              data-hero-video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster="/images/about-bg.jpg"
+            >
+              <!--<source src="/videos/cleanarea.mp4" type="video/mp4" />-->
+              <source src="/videos/cleaningvideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="hero__overlay"></div>
+          </div>
           <div class="container hero-inner">
             <div class="hero-copy">
               <div class="hero-text">
-                <p class="eyebrow">Hamilton &amp; Surrounding Areas</p>
+                <p class="eyebrow">Serving Hamilton & Burlington</p>
                 <h1>
-                  Personal Eco Cleaning for Homes &amp; Small Businesses.<br />Trusted,
-                  Pet-Safe, and Detailed with Care.
+                  Sanitization-first cleaning <br />
+                  without harsh chemicals
                 </h1>
-                <p class="hero-subtitle">
-                  Hi, I’m Antonette — your personal cleaner behind Dustless
-                  Living. I use plant-based, low-tox cleaners, offer steam
-                  detailing for deep refreshes, and use your vacuum and mop to
-                  avoid cross-home contamination. Pet-safe, baby-safe, always
-                  handled with care.
-                </p>
+                <div class="hero-trust-line">
+                  <span>High-temperature steam sanitization</span>
+                  <span>Non-toxic, kid &amp; pet-safe products</span>
+                  <span>No cross-contamination between client spaces</span>
+                </div>
               </div>
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
-                  onclick="window.location.href='quote.html#smartquote'"
+                  onclick="window.location.href='index.html#booking'"
                 >
                   Get My Free Quote
                 </button>
@@ -157,111 +258,290 @@
                   class="btn btn-outline"
                   onclick="scrollToSection('services')"
                 >
-                  View Services
+                  View Services →
                 </button>
               </div>
             </div>
-            <div class="hero-media" data-reveal>
-              <video
-                autoplay
-                muted
-                loop
-                playsinline
-                poster="/images/og-image.jpg"
+          </div>
+        </section>
+
+        <!-- Meet Your Cleaner -->
+        <section class="section meet-cleaner section--tint" data-reveal>
+          <div class="container meet-cleaner-grid">
+            <div class="meet-cleaner-media">
+              <img
+                src="/images/antonette.JPG"
+                alt="Antonette arranging eco-friendly cleaning supplies"
+              />
+              <span class="meet-tag"
+                >Owner-Led • Hamilton &amp; Burlington</span
               >
-                <source src="/videos/cleanarea.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            </div>
+            <div class="meet-cleaner-copy">
+              <p class="eyebrow eyebrow--subtle">Meet</p>
+              <h2>Antonette,<br />Owner &amp; Lead Cleaner</h2>
+              <p class="meet-lede">
+                I personally clean every space myself. As Dustless Living grows,
+                I plan to bring on one or two helpers I train closely and work
+                alongside.
+              </p>
+              <p class="meet-method">
+                I don’t believe in sending strangers into people’s homes. Trust,
+                consistency, and care come first.
+              </p>
+              <p class="meet-method">
+                My work focuses on sanitization, not just how things look. I use
+                high-temperature steam and gentle, non-toxic products to keep
+                homes, offices, and rentals safe for families, pets, and guests.
+              </p>
+              <div class="meet-cleaning-badges" aria-label="How I clean">
+                <span class="trust-pill">Steam-sanitized surfaces</span>
+                <span class="trust-pill">Microfiber cloth system</span>
+                <span class="trust-pill">Non-toxic, low-odor care</span>
+              </div>
+              <ul class="meet-credits">
+                <li>
+                  I’m growing slowly and intentionally so the care stays
+                  personal.
+                </li>
+                <li>
+                  Workplace Hazardous Materials Information System-trained
+                </li>
+              </ul>
+              <div class="meet-actions">
+                <button
+                  class="btn btn-primary"
+                  onclick="window.location.href='index.html#booking'"
+                >
+                  Book a Personal Visit
+                </button>
+                <button class="link-btn" onclick="scrollToSection('services')">
+                  Explore Services
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- First Visit Timeline -->
-        <section class="section safety-trust" data-reveal>
+        <section
+          id="services"
+          class="section section--warm service-snapshot services-section"
+          data-reveal
+        >
           <div class="container">
-            <div class="section-header">
-              <h2>Safety, Training &amp; Trust</h2>
-              <p>
-                You get the same trained hands every visit — I’m here now, with
-                one carefully chosen helper joining later this year.
+            <div class="section-header align-center prose">
+              <h2>Services</h2>
+              <p class="muted prose">
+                Services are designed for homes, studios, offices, and
+                short-term rentals that need consistent, discreet, eco-safe care
+                that is not rushed, chemical-heavy cleaning.
+              </p>
+              <p class="muted prose">
+                After-hours and recurring office cleaning available.
               </p>
             </div>
-            <div class="safety-grid">
-              <article class="safety-card glass">
-                <div class="safety-icon" aria-hidden="true">🧪</div>
-                <h3>WHMIS-trained</h3>
-                <p>
-                  Proper handling of cleaning products in Canadian homes &amp;
-                  workplaces.
-                </p>
+            <div class="service-snapshot-grid">
+              <article
+                id="service-residential"
+                class="service-snapshot-card glass"
+              >
+                <img
+                  class="service-thumb"
+                  src="/images/residential.jpg"
+                  alt="Residential cleaning refresh"
+                />
+                <h3>Residential Cleaning</h3>
+                <p class="card-lede">Recurring care for lived-in homes.</p>
+                <button
+                  class="link-btn"
+                  onclick="openServiceModal('residential')"
+                >
+                  Read details
+                </button>
               </article>
-              <article class="safety-card glass">
-                <div class="safety-icon" aria-hidden="true">📜</div>
-                <h3>CMI-certified cleaning</h3>
-                <p>
-                  Formal training in modern cleaning standards and procedures.
-                </p>
+              <article id="service-deep" class="service-snapshot-card glass">
+                <img
+                  class="service-thumb"
+                  src="/images/deepclean.jpg"
+                  alt="Deep clean reset detail"
+                />
+                <h3>Deep Clean Reset</h3>
+                <p class="card-lede">A top-to-bottom reset for busy seasons.</p>
+                <button class="link-btn" onclick="openServiceModal('deep')">
+                  Read details
+                </button>
               </article>
-              <article class="safety-card glass">
-                <div class="safety-icon" aria-hidden="true">🤝</div>
-                <h3>Solo care + future helper</h3>
-                <p>
-                  I’m the one who shows up, and any future teammate will shadow
-                  alongside me before working in your home.
-                </p>
+              <article id="service-move" class="service-snapshot-card glass">
+                <img
+                  class="service-thumb"
+                  src="/images/moving.jpg"
+                  alt="Move-in or move-out prep"
+                />
+                <h3>Move-In / Move-Out</h3>
+                <p class="card-lede">Move-ready prep for smooth handoffs.</p>
+                <button class="link-btn" onclick="openServiceModal('move')">
+                  Read details
+                </button>
               </article>
+              <article
+                id="service-commercial"
+                class="service-snapshot-card glass"
+              >
+                <img
+                  class="service-thumb"
+                  src="/images/office.jpg"
+                  alt="Office and studio cleaning"
+                />
+                <h3>Office &amp; Studio</h3>
+                <p class="card-lede">
+                  Low-odor, non-toxic cleaning for shared spaces with quiet,
+                  respectful visits.
+                </p>
+                <button
+                  class="link-btn"
+                  onclick="openServiceModal('commercial')"
+                >
+                  Read details
+                </button>
+              </article>
+              <article id="service-airbnb" class="service-snapshot-card glass">
+                <img
+                  class="service-thumb"
+                  src="/images/airbnb.jpg"
+                  alt="Short-term rental refresh"
+                />
+                <h3>Airbnb / Short-Term Rental</h3>
+                <p class="card-lede">
+                  Fast resets with steam sanitization between guests.
+                </p>
+                <button class="link-btn" onclick="openServiceModal('airbnb')">
+                  Read details
+                </button>
+              </article>
+              <article id="service-addons" class="service-snapshot-card glass">
+                <img
+                  class="service-thumb"
+                  src="/images/ovenclean.jpg"
+                  alt="Add-on and specialty care"
+                />
+                <h3>Add-Ons &amp; Specialty Care</h3>
+                <p class="card-lede">Optional extras for targeted needs.</p>
+                <button class="link-btn" onclick="openServiceModal('addons')">
+                  Read details
+                </button>
+              </article>
+            </div>
+            <p class="muted prose service-after-note">
+              Every service is delivered with eco-friendly products, steam
+              detailing, and low-moisture care so kids, pets, and sensitive
+              clients stay comfortable. Carpet cleaning with a professional
+              extractor is coming soon for high-traffic homes and studios.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="section section--sage growth-section growth-section--spacious"
+          data-reveal
+        >
+          <div class="growth-bg" aria-hidden="true">
+            <video autoplay muted loop playsinline>
+              <source src="/videos/clean_transition.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="container">
+            <div class="growth-block">
+              <div class="growth-grid">
+                <div class="growth-card">
+                  <h2>Growing Carefully</h2>
+                  <p class="growth-subhead">Slow growth, same standards</p>
+                  <ul class="growth-list">
+                    <li>
+                      Dustless Living is intentionally small. I only take on new
+                      clients when I can maintain quality. Any future team
+                      members are trained by me, work alongside me, and follow
+                      the same care notes you’re used to.
+                    </li>
+                    <li>
+                      I take on a limited number of regular clients so quality
+                      stays consistent.
+                    </li>
+                  </ul>
+                </div>
+                <div class="growth-card">
+                  <h2>Why Clients Choose Dustless Living</h2>
+                  <p class="growth-subhead">Clear boundaries, calmer visits</p>
+                  <ul class="growth-list">
+                    <li>You’ll never get a surprise cleaner.</li>
+                    <li>Visits are calm, unrushed, and detail-focused.</li>
+                    <li>Steam-first, low-tox cleaning for sensitive homes.</li>
+                    <li>
+                      Notes reviewed before each visit, so priorities are
+                      honored.
+                    </li>
+                    <li>
+                      Respectful communication and tidy recaps every time.
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="firstVisit" class="section section-light" data-reveal>
+        <section id="firstVisit" class="section section--card" data-reveal>
           <div class="container">
-            <div class="section-header">
+            <div class="section-header align-center prose">
               <h2>Your First Dustless Visit, Step by Step</h2>
-              <p>
+              <p class="prose">
                 Exactly what happens from arrival to the calm, final
                 walkthrough.
               </p>
             </div>
             <div class="timeline">
-              <article class="timeline-step glass">
-                <div class="timeline-icon">01</div>
-                <h3>Arrival &amp; Quick Walkthrough</h3>
+              <article class="timeline-step glass timeline-step--emphasis">
+                <div class="timeline-icon">
+                  <span>01</span>
+                </div>
+                <h3>Arrival &amp; Walkthrough</h3>
                 <p>
-                  I greet you (or your trusted contact) and walk the space to
-                  note requests.
+                  Quick review of requests and care notes before doors close.
                 </p>
               </article>
               <article class="timeline-step glass">
-                <div class="timeline-icon">02</div>
-                <h3>Declutter &amp; Prep</h3>
+                <div class="timeline-icon">
+                  <span>02</span>
+                </div>
+                <h3>Prep &amp; Declutter</h3>
                 <p>
-                  I pre-treat trouble spots, clear surfaces, and stage each room
-                  so cleaning is efficient.
+                  Surfaces cleared and trouble spots pre-treated for focused
+                  work.
                 </p>
               </article>
               <article class="timeline-step glass">
-                <div class="timeline-icon">03</div>
+                <div class="timeline-icon">
+                  <span>03</span>
+                </div>
                 <h3>Deep Clean Focus Zones</h3>
                 <p>
-                  Kitchens, baths, and high-traffic areas receive slow detail
-                  time and the add-ons you booked.
+                  High-touch surfaces are steam-sanitized with professional
+                  equipment and eco-safe methods.
                 </p>
               </article>
               <article class="timeline-step glass">
-                <div class="timeline-icon">04</div>
+                <div class="timeline-icon">
+                  <span>04</span>
+                </div>
                 <h3>Detail &amp; Finishing Touches</h3>
-                <p>
-                  Floors are reset, chrome shines, and textiles are fluffed for
-                  a boutique finish.
-                </p>
+                <p>Floors reset, chrome polished, and textiles fluffed.</p>
               </article>
-              <article class="timeline-step glass">
-                <div class="timeline-icon">05</div>
+              <article class="timeline-step glass timeline-step--emphasis">
+                <div class="timeline-icon">
+                  <span>05</span>
+                </div>
                 <h3>Final Walkthrough &amp; Care Tips</h3>
                 <p>
-                  I text you photos, leave gentle care notes, and confirm the
-                  next visit (or future team support).
+                  Photos, notes, and next-visit planning land in your inbox.
                 </p>
               </article>
             </div>
@@ -269,352 +549,6 @@
         </section>
 
         <!-- Services Snapshot -->
-        <section class="section section-light service-snapshot" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <p class="eyebrow">Thoughtful Services</p>
-              <h2>Choose the clean that fits your home’s current season.</h2>
-              <p class="muted">
-                Every visit is handled by the same familiar hands (with a
-                helper-in-training shadowing soon) using plant-based kits. Steam
-                add-ons are reserved for first-time deep cleans or by request,
-                and I rely on your vacuum/mop to keep each home’s tools
-                separate.
-              </p>
-            </div>
-            <div class="service-snapshot-grid">
-              <article class="service-snapshot-card glass">
-                <span class="service-icon" aria-hidden="true">RC</span>
-                <h3>Residential Cleaning</h3>
-                <p>
-                  Weekly, bi-weekly, or calming one-time refresh visits with the
-                  same familiar care.
-                </p>
-                <p class="service-perfect">
-                  Perfect for busy families &amp; roommates.
-                </p>
-                <ul class="service-checklist">
-                  <li>Surfaces dusted + styled</li>
-                  <li>Kitchen &amp; bath refresh</li>
-                  <li>
-                    Floors vacuumed &amp; mopped with your equipment (steam
-                    add-on for first-time deep cleans)
-                  </li>
-                </ul>
-                <a href="services.html" class="link-btn">Included checklist</a>
-              </article>
-              <article class="service-snapshot-card glass">
-                <span class="service-icon" aria-hidden="true">DC</span>
-                <h3>Deep Clean Reset</h3>
-                <p>
-                  Grease, grout, baseboards &amp; high-touch surfaces reset with
-                  eco products and optional steam add-ons for first visits.
-                </p>
-                <p class="service-perfect">
-                  Perfect for lived-in homes &amp; season changes.
-                </p>
-                <ul class="service-checklist">
-                  <li>Degreased stove &amp; backsplash</li>
-                  <li>Scrubbed sinks &amp; grout</li>
-                  <li>Baseboards &amp; doors wiped</li>
-                  <li>
-                    Interior fridge/oven + steam spot-treat (first-time add-on)
-                  </li>
-                </ul>
-                <a href="services.html#deep" class="link-btn">View details</a>
-              </article>
-              <article class="service-snapshot-card glass">
-                <span class="service-icon" aria-hidden="true">MM</span>
-                <h3>Move-In / Move-Out</h3>
-                <p>
-                  Checklist-ready cleans for stress-free keys &amp; listings.
-                </p>
-                <p class="service-perfect">
-                  Perfect for landlords &amp; renters.
-                </p>
-                <ul class="service-checklist">
-                  <li>Inside cabinets &amp; closets</li>
-                  <li>Appliances detailed</li>
-                  <li>Walls &amp; trim wiped</li>
-                  <li>Floors swept, vacuumed, mopped with your tools</li>
-                </ul>
-                <a href="services.html#move" class="link-btn">View details</a>
-              </article>
-              <article class="service-snapshot-card glass">
-                <span class="service-icon" aria-hidden="true">OS</span>
-                <h3>Office &amp; Studio</h3>
-                <p>Quiet after-hours or early resets for client spaces.</p>
-                <p class="service-perfect">
-                  Perfect for studios, salons &amp; clinics.
-                </p>
-                <ul class="service-checklist">
-                  <li>Desks &amp; reception wiped</li>
-                  <li>Restrooms sanitized</li>
-                  <li>
-                    Floors + waste bins handled (steam only for booked add-ons)
-                  </li>
-                </ul>
-                <a href="services.html#commercial" class="link-btn">
-                  View details
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!-- What’s Included -->
-        <section
-          id="whatsIncluded"
-          class="section whats-included section-clean"
-          data-reveal
-        >
-          <div class="container whats-included-grid">
-            <div>
-              <p class="eyebrow">What We Handle</p>
-              <h2>Every clean includes a calm, detailed checklist.</h2>
-              <p class="muted">
-                Add-ons (interior windows, fridge, oven, laundry) are always
-                quoted fairly based on time and scope — no surprises.
-              </p>
-            </div>
-            <div class="checklist-grid">
-              <ul class="checklist">
-                <li>
-                  <span class="check-icon">✔</span>Kitchens &amp; appliances
-                </li>
-                <li><span class="check-icon">✔</span>Bathrooms &amp; tile</li>
-                <li><span class="check-icon">✔</span>Living &amp; bedrooms</li>
-                <li><span class="check-icon">✔</span>Dusting &amp; surfaces</li>
-              </ul>
-              <ul class="checklist">
-                <li>
-                  <span class="check-icon">✔</span>Floors &amp; baseboards
-                </li>
-                <li><span class="check-icon">✔</span>Interior windows</li>
-                <li><span class="check-icon">✔</span>High-touch points</li>
-                <li>
-                  <span class="check-icon">✔</span>Entry &amp; reset styling
-                </li>
-                <li>
-                  <span class="check-icon">✔</span>Steam detailing upon request
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Promos -->
-        <section
-          id="pricing"
-          class="section promos section-light"
-          aria-label="Pricing Snapshot"
-          data-reveal
-        >
-          <div class="container">
-            <div class="section-header">
-              <h2>Pricing Snapshot</h2>
-              <p>
-                One set of careful hands (soon a helper shadowing) means pricing
-                is simple: transparent hourly blocks with add-ons only when you
-                request them.
-              </p>
-            </div>
-
-            <div class="promos-grid refined">
-              <article class="promo-card glass">
-                <span class="promo-label">Studios &amp; 1BR</span>
-                <h3>Reset Visit</h3>
-                <p>
-                  Typically <strong>$140–$190</strong> for 2.5–3.5 hours,
-                  including kitchens, baths, and the main living area.
-                </p>
-              </article>
-
-              <article class="promo-card glass">
-                <span class="promo-label">Family Homes</span>
-                <h3>Deep Clean</h3>
-                <p>
-                  <strong>$220–$320</strong> covers 4–5 hours. Steam detailing
-                  is an add-on and typically reserved for first-time deep cleans
-                  or when you request it.
-                </p>
-              </article>
-
-              <article class="promo-card glass">
-                <span class="promo-label">Move Ins/Outs</span>
-                <h3>Checklist Ready</h3>
-                <p>
-                  <strong>$300+</strong> depending on size/access. Includes
-                  inside cabinets, appliances, and optional steam add-ons.
-                </p>
-              </article>
-
-              <article class="promo-card glass">
-                <span class="promo-label">Add-ons</span>
-                <h3>Custom Care</h3>
-                <p>
-                  Steam upholstery, inside fridge/oven, laundry folding, and
-                  window tracks are quoted individually (usually $20–$45) and
-                  best suited for first-time deep cleans.
-                </p>
-              </article>
-            </div>
-
-            <p class="promos-note">
-              Exact quotes arrive within 12 hours of your SmartQuote™
-              submission. I never charge surprise fees — just honest labour
-              estimates based on real photos and notes.
-            </p>
-          </div>
-        </section>
-
-        <!-- Meet Your Cleaner -->
-        <section class="section meet-cleaner" data-reveal>
-          <div class="container meet-cleaner-card glass">
-            <div class="meet-cleaner-photo">
-              <img
-                src="/images/og-image.jpg"
-                alt="Antonette from Dustless Living"
-              />
-            </div>
-            <div class="meet-cleaner-copy">
-              <p class="eyebrow">Meet Your Cleaner</p>
-              <h3>Hi, I’m Antonette — owner &amp; lead cleaner.</h3>
-              <p>
-                I started Dustless Living to bring intentional, eco-friendly
-                cleaning to Hamilton homes that crave calm. Every job stays on
-                my calendar so you always know who’s coming by, with respectful
-                care for your routines, pets, and treasures.
-              </p>
-              <p class="muted">
-                Expect tidy communication, transparent pricing, and
-                follow-through you can feel after I leave — and when a helper
-                joins later this year, they’ll be trained beside me so it still
-                feels like inviting a neighbour in.
-              </p>
-              <ul class="meet-highlights">
-                <li>Pet whisperer &amp; plant lover</li>
-                <li>Replies within 1 business day</li>
-              </ul>
-              <div class="social-mini">
-                <a
-                  href="https://www.instagram.com/"
-                  class="social-btn"
-                  aria-label="Instagram"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  IG
-                </a>
-                <a
-                  href="https://www.linkedin.com/"
-                  class="social-btn"
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  in
-                </a>
-                <a
-                  href="https://www.facebook.com/"
-                  class="social-btn"
-                  aria-label="Facebook"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  f
-                </a>
-                <a
-                  href="https://www.tiktok.com/"
-                  class="social-btn"
-                  aria-label="TikTok"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  t
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Services -->
-        <section id="services" class="section" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <h2>Services</h2>
-              <p>
-                Thoughtful cleaning tailored to your routine, your standards,
-                and your peace of mind.
-              </p>
-            </div>
-            <div class="services-grid">
-              <div class="service-card" data-parallax>
-                <div class="icon-circle" aria-hidden="true">RC</div>
-                <h3>Residential Cleaning</h3>
-                <p>
-                  Weekly, bi-weekly, or one-time visits led by the same familiar
-                  face to keep your home light, fresh, and low-stress.
-                </p>
-                <button
-                  class="link-btn"
-                  onclick="openServiceModal('residential')"
-                >
-                  View Details
-                </button>
-              </div>
-              <div class="service-card" data-parallax>
-                <div class="icon-circle" aria-hidden="true">CS</div>
-                <h3>Commercial &amp; Studio</h3>
-                <p>
-                  Quiet, reliable after-hours care for offices, salons, and
-                  studios that welcome clients daily, with steam sanitizing
-                  available.
-                </p>
-                <button
-                  class="link-btn"
-                  onclick="openServiceModal('commercial')"
-                >
-                  View Details
-                </button>
-              </div>
-              <div class="service-card" data-parallax>
-                <div class="icon-circle" aria-hidden="true">DC</div>
-                <h3>Deep Cleaning Reset</h3>
-                <p>
-                  Detailed top-to-bottom clean for kitchens, baths &amp; every
-                  overlooked corner, finished with eco products and optional
-                  steam detail.
-                </p>
-                <button class="link-btn" onclick="openServiceModal('deep')">
-                  View Details
-                </button>
-              </div>
-              <div class="service-card" data-parallax>
-                <div class="icon-circle" aria-hidden="true">MM</div>
-                <h3>Move-In / Move-Out</h3>
-                <p>
-                  Stress-free transitions for tenants, landlords &amp; realtors:
-                  checklist-ready results with steam-ready disinfecting.
-                </p>
-                <button class="link-btn" onclick="openServiceModal('move')">
-                  View Details
-                </button>
-              </div>
-              <div class="service-card" data-parallax>
-                <div class="icon-circle" aria-hidden="true">AO</div>
-                <h3>Thoughtful Add-Ons</h3>
-                <p>
-                  Fridge, oven, windows, baseboards &amp; steam detailing for
-                  tile or upholstery — as needed.
-                </p>
-                <button class="link-btn" onclick="openServiceModal('addons')">
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <!-- Service Modal -->
         <div class="modal-backdrop" id="serviceModal">
@@ -624,38 +558,27 @@
           </div>
         </div>
 
-        <!-- Shop -->
-        <section id="shop" class="section shop-section hidden" data-reveal>
-          <div class="container">
-            <div class="section-header">
-              <h2>Dustless Living Home Care</h2>
-              <p class="section-subtitle">
-                Eco-kind cleaners, refills, and tools we actually trust in your
-                home — bottled with the same care we bring on every visit.
-              </p>
-            </div>
-
-            <!-- Featured row -->
-            <div id="shopFeaturedRow" class="shop-featured-row"></div>
-
-            <!-- Product grid populated from Firestore -->
-            <div id="shopGrid" class="shop-grid"></div>
-          </div>
-        </section>
-
         <!-- SmartQuote Wizard -->
-        <section id="booking" class="section smartquote-section" data-reveal>
-          <div class="container section-header">
-            <p class="eyebrow">Dustless Living SmartQuote™</p>
-            <h2>SmartQuote™ – Guided Cleaning Estimate</h2>
-            <p class="section-subtitle">
-              Takes about 3–5 minutes. Photos optional. Share how you live so I
-              can plan the timing now (and loop in my helper when it’s time).
+        <section
+          id="booking"
+          class="section smartquote-section section--card"
+          data-reveal
+        >
+          <div class="container section-header prose">
+            <h2>SmartQuote™ Guided Cleaning Estimate</h2>
+            <p class="smartquote-reassurance">
+              Takes <strong>2–3 minutes</strong> · Photos optional · No
+              obligation
             </p>
           </div>
 
           <div class="container">
             <div class="smartquote-card glass">
+              <p class="gift-note">
+                <span class="gift-icon-small" aria-hidden="true">•</span>
+                Booking for someone else? We love that. Include their name and
+                any notes, and we’ll take care of the rest.
+              </p>
               <div class="wizard-progress">
                 <div>
                   <p class="wizard-step-label" id="wizardStepLabel">
@@ -678,8 +601,8 @@
                   data-title="Basic Info"
                 >
                   <div class="step-intro">
-                    <h3>Basic Info</h3>
-                    <p>We’ll use this to follow up within 12 hours.</p>
+                    <h3>Your details</h3>
+                    <p>I’ll use this to follow up within 12 hours.</p>
                   </div>
                   <div class="form-grid">
                     <div class="field required">
@@ -728,14 +651,37 @@
 
                   <div class="form-grid">
                     <div class="field">
-                      <label for="homeType">Home Type</label>
+                      <label for="homeType">Space type</label>
                       <select id="homeType" name="homeType">
-                        <option value="Apartment">Apartment</option>
+                        <option value="Apartment">Apartment / studio</option>
                         <option value="Condo">Condo</option>
                         <option value="Townhouse">Townhouse</option>
-                        <option value="Detached">Detached</option>
+                        <option value="Detached">Detached home</option>
                         <option value="Bungalow">Bungalow</option>
                         <option value="Basement unit">Basement unit</option>
+                        <option value="Office">Office</option>
+                        <option value="Studio">Studio</option>
+                        <option value="Rental">Rental</option>
+                        <option value="Small business">Small business</option>
+                      </select>
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field">
+                      <label for="serviceType">Service type</label>
+                      <select id="serviceType" name="serviceType">
+                        <option value="Residential">
+                          Residential cleaning
+                        </option>
+                        <option value="Deep clean">Deep cleaning reset</option>
+                        <option value="Office">Office / studio</option>
+                        <option value="Airbnb">
+                          Airbnb / short-term rental
+                        </option>
+                        <option value="Rental">Rental turnover</option>
+                        <option value="Small business">Small business</option>
+                        <option value="Apartment/studio">
+                          Apartment / studio
+                        </option>
                       </select>
                       <small class="field-error" aria-live="polite"></small>
                     </div>
@@ -783,13 +729,11 @@
                 >
                   <div class="step-intro">
                     <h3>Space Details</h3>
-                    <p>
-                      Let us know the rooms and timeline we’re walking into.
-                    </p>
+                    <p>Tell me the rooms or zones that need care.</p>
                   </div>
                   <div class="form-grid">
                     <div class="field">
-                      <label for="bedroomCount">Bedrooms</label>
+                      <label for="bedroomCount">Bedrooms / private rooms</label>
                       <input
                         type="number"
                         id="bedroomCount"
@@ -801,7 +745,9 @@
                       />
                     </div>
                     <div class="field">
-                      <label for="fullBathCount">Full bathrooms</label>
+                      <label for="fullBathCount"
+                        >Full washrooms / bathrooms</label
+                      >
                       <input
                         type="number"
                         id="fullBathCount"
@@ -813,7 +759,9 @@
                       />
                     </div>
                     <div class="field">
-                      <label for="halfBathCount">Half bathrooms</label>
+                      <label for="halfBathCount"
+                        >Powder rooms / half baths</label
+                      >
                       <input
                         type="number"
                         id="halfBathCount"
@@ -828,19 +776,16 @@
 
                   <fieldset class="field checklist-field">
                     <legend>Common areas checklist</legend>
-                    <p class="field-hint">Kitchen is always included.</p>
+                    <p class="field-hint">Select the areas you want cleaned.</p>
                     <div class="pill-checkbox-grid">
-                      <label class="pill-checkbox pill-checkbox-locked">
+                      <label class="pill-checkbox">
                         <input
                           type="checkbox"
                           name="commonAreas"
                           value="Kitchen"
-                          checked
-                          disabled
                         />
                         <span>Kitchen</span>
                       </label>
-                      <input type="hidden" name="commonAreas" value="Kitchen" />
                       <label class="pill-checkbox">
                         <input
                           type="checkbox"
@@ -879,7 +824,7 @@
                           name="commonAreas"
                           value="Office"
                         />
-                        <span>Office</span>
+                        <span>Office / Studio</span>
                       </label>
                       <label class="pill-checkbox">
                         <input
@@ -889,6 +834,30 @@
                         />
                         <span>Laundry room</span>
                       </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Reception"
+                        />
+                        <span>Reception / Lobby</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Break room"
+                        />
+                        <span>Break room / Kitchenette</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="commonAreas"
+                          value="Guest-ready reset"
+                        />
+                        <span>Guest-ready reset</span>
+                      </label>
                     </div>
                     <div class="field">
                       <label for="commonAreaOther">Other space</label>
@@ -896,63 +865,63 @@
                         type="text"
                         id="commonAreaOther"
                         name="commonAreaOther"
-                        placeholder="e.g. Mudroom, play room"
+                        placeholder="e.g. Treatment room, storage, patio"
                       />
                       <small class="field-error" aria-live="polite"></small>
                     </div>
                   </fieldset>
 
                   <fieldset class="field">
-                    <legend>How long have you lived here?</legend>
+                    <legend>How long has the space been in use?</legend>
                     <div class="pill-group pill-group-wrap">
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="Just moved in"
+                          value="New space / first clean"
                           required
                         />
-                        <span>Just moved in</span>
+                        <span>New space / first clean</span>
                       </label>
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="< 1 year"
+                          value="< 1 year in use"
                         />
-                        <span>&lt; 1 year</span>
+                        <span>&lt; 1 year in use</span>
                       </label>
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="1–3 years"
+                          value="1–3 years in use"
                         />
-                        <span>1–3 years</span>
+                        <span>1–3 years in use</span>
                       </label>
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="> 3 years"
+                          value="> 3 years in use"
                         />
-                        <span>&gt; 3 years</span>
+                        <span>&gt; 3 years in use</span>
                       </label>
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="Tenant just moved out"
+                          value="Recent move-out / turnover"
                         />
-                        <span>Tenant just moved out</span>
+                        <span>Recent move-out / turnover</span>
                       </label>
                       <label class="pill-option">
                         <input
                           type="radio"
                           name="livingLength"
-                          value="Preparing to sell"
+                          value="Preparing for guests or sale"
                         />
-                        <span>Preparing to sell</span>
+                        <span>Preparing for guests or sale</span>
                       </label>
                     </div>
                     <small class="field-error" aria-live="polite"></small>
@@ -967,10 +936,12 @@
                 >
                   <div class="step-intro">
                     <h3>Room-by-Room + Media</h3>
-                    <p>Show us your space with quick photos or notes.</p>
+                    <p>
+                      Share photos or notes for the spaces you want cleaned.
+                    </p>
                   </div>
                   <div class="field">
-                    <label>How will you show your home?</label>
+                    <label>How will you show your space?</label>
                     <div class="pill-group pill-group-wrap" role="radiogroup">
                       <label class="pill-option">
                         <input
@@ -994,6 +965,14 @@
                         />
                         <span>Skip, I’ll describe it</span>
                       </label>
+                      <label class="pill-option">
+                        <input
+                          type="radio"
+                          name="mediaOption"
+                          value="in-person"
+                        />
+                        <span>In-person check for an estimate</span>
+                      </label>
                     </div>
                     <small class="field-error" aria-live="polite"></small>
                   </div>
@@ -1005,9 +984,20 @@
                     aria-live="polite"
                   >
                     <p class="media-helper">
-                      We’ll create a mini upload slot for each room you told us
-                      about. Quick snapshots help us quote accurately.
+                      I’ll create a mini upload slot for each room you told me
+                      about. Quick snapshots help me quote accurately.
                     </p>
+                    <label class="field">
+                      <span>General photos (optional)</span>
+                      <input
+                        type="file"
+                        id="generalPhotos"
+                        name="generalPhotos"
+                        accept="image/*"
+                        multiple
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </label>
                     <div id="photoRoomUploads" class="room-upload-grid"></div>
                   </div>
 
@@ -1040,6 +1030,13 @@
                       <small class="field-error" aria-live="polite"></small>
                     </label>
                   </div>
+
+                  <div class="media-block hidden" id="inPersonSection">
+                    <p class="media-helper">
+                      Prefer an in-person walkthrough? I can schedule a quick
+                      visit to see the space and provide an accurate estimate.
+                    </p>
+                  </div>
                 </div>
 
                 <!-- Step 4 -->
@@ -1051,7 +1048,7 @@
                   <div class="step-intro">
                     <h3>Condition & Extras</h3>
                     <p>
-                      Tell us how lived-in it feels and any extra love needed.
+                      Tell me about the condition and any extra focus areas.
                     </p>
                   </div>
                   <div class="field slider-field">
@@ -1080,7 +1077,7 @@
 
                   <div class="extras-grid">
                     <fieldset>
-                      <legend>Kitchen extras</legend>
+                      <legend>Kitchen / kitchenette extras</legend>
                       <label class="pill-checkbox">
                         <input
                           type="checkbox"
@@ -1115,7 +1112,7 @@
                       </label>
                     </fieldset>
                     <fieldset>
-                      <legend>Whole home</legend>
+                      <legend>Whole space</legend>
                       <label class="pill-checkbox">
                         <input type="checkbox" name="extras" value="windows" />
                         <span>Windows (interior)</span>
@@ -1176,7 +1173,7 @@
 
                   <div class="toggle-grid">
                     <div class="toggle-field">
-                      <p>Pets at home?</p>
+                      <p>Pets on site?</p>
                       <div class="pill-group">
                         <label class="pill-option">
                           <input
@@ -1195,7 +1192,7 @@
                       <small class="field-error" aria-live="polite"></small>
                     </div>
                     <div class="toggle-field">
-                      <p>Kids at home?</p>
+                      <p>Kids or guests on site?</p>
                       <div class="pill-group">
                         <label class="pill-option">
                           <input
@@ -1228,8 +1225,7 @@
                   </div>
                   <div id="smartquoteSummary" class="review-summary">
                     <p class="muted">
-                      We’ll summarize your details here when you reach this
-                      step.
+                      I’ll summarize your details here when you reach this step.
                     </p>
                   </div>
                   <p class="review-note">
@@ -1242,6 +1238,24 @@
                   </button>
                 </div>
 
+                <div class="field">
+                  <label for="referralCode">Referral Code (Optional)</label>
+                  <p class="field-hint">
+                    If someone referred you, enter their code so we can thank
+                    them.
+                  </p>
+                  <input
+                    type="text"
+                    id="referralCode"
+                    name="referral_code"
+                    placeholder="ex: LOVELY17"
+                  />
+                  <small class="field-error" aria-live="polite"></small>
+                </div>
+
+                <p class="wizard-reassurance">
+                  I respond personally within 12 hours.
+                </p>
                 <div class="wizard-controls">
                   <button
                     type="button"
@@ -1279,30 +1293,139 @@
           </div>
         </section>
 
+        <section
+          class="section section--warm gift-section gift-section--soft"
+          data-reveal
+        >
+          <div class="container">
+            <div class="section-header align-center prose">
+              <h2>Gift a Calm, Dustless Home</h2>
+              <p class="muted prose">
+                Send a thoughtful visit to a new parent, caregiver, overwhelmed
+                friend, or anyone who needs a gentle reset handled with
+                eco-friendly supplies and calm, respectful care.
+              </p>
+            </div>
+            <div class="gift-grid">
+              <article class="gift-card glass">
+                <div class="gift-card-head">
+                  <h3>Gift a One-Time Reset</h3>
+                </div>
+                <p>
+                  Perfect for burnout, busy seasons, or pre-guest resets with a
+                  full tidy and gentle finishing touches.
+                </p>
+                <button
+                  class="link-btn"
+                  onclick="window.location.href='index.html#booking'"
+                >
+                  Send this gift
+                </button>
+              </article>
+              <article class="gift-card glass">
+                <div class="gift-card-head">
+                  <h3>New Parent Relief Visit</h3>
+                </div>
+                <p>
+                  Fragrance-aware care with extra time on laundry, bottle
+                  stations, and soft surfaces for new parents.
+                </p>
+                <button
+                  class="link-btn"
+                  onclick="window.location.href='index.html#booking'"
+                >
+                  Send this gift
+                </button>
+              </article>
+              <article class="gift-card glass">
+                <div class="gift-card-head">
+                  <h3>Support Someone You Love</h3>
+                </div>
+                <p>
+                  A quiet visit for caregivers or seniors with a tidy reset,
+                  laundry fold, and gentle steam detail when needed.
+                </p>
+                <button
+                  class="link-btn"
+                  onclick="window.location.href='index.html#booking'"
+                >
+                  Send this gift
+                </button>
+              </article>
+            </div>
+            <div class="gift-cta">
+              <button
+                class="btn btn-primary"
+                onclick="window.location.href='index.html#booking'"
+              >
+                Start a gift quote
+              </button>
+            </div>
+          </div>
+        </section>
+
         <!-- Testimonials + FAQ -->
-        <section class="section section-soft-bg" data-reveal>
+        <section
+          id="reviews"
+          class="section section--sage section-soft-bg"
+          data-reveal
+        >
           <div class="container testimonials-faq-layout">
             <div>
-              <h2>What Clients Are Saying</h2>
+              <h2>What Clients Around Hamilton &amp; Burlington Are Saying</h2>
               <div class="testimonial-card glass">
+                <div class="testimonial-rating" aria-label="5 star rating">
+                  <span aria-hidden="true">★</span>
+                  <span aria-hidden="true">★</span>
+                  <span aria-hidden="true">★</span>
+                  <span aria-hidden="true">★</span>
+                  <span aria-hidden="true">★</span>
+                </div>
                 <p id="testimonialText"></p>
-                <p class="testimonial-name" id="testimonialName"></p>
+                <div class="testimonial-meta">
+                  <p class="testimonial-service" id="testimonialService"></p>
+                  <p class="testimonial-location" id="testimonialLocation"></p>
+                  <p class="testimonial-name" id="testimonialName"></p>
+                  <span class="testimonial-verified"
+                    >Verified local client</span
+                  >
+                  <span class="before-after-pill">Before / After Care</span>
+                </div>
               </div>
               <div class="testimonial-dots" id="testimonialDots"></div>
             </div>
 
-            <div>
+            <div id="faq">
               <h2>FAQ</h2>
-              <div class="accordion" id="faqAccordion">
+              <div class="accordion" id="faqAccordion" data-accordion>
                 <div class="accordion-item">
                   <button class="accordion-header">
                     Is it just you, or do you have a team?
                   </button>
                   <div class="accordion-body">
-                    It’s just me for now. I’m training one helper who will
-                    shadow me on select visits before working solo. You’ll
-                    always know who is coming, and I’ll be on-site for every
-                    first clean.
+                    I run the visits myself and I am training one helper who
+                    shadows me before taking on assignments. You always know who
+                    is coming and I am on-site for every first clean in Hamilton
+                    or Burlington.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Will you judge the mess?
+                  </button>
+                  <div class="accordion-body">
+                    No. I clean homes in every condition. My job is to help you
+                    feel better in your space, not make it awkward.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    What if I’m not home during the clean?
+                  </button>
+                  <div class="accordion-body">
+                    That’s totally fine. I can work with a lockbox, concierge,
+                    or simple entry instructions. I review your notes before I
+                    arrive and send a recap when I’m done.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1310,10 +1433,11 @@
                     What should I budget for a visit?
                   </button>
                   <div class="accordion-body">
-                    Most recurring homes land between $140–$190, while deep
-                    cleans range from $220–$320 depending on size and add-ons.
-                    Once I see your SmartQuote™ details (rooms, photos, timing),
-                    I’ll email a firm estimate before we book.
+                    Most recurring homes land between $140 and $190. Deep cleans
+                    range from $220 to $320 depending on size and add-ons such
+                    as steam, appliance care, or specialty requests. Once I see
+                    your SmartQuote details with rooms, photos, and timing, I
+                    email a firm estimate before we book.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1321,12 +1445,50 @@
                     Do you bring supplies and steam equipment?
                   </button>
                   <div class="accordion-body">
-                    Yes — plant-based concentrates, microfiber rotations, and my
+                    Yes. Plant-based concentrates, microfiber rotations, and my
                     dry-steam unit travel with me. To avoid cross-home
-                    contamination, I always use the vacuum and mop you keep
-                    on-site (please have them handy). Steam is an add-on for
-                    first-time deep cleans or by request. If you have favourite
-                    products or sensitivities, I’m happy to use yours instead.
+                    contamination, I use the vacuum and mop you keep on-site so
+                    please have them ready. Steam is an add-on for first-time
+                    deep cleans or by request. If you have favourite products or
+                    sensitivities, I’m happy to use yours instead.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Why do you use client-provided vacuum and mop?
+                  </button>
+                  <div class="accordion-body">
+                    It keeps tools house-specific and prevents
+                    cross-contamination between homes.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Why don’t you bring your own vacuum or mop?
+                  </button>
+                  <div class="accordion-body">
+                    Using the vacuum and mop that live in your space prevents
+                    cross-contamination between homes and keeps everything truly
+                    yours.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Is steam safe for my surfaces?
+                  </button>
+                  <div class="accordion-body">
+                    Yes. I use controlled, professional steam on approved
+                    surfaces and adjust the approach for wood, stone, and
+                    delicate finishes.
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    Do you clean offices and rentals regularly?
+                  </button>
+                  <div class="accordion-body">
+                    Yes. Recurring schedules are welcome for offices, studios,
+                    and rentals.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1345,8 +1507,8 @@
                   </button>
                   <div class="accordion-body">
                     I regularly service Hamilton, Burlington, Stoney Creek, and
-                    nearby towns. If you’re farther out, just mention it in your
-                    quote form — I’ll let you know if a small travel fee
+                    nearby towns. If you’re farther out, mention it in your
+                    quote form and I’ll let you know if a small travel fee
                     applies.
                   </div>
                 </div>
@@ -1356,29 +1518,33 @@
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="section" data-reveal>
-          <div class="container contact-layout">
+        <section id="serviceArea" class="section section--warm" data-reveal>
+          <div id="contact" class="container contact-layout">
             <div>
               <h2>Contact &amp; Service Area</h2>
               <p>
-                Ready to book, ask a question, or partner for rentals/Airbnbs or
-                offices? Reach out — you’ll hear back from me directly, never a
-                call centre.
+                Ready to book, ask a question, or partner for rentals, Airbnbs,
+                or offices? Reach out and you will hear back from me directly,
+                never a call centre.
+              </p>
+              <p class="contact-note">
+                After-hours office &amp; studio cleaning available.
               </p>
               <ul class="contact-list">
                 <li>
                   <strong>Phone:</strong>
-                  <a href="tel:+1-289-401-7321">+1 (289) 401-7321</a>
-                </li>
-                <li>
-                  <strong>Email:</strong>
-                  <a href="mailto:dustlessliving@gmail.com"
-                    >dustlessliving@gmail.com</a
+                  <a class="contact-phone" href="tel:+1-289-401-7321"
+                    >+1 (289) 401-7321</a
                   >
                 </li>
                 <li>
-                  <strong>Service Area:</strong> Hamilton &amp; Surrounding
-                  Areas, Ontario
+                  <strong>Email:</strong>
+                  <a href="mailto:hello@dustlessliving.com"
+                    >hello@dustlessliving.com</a
+                  >
+                </li>
+                <li>
+                  <strong>Text or email welcome</strong>
                 </li>
               </ul>
               <form id="contactForm" class="form card">
@@ -1394,19 +1560,29 @@
                   <label>Message</label>
                   <textarea name="message" rows="3" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-outline">
+                <button type="submit" class="btn btn-primary">
                   Send Message
                 </button>
+                <p class="form-note">
+                  Response time: I reply personally within 12 hours.
+                </p>
                 <p id="contactSuccess" class="form-success"></p>
               </form>
+              <p class="muted contact-clients">
+                Typical clients: busy families, night-shift workers, studios,
+                and Airbnb hosts who need discreet, detailed care.
+              </p>
             </div>
             <div class="map-wrapper">
-              <iframe
-                title="Dustless Living Service Area"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46029.653!2d-79.92!3d43.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c9b9b3bb!2sHamilton%2C%20ON!5e0!3m2!1sen!2sca!4v0000000000000"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <div class="map-card">
+                <p class="map-label">
+                  Hamilton, Burlington & Surrounding Areas, Ontario
+                </p>
+                <div
+                  id="contactMap"
+                  aria-label="Map highlighting Hamilton and Burlington"
+                ></div>
+              </div>
             </div>
           </div>
         </section>
@@ -1415,9 +1591,9 @@
       <!-- Employee Dashboard (Private) -->
       <section id="employeeDashboard" class="section dashboard hidden">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header prose">
             <h2>Team Dashboard</h2>
-            <p class="section-subtitle">
+            <p class="section-subtitle prose">
               View your assigned jobs, update statuses, and upload before/after
               photos.
             </p>
@@ -1441,7 +1617,7 @@
       <!-- Admin Dashboard (Private) -->
       <section id="adminDashboard" class="section dashboard hidden">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header prose">
             <h2>
               Admin Control Panel
               <button
@@ -1452,7 +1628,7 @@
                 Logout
               </button>
             </h2>
-            <p class="section-subtitle">
+            <p class="section-subtitle prose">
               Centralize bookings, assignments, job tracking, deposits,
               products, and calendar sync for Dustless Living.
             </p>
@@ -1505,133 +1681,124 @@
               <div id="adminClients"></div>
             </div>
           </div>
-
-          <!-- Products management -->
-          <div class="dashboard-card glass" id="adminProductsCard">
-            <h3>Shop Products</h3>
-            <p class="form-note">
-              Manage eco-friendly sprays, refills &amp; tools. These feed the
-              public Shop and “Buy After Cleaning” recommendations.
-            </p>
-
-            <form id="productForm">
-              <input type="hidden" id="productId" />
-              <div class="form-grid">
-                <div class="field">
-                  <label>Name</label>
-                  <input type="text" id="productName" required />
-                </div>
-                <div class="field">
-                  <label>Category</label>
-                  <input type="text" id="productCategory" required />
-                </div>
-                <div class="field">
-                  <label>Price (e.g. 14.99)</label>
-                  <input type="number" id="productPrice" step="0.01" required />
-                </div>
-                <div class="field">
-                  <label>Stock</label>
-                  <input type="number" id="productStock" min="0" />
-                </div>
-              </div>
-              <div class="field">
-                <label>Image URL</label>
-                <input
-                  type="url"
-                  id="productImage"
-                  placeholder="https://... or /images/product.jpg"
-                  required
-                />
-              </div>
-              <div class="field">
-                <label>Description</label>
-                <textarea
-                  id="productDescription"
-                  rows="2"
-                  placeholder="Short, kind description"
-                  required
-                ></textarea>
-              </div>
-              <div class="field">
-                <label>
-                  <input type="checkbox" id="productFeatured" />
-                  Feature this product on Shop &amp; After Cleaning widget
-                </label>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-sm">Save Product</button>
-                <button
-                  type="button"
-                  class="btn-text btn-sm"
-                  id="cancelEditProductBtn"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-
-            <div id="adminProductsList" class="admin-products-list"></div>
-          </div>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
-          <span class="logo-text">Dustless Living</span>
+      <div class="container footer-grid">
+        <div class="footer-column footer-brand">
+          <div class="footer-logo">
+            <img
+              src="/images/favicon.png"
+              alt="Dustless Living logo"
+              class="logo-icon"
+            />
+            <div>
+              <span class="logo-text">Dustless Living</span>
+              <p class="footer-tagline">
+                Boutique, eco-friendly cleaning care serving Hamilton &amp;
+                Burlington.
+              </p>
+            </div>
+          </div>
+          <div class="footer-social-row" aria-label="Social links">
+            <a
+              href="https://www.instagram.com/"
+              class="social-btn"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17" cy="7" r="1.2" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/dustlessliving"
+              class="social-btn"
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9h4v11H4z" />
+                <circle cx="6" cy="6" r="2" />
+                <path
+                  d="M14 9c2 0 4 1.5 4 4.5V20h-4v-6c0-1.2-.6-2-1.7-2-1 0-1.6.7-1.9 1.4V20H8V9h4v1.6C12.7 9.7 13.6 9 14 9z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/dustlessliving"
+              class="social-btn"
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 8h3V4h-3c-2.2 0-4 1.8-4 4v3H7v4h3v8h4v-8h3l1-4h-4V8c0-.6.4-1 1-1z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/"
+              class="social-btn"
+              aria-label="TikTok"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 4c.6 1.8 2 3.2 4 3.6V11c-1.6-.1-3.1-.7-4-1.7v6.3a5 5 0 1 1-4-4.9v3.1a2 2 0 1 0 1.5 1.9V4h2.5z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="services.html">Services</a>
-          <a href="quote.html">SmartQuote</a>
-          <a href="quote.html#smartquote">Book</a>
-          <a href="#">Careers</a>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul class="footer-list">
+            <li>
+              <a href="index.html#service-residential">Residential Cleaning</a>
+            </li>
+            <li><a href="index.html#service-deep">Deep Cleaning Reset</a></li>
+            <li><a href="index.html#service-move">Move-In / Move-Out</a></li>
+            <li>
+              <a href="index.html#service-commercial"
+                >Commercial &amp; Studio</a
+              >
+            </li>
+            <li><a href="index.html#service-addons">Thoughtful Add-Ons</a></li>
+          </ul>
         </div>
-        <div class="footer-social">
-          <a
-            href="https://www.instagram.com/"
-            class="social-btn"
-            aria-label="Instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            >IG</a
-          >
-          <a
-            href="https://www.linkedin.com/"
-            class="social-btn"
-            aria-label="LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
-            >in</a
-          >
-          <a
-            href="https://www.facebook.com/"
-            class="social-btn"
-            aria-label="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            >f</a
-          >
-          <a
-            href="https://www.tiktok.com/"
-            class="social-btn"
-            aria-label="TikTok"
-            target="_blank"
-            rel="noopener noreferrer"
-            >t</a
-          >
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-list">
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#booking">SmartQuote™</a></li>
+            <li><a href="index.html#booking">Book a Visit</a></li>
+          </ul>
         </div>
       </div>
       <div class="container footer-bottom">
-        <p>© 2025 Dustless Living | All Rights Reserved.</p>
+        <p>© 2025 Dustless Living - All Rights Reserved.</p>
       </div>
     </footer>
 
     <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
-      <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+      <button
+        class="chatbot-toggle"
+        id="chatbotToggle"
+        aria-label="Open lead capture form"
+      >
+        <span class="chat-icon" aria-hidden="true"></span>
+      </button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
           <h4>Dustless Lead Collector</h4>
@@ -1691,106 +1858,66 @@
       </div>
     </div>
 
-    <!-- Product Details Modal -->
-    <div id="productModal" class="modal-backdrop hidden">
-      <div class="modal product-modal">
-        <button class="modal-close" id="closeProductModal">&times;</button>
-        <div class="product-modal-body">
-          <div class="product-modal-image-wrap">
-            <img
-              id="productModalImage"
-              src=""
-              alt=""
-              class="product-modal-image"
-            />
-          </div>
-          <div class="product-modal-info">
-            <h3 id="productModalName"></h3>
-            <p id="productModalCategory" class="pill pill-soft"></p>
-            <p id="productModalDescription" class="modal-description"></p>
-            <div class="product-modal-price-wrap">
-              <span id="productModalPrice" class="product-modal-price"></span>
-              <span class="product-modal-subcopy">
-                Refillable • Low-tox • Pet-safe
-              </span>
-            </div>
-            <div class="product-modal-actions">
-              <button class="btn" id="addToCartBtn">Add to Cart</button>
-              <button class="btn btn-soft" id="subscribeSaveBtn">
-                Subscribe &amp; Save 10%
-              </button>
-            </div>
-            <p class="product-modal-note">
-              Every order supports sustainable supplies for our clients’ homes.
-              Eco Points quietly reward your good habits.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Auth Modal -->
-    <div class="modal-backdrop" id="authModal">
-      <div class="modal auth-modal glass">
-        <button class="modal-close" id="authClose">×</button>
-        <h3>Dustless Living Team Portal</h3>
-        <p class="auth-subtitle">Secure access for employees and admin.</p>
-        <form id="loginForm" class="form">
-          <div class="field">
-            <label>Email</label>
-            <input type="email" id="loginEmail" required />
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password" id="loginPassword" required />
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-          <p id="loginStatus" class="form-success"></p>
-        </form>
-        <p class="auth-note">
-          Accounts are created internally. If you are new staff, please contact
-          Antonette for portal access.
-        </p>
-      </div>
-    </div>
-
-    <!-- Cart Drawer -->
-    <div id="cartDrawer" class="cart-drawer hidden">
-      <div class="cart-header">
-        <h3>Your Dustless Basket</h3>
-        <button class="cart-close" id="closeCartBtn">&times;</button>
-      </div>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="cart-footer">
-        <div class="cart-summary">
-          <div class="cart-total-line">
-            <span>Subtotal</span>
-            <span id="cartSubtotal">$0.00</span>
-          </div>
-          <div class="cart-eco-line">
-            <span class="eco-label">Eco Points</span>
-            <span id="cartEcoPoints">0</span>
-          </div>
-        </div>
-        <button class="btn btn-full" id="checkoutCartBtn">
-          Checkout Securely
-        </button>
-        <p class="cart-secure-note">Processed via encrypted Stripe checkout.</p>
-      </div>
-    </div>
-
-    <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab hidden">
-      <span class="cart-icon">🛒</span>
-      <span id="cartCount" class="cart-count">0</span>
-    </button>
-
     <!-- Scripts: Firebase (Compat) + Stripe -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const visitToggleButtons = document.querySelectorAll(".visit-toggle");
+        visitToggleButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const card = button.closest("[data-visit-card]");
+            if (!card) return;
+            const extras = card.querySelectorAll(".visit-extra");
+            if (!extras.length) return;
+            const expanded = card.classList.toggle("expanded");
+            extras.forEach((item) => {
+              item.classList.toggle("hidden", !expanded);
+            });
+            button.textContent = expanded
+              ? "Hide full checklist"
+              : "Show full checklist";
+          });
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mapEl = document.getElementById("contactMap");
+        if (!mapEl || typeof mapboxgl === "undefined") {
+          return;
+        }
+
+        mapboxgl.accessToken =
+          "pk.eyJ1IjoienluZXR0ZSIsImEiOiJjbWo3cWg2cWowMWphM2pxMDlsbGF6eHNkIn0.q2gsEknPoRMoJkUvZD0g3A";
+
+        const map = new mapboxgl.Map({
+          container: mapEl,
+          style: "mapbox://styles/mapbox/streets-v12",
+          bounds: [
+            [-79.95, 43.22],
+            [-79.74, 43.35],
+          ],
+          fitBoundsOptions: { padding: 32 },
+        });
+
+        const zones = [
+          { title: "Hamilton", coords: [-79.866, 43.255] },
+          { title: "Burlington", coords: [-79.801, 43.325] },
+        ];
+
+        zones.forEach(({ coords, title }) => {
+          new mapboxgl.Marker({ color: "#c0392b", scale: 1.1 })
+            .setLngLat(coords)
+            .setPopup(new mapboxgl.Popup({ offset: 18 }).setText(title))
+            .addTo(map);
+        });
+      });
+    </script>
 
     <!-- Main JS -->
     <script src="/main.js"></script>

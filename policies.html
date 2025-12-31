@@ -32,7 +32,7 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,52 +48,66 @@
   <body>
     <!-- Floating Dust Particles Background -->
     <div class="particles-layer" id="particlesLayer"></div>
-    <div class="decor-bubbles" id="decorBubbles"></div>
 
     <!-- Header -->
     <header class="header" id="header">
       <div class="container header-inner">
         <div class="logo">
-          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
+          <img
+            src="/images/favicon.png"
+            alt="Dustless Living logo"
+            class="logo-icon"
+          />
           <span class="logo-text">Dustless Living</span>
           <span class="app-label" id="appLabel">Portal</span>
         </div>
         <nav class="nav nav-primary">
-          <a href="index.html#home" class="nav-link">Home</a>
-          <a href="services.html" class="nav-link">Services</a>
-          <a href="quote.html" class="nav-link">Pricing</a>
-          <a href="shop.html" class="nav-link">Shop</a>
-          <a href="gallery.html" class="nav-link">Gallery</a>
-          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#serviceArea" class="nav-link">Service Area</a>
+          <a href="#reviews" class="nav-link">Reviews</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
           <button
             class="btn btn-primary nav-cta"
-            onclick="window.location.href='quote.html#smartquote'"
+            onclick="window.location.href='index.html#booking'"
           >
             Get My Free Quote
           </button>
           <div class="header-icons">
             <button
-              class="icon-btn"
-              id="headerChatToggle"
-              aria-label="Open chat"
-            >
-              <svg class="icon-svg" viewBox="0 0 24 24" role="presentation">
-                <path
-                  d="M4 6.5A4.5 4.5 0 0 1 8.5 2h7A4.5 4.5 0 0 1 20 6.5v4a4.5 4.5 0 0 1-4.5 4.5H12l-3.5 3.5V15H8.5A4.5 4.5 0 0 1 4 10.5z"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </button>
-            <button
               class="icon-btn theme-toggle-btn"
               id="themeToggle"
               aria-label="Toggle dark mode"
             >
-              <span class="theme-icon">☀️</span>
+              <span class="theme-icon" aria-hidden="true">
+                <svg
+                  class="icon-svg theme-icon-svg theme-icon-sun"
+                  viewBox="0 0 24 24"
+                  role="presentation"
+                  focusable="false"
+                >
+                  <circle cx="12" cy="12" r="4.2"></circle>
+                  <line x1="12" y1="3" x2="12" y2="1"></line>
+                  <line x1="12" y1="23" x2="12" y2="21"></line>
+                  <line x1="4.2" y1="4.2" x2="2.8" y2="2.8"></line>
+                  <line x1="21.2" y1="21.2" x2="19.8" y2="19.8"></line>
+                  <line x1="3" y1="12" x2="1" y2="12"></line>
+                  <line x1="23" y1="12" x2="21" y2="12"></line>
+                  <line x1="4.2" y1="19.8" x2="2.8" y2="21.2"></line>
+                  <line x1="21.2" y1="4.2" x2="19.8" y2="2.8"></line>
+                </svg>
+<svg
+                  class="icon-svg theme-icon-svg theme-icon-moon"
+                  viewBox="0 0 24 24"
+                  role="presentation"
+                  focusable="false"
+                >
+                  <path d="M20.8 14.2A8.2 8.2 0 0 1 9.8 3.2a8.3 8.3 0 1 0 11 11z"></path>
+                </svg>
+              </span>
             </button>
           </div>
         </div>
@@ -101,22 +115,47 @@
           <span></span><span></span><span></span>
         </button>
       </div>
-      <nav class="nav-mobile" id="navMobile">
-        <a href="index.html#home" class="nav-link">Home</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="quote.html" class="nav-link">Pricing</a>
-        <a href="shop.html" class="nav-link">Shop</a>
-        <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="faq.html" class="nav-link">FAQ</a>
-        <button
-          class="btn btn-primary btn-full"
-          onclick="window.location.href='quote.html#smartquote'"
-        >
-          Get My Free Quote
-        </button>
-        <button class="btn btn-soft btn-full" id="openLoginMobile">
-          Team Login
-        </button>
+      <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+        <div class="nav-mobile-panel">
+          <div class="nav-mobile-top">
+            <div class="nav-mobile-brand">
+              <img
+                src="/images/favicon.png"
+                alt="Dustless Living logo"
+                class="logo-icon"
+              />
+              <span>Dustless Living</span>
+            </div>
+            <button
+              class="nav-mobile-close"
+              id="navClose"
+              aria-label="Close menu"
+            >
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <div class="nav-mobile-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#serviceArea" class="nav-link">Service Area</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+          <button
+            class="btn btn-primary btn-full"
+            onclick="window.location.href='index.html#booking'"
+          >
+            Get My Free Quote
+          </button>
+          <button
+            class="btn btn-outline btn-full"
+            onclick="window.location.href='#home'"
+          >
+            Home
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -126,7 +165,7 @@
         <section id="policies" class="section section-soft-bg" data-reveal>
           <div class="container">
             <!-- Intro -->
-            <div class="section-header policy-hero">
+            <div class="section-header policy-hero align-center">
               <h1>Service Policies &amp; Terms</h1>
               <p>
                 These policies keep things clear, safe, and respectful for both
@@ -230,7 +269,7 @@
               <article class="card policy-card">
                 <h3>Rescheduling, Cancellation &amp; Lockouts</h3>
                 <p class="policy-tagline">
-                  Life happens — we just ask for clear communication.
+                  Life happens, we just ask for clear communication.
                 </p>
                 <ul>
                   <li>
@@ -261,7 +300,7 @@
               <article class="card policy-card">
                 <h3>Damage, Breakage &amp; Access</h3>
                 <p class="policy-tagline">
-                  We treat your home like our own — with care and transparency.
+                  We treat your home like our own with care and transparency.
                 </p>
                 <ul>
                   <li>
@@ -335,7 +374,7 @@
               <article class="card policy-card">
                 <h3>Privacy &amp; Data</h3>
                 <p class="policy-tagline">
-                  Quiet, respectful service — both in your home and online.
+                  Quiet, respectful service in your home and online.
                 </p>
                 <ul>
                   <li>
@@ -428,10 +467,10 @@
             <div class="policy-callout glass">
               <h3>Questions or special situations?</h3>
               <p>
-                If your home, health, or schedule needs don’t fit neatly into
+                If your home, health, or schedule needs do not fit neatly into
                 these policies, please reach out. Dustless Living was built to
-                be flexible and human — we’ll do our best to find a respectful,
-                realistic solution that works for both of us.
+                be flexible and human, and we will do our best to find a
+                respectful, realistic solution that works for both of us.
               </p>
               <p class="policy-disclaimer">
                 These policies are meant for clarity and may evolve as the
@@ -447,60 +486,112 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <img src="/images/favicon.png" alt="Dustless Living logo" class="logo-icon" />
-          <span class="logo-text">Dustless Living</span>
+      <div class="container footer-grid">
+        <div class="footer-column footer-brand">
+          <div class="footer-logo">
+            <img
+              src="/images/favicon.png"
+              alt="Dustless Living logo"
+              class="logo-icon"
+            />
+            <div>
+              <span class="logo-text">Dustless Living</span>
+              <p class="footer-tagline">
+                Boutique, eco-friendly cleaning care serving Hamilton &amp;
+                Burlington.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="services.html">Services</a>
-          <a href="quote.html">SmartQuote</a>
-          <a href="quote.html#smartquote">Book</a>
-          <a href="#">Careers</a>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul class="footer-list">
+            <li>
+              <a href="index.html#service-residential">Residential Cleaning</a>
+            </li>
+            <li><a href="index.html#service-deep">Deep Cleaning Reset</a></li>
+            <li><a href="index.html#service-move">Move-In / Move-Out</a></li>
+            <li>
+              <a href="index.html#service-commercial"
+                >Commercial &amp; Studio</a
+              >
+            </li>
+            <li><a href="index.html#service-addons">Thoughtful Add-Ons</a></li>
+          </ul>
         </div>
-        <div class="footer-social">
-          <a
-            href="https://www.instagram.com/"
-            class="social-btn"
-            aria-label="Instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            >IG</a
-          >
-          <a
-            href="https://www.linkedin.com/"
-            class="social-btn"
-            aria-label="LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
-            >in</a
-          >
-          <a
-            href="https://www.facebook.com/"
-            class="social-btn"
-            aria-label="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            >f</a
-          >
-          <a
-            href="https://www.tiktok.com/"
-            class="social-btn"
-            aria-label="TikTok"
-            target="_blank"
-            rel="noopener noreferrer"
-            >t</a
-          >
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-list">
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#booking">SmartQuote™</a></li>
+            <li><a href="index.html#booking">Book a Visit</a></li>
+          </ul>
         </div>
       </div>
+      <div class="container footer-social-row">
+        <a
+          href="https://www.instagram.com/"
+          class="social-btn"
+          aria-label="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17" cy="7" r="1.2" />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/dustlessliving"
+          class="social-btn"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9h4v11H4z" />
+            <circle cx="6" cy="6" r="2" />
+            <path d="M14 9c2 0 4 1.5 4 4.5V20h-4v-6c0-1.2-.6-2-1.7-2-1 0-1.6.7-1.9 1.4V20H8V9h4v1.6C12.7 9.7 13.6 9 14 9z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.facebook.com/dustlessliving"
+          class="social-btn"
+          aria-label="Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 8h3V4h-3c-2.2 0-4 1.8-4 4v3H7v4h3v8h4v-8h3l1-4h-4V8c0-.6.4-1 1-1z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.tiktok.com/"
+          class="social-btn"
+          aria-label="TikTok"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 4c.6 1.8 2 3.2 4 3.6V11c-1.6-.1-3.1-.7-4-1.7v6.3a5 5 0 1 1-4-4.9v3.1a2 2 0 1 0 1.5 1.9V4h2.5z" />
+          </svg>
+        </a>
+      </div>
       <div class="container footer-bottom">
-        <p>© 2025 Dustless Living | All Rights Reserved.</p>
+        <p>© 2025 Dustless Living - All Rights Reserved.</p>
       </div>
     </footer>
 
     <!-- Lead Capture Widget -->
     <div class="chatbot" id="chatbot">
-      <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+      <button
+        class="chatbot-toggle"
+        id="chatbotToggle"
+        aria-label="Open lead capture form"
+      >
+        <span class="chat-icon" aria-hidden="true"></span>
+      </button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
           <h4>Dustless Lead Collector</h4>
@@ -559,100 +650,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Product Details Modal -->
-    <div id="productModal" class="modal-backdrop hidden">
-      <div class="modal product-modal">
-        <button class="modal-close" id="closeProductModal">&times;</button>
-        <div class="product-modal-body">
-          <div class="product-modal-image-wrap">
-            <img
-              id="productModalImage"
-              src=""
-              alt=""
-              class="product-modal-image"
-            />
-          </div>
-          <div class="product-modal-info">
-            <h3 id="productModalName"></h3>
-            <p id="productModalCategory" class="pill pill-soft"></p>
-            <p id="productModalDescription" class="modal-description"></p>
-            <div class="product-modal-price-wrap">
-              <span id="productModalPrice" class="product-modal-price"></span>
-              <span class="product-modal-subcopy">
-                Refillable • Low-tox • Pet-safe
-              </span>
-            </div>
-            <div class="product-modal-actions">
-              <button class="btn" id="addToCartBtn">Add to Cart</button>
-              <button class="btn btn-soft" id="subscribeSaveBtn">
-                Subscribe &amp; Save 10%
-              </button>
-            </div>
-            <p class="product-modal-note">
-              Every order supports sustainable supplies for our clients’ homes.
-              Eco Points quietly reward your good habits.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Auth Modal -->
-    <div class="modal-backdrop" id="authModal">
-      <div class="modal auth-modal glass">
-        <button class="modal-close" id="authClose">×</button>
-        <h3>Dustless Living Team Portal</h3>
-        <p class="auth-subtitle">Secure access for employees and admin.</p>
-        <form id="loginForm" class="form">
-          <div class="field">
-            <label>Email</label>
-            <input type="email" id="loginEmail" required />
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password" id="loginPassword" required />
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-          <p id="loginStatus" class="form-success"></p>
-        </form>
-        <p class="auth-note">
-          Accounts are created internally. If you are new staff, please contact
-          Antonette for portal access.
-        </p>
-      </div>
-    </div>
-
-    <!-- Cart Drawer -->
-    <div id="cartDrawer" class="cart-drawer hidden">
-      <div class="cart-header">
-        <h3>Your Dustless Basket</h3>
-        <button class="cart-close" id="closeCartBtn">&times;</button>
-      </div>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="cart-footer">
-        <div class="cart-summary">
-          <div class="cart-total-line">
-            <span>Subtotal</span>
-            <span id="cartSubtotal">$0.00</span>
-          </div>
-          <div class="cart-eco-line">
-            <span class="eco-label">Eco Points</span>
-            <span id="cartEcoPoints">0</span>
-          </div>
-        </div>
-        <button class="btn btn-full" id="checkoutCartBtn">
-          Checkout Securely
-        </button>
-        <p class="cart-secure-note">Processed via encrypted Stripe checkout.</p>
-      </div>
-    </div>
-
-    <!-- Cart FAB -->
-    <button id="openCartBtn" class="cart-fab hidden">
-      <span class="cart-icon">🛒</span>
-      <span id="cartCount" class="cart-count">0</span>
-    </button>
 
     <!-- Scripts: Firebase (Compat) + Stripe -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
