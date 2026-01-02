@@ -57,7 +57,6 @@
   --color-bg: var(--bg);
   --color-bg-soft: var(--card-bg);
   --color-bg-alt: var(--accent);
-  --color-text: var(--text);
   --color-text-strong: var(--primary-dark);
   --color-muted: var(--muted);
 
@@ -103,6 +102,18 @@ body.dark {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* =========================
+   Mobile visibility utilities
+   ========================= */
+
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
 }
 
 html,
@@ -730,12 +741,14 @@ body.app-mode .header {
   border: none;
   padding: 0;
   cursor: pointer;
+  color: var(--color-text);
 }
 
 .burger span {
+  display: block;
   width: 22px;
   height: 2px;
-  background: var(--color-text);
+  background: currentColor;
   border-radius: var(--radius-pill);
 }
 
@@ -743,8 +756,8 @@ body.app-mode .header {
   position: fixed;
   inset: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-start;
   background: rgba(31, 45, 43, 0.75);
   backdrop-filter: blur(12px);
   opacity: 0;
@@ -763,6 +776,7 @@ body.app-mode .header {
 .nav-mobile-panel {
   width: 100%;
   height: 100%;
+  min-height: 100dvh;
   background: linear-gradient(155deg, rgba(255, 253, 248, 0.96), rgba(223, 245, 238, 0.9));
   border-radius: 0;
   padding: 2.75rem 1.8rem 2.1rem;
@@ -1709,7 +1723,7 @@ body.dark .hero-background-overlay {
 
 @media (max-width: 640px) {
   .hero {
-    min-height: 100vh;
+    min-height: 60vh;
     padding: 0;
   }
   .hero-inner {
@@ -1717,7 +1731,7 @@ body.dark .hero-background-overlay {
     text-align: center;
     gap: 1.4rem;
     padding: clamp(2.5rem, 12vh, 4.5rem) 1.25rem;
-    min-height: 100vh;
+    min-height: 60vh;
   }
   .hero-text {
     gap: 0.7rem;
@@ -4984,11 +4998,11 @@ body.dark .footer {
   gap: 2rem;
 }
 
-#firstVisit {
+#process {
   background: rgba(255, 255, 255, 0.96);
 }
 
-body.dark #firstVisit {
+body.dark #process {
   background: rgba(8, 32, 44, 0.92);
 }
 
@@ -5167,6 +5181,219 @@ body.dark #firstVisit {
 
   .burger {
     display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(31, 45, 43, 0.18);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 6px 16px rgba(31, 45, 43, 0.12);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .burger span {
+    width: 24px;
+  }
+
+  /* Mobile-first layout: keep only core conversion sections visible */
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .desktop-only:target {
+    display: block !important;
+  }
+
+  .desktop-only.mobile-reveal {
+    display: block !important;
+  }
+
+  body {
+    padding-bottom: 84px;
+  }
+
+  .section {
+    padding: 3.5rem 1.1rem;
+  }
+
+  .hero-text {
+    gap: 0.85rem;
+  }
+
+  .hero {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-trust-line {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    margin-top: 0.6rem;
+  }
+
+  .hero-trust-line span {
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.72rem;
+    border-radius: 999px;
+    justify-content: center;
+  }
+
+  .hero-background {
+    background: transparent;
+  }
+
+  .trust-strip {
+    padding-top: 1rem;
+  }
+
+  .trust-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--color-text);
+  }
+
+  .trust-strip-inner span {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .services-section .section-header p,
+  .services-section .service-after-note {
+    display: none;
+  }
+
+  #about .meet-cleaner-copy,
+  #about .meet-cleaner-media {
+    padding-inline: 0.5rem;
+  }
+
+  #service-addons {
+    display: none;
+  }
+
+  .smartquote-section .smartquote-card {
+    display: none;
+  }
+
+  #bookingForm:target {
+    display: block;
+  }
+
+  .mobile-cta-section {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.4rem;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+  }
+
+  .mobile-cta-actions {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .testimonials-block {
+    display: none;
+  }
+
+  #faq .accordion-item:nth-child(n + 5) {
+    display: none;
+  }
+
+  .footer-column:not(.footer-brand) {
+    display: none;
+  }
+
+  .nav-mobile-cta {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .mobile-cta-bar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 140;
+    background: rgba(250, 251, 250, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border);
+    padding: 0.7rem 1rem 0.9rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .mobile-cta-bar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .burger:focus-visible,
+  .nav-mobile a:focus-visible,
+  .nav-mobile button:focus-visible,
+  .nav-mobile .btn:focus-visible {
+    outline: 2px solid var(--color-text-strong);
+    outline-offset: 3px;
+  }
+
+  .nav-mobile-panel {
+    padding: 2.2rem 1.25rem 1.6rem;
+    gap: 1.4rem;
+  }
+
+  .nav-mobile-links {
+    text-align: left;
+    gap: 0.95rem;
+  }
+
+  .nav-mobile-links .nav-link {
+    font-size: 1.05rem;
+  }
+
+  .nav-mobile .btn {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    min-height: 40px;
+  }
+
+  /* Mobile map fix: keep map flush inside its card */
+  #serviceArea .map-card {
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+  }
+
+  #serviceArea .map-label {
+    padding: 0 0.4rem;
+  }
+
+  #serviceArea .map-wrapper {
+    width: 100%;
+  }
+
+  #contactMap {
+    width: 100%;
+    height: 240px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  #contactMap .mapboxgl-canvas,
+  #contactMap .mapboxgl-canvas-container {
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .promos-inner {
@@ -5229,7 +5456,8 @@ body.dark #firstVisit {
 
 @media (max-width: 600px) {
   .header-inner {
-    padding: 0.5rem; /* Add some padding for mobile */
+    padding: 0.85rem 1rem;
+    min-height: 68px;
   }
 
   .btn {

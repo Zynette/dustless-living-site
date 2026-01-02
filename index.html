@@ -159,53 +159,58 @@
             </button>
           </div>
         </div>
-        <button class="burger" id="burger" aria-label="Open navigation">
+        <button
+          class="burger"
+          id="burger"
+          aria-label="Open navigation"
+          aria-controls="navMobile"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </button>
       </div>
-      <nav class="nav-mobile" id="navMobile" aria-hidden="true">
-        <div class="nav-mobile-panel">
-          <div class="nav-mobile-top">
-            <div class="nav-mobile-brand">
-              <img
-                src="/images/favicon.png"
-                alt="Dustless Living logo"
-                class="logo-icon"
-              />
-              <span>Dustless Living</span>
-            </div>
-            <button
-              class="nav-mobile-close"
-              id="navClose"
-              aria-label="Close menu"
-            >
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-          <div class="nav-mobile-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#serviceArea" class="nav-link">Service Area</a>
-            <a href="#reviews" class="nav-link">Reviews</a>
-            <a href="#faq" class="nav-link">FAQ</a>
-            <a href="#contact" class="nav-link">Contact</a>
+    </header>
+    <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+      <div class="nav-mobile-panel">
+        <div class="nav-mobile-top">
+          <div class="nav-mobile-brand">
+            <img
+              src="/images/favicon.png"
+              alt="Dustless Living logo"
+              class="logo-icon"
+            />
+            <span>Dustless Living</span>
           </div>
           <button
-            class="btn btn-primary btn-full"
-            onclick="window.location.href='index.html#booking'"
+            class="nav-mobile-close"
+            id="navClose"
+            aria-label="Close menu"
           >
-            Get My Free Quote
-          </button>
-          <button
-            class="btn btn-outline btn-full"
-            onclick="window.location.href='#home'"
-          >
-            Home
+            <span></span>
+            <span></span>
           </button>
         </div>
-      </nav>
-    </header>
+        <div class="nav-mobile-cta">
+          <a class="btn btn-primary btn-full" href="#bookingForm">
+            Book / Quote
+          </a>
+          <a class="btn btn-outline btn-full" href="tel:+1-289-401-7321">
+            Call Now
+          </a>
+        </div>
+        <div class="nav-mobile-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#process" class="nav-link">Our Process</a>
+          <a href="#service-addons" class="nav-link">Add-Ons</a>
+          <a href="#serviceArea" class="nav-link">Service Area</a>
+          <a href="#faq" class="nav-link">FAQs</a>
+          <a href="#serviceArea" class="nav-link">Contact</a>
+        </div>
+        <a class="btn btn-outline btn-full" href="#home">Back to top</a>
+      </div>
+    </nav>
 
     <!-- MAIN -->
     <main id="home">
@@ -263,7 +268,11 @@
         </section>
 
         <!-- Meet Your Cleaner -->
-        <section class="section meet-cleaner section--tint" data-reveal>
+        <section
+          id="about"
+          class="section meet-cleaner section--tint desktop-only"
+          data-reveal
+        >
           <div class="container meet-cleaner-grid">
             <div class="meet-cleaner-media">
               <img
@@ -415,7 +424,10 @@
                   Read details
                 </button>
               </article>
-              <article id="service-addons" class="service-snapshot-card glass">
+              <article
+                id="service-addons"
+                class="service-snapshot-card glass desktop-only"
+              >
                 <img
                   class="service-thumb"
                   src="/images/ovenclean.jpg"
@@ -438,7 +450,8 @@
         </section>
 
         <section
-          class="section section--sage growth-section growth-section--spacious"
+          id="growth"
+          class="section section--sage growth-section growth-section--spacious desktop-only"
           data-reveal
         >
           <div class="growth-bg" aria-hidden="true">
@@ -486,7 +499,11 @@
           </div>
         </section>
 
-        <section id="firstVisit" class="section section--card" data-reveal>
+        <section
+          id="process"
+          class="section section--card desktop-only"
+          data-reveal
+        >
           <div class="container">
             <div class="section-header align-center prose">
               <h2>Your First Dustless Visit, Step by Step</h2>
@@ -838,7 +855,20 @@
           </div>
 
           <div class="container">
-            <div class="smartquote-card glass">
+            <div class="mobile-cta-section mobile-only">
+              <h3>Ready for a fast quote?</h3>
+              <p class="muted">
+                Tap below to start your SmartQuote or book a quick visit.
+              </p>
+              <div class="mobile-cta-actions">
+                <a class="btn btn-primary" href="#bookingForm">Get a Quote</a>
+                <a class="btn btn-outline" href="tel:+1-289-401-7321">
+                  Book a Visit
+                </a>
+              </div>
+            </div>
+            <!-- Mobile collapses the form; targeted link reveals it -->
+            <div class="smartquote-card glass" id="bookingForm">
               <div class="wizard-progress">
                 <div>
                   <p class="wizard-step-label" id="wizardStepLabel">
@@ -875,6 +905,28 @@
                   data-step="1"
                   data-title="Basic Info"
                 >
+                  <div class="field terms-agreement">
+                    <label class="checkbox-label" for="termsAgree">
+                      <input
+                        type="checkbox"
+                        id="termsAgree"
+                        name="terms_agree"
+                        required
+                      />
+                      <span>
+                        I agree to the
+                        <a href="/terms.html" data-terms-modal>
+                          Terms &amp; Conditions
+                        </a>
+                        *
+                      </span>
+                    </label>
+                    <small
+                      class="field-error"
+                      id="termsAgreeError"
+                      aria-live="polite"
+                    ></small>
+                  </div>
                   <div class="form-grid">
                     <div class="field required">
                       <label for="clientName">Name *</label>
@@ -1031,7 +1083,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- Step 2 -->
                 <div
                   class="wizard-step"
@@ -1247,6 +1298,34 @@
                     <p>
                       Share photos or notes for the spaces you want cleaned.
                     </p>
+                  </div>
+                  <!-- Documentation guidelines (internal): keep clips short and task-focused.
+                       Avoid wide pans of personal spaces, aim for downward or surface-level angles,
+                       and avoid recording audio. -->
+                  <div class="terms-notice" role="note" aria-live="polite">
+                    <h4>Before &amp; After Documentation Notice</h4>
+                    <p>
+                      To ensure quality and protect both you and Dustless Living,
+                      we may take limited before-and-after photos or short video
+                      clips of cleaned areas. Documentation is used strictly for
+                      service records and dispute resolution, and is never used
+                      for marketing without your permission.
+                    </p>
+                  </div>
+                  <div class="field">
+                    <label class="checkbox-label" for="marketingConsent">
+                      <input
+                        type="checkbox"
+                        id="marketingConsent"
+                        name="marketing_consent"
+                        value="yes"
+                      />
+                      <span>
+                        I agree to allow limited before-and-after photos or
+                        short video clips of cleaned areas for marketing, with
+                        no personal belongings visible. (Optional)
+                      </span>
+                    </label>
                   </div>
                   <div class="field">
                     <label>How will you show your space?</label>
@@ -1513,7 +1592,6 @@
                 </div>
 
                 <p class="wizard-reassurance">
-                  I respond personally within 12 hours.
                 </p>
                 <div class="terms-notice terms-notice--subtle" role="note">
                   <h4>Booking &amp; Deposit Policy</h4>
@@ -1523,54 +1601,6 @@
                     are applied to your final invoice and are fully refundable
                     with at least 24 hours’ notice.
                   </p>
-                </div>
-                <!-- Documentation guidelines (internal): keep clips short and task-focused.
-                     Avoid wide pans of personal spaces, aim for downward or surface-level angles,
-                     and avoid recording audio. -->
-                <div class="terms-notice" role="note" aria-live="polite">
-                  <h4>Before &amp; After Documentation Notice</h4>
-                  <p>
-                    To ensure quality and protect both you and Dustless Living,
-                    we may take limited before-and-after photos or short video
-                    clips of cleaned areas. Documentation is used strictly for
-                    service records and dispute resolution, and is never used
-                    for marketing without your permission.
-                  </p>
-                </div>
-                <div class="field terms-agreement">
-                  <label class="checkbox-label" for="termsAgree">
-                    <input
-                      type="checkbox"
-                      id="termsAgree"
-                      name="terms_agree"
-                      required
-                    />
-                    <span>
-                      I agree to the
-                      <a href="/terms.html" data-terms-modal>
-                        Terms &amp; Conditions
-                      </a>
-                    </span>
-                  </label>
-                  <small
-                    class="field-error"
-                    id="termsAgreeError"
-                    aria-live="polite"
-                  ></small>
-                </div>
-                <div class="field terms-marketing">
-                  <label class="checkbox-label" for="marketingOptOut">
-                    <input
-                      type="checkbox"
-                      id="marketingOptOut"
-                      name="marketing_opt_out"
-                      value="yes"
-                    />
-                    <span>
-                      Please do not use photos/videos of my space for marketing
-                      purposes
-                    </span>
-                  </label>
                 </div>
                 <div class="wizard-controls">
                   <button
@@ -1617,7 +1647,7 @@
         </section>
 
         <section
-          class="section section--warm gift-section gift-section--soft"
+          class="section section--warm gift-section gift-section--soft desktop-only"
           data-reveal
         >
           <div class="container">
@@ -1694,7 +1724,7 @@
           data-reveal
         >
           <div class="container testimonials-faq-layout">
-            <div>
+            <div class="testimonials-block">
               <h2>What Clients Around Hamilton &amp; Burlington Are Saying</h2>
               <div class="testimonial-card glass">
                 <div class="testimonial-rating" aria-label="5 star rating">
@@ -1841,7 +1871,11 @@
         </section>
 
         <!-- Contact -->
-        <section id="serviceArea" class="section section--warm" data-reveal>
+        <section
+          id="serviceArea"
+          class="section section--warm desktop-only"
+          data-reveal
+        >
           <div id="contact" class="container contact-layout">
             <div>
               <h2>Contact &amp; Service Area</h2>
@@ -2004,6 +2038,12 @@
         </div>
       </section>
     </main>
+
+    <!-- Mobile Sticky CTA Bar -->
+    <div class="mobile-cta-bar mobile-only" role="region" aria-label="Quick actions">
+      <a class="btn btn-primary" href="#bookingForm">Get a Quote</a>
+      <a class="btn btn-outline" href="tel:+1-289-401-7321">Call Now</a>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -2228,6 +2268,10 @@
           ],
           fitBoundsOptions: { padding: 32 },
         });
+
+        window.resizeContactMap = () => {
+          map.resize();
+        };
 
         const zones = [
           { title: "Hamilton", coords: [-79.866, 43.255] },

@@ -14,9 +14,35 @@
       window.location.href = `index.html#${id}`;
       return;
     }
-    const headerOffset = 80;
-    const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    if (window.history?.replaceState) {
+      window.history.replaceState(null, "", `#${id}`);
+    } else {
+      window.location.hash = id;
+    }
+    const scrollToTarget = () => {
+      const headerOffset = 80;
+      const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    };
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      const isHiddenDesktopSection = el.classList.contains("desktop-only");
+      if (isHiddenDesktopSection) {
+        document
+          .querySelectorAll(".desktop-only.mobile-reveal")
+          .forEach((section) => section.classList.remove("mobile-reveal"));
+        el.classList.add("mobile-reveal");
+      }
+      requestAnimationFrame(() => requestAnimationFrame(scrollToTarget));
+      if (typeof window.resizeContactMap === "function") {
+        if (el.id === "serviceArea" || el.querySelector("#contactMap")) {
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => window.resizeContactMap())
+          );
+        }
+      }
+      return;
+    }
+    scrollToTarget();
   }
   window.scrollToSection = scrollToSection;
 
@@ -656,7 +682,23 @@
   // ===============================
 
   const accordions = document.querySelectorAll("[data-accordion]");
-  accordions.forEach((accordion) => {
+  accordions.forEach((accordion, accordionIndex) => {
+    const accordionId = accordion.getAttribute("id") || `accordion-${accordionIndex + 1}`;
+    const accordionItems = accordion.querySelectorAll(".accordion-item");
+    accordionItems.forEach((item, itemIndex) => {
+      const header = item.querySelector(".accordion-header");
+      const body = item.querySelector(".accordion-body");
+      if (!header || !body) return;
+      if (!body.id) {
+        body.id = `${accordionId}-item-${itemIndex + 1}`;
+      }
+      header.setAttribute("type", "button");
+      header.setAttribute("aria-controls", body.id);
+      header.setAttribute("aria-expanded", item.classList.contains("open") ? "true" : "false");
+      body.setAttribute("role", "region");
+      body.setAttribute("aria-hidden", item.classList.contains("open") ? "false" : "true");
+    });
+
     accordion.addEventListener("click", (event) => {
       const header = event.target.closest(".accordion-header");
       if (!header) return;
@@ -671,6 +713,17 @@
         });
 
       item.classList.toggle("open", !isOpen);
+      accordionItems.forEach((accordionItem) => {
+        const itemHeader = accordionItem.querySelector(".accordion-header");
+        const itemBody = accordionItem.querySelector(".accordion-body");
+        const isItemOpen = accordionItem.classList.contains("open");
+        if (itemHeader) {
+          itemHeader.setAttribute("aria-expanded", isItemOpen ? "true" : "false");
+        }
+        if (itemBody) {
+          itemBody.setAttribute("aria-hidden", isItemOpen ? "false" : "true");
+        }
+      });
     });
   });
 
@@ -831,7 +884,7 @@
           email: getValue("email"),
           phone: getValue("phone"),
           contactPreference: contactPreference.join(", "),
-          marketingOptOut: isChecked("marketing_opt_out") ? "Yes" : "No",
+          marketingConsent: isChecked("marketing_consent") ? "Yes" : "No",
           address: getValue("address"),
           homeType: getValue("homeType"),
           serviceType: getValue("serviceType"),
@@ -859,7 +912,7 @@
           `Email: ${data.email}`,
           `Phone: ${data.phone}`,
           `Contact preference: ${data.contactPreference}`,
-          `Marketing opt-out: ${data.marketingOptOut}`,
+          `Marketing consent: ${data.marketingConsent}`,
           `Address: ${data.address}`,
           `Space type: ${data.homeType}`,
           `Service type: ${data.serviceType}`,
@@ -910,12 +963,11 @@
             )}</p>`
           );
         }
-        const marketingOptOutChecked = wizardForm.querySelector(
-          'input[name="marketing_opt_out"]:checked'
-        );
         summaryParts.push(
-          `<p><strong>Marketing opt-out:</strong> ${
-            marketingOptOutChecked ? "Yes" : "No"
+          `<p><strong>Marketing consent:</strong> ${
+            wizardForm.querySelector('input[name="marketing_consent"]:checked')
+              ? "Yes"
+              : "No"
           }</p>`
         );
         summaryParts.push(
@@ -1198,6 +1250,12 @@
       const validateCurrentStep = () => {
         const activeStep = steps[currentStepIndex];
         if (!activeStep) return true;
+        if (activeStep.contains(termsAgree) && !isTermsAccepted()) {
+          setTermsError("Please agree to the Terms & Conditions to continue.");
+          termsAgree?.focus();
+          return false;
+        }
+        setTermsError("");
         const invalidField = activeStep.querySelector(
           "input:invalid, select:invalid, textarea:invalid"
         );
