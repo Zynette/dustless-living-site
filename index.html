@@ -119,12 +119,9 @@
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
-          <button
-            class="btn btn-primary nav-cta"
-            onclick="window.location.href='index.html#booking'"
-          >
-            Get My Free Quote
-          </button>
+          <a class="btn btn-primary nav-cta" href="tel:+1-289-401-7321">
+            +1 (289) 401-7321
+          </a>
           <div class="header-icons">
             <button
               class="icon-btn theme-toggle-btn"
@@ -558,6 +555,272 @@
           </div>
         </div>
 
+        <!-- Terms & Conditions Modal -->
+        <div
+          class="terms-modal-backdrop"
+          id="termsModal"
+          aria-hidden="true"
+        >
+          <div
+            class="terms-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="termsModalTitle"
+          >
+            <div class="terms-modal-header">
+              <div>
+                <p class="terms-modal-eyebrow">Service Agreement</p>
+                <h3 id="termsModalTitle">Terms &amp; Conditions</h3>
+                <p class="terms-modal-updated">
+                  Last updated: January 2, 2026
+                </p>
+              </div>
+              <button
+                class="terms-modal-close"
+                type="button"
+                data-terms-close
+                aria-label="Close terms"
+              >
+                ×
+              </button>
+            </div>
+            <div class="terms-modal-body">
+              <p class="terms-intro">
+                These terms apply to all Dustless Living services and bookings
+                for residential and small commercial cleaning in Hamilton and
+                Burlington, Ontario.
+              </p>
+
+              <h4>1) Service Scope</h4>
+              <ul>
+                <li>
+                  Services include residential and small commercial cleaning.
+                </li>
+                <li>
+                  What is included depends on the selected package, add-ons,
+                  and what is listed in the booking confirmation.
+                </li>
+                <li>
+                  Exclusions include mold remediation, pest removal, biohazards,
+                  hoarding or extreme unsanitary conditions, construction or
+                  renovation debris unless explicitly agreed, and lifting or
+                  moving heavy furniture over 25 lb (11 kg) unless arranged in
+                  advance.
+                </li>
+              </ul>
+
+              <h4>2) Access &amp; Safety</h4>
+              <ul>
+                <li>
+                  Clients must provide safe access, entry instructions, and
+                  parking information if needed.
+                </li>
+                <li>
+                  Pets must be secured, walkways cleared, and utilities (water
+                  and electricity) working.
+                </li>
+                <li>
+                  We may refuse or stop service if unsafe conditions exist,
+                  including aggressive pets, hazardous materials, severe
+                  clutter, or strong smoke or fumes.
+                </li>
+              </ul>
+
+              <h4>3) Before/After Photos &amp; Documentation</h4>
+              <ul>
+                <li>
+                  We may take before-and-after photos for quality checks,
+                  training, and dispute resolution.
+                </li>
+                <li>We avoid personal or identifying items as much as possible.</li>
+                <li>
+                  Photos are not used for marketing unless you give clear
+                  permission.
+                </li>
+              </ul>
+
+              <h4>Before &amp; After Photos and Video Documentation</h4>
+              <ul>
+                <li>
+                  Dustless Living may take before photos, after photos, and
+                  short video clips during cleaning.
+                </li>
+                <li>
+                  Documentation is limited to quality assurance, training, and
+                  dispute resolution.
+                </li>
+                <li>
+                  We do not intentionally capture faces, personal photos, mail,
+                  documents, or identifying items.
+                </li>
+                <li>
+                  Media is not used publicly or for marketing without separate
+                  written consent.
+                </li>
+                <li>
+                  You may request that documentation not be used for
+                  promotional purposes at any time.
+                </li>
+                <li>
+                  Media is stored securely and kept for 30 to 90 days unless
+                  needed for an active dispute.
+                </li>
+                <li>
+                  Booking and agreement to these terms constitutes consent for
+                  documentation only.
+                </li>
+              </ul>
+
+              <h4>4) Pre-existing Damage</h4>
+              <ul>
+                <li>
+                  We are not responsible for pre-existing damage, normal wear
+                  and tear, improper installation, or delicate or unstable
+                  items and surfaces.
+                </li>
+                <li>
+                  Please point out fragile or sensitive areas before the clean.
+                </li>
+              </ul>
+
+              <h4>5) Breakage &amp; Damage Limits</h4>
+              <ul>
+                <li>
+                  If we cause accidental damage, we will notify the client as
+                  soon as possible.
+                </li>
+                <li>
+                  Our liability is limited to the cost to repair or replace the
+                  damaged item, or the amount paid for that cleaning visit,
+                  whichever is lower.
+                </li>
+                <li>
+                  We are not liable for indirect or consequential losses,
+                  including lost income or downtime.
+                </li>
+              </ul>
+
+              <h4>6) Results / No Guarantee on Permanent Stains</h4>
+              <ul>
+                <li>
+                  Some stains, buildup, discoloration, scratches, rust, and
+                  etching may be permanent.
+                </li>
+                <li>
+                  We do not guarantee full removal of permanent stains or
+                  restoration outcomes.
+                </li>
+              </ul>
+
+              <h4>7) Client-Provided Products</h4>
+              <ul>
+                <li>
+                  If a client requests use of their products or equipment, we
+                  are not responsible for damage caused by those items or
+                  incorrect product and surface compatibility.
+                </li>
+              </ul>
+
+              <h4>8) Scheduling, Cancellations, and Deposits</h4>
+              <ul>
+                <li>Appointment windows and arrival times may vary.</li>
+                <li>
+                  Cancellations or reschedules require at least 24 hours notice.
+                </li>
+                <li>
+                  For repeated last-minute cancellations or no-shows, we may
+                  require a deposit to hold future bookings.
+                </li>
+                <li>Deposit terms are described at the time of booking.</li>
+              </ul>
+
+              <h4>Deposits, Cancellations, and Rescheduling</h4>
+              <ul>
+                <li>
+                  Deposits may be required to secure certain bookings, including
+                  same-day requests, short-notice appointments, repeat
+                  reschedules, or larger jobs.
+                </li>
+                <li>
+                  The deposit amount is a flat amount or a percentage, as
+                  communicated at the time of booking.
+                </li>
+                <li>
+                  Deposits are applied to the final invoice if service proceeds.
+                </li>
+                <li>
+                  Deposits are fully refundable when cancellations are made
+                  with at least 24 hours notice.
+                </li>
+                <li>
+                  Deposits are not refundable for cancellations within 24 hours
+                  or for no-shows.
+                </li>
+                <li>
+                  One reschedule is permitted with proper notice. Repeated
+                  last-minute changes may require a deposit for future bookings.
+                </li>
+                <li>
+                  Deposit terms are always communicated before any payment is
+                  requested.
+                </li>
+              </ul>
+
+              <h4>9) Pricing &amp; Quotes</h4>
+              <ul>
+                <li>
+                  Quotes are based on the information provided, including
+                  photos or videos if supplied.
+                </li>
+                <li>
+                  If the actual condition is significantly different, price or
+                  time may change.
+                </li>
+                <li>
+                  If no photos or videos are provided, we may require a quick 5
+                  to 10 minute in-person visit before confirming the final
+                  quote.
+                </li>
+              </ul>
+
+              <h4>10) Payment</h4>
+              <ul>
+                <li>Payment methods are e-transfer or cash.</li>
+                <li>
+                  Payment is due at the end of service unless agreed in writing.
+                </li>
+                <li>
+                  Late payment may pause future bookings until the balance is
+                  paid.
+                </li>
+              </ul>
+
+              <h4>11) Right to Refuse Service</h4>
+              <ul>
+                <li>
+                  We may refuse service for unsafe, abusive, or discriminatory
+                  behavior, or for conditions outside our scope.
+                </li>
+              </ul>
+
+              <h4>12) Force Majeure</h4>
+              <ul>
+                <li>
+                  We are not responsible for delays or cancellations due to
+                  events beyond our control, including severe weather, power
+                  outages, and emergencies.
+                </li>
+              </ul>
+
+              <h4>13) Contact</h4>
+              <p>
+                For questions about these terms, contact Dustless Living via the
+                Contact page.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- SmartQuote Wizard -->
         <section
           id="booking"
@@ -567,18 +830,15 @@
           <div class="container section-header prose">
             <h2>SmartQuote™ Guided Cleaning Estimate</h2>
             <p class="smartquote-reassurance">
-              Takes <strong>2–3 minutes</strong> · Photos optional · No
-              obligation
+              It only takes <strong>2–3 minutes</strong> ·
+              Photos/Video/In-Person check - your choice. I only take clients
+              after seeing the conditions. Photos/videos stay private and are
+              never shared unless you give permission for before-and-after use.
             </p>
           </div>
 
           <div class="container">
             <div class="smartquote-card glass">
-              <p class="gift-note">
-                <span class="gift-icon-small" aria-hidden="true">•</span>
-                Booking for someone else? We love that. Include their name and
-                any notes, and we’ll take care of the rest.
-              </p>
               <div class="wizard-progress">
                 <div>
                   <p class="wizard-step-label" id="wizardStepLabel">
@@ -594,16 +854,27 @@
               </div>
 
               <form id="smartquoteForm" class="wizard-form" novalidate>
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true"
+                  style="
+                    position: absolute;
+                    left: -9999px;
+                    top: auto;
+                    width: 1px;
+                    height: 1px;
+                    overflow: hidden;
+                  "
+                />
                 <!-- Step 1 -->
                 <div
                   class="wizard-step active"
                   data-step="1"
                   data-title="Basic Info"
                 >
-                  <div class="step-intro">
-                    <h3>Your details</h3>
-                    <p>I’ll use this to follow up within 12 hours.</p>
-                  </div>
                   <div class="form-grid">
                     <div class="field required">
                       <label for="clientName">Name *</label>
@@ -627,14 +898,37 @@
                       />
                       <small class="field-error" aria-live="polite"></small>
                     </div>
-                    <div class="field">
-                      <label for="clientPhone">Phone</label>
+                    <div class="field required">
+                      <label for="clientPhone">Phone *</label>
                       <input
                         type="tel"
                         id="clientPhone"
                         name="phone"
-                        placeholder="Optional"
+                        placeholder="Phone number"
+                        required
                       />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="field required" data-contact-preference>
+                      <label>Preferred contact method *</label>
+                      <div class="pill-group">
+                        <label class="pill-option">
+                          <input
+                            type="checkbox"
+                            name="contactPreference"
+                            value="Email"
+                          />
+                          <span>Email</span>
+                        </label>
+                        <label class="pill-option">
+                          <input
+                            type="checkbox"
+                            name="contactPreference"
+                            value="Phone"
+                          />
+                          <span>Phone</span>
+                        </label>
+                      </div>
                       <small class="field-error" aria-live="polite"></small>
                     </div>
                     <div class="field">
@@ -719,6 +1013,23 @@
                     </div>
                     <small class="field-error" aria-live="polite"></small>
                   </div>
+                  <div class="form-grid form-grid--three">
+                    <div class="field field--span-3">
+                      <label for="referralCode">Referral Code (Optional)</label>
+                      <p class="field-hint">
+                        If you were referred by a client, enter their code for a
+                        discount. If you refer someone, you will receive a
+                        future discount too.
+                      </p>
+                      <input
+                        type="text"
+                        id="referralCode"
+                        name="referral_code"
+                        placeholder="ex: LOVELY17"
+                      />
+                      <small class="field-error" aria-live="polite"></small>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Step 2 -->
@@ -727,10 +1038,6 @@
                   data-step="2"
                   data-title="Space Details"
                 >
-                  <div class="step-intro">
-                    <h3>Space Details</h3>
-                    <p>Tell me the rooms or zones that need care.</p>
-                  </div>
                   <div class="form-grid">
                     <div class="field">
                       <label for="bedroomCount">Bedrooms / private rooms</label>
@@ -872,7 +1179,9 @@
                   </fieldset>
 
                   <fieldset class="field">
-                    <legend>How long has the space been in use?</legend>
+                    <legend>
+                      <strong>How long has the space been in use?</strong>
+                    </legend>
                     <div class="pill-group pill-group-wrap">
                       <label class="pill-option">
                         <input
@@ -935,7 +1244,6 @@
                   data-title="Room-by-Room Overview"
                 >
                   <div class="step-intro">
-                    <h3>Room-by-Room + Media</h3>
                     <p>
                       Share photos or notes for the spaces you want cleaned.
                     </p>
@@ -961,14 +1269,6 @@
                         <input
                           type="radio"
                           name="mediaOption"
-                          value="description"
-                        />
-                        <span>Skip, I’ll describe it</span>
-                      </label>
-                      <label class="pill-option">
-                        <input
-                          type="radio"
-                          name="mediaOption"
                           value="in-person"
                         />
                         <span>In-person check for an estimate</span>
@@ -984,51 +1284,16 @@
                     aria-live="polite"
                   >
                     <p class="media-helper">
-                      I’ll create a mini upload slot for each room you told me
-                      about. Quick snapshots help me quote accurately.
+                      Photos help me provide the most accurate quote. You can
+                      reply to my email with photos after submitting this form.
                     </p>
-                    <label class="field">
-                      <span>General photos (optional)</span>
-                      <input
-                        type="file"
-                        id="generalPhotos"
-                        name="generalPhotos"
-                        accept="image/*"
-                        multiple
-                      />
-                      <small class="field-error" aria-live="polite"></small>
-                    </label>
-                    <div id="photoRoomUploads" class="room-upload-grid"></div>
                   </div>
 
                   <div class="media-block hidden" id="videoUploadSection">
-                    <label class="field">
-                      <span>Walkthrough video (one clip)</span>
-                      <input
-                        type="file"
-                        id="walkthroughVideo"
-                        name="walkthroughVideo"
-                        accept="video/*"
-                      />
-                      <small class="field-error" aria-live="polite"></small>
-                    </label>
                     <p class="media-helper">
-                      Walk from your entrance through main areas, slowly panning
-                      the camera. Natural light is perfect.
+                      A short walkthrough video is also perfect. You can reply
+                      to my email with a short clip after submitting.
                     </p>
-                  </div>
-
-                  <div class="media-block hidden" id="descriptionSection">
-                    <label class="field">
-                      <span>Describe your space</span>
-                      <textarea
-                        id="mediaDescription"
-                        name="mediaDescription"
-                        rows="4"
-                        placeholder="Share flooring type, mess level, and any trouble spots..."
-                      ></textarea>
-                      <small class="field-error" aria-live="polite"></small>
-                    </label>
                   </div>
 
                   <div class="media-block hidden" id="inPersonSection">
@@ -1046,13 +1311,14 @@
                   data-title="Condition & Extras"
                 >
                   <div class="step-intro">
-                    <h3>Condition & Extras</h3>
                     <p>
                       Tell me about the condition and any extra focus areas.
                     </p>
                   </div>
                   <div class="field slider-field">
-                    <label for="conditionLevel">Condition level</label>
+                    <div class="slider-value">
+                      Condition Level: <strong id="conditionValue">4</strong>
+                    </div>
                     <input
                       type="range"
                       id="conditionLevel"
@@ -1063,7 +1329,6 @@
                     />
                     <div class="slider-labels">
                       <span>1 – Light tidy</span>
-                      <strong id="conditionValue">4</strong>
                       <span>10 – Extreme</span>
                     </div>
                     <ul class="condition-scale">
@@ -1220,7 +1485,6 @@
                   data-title="Review & Submit"
                 >
                   <div class="step-intro">
-                    <h3>Review & Submit</h3>
                     <p>Take a quick glance before sending.</p>
                   </div>
                   <div id="smartquoteSummary" class="review-summary">
@@ -1233,29 +1497,81 @@
                     price may adjust slightly if the condition is different in
                     person.
                   </p>
+                  <div class="review-note">
+                    <h4>Photos or Quick Visit</h4>
+                    <p>
+                      To provide an accurate quote, I need to see the space. You
+                      can reply to my email with photos or a short video after
+                      submitting. If photos aren’t available, we’ll schedule a
+                      quick 5–10 minute in-person visit at a time that works for
+                      you.
+                    </p>
+                  </div>
                   <button type="button" class="link-btn" id="reviewBackLink">
                     Back and edit
                   </button>
                 </div>
 
-                <div class="field">
-                  <label for="referralCode">Referral Code (Optional)</label>
-                  <p class="field-hint">
-                    If someone referred you, enter their code so we can thank
-                    them.
-                  </p>
-                  <input
-                    type="text"
-                    id="referralCode"
-                    name="referral_code"
-                    placeholder="ex: LOVELY17"
-                  />
-                  <small class="field-error" aria-live="polite"></small>
-                </div>
-
                 <p class="wizard-reassurance">
                   I respond personally within 12 hours.
                 </p>
+                <div class="terms-notice terms-notice--subtle" role="note">
+                  <h4>Booking &amp; Deposit Policy</h4>
+                  <p>
+                    To reserve time specifically for your booking, a small
+                    deposit may be required for certain appointments. Deposits
+                    are applied to your final invoice and are fully refundable
+                    with at least 24 hours’ notice.
+                  </p>
+                </div>
+                <!-- Documentation guidelines (internal): keep clips short and task-focused.
+                     Avoid wide pans of personal spaces, aim for downward or surface-level angles,
+                     and avoid recording audio. -->
+                <div class="terms-notice" role="note" aria-live="polite">
+                  <h4>Before &amp; After Documentation Notice</h4>
+                  <p>
+                    To ensure quality and protect both you and Dustless Living,
+                    we may take limited before-and-after photos or short video
+                    clips of cleaned areas. Documentation is used strictly for
+                    service records and dispute resolution, and is never used
+                    for marketing without your permission.
+                  </p>
+                </div>
+                <div class="field terms-agreement">
+                  <label class="checkbox-label" for="termsAgree">
+                    <input
+                      type="checkbox"
+                      id="termsAgree"
+                      name="terms_agree"
+                      required
+                    />
+                    <span>
+                      I agree to the
+                      <a href="/terms.html" data-terms-modal>
+                        Terms &amp; Conditions
+                      </a>
+                    </span>
+                  </label>
+                  <small
+                    class="field-error"
+                    id="termsAgreeError"
+                    aria-live="polite"
+                  ></small>
+                </div>
+                <div class="field terms-marketing">
+                  <label class="checkbox-label" for="marketingOptOut">
+                    <input
+                      type="checkbox"
+                      id="marketingOptOut"
+                      name="marketing_opt_out"
+                      value="yes"
+                    />
+                    <span>
+                      Please do not use photos/videos of my space for marketing
+                      purposes
+                    </span>
+                  </label>
+                </div>
                 <div class="wizard-controls">
                   <button
                     type="button"
@@ -1274,13 +1590,20 @@
                     Next step
                   </button>
                 </div>
+                <p
+                  id="smartquoteError"
+                  class="field-error"
+                  aria-live="polite"
+                ></p>
               </form>
 
               <div class="wizard-thankyou" id="smartquoteThankYou" hidden>
                 <h3>Thank you!</h3>
                 <p>
-                  Your SmartQuote request has been received. We’ll email you
-                  within 12 hours with a personalized quote and next steps.
+                  Thanks! I’ll review your request and respond personally within
+                  12 hours. To confirm an accurate quote, I’ll either review
+                  photos/videos of the space or schedule a quick 5–10 minute
+                  visit if needed.
                 </p>
                 <button
                   class="btn btn-soft"
@@ -1543,9 +1866,6 @@
                     >hello@dustlessliving.com</a
                   >
                 </li>
-                <li>
-                  <strong>Text or email welcome</strong>
-                </li>
               </ul>
               <form id="contactForm" class="form card">
                 <div class="field">
@@ -1782,6 +2102,10 @@
             <li><a href="about.html">About</a></li>
             <li><a href="index.html#booking">SmartQuote™</a></li>
             <li><a href="index.html#booking">Book a Visit</a></li>
+            <li>
+              <a href="/terms.html" data-terms-modal>Terms &amp; Conditions</a>
+            </li>
+            <li><a href="#">Privacy</a></li>
           </ul>
         </div>
       </div>
@@ -1921,5 +2245,6 @@
 
     <!-- Main JS -->
     <script src="/main.js"></script>
+    <script src="/js/terms-modal.js"></script>
   </body>
 </html>

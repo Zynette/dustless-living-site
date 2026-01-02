@@ -233,9 +233,6 @@
 
   const THEME_STORAGE_KEY = "dustless_theme";
   const themeToggle = document.getElementById("themeToggle");
-  const prefersDark = window.matchMedia
-    ? window.matchMedia("(prefers-color-scheme: dark)")
-    : null;
 
   const storage = {
     get() {
@@ -275,8 +272,6 @@
   const storedPreference = storage.get();
   if (storedPreference === "dark" || storedPreference === "light") {
     applyTheme(storedPreference);
-  } else if (prefersDark && typeof prefersDark.matches === "boolean") {
-    applyTheme(prefersDark.matches ? "dark" : "light");
   } else {
     applyTheme("light");
   }
@@ -289,18 +284,6 @@
     });
   }
 
-  if (prefersDark) {
-    const handleSchemeChange = (event) => {
-      const saved = storage.get();
-      if (saved === "dark" || saved === "light") return;
-      applyTheme(event.matches ? "dark" : "light");
-    };
-    if (typeof prefersDark.addEventListener === "function") {
-      prefersDark.addEventListener("change", handleSchemeChange);
-    } else if (typeof prefersDark.addListener === "function") {
-      prefersDark.addListener(handleSchemeChange);
-    }
-  }
 
   // ===============================
   // 4. Chat Widget Toggle
@@ -716,6 +699,7 @@
   // 8. SmartQuote wizard
   // ===============================
 
+  const FORM_ENDPOINT = "https://formspree.io/f/xlgdjnzn";
   const wizardForm = document.getElementById("smartquoteForm");
   if (wizardForm) {
     const steps = Array.from(wizardForm.querySelectorAll(".wizard-step"));
@@ -727,6 +711,7 @@
     const reviewBackLink = document.getElementById("reviewBackLink");
     const thankYouCard = document.getElementById("smartquoteThankYou");
     const summaryTarget = document.getElementById("smartquoteSummary");
+    const errorTarget = document.getElementById("smartquoteError");
     const mediaOptions = Array.from(
       wizardForm.querySelectorAll('input[name="mediaOption"]')
     );
@@ -735,6 +720,8 @@
     const descriptionSection = document.getElementById("descriptionSection");
     const inPersonSection = document.getElementById("inPersonSection");
     const photoRoomUploads = document.getElementById("photoRoomUploads");
+    const conditionSlider = document.getElementById("conditionLevel");
+    const conditionValue = document.getElementById("conditionValue");
     const roomCountInputs = Array.from(
       wizardForm.querySelectorAll("[data-room-count]")
     );
@@ -742,12 +729,21 @@
       wizardForm.querySelectorAll('input[name="commonAreas"]')
     );
     const commonAreaOther = wizardForm.querySelector("#commonAreaOther");
+    const contactPreferenceInputs = Array.from(
+      wizardForm.querySelectorAll('input[name="contactPreference"]')
+    );
+    const contactPreferenceField = wizardForm.querySelector(
+      "[data-contact-preference]"
+    );
+    const termsAgree = wizardForm.querySelector("#termsAgree");
+    const termsAgreeError = document.getElementById("termsAgreeError");
 
     if (steps.length) {
       const defaultNextLabel =
         nextBtn?.textContent?.trim() || "Next step";
       let currentStepIndex = -1;
       let hasSubmitted = false;
+      let isSubmitting = false;
 
       const escapeText = (value) => {
         if (value === null || value === undefined) return "";
@@ -771,6 +767,122 @@
         });
       };
 
+      const setError = (message) => {
+        if (!errorTarget) return;
+        errorTarget.textContent = message || "";
+      };
+
+      const setTermsError = (message) => {
+        if (!termsAgreeError) return;
+        termsAgreeError.textContent = message || "";
+        const field = termsAgreeError.closest(".field");
+        if (field) {
+          field.classList.toggle("has-error", Boolean(message));
+        }
+        if (termsAgree) {
+          termsAgree.setAttribute("aria-invalid", message ? "true" : "false");
+        }
+      };
+
+      const isTermsAccepted = () => !termsAgree || termsAgree.checked;
+
+      const setSubmittingState = (submitting) => {
+        isSubmitting = submitting;
+        if (nextBtn) {
+          nextBtn.disabled = submitting;
+          if (submitting) {
+            nextBtn.textContent = "Sending...";
+          } else {
+            refreshNavigation();
+          }
+          nextBtn.setAttribute("aria-busy", submitting ? "true" : "false");
+        }
+        if (backBtn) {
+          backBtn.disabled = submitting || currentStepIndex === 0 || hasSubmitted;
+        }
+        if (reviewBackLink) {
+          reviewBackLink.disabled = submitting;
+        }
+      };
+
+      const collectSmartQuoteData = () => {
+        const getValue = (name) =>
+          wizardForm.elements[name]?.value?.trim?.() || "";
+        const getChecked = (name) =>
+          wizardForm.querySelector(`input[name="${name}"]:checked`)?.value || "";
+        const isChecked = (name) =>
+          Boolean(wizardForm.querySelector(`input[name="${name}"]:checked`));
+        const commonAreas = Array.from(
+          wizardForm.querySelectorAll('input[name="commonAreas"]:checked')
+        ).map((input) => input.value);
+        const extras = Array.from(
+          wizardForm.querySelectorAll('input[name="extras"]:checked')
+        ).map((input) => input.value);
+        const contactPreference = Array.from(
+          wizardForm.querySelectorAll('input[name="contactPreference"]:checked')
+        ).map((input) => input.value);
+        const otherCommonArea = commonAreaOther?.value?.trim() || "";
+        if (otherCommonArea) {
+          commonAreas.push(otherCommonArea);
+        }
+
+        return {
+          name: getValue("name"),
+          email: getValue("email"),
+          phone: getValue("phone"),
+          contactPreference: contactPreference.join(", "),
+          marketingOptOut: isChecked("marketing_opt_out") ? "Yes" : "No",
+          address: getValue("address"),
+          homeType: getValue("homeType"),
+          serviceType: getValue("serviceType"),
+          preferredDate: formatDateValue(getValue("preferredDate")),
+          urgency: getChecked("urgency"),
+          bedrooms: getValue("bedrooms"),
+          fullBaths: getValue("fullBaths"),
+          halfBaths: getValue("halfBaths"),
+          commonAreas: commonAreas.join(", "),
+          commonAreaOther: otherCommonArea,
+          livingLength: getChecked("livingLength"),
+          mediaOption: getChecked("mediaOption"),
+          mediaDescription: getValue("mediaDescription"),
+          conditionLevel: getValue("conditionLevel"),
+          extras: extras.join(", "),
+          hasPets: getChecked("hasPets"),
+          hasKids: getChecked("hasKids"),
+          referral_code: getValue("referral_code"),
+        };
+      };
+
+      const buildSummaryMessage = (data) => {
+        const lines = [
+          `Name: ${data.name}`,
+          `Email: ${data.email}`,
+          `Phone: ${data.phone}`,
+          `Contact preference: ${data.contactPreference}`,
+          `Marketing opt-out: ${data.marketingOptOut}`,
+          `Address: ${data.address}`,
+          `Space type: ${data.homeType}`,
+          `Service type: ${data.serviceType}`,
+          `Preferred date: ${data.preferredDate}`,
+          `Urgency: ${data.urgency}`,
+          `Bedrooms: ${data.bedrooms}`,
+          `Full bathrooms: ${data.fullBaths}`,
+          `Half bathrooms: ${data.halfBaths}`,
+          `Common areas: ${data.commonAreas}`,
+          `How long here: ${data.livingLength}`,
+          `Media option: ${data.mediaOption}`,
+          `Media description: ${data.mediaDescription}`,
+          `Condition level: ${data.conditionLevel}`,
+          `Extras: ${data.extras}`,
+          `Pets on site: ${data.hasPets}`,
+          `Kids/guests on site: ${data.hasKids}`,
+          `Referral code: ${data.referral_code}`,
+          "Accurate pricing requires photos/videos of the space or a brief in-person visit.",
+        ];
+
+        return lines.filter((line) => !line.endsWith(": ")).join("\n");
+      };
+
       const updateSummary = () => {
         if (!summaryTarget) return;
         const populate = (label, rawValue) => {
@@ -788,6 +900,24 @@
         summaryParts.push(populate("Name", wizardForm.elements.name?.value));
         summaryParts.push(populate("Email", wizardForm.elements.email?.value));
         summaryParts.push(populate("Phone", wizardForm.elements.phone?.value));
+        const contactPrefs = Array.from(
+          wizardForm.querySelectorAll('input[name="contactPreference"]:checked')
+        ).map((input) => input.value);
+        if (contactPrefs.length) {
+          summaryParts.push(
+            `<p><strong>Contact preference:</strong> ${escapeText(
+              contactPrefs.join(", ")
+            )}</p>`
+          );
+        }
+        const marketingOptOutChecked = wizardForm.querySelector(
+          'input[name="marketing_opt_out"]:checked'
+        );
+        summaryParts.push(
+          `<p><strong>Marketing opt-out:</strong> ${
+            marketingOptOutChecked ? "Yes" : "No"
+          }</p>`
+        );
         summaryParts.push(
           populate("Address", wizardForm.elements.address?.value)
         );
@@ -827,7 +957,6 @@
         const mediaLabelMap = {
           photos: "Photos per room",
           video: "Walkthrough video",
-          description: "Description only",
           "in-person": "In-person check for estimate",
         };
         summaryParts.push(
@@ -883,12 +1012,6 @@
           videoUploadSection.classList.toggle(
             "hidden",
             selected !== "video"
-          );
-        }
-        if (descriptionSection) {
-          descriptionSection.classList.toggle(
-            "hidden",
-            selected !== "description"
           );
         }
         if (inPersonSection) {
@@ -988,6 +1111,37 @@
         buildRoomUploads();
       }
 
+      if (conditionSlider && conditionValue) {
+        const syncConditionValue = () => {
+          conditionValue.textContent = conditionSlider.value;
+        };
+        conditionSlider.addEventListener("input", syncConditionValue);
+        conditionSlider.addEventListener("change", syncConditionValue);
+        syncConditionValue();
+      }
+
+      if (contactPreferenceInputs.length && contactPreferenceField) {
+        const errorEl = contactPreferenceField.querySelector(".field-error");
+        contactPreferenceInputs.forEach((input) => {
+          input.addEventListener("change", () => {
+            const hasPreference = contactPreferenceInputs.some(
+              (item) => item.checked
+            );
+            if (hasPreference) {
+              contactPreferenceField.classList.remove("has-error");
+              if (errorEl) errorEl.textContent = "";
+            }
+          });
+        });
+      }
+
+      if (termsAgree) {
+        termsAgree.addEventListener("change", () => {
+          setTermsError("");
+          refreshNavigation();
+        });
+      }
+
       const updateProgress = (index) => {
         if (!progressFill) return;
         const ratio =
@@ -1006,8 +1160,10 @@
         if (nextBtn) {
           if (currentStepIndex === steps.length - 1) {
             nextBtn.textContent = "Submit request";
+            nextBtn.disabled = hasSubmitted || isSubmitting || !isTermsAccepted();
           } else {
             nextBtn.textContent = defaultNextLabel;
+            nextBtn.disabled = hasSubmitted || isSubmitting;
           }
         }
       };
@@ -1019,6 +1175,7 @@
         );
         if (nextIndex === currentStepIndex) return;
         currentStepIndex = nextIndex;
+        setTermsError("");
         steps.forEach((step, idx) =>
           step.classList.toggle("active", idx === currentStepIndex)
         );
@@ -1049,6 +1206,28 @@
           invalidField.focus();
           return false;
         }
+        const contactPrefField = activeStep.querySelector(
+          "[data-contact-preference]"
+        );
+        if (contactPrefField) {
+          const contactChecks = Array.from(
+            contactPrefField.querySelectorAll(
+              'input[name="contactPreference"]'
+            )
+          );
+          const hasPreference = contactChecks.some((input) => input.checked);
+          const errorEl = contactPrefField.querySelector(".field-error");
+          if (!hasPreference) {
+            contactPrefField.classList.add("has-error");
+            if (errorEl) {
+              errorEl.textContent = "Please choose at least one contact method.";
+            }
+            contactChecks[0]?.focus();
+            return false;
+          }
+          contactPrefField.classList.remove("has-error");
+          if (errorEl) errorEl.textContent = "";
+        }
         return true;
       };
 
@@ -1058,34 +1237,130 @@
       };
 
       const handleFormSubmit = () => {
-        if (hasSubmitted) return;
-        if (!wizardForm.checkValidity()) {
-          wizardForm.reportValidity();
-          return;
-        }
-        hasSubmitted = true;
-        wizardForm.hidden = true;
-        wizardForm.setAttribute("aria-hidden", "true");
-        if (backBtn) backBtn.disabled = true;
-        if (nextBtn) nextBtn.disabled = true;
-        if (reviewBackLink) reviewBackLink.disabled = true;
-        if (thankYouCard) {
-          thankYouCard.removeAttribute("hidden");
-          thankYouCard.scrollIntoView({ behavior: "smooth" });
-        }
+        const submit = async () => {
+          if (hasSubmitted || isSubmitting) return;
+          if (!isTermsAccepted()) {
+            setTermsError("Please agree to the Terms & Conditions to continue.");
+            return;
+          }
+          if (!wizardForm.checkValidity()) {
+            wizardForm.reportValidity();
+            return;
+          }
+          const emailInput = wizardForm.elements.email;
+          if (emailInput && !emailInput.checkValidity()) {
+            emailInput.reportValidity();
+            emailInput.focus();
+            return;
+          }
+          if (wizardForm.elements._gotcha?.value) {
+            return;
+          }
+
+          setError("");
+          setSubmittingState(true);
+
+          const submitPayload = async (formData) => {
+            const response = await fetch(FORM_ENDPOINT, {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+              },
+              body: formData,
+            });
+            if (response.ok) {
+              return { ok: true, status: response.status };
+            }
+            let message = "";
+            try {
+              const data = await response.json();
+              if (Array.isArray(data?.errors)) {
+                message = data.errors.map((item) => item.message).join(" ");
+              }
+            } catch {
+              try {
+                message = await response.text();
+              } catch {
+                /* ignore */
+              }
+            }
+            return { ok: false, message, status: response.status };
+          };
+
+          try {
+            const data = collectSmartQuoteData();
+            const summaryMessage = buildSummaryMessage(data);
+            const formData = new FormData();
+            Object.entries(data).forEach(([key, value]) => {
+              formData.append(key, value);
+            });
+            formData.append("_replyto", data.email);
+            formData.append("summary_message", summaryMessage);
+            formData.append("message", summaryMessage);
+
+            const result = await submitPayload(formData);
+            if (!result.ok) {
+              const fallbackMessage = result.message?.trim();
+              if (result.status === 403) {
+                throw new Error(
+                  "Formspree blocked the request (403). Verify this form allows your domain or that you are testing from the live site."
+                );
+              }
+              if (!fallbackMessage) {
+                throw new Error("submit_failed");
+              }
+              throw new Error(fallbackMessage);
+            }
+
+            hasSubmitted = true;
+            wizardForm.reset();
+            updateMediaVisibility();
+            buildRoomUploads();
+            goToStep(0);
+            wizardForm.hidden = true;
+            wizardForm.setAttribute("aria-hidden", "true");
+            if (thankYouCard) {
+              thankYouCard.removeAttribute("hidden");
+              thankYouCard.scrollIntoView({ behavior: "smooth" });
+            }
+          } catch (err) {
+            const message = err instanceof Error ? err.message : "";
+            setError(
+              message
+                ? `Sorry - ${message}`
+                : "Sorry - something went wrong sending your request. Please try again."
+            );
+          } finally {
+            setSubmittingState(false);
+          }
+        };
+
+        submit();
       };
 
-      const handleNext = () => {
+      const handleNext = async () => {
         if (hasSubmitted) return;
         if (!validateCurrentStep()) return;
         if (currentStepIndex === steps.length - 1) {
-          handleFormSubmit();
+          if (!isTermsAccepted()) {
+            setTermsError("Please agree to the Terms & Conditions to continue.");
+            return;
+          }
+          await handleFormSubmit();
           return;
         }
         goToStep(currentStepIndex + 1);
       };
 
       goToStep(0);
+      wizardForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (currentStepIndex === steps.length - 1) {
+          handleFormSubmit();
+        } else {
+          handleNext();
+        }
+      });
       if (backBtn) {
         backBtn.addEventListener("click", (event) => {
           event.preventDefault();
