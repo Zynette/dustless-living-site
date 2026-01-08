@@ -295,12 +295,8 @@
     }
   };
 
-  const storedPreference = storage.get();
-  if (storedPreference === "dark" || storedPreference === "light") {
-    applyTheme(storedPreference);
-  } else {
-    applyTheme("light");
-  }
+  applyTheme("light");
+  storage.remove();
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
@@ -772,6 +768,7 @@
     const videoUploadSection = document.getElementById("videoUploadSection");
     const descriptionSection = document.getElementById("descriptionSection");
     const inPersonSection = document.getElementById("inPersonSection");
+    const describeSection = document.getElementById("describeSection");
     const photoRoomUploads = document.getElementById("photoRoomUploads");
     const conditionSlider = document.getElementById("conditionLevel");
     const conditionValue = document.getElementById("conditionValue");
@@ -903,6 +900,7 @@
           hasPets: getChecked("hasPets"),
           hasKids: getChecked("hasKids"),
           referral_code: getValue("referral_code"),
+          quote_notes: getValue("quote_notes"),
         };
       };
 
@@ -930,6 +928,7 @@
           `Pets on site: ${data.hasPets}`,
           `Kids/guests on site: ${data.hasKids}`,
           `Referral code: ${data.referral_code}`,
+          `Notes: ${data.quote_notes}`,
           "Accurate pricing requires photos/videos of the space or a brief in-person visit.",
         ];
 
@@ -1010,6 +1009,7 @@
           photos: "Photos per room",
           video: "Walkthrough video",
           "in-person": "In-person check for estimate",
+          describe: "Skip — describe in detail",
         };
         summaryParts.push(
           populate("Media option", mediaLabelMap[mediaSelection] || mediaSelection)
@@ -1039,6 +1039,9 @@
         }
         summaryParts.push(
           populate("Referral code", wizardForm.elements.referral_code?.value)
+        );
+        summaryParts.push(
+          populate("Notes", wizardForm.elements.quote_notes?.value)
         );
 
         const filtered = summaryParts.filter(Boolean);
@@ -1070,6 +1073,12 @@
           inPersonSection.classList.toggle(
             "hidden",
             selected !== "in-person"
+          );
+        }
+        if (describeSection) {
+          describeSection.classList.toggle(
+            "hidden",
+            selected !== "describe"
           );
         }
       };

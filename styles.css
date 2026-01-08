@@ -355,9 +355,10 @@ body.dark .pill-option span {
 }
 
 body.dark .pill-option input:checked + span {
-  background: rgba(12, 44, 56, 0.95);
-  border-color: rgba(124, 201, 181, 0.5);
-  color: var(--color-text-strong);
+  background: rgba(8, 32, 44, 0.85);
+  border-color: rgba(124, 201, 181, 0.3);
+  color: var(--color-text);
+  font-weight: 400;
 }
 
 
@@ -1270,6 +1271,12 @@ body.dark .icon-btn {
   color: var(--color-text-strong);
   font-weight: 600;
   box-shadow: 0 8px 18px rgba(31, 45, 43, 0.12);
+}
+
+body.dark .meet-tag {
+  background: rgba(3, 23, 37, 0.92);
+  border-color: rgba(124, 201, 181, 0.35);
+  color: var(--color-text);
 }
 
 .meet-cleaner-copy h2 {
@@ -3489,6 +3496,26 @@ select:focus {
   position: relative;
 }
 
+.wizard-form .field label,
+.wizard-form .toggle-field p,
+.wizard-form legend {
+  font-size: 0.9rem;
+  color: var(--color-text-strong);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.wizard-form .field-hint {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+body.dark .wizard-form .field label,
+body.dark .wizard-form .toggle-field p,
+body.dark .wizard-form legend {
+  color: var(--color-text);
+}
+
 .wizard-step {
   display: none;
   animation: fadeUp 0.35s ease;
@@ -3580,10 +3607,36 @@ body.dark .wizard-step {
 }
 
 .pill-option input:checked + span {
-  background: linear-gradient(120deg, rgba(124, 201, 181, 0.35), rgba(31, 45, 43, 0.25));
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(31, 45, 43, 0.2);
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+body:not(.dark) .smartquote-section .pill-option,
+body:not(.dark) .smartquote-section .pill-option span {
+  color: #000;
+  font-weight: 400;
+}
+
+body:not(.dark) .smartquote-section .pill-option input:checked + span {
+  background: rgba(124, 201, 181, 0.2);
   border-color: rgba(31, 45, 43, 0.4);
-  color: var(--color-text-strong);
-  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(31, 45, 43, 0.2);
+  color: #000;
+  font-weight: 400;
+}
+
+body:not(.dark) .smartquote-section .pill-checkbox,
+body:not(.dark) .smartquote-section .pill-checkbox span {
+  color: #000;
+  font-weight: 400;
+}
+
+body:not(.dark) .smartquote-section .pill-checkbox:has(input:checked) {
+  background: rgba(124, 201, 181, 0.16);
+  border-color: rgba(31, 45, 43, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(31, 45, 43, 0.2);
 }
 
 .pill-option span:hover {
@@ -5339,6 +5392,22 @@ body.dark #process {
   .mobile-cta-bar .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Dark mode polish for mobile-only elements */
+  body.dark .hero-trust-line span {
+    background: rgba(12, 36, 52, 0.7);
+    border-color: rgba(124, 201, 181, 0.2);
+    color: var(--color-text);
+  }
+
+  body.dark .mobile-cta-section {
+    background: rgba(8, 32, 44, 0.9);
+  }
+
+  body.dark .mobile-cta-bar {
+    background: rgba(3, 23, 37, 0.92);
+    border-top-color: rgba(124, 201, 181, 0.2);
   }
 
   .burger:focus-visible,
