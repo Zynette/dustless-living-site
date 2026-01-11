@@ -353,7 +353,7 @@
       subcopy:
         "Handled by the same familiar pair using eco-friendly kits, low-moisture steam tools, and low-scent finishing sprays.",
       bullets: [
-        "Laundry fold, bed styling, and toy-zone resets as requested",
+        "Bed styling and toy-zone resets as requested",
         "Kitchen, bath, and common-area detailing with gentle products",
         "Steam touch-ups for grout or textiles when needed",
         "Photos or care notes sent after every first visit",
@@ -374,7 +374,7 @@
         "Floors, mirrors, and touchpoints refreshed without residue",
         "Light admin zones tidied so teams can start fresh",
       ],
-      note: "Need retail folding, laundry drop, or inventory notes? Add them to your visit instructions.",
+      note: "Need retail folding or inventory notes? Add them to your visit instructions.",
       bestFor: "small teams & studios",
       typicalTime: "1.5–3 hrs",
     },
@@ -549,9 +549,9 @@
     },
     {
       text:
-        "After ER shifts, I’m spent. Coming home to a clean kitchen and folded laundry is real relief.",
+        "After ER shifts, I’m spent. Coming home to a clean kitchen is real relief.",
       name: "Dr. Nguyen, Crown Point (Hamilton)",
-      service: "Detached home · Weekly Reset + Laundry Fold",
+      service: "Detached home · Weekly Reset",
     },
     {
       text:
