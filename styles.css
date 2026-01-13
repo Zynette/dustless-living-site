@@ -3460,6 +3460,10 @@ select:focus {
   margin-bottom: 1.1rem;
 }
 
+.smartquote-close-wrap {
+  display: none;
+}
+
 .wizard-step-label {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -5352,6 +5356,85 @@ body.dark #process {
 
   #bookingForm:target {
     display: block;
+  }
+
+  .smartquote-section .container:has(#bookingForm:target) .mobile-cta-section {
+    display: none;
+  }
+
+  body:has(#bookingForm:target) {
+    overflow: hidden;
+  }
+
+  body:has(#bookingForm:target) .header,
+  body:has(#bookingForm:target) .footer,
+  body:has(#bookingForm:target) .mobile-cta-bar,
+  body:has(#bookingForm:target) .section:not(.smartquote-section) {
+    display: none;
+  }
+
+  .smartquote-section:has(#bookingForm:target) {
+    position: fixed;
+    inset: 0;
+    z-index: 220;
+    padding: 1.4rem 1rem 6rem;
+    overflow: auto;
+  }
+
+  .smartquote-section:has(#bookingForm:target) .section-header {
+    text-align: left;
+  }
+
+  .smartquote-close-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.6rem;
+  }
+
+  .smartquote-close {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    padding: 0.35rem 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .smartquote-close:hover {
+    border-color: rgba(31, 45, 43, 0.35);
+  }
+
+  .smartquote-section .smartquote-card {
+    padding: 1.1rem;
+    border-radius: 24px;
+  }
+
+  .smartquote-section .wizard-progress {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .smartquote-section .wizard-progress-bar {
+    width: 100%;
+  }
+
+  .smartquote-section .wizard-step {
+    padding: 0.9rem;
+  }
+
+  .smartquote-section .form-grid,
+  .smartquote-section .form-grid--three,
+  .smartquote-section .toggle-grid,
+  .smartquote-section .extras-grid,
+  .smartquote-section .pill-checkbox-grid,
+  .smartquote-section .room-upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smartquote-section .wizard-reassurance {
+    text-align: left;
   }
 
   .mobile-cta-section {

@@ -9,13 +9,14 @@
     </title>
     <meta
       name="description"
-      content="Dustless Living Cleaning Services provides residential, deep cleaning, move-in/move-out, office, studio, commercial, and rental cleaning in Hamilton, Burlington, and surrounding areas. Owner-managed, steam-first, low-tox care."
+      content="Dustless Living Cleaning Services provides residential and commercial cleaning in Hamilton, Burlington, and nearby towns. Deep cleans, move-in/move-out, office, studio, Airbnb, and rental turnover cleaning with steam-first, low-tox care."
     />
     <meta
       name="keywords"
-      content="Hamilton cleaning service, Burlington cleaning service, house cleaning Hamilton, house cleaning Burlington, deep cleaning Hamilton, deep cleaning Burlington, move out cleaning Hamilton, move in cleaning Burlington, office cleaning Hamilton, studio cleaning Burlington, Airbnb cleaning Hamilton, commercial cleaning Hamilton, Commercial Cleaning Burlington, rental cleaning Burlington, steam cleaning Hamilton, eco-friendly cleaning Hamilton, Dustless Living Cleaning Services"
+      content="Hamilton cleaning service, Burlington cleaning service, house cleaning Hamilton, house cleaning Burlington, residential cleaning Hamilton, residential cleaning Burlington, deep cleaning Hamilton, deep cleaning Burlington, move out cleaning Hamilton, move in cleaning Burlington, office cleaning Hamilton, office cleaning Burlington, studio cleaning Hamilton, studio cleaning Burlington, Airbnb cleaning Hamilton, Airbnb cleaning Burlington, short-term rental cleaning Hamilton, rental turnover cleaning Burlington, commercial cleaning Hamilton, commercial cleaning Burlington, janitorial cleaning Hamilton, cleaning company Hamilton, cleaning company Burlington, steam cleaning Hamilton, eco-friendly cleaning Hamilton, Dustless Living Cleaning Services"
     />
     <meta name="author" content="Dustless Living Cleaning Services" />
+    <link rel="canonical" href="https://dustlessliving.com/" />
 
     <!-- Open Graph -->
     <meta
@@ -24,7 +25,7 @@
     />
     <meta
       property="og:description"
-      content="Owner-managed, steam-first cleaning for homes, offices, studios, and rentals in Hamilton, Burlington, and nearby towns."
+      content="Owner-managed, steam-first cleaning for homes, offices, studios, and rentals across Hamilton, Burlington, and nearby towns."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dustlessliving.com/" />
@@ -32,9 +33,14 @@
       property="og:image"
       content="https://dustlessliving.com/images/favicon.png"
     />
+    <meta name="twitter:card" content="summary" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,6 +64,7 @@
         "@type": "LocalBusiness",
         "name": "Dustless Living Cleaning Services",
         "telephone": "+1-289-401-7321",
+        "email": "hello@dustlessliving.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Hamilton",
@@ -85,12 +92,18 @@
           "Residential cleaning",
           "Deep cleaning",
           "Move-in/move-out cleaning",
+          "Commercial cleaning",
           "Office cleaning",
           "Studio cleaning",
           "Rental turnover cleaning",
           "Airbnb cleaning"
         ],
-        "url": "https://dustlessliving.com/"
+        "url": "https://dustlessliving.com/",
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "target": "https://dustlessliving.com/#bookingForm",
+          "name": "Get a free cleaning quote"
+        }
       }
     </script>
   </head>
@@ -249,7 +262,7 @@
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
-                  onclick="window.location.href='index.html#booking'"
+                  onclick="window.location.href='index.html#bookingForm'"
                 >
                   Get My Free Quote
                 </button>
@@ -281,7 +294,6 @@
               >
             </div>
             <div class="meet-cleaner-copy">
-              <p class="eyebrow eyebrow--subtle">Meet</p>
               <h2>Meet Antonette,<br />Founder of Dustless Living</h2>
               <p class="meet-lede">
                 Dustless Living is owner-managed, I handle your quote,
@@ -591,14 +603,14 @@
             <div class="terms-modal-body">
               <p class="terms-intro">
                 These terms apply to all Dustless Living services and bookings
-                for residential and small commercial cleaning in Hamilton and
+                for residential and commercial cleaning in Hamilton and
                 Burlington, Ontario.
               </p>
 
               <h4>1) Service Scope</h4>
               <ul>
                 <li>
-                  Services include residential and small commercial cleaning.
+                  Services include residential and commercial cleaning.
                 </li>
                 <li>
                   What is included depends on the selected package, add-ons, and
@@ -843,6 +855,9 @@
             </div>
             <!-- Mobile collapses the form; targeted link reveals it -->
             <div class="smartquote-card glass" id="bookingForm">
+              <div class="smartquote-close-wrap">
+                <a class="smartquote-close" href="#booking">Back</a>
+              </div>
               <div class="wizard-progress">
                 <div>
                   <p class="wizard-step-label" id="wizardStepLabel">
@@ -2112,7 +2127,12 @@
           </button>
         </div>
         <div class="chatbot-body">
-          <form id="chatbotLeadForm" class="chatbot-form">
+          <form
+            id="chatbotLeadForm"
+            class="chatbot-form"
+            action="https://formspree.io/f/mpqqzyrv"
+            method="POST"
+          >
             <label>
               <span>Name *</span>
               <input type="text" name="name" required />
