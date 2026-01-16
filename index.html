@@ -36,9 +36,24 @@
     <meta name="twitter:card" content="summary" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon.png"
+    />
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="shortcut icon" href="/images/favicon.png" />
 
@@ -254,22 +269,19 @@
                   without harsh chemicals
                 </h1>
                 <div class="hero-trust-line">
-                  <span>High-temperature steam sanitization</span>
-                  <span>Non-toxic, kid &amp; pet-safe products</span>
-                  <span>No cross-contamination between client spaces</span>
+                  <span>Non-toxic, kid & pet-safe products</span>
+                  <span>No cross-contamination</span>
+                  <span>Trained &amp; fully insured</span>
                 </div>
               </div>
               <div class="hero-actions">
                 <button
                   class="btn btn-primary"
-                  onclick="window.location.href='index.html#bookingForm'"
+                  data-scroll-target="bookingForm"
                 >
                   Get My Free Quote
                 </button>
-                <button
-                  class="btn btn-outline"
-                  onclick="scrollToSection('services')"
-                >
+                <button class="btn btn-outline" data-scroll-target="services">
                   View Services →
                 </button>
               </div>
@@ -296,23 +308,22 @@
             <div class="meet-cleaner-copy">
               <h2>Meet Antonette,<br />Founder of Dustless Living</h2>
               <p class="meet-lede">
-                Dustless Living is owner-managed, I handle your quote,
-                scheduling, care notes, and quality standards, so every visit
-                feels consistent and calm.
+                Dustless Living is founder-led. We keep your quotes, scheduling,
+                and care notes in-house so every visit is consistent and
+                discreet.
               </p>
               <p class="meet-method">
-                We focus on sanitization-first cleaning using high-temperature
-                steam and gentle, low-odor products.
+                We prioritize high-temperature steam and gentle, low-odor
+                products for a thorough, low-residue clean.
               </p>
               <p class="meet-method">
-                Great for families, pets, and sensitive spaces.
+                Designed for families, pets, and sensitive spaces.
               </p>
               <div class="meet-cleaning-badges" aria-label="How I clean">
                 <span class="trust-pill"
                   >Steam-sanitized high-touch surfaces</span
                 >
                 <span class="trust-pill">Microfiber color-coded system</span>
-                <span class="trust-pill">Low-odor, pet-safe care</span>
               </div>
               <ul class="meet-credits">
                 <li>
@@ -322,13 +333,10 @@
                 <li>A clear recap after the clean.</li>
               </ul>
               <div class="meet-actions">
-                <button
-                  class="btn btn-primary"
-                  onclick="window.location.href='index.html#booking'"
-                >
+                <button class="btn btn-primary" data-scroll-target="booking">
                   Book a Visit
                 </button>
-                <button class="link-btn" onclick="scrollToSection('services')">
+                <button class="link-btn" data-scroll-target="services">
                   Explore Services
                 </button>
               </div>
@@ -345,12 +353,12 @@
             <div class="section-header align-center prose">
               <h2>Services</h2>
               <p class="muted prose">
-                Services are designed for homes, studios, offices, and
-                short-term rentals that need consistent, discreet, eco-safe care
-                that is not rushed, chemical-heavy cleaning.
+                Services are tailored for homes, studios, offices, and
+                short-term rentals that value discreet, eco-safe care with
+                consistent standards and an unrushed finish.
               </p>
               <p class="muted prose">
-                After-hours and recurring office cleaning available.
+                After-hours and recurring office care available.
               </p>
             </div>
             <div class="service-snapshot-grid">
@@ -407,7 +415,7 @@
                 />
                 <h3>Office &amp; Studio</h3>
                 <p class="card-lede">
-                  Low-odor, non-toxic cleaning for shared spaces with quiet,
+                  Low-odor, non-toxic care for shared spaces with discreet,
                   respectful visits.
                 </p>
                 <button
@@ -425,7 +433,8 @@
                 />
                 <h3>Airbnb / Short-Term Rental</h3>
                 <p class="card-lede">
-                  Fast resets with steam sanitization between guests.
+                  Fast, guest-ready resets with steam sanitization between
+                  stays.
                 </p>
                 <button class="link-btn" onclick="openServiceModal('airbnb')">
                   Read details
@@ -441,17 +450,17 @@
                   alt="Add-on and specialty care"
                 />
                 <h3>Add-Ons &amp; Specialty Care</h3>
-                <p class="card-lede">Optional extras for targeted needs.</p>
+                <p class="card-lede">Targeted add-ons for specific needs.</p>
                 <button class="link-btn" onclick="openServiceModal('addons')">
                   Read details
                 </button>
               </article>
             </div>
             <p class="muted prose service-after-note">
-              Every service is delivered with eco-friendly products, steam
-              detailing, and low-moisture care so kids, pets, and sensitive
-              clients stay comfortable. Carpet cleaning with a professional
-              extractor is coming soon for high-traffic homes and studios.
+              Every service includes eco-friendly products, steam detailing, and
+              low-moisture techniques so kids, pets, and sensitive clients stay
+              comfortable. Professional carpet extraction for high-traffic homes
+              and studios is launching soon.
             </p>
           </div>
         </section>
@@ -472,14 +481,14 @@
                 <div class="growth-card">
                   <h2>Growing Carefully, Same Standards</h2>
                   <p class="growth-subhead">
-                    Dustless Living stays intentionally small so quality stays
+                    Dustless Living stays intentionally small to keep standards
                     consistent. Every booking includes:
                   </p>
                   <ul class="growth-list">
-                    <li>Clear care notes reviewed before each visit</li>
-                    <li>A detailed checklist standard (nothing rushed)</li>
+                    <li>Care notes reviewed before each visit</li>
+                    <li>Detailed checklists so nothing is missed</li>
                     <li>Steam-first, low-tox approach for sensitive homes</li>
-                    <li>Calm, respectful visits + tidy recap after</li>
+                    <li>Calm, respectful visits with a tidy recap after</li>
                     <li>
                       You’ll know who’s coming and what to expect before your
                       appointment.
@@ -488,9 +497,9 @@
                 </div>
                 <div class="growth-card">
                   <h2>Why Clients Choose Dustless Living</h2>
-                  <p class="growth-subhead">Clear boundaries, calmer visits</p>
+                  <p class="growth-subhead">Clear standards, calmer visits</p>
                   <ul class="growth-list">
-                    <li>Consistent standards across every visit.</li>
+                    <li>Consistent standards at every visit.</li>
                     <li>Visits are calm, unrushed, and detail-focused.</li>
                     <li>Steam-first, low-tox cleaning for sensitive homes.</li>
                     <li>Clear care notes and checklists guide every clean.</li>
@@ -513,8 +522,7 @@
             <div class="section-header align-center prose">
               <h2>Your First Dustless Visit, Step by Step</h2>
               <p class="prose">
-                Exactly what happens from arrival to the calm, final
-                walkthrough.
+                Exactly what happens from arrival to the final calm walkthrough.
               </p>
             </div>
             <div class="timeline">
@@ -524,7 +532,7 @@
                 </div>
                 <h3>Arrival &amp; Walkthrough</h3>
                 <p>
-                  Quick review of requests and care notes before doors close.
+                  A quick review of requests and care notes before we begin.
                 </p>
               </article>
               <article class="timeline-step glass">
@@ -560,7 +568,7 @@
                 </div>
                 <h3>Final Walkthrough &amp; Care Tips</h3>
                 <p>
-                  Photos, notes, and next-visit planning land in your inbox.
+                  Photos, notes, and next-visit planning arrive in your inbox.
                 </p>
               </article>
             </div>
@@ -609,9 +617,7 @@
 
               <h4>1) Service Scope</h4>
               <ul>
-                <li>
-                  Services include residential and commercial cleaning.
-                </li>
+                <li>Services include residential and commercial cleaning.</li>
                 <li>
                   What is included depends on the selected package, add-ons, and
                   what is listed in the booking confirmation.
@@ -787,9 +793,7 @@
 
               <h4>10) Payment</h4>
               <ul>
-                <li>
-                  Deposits are paid by e-transfer to reserve your time.
-                </li>
+                <li>Deposits are paid by e-transfer to reserve your time.</li>
                 <li>
                   The remaining balance is invoiced after service with online
                   payment options, including debit and credit.
@@ -839,7 +843,7 @@
           <div class="container section-header prose">
             <h2>SmartQuote™ Guided Cleaning Estimate</h2>
             <p class="smartquote-reassurance">
-              It only takes <strong>2–3 minutes</strong> <br />
+              Takes about <strong>2–3 minutes</strong> <br />
               Your photos/videos stay private and are never shared without
               permission.
             </p>
@@ -847,10 +851,15 @@
 
           <div class="container">
             <div class="mobile-cta-section mobile-only">
-              <h3>Ready for a fast quote?</h3>
-              <p class="muted">Tap below to start your free quote.</p>
+              <h3>Ready for a quick quote?</h3>
+              <p class="muted">Tap below to start your free estimate.</p>
               <div class="mobile-cta-actions">
-                <a class="btn btn-primary" href="#bookingForm">Get a Quote</a>
+                <a
+                  class="btn btn-primary"
+                  href="#bookingForm"
+                  data-scroll-target="bookingForm"
+                  >Get a Quote</a
+                >
               </div>
             </div>
             <!-- Mobile collapses the form; targeted link reveals it -->
@@ -1511,6 +1520,22 @@
                         />
                         <span>Fragrance-free / allergy friendly</span>
                       </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="petSafeProducts"
+                        />
+                        <span>Pet-safe products only</span>
+                      </label>
+                      <label class="pill-checkbox">
+                        <input
+                          type="checkbox"
+                          name="extras"
+                          value="fragranceSensitive"
+                        />
+                        <span>Fragrance-sensitive / low-odor</span>
+                      </label>
                     </fieldset>
                   </div>
 
@@ -1643,15 +1668,12 @@
               <div class="wizard-thankyou" id="smartquoteThankYou" hidden>
                 <h3>Thank you!</h3>
                 <p>
-                  Thanks! I’ll review your request and respond personally within
-                  12 hours. To confirm an accurate quote, I’ll either review
-                  photos/videos of the space or schedule a quick 5–10 minute
-                  visit if needed.
+                  Thank you. I’ll review your request and respond personally
+                  within 12 hours. To confirm an accurate quote, I’ll either
+                  review photos/videos of the space or schedule a quick 5–10
+                  minute visit if needed.
                 </p>
-                <button
-                  class="btn btn-soft"
-                  onclick="window.location.href='index.html#services'"
-                >
+                <button class="btn btn-soft" data-scroll-target="services">
                   Browse services
                 </button>
               </div>
@@ -1698,7 +1720,7 @@
                     Is it just you, or do you have a team?
                   </button>
                   <div class="accordion-body">
-                    Dustless Living is owner-managed. We handle quoting,
+                    Dustless Living is owner-managed. I handle quoting,
                     scheduling, care notes, and quality standards, and every
                     visit follows the same checklist. You’ll know who’s coming
                     and what to expect before your appointment.
@@ -1709,8 +1731,8 @@
                     Will you judge the mess?
                   </button>
                   <div class="accordion-body">
-                    No. We clean homes in every condition. Our job is to help
-                    you feel better in your space, not make it awkward.
+                    No. We clean homes in every condition. Our job is to make
+                    your space feel better, never to judge.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1718,9 +1740,9 @@
                     What if I’m not home during the clean?
                   </button>
                   <div class="accordion-body">
-                    That’s totally fine. We can work with a lockbox, concierge,
-                    or simple entry instructions. We review your notes before
-                    we arrive and send a recap when we’re done.
+                    That’s perfectly fine. We can work with a lockbox,
+                    concierge, or simple entry instructions. We review your
+                    notes before we arrive and send a recap when we’re done.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1730,9 +1752,9 @@
                   <div class="accordion-body">
                     Most recurring homes land between $140 and $190. Deep cleans
                     range from $220 to $320 depending on size and add-ons such
-                    as steam, appliance care, or specialty requests. Once we
-                    see your SmartQuote details with rooms, photos, and timing,
-                    we email a firm estimate before we book.
+                    as steam, appliance care, or specialty requests. Once we see
+                    your SmartQuote details with rooms, photos, and timing, we
+                    email a firm estimate before we book.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1741,10 +1763,10 @@
                   </button>
                   <div class="accordion-body">
                     Cleaning supplies, microfiber system, and steam equipment
-                    are always included. For most visits, we use your vacuum
-                    and mop to keep things consistent for your floors and to
-                    avoid cross-home equipment issues. If you don’t have them,
-                    let us know — we can bring an option when needed.
+                    are always included. For most visits, we use your vacuum and
+                    mop to keep things consistent for your floors and to avoid
+                    cross-home equipment issues. If you don’t have them, let us
+                    know — we can bring an option when needed.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1754,8 +1776,8 @@
                   <div class="accordion-body">
                     We use yours to keep allergens and debris from traveling
                     between homes and to match the tools your floors are used
-                    to. If you don’t have one or prefer we bring ours, just
-                    tell us.
+                    to. If you don’t have one or prefer we bring ours, just tell
+                    us.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1764,8 +1786,8 @@
                   </button>
                   <div class="accordion-body">
                     We can bring our own when needed, but defaulting to client
-                    equipment keeps hygiene tight and protects your flooring.
-                    If you’d rather we bring ours, we’re happy to.
+                    equipment keeps hygiene tight and protects your flooring. If
+                    you’d rather we bring ours, we’re happy to.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1783,8 +1805,8 @@
                     Do you clean offices and rentals regularly?
                   </button>
                   <div class="accordion-body">
-                    Yes, we do. Recurring schedules are welcome for offices,
-                    studios, and rentals.
+                    Yes. Recurring schedules are welcome for offices, studios,
+                    and rentals.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1793,9 +1815,9 @@
                   </button>
                   <div class="accordion-body">
                     We may require a small deposit to reserve your time.
-                    Deposits apply to your final invoice. Reschedule/cancel
-                    with 48 hours’ notice: full deposit refund. Less than 48
-                    hours: deposit is kept to cover reserved time.
+                    Deposits apply to your final invoice. Reschedule/cancel with
+                    48 hours’ notice: full deposit refund. Less than 48 hours:
+                    deposit is kept to cover reserved time.
                   </div>
                 </div>
                 <div class="accordion-item">
@@ -1803,8 +1825,8 @@
                     Will you travel outside Hamilton?
                   </button>
                   <div class="accordion-body">
-                    We regularly service Hamilton, Burlington, Stoney Creek,
-                    and nearby towns. If you’re farther out, mention it in your
+                    We regularly service Hamilton, Burlington, Stoney Creek, and
+                    nearby towns. If you’re farther out, mention it in your
                     quote form and we’ll let you know if a small travel fee
                     applies.
                   </div>
@@ -1824,9 +1846,9 @@
             <div>
               <h2>Contact &amp; Service Area</h2>
               <p>
-                Ready to book, ask a question, or partner for rentals, Airbnbs,
-                or offices? Reach out and you will hear back from me directly,
-                never a call centre.
+                Ready to book, ask a question, or discuss rentals, Airbnbs, or
+                offices? Reach out and you’ll hear back from me directly, never
+                a call centre.
               </p>
               <p class="contact-note">
                 After-hours office &amp; studio cleaning available.
@@ -1994,7 +2016,12 @@
       role="region"
       aria-label="Quick actions"
     >
-      <a class="btn btn-primary" href="#bookingForm">Get a Quote</a>
+      <a
+        class="btn btn-primary"
+        href="#bookingForm"
+        data-scroll-target="bookingForm"
+        >Get a Quote</a
+      >
       <a class="mobile-cta-number" href="tel:+1-289-401-7321">
         <span class="mobile-cta-number__value">289-401-7321</span>
         <span class="mobile-cta-number__label">Call Now</span>
@@ -2080,24 +2107,22 @@
           <h4>Services</h4>
           <ul class="footer-list">
             <li>
-              <a href="index.html#service-residential">Residential Cleaning</a>
+              <a href="#service-residential">Residential Cleaning</a>
             </li>
-            <li><a href="index.html#service-deep">Deep Cleaning Reset</a></li>
-            <li><a href="index.html#service-move">Move-In / Move-Out</a></li>
+            <li><a href="#service-deep">Deep Cleaning Reset</a></li>
+            <li><a href="#service-move">Move-In / Move-Out</a></li>
             <li>
-              <a href="index.html#service-commercial"
-                >Commercial &amp; Studio</a
-              >
+              <a href="#service-commercial">Commercial &amp; Studio</a>
             </li>
-            <li><a href="index.html#service-addons">Thoughtful Add-Ons</a></li>
+            <li><a href="#service-addons">Thoughtful Add-Ons</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <h4>Company</h4>
           <ul class="footer-list">
             <li><a href="about.html">About</a></li>
-            <li><a href="index.html#booking">SmartQuote™</a></li>
-            <li><a href="index.html#booking">Book a Visit</a></li>
+            <li><a href="#booking">SmartQuote™</a></li>
+            <li><a href="#booking">Book a Visit</a></li>
             <li>
               <a href="/terms.html" data-terms-modal>Terms &amp; Conditions</a>
             </li>
@@ -2121,7 +2146,7 @@
       </button>
       <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
-          <h4>Dustless Lead Collector</h4>
+          <h4>Quick Quote Assistant</h4>
           <button class="chatbot-close" onclick="toggleChatbot(false)">
             ×
           </button>

@@ -8,16 +8,38 @@
   // 1. Navigation & Smooth Scroll
   // ===============================
 
-  function scrollToSection(id) {
+  const clearHash = () => {
+    if (window.history?.replaceState) {
+      const cleanUrl = `${window.location.pathname}${window.location.search}`;
+      window.history.replaceState(null, "", cleanUrl);
+    } else {
+      window.location.hash = "";
+    }
+  };
+
+  const setBookingOpen = (isOpen) => {
+    body.classList.toggle("booking-open", isOpen);
+    if (!isOpen) {
+      clearHash();
+    }
+  };
+
+  function scrollToSection(id, { updateHash = true } = {}) {
     const el = document.getElementById(id);
     if (!el) {
-      window.location.href = `index.html#${id}`;
+      if (updateHash) {
+        window.location.href = `index.html#${id}`;
+      }
       return;
     }
-    if (window.history?.replaceState) {
-      window.history.replaceState(null, "", `#${id}`);
+    if (updateHash) {
+      if (window.history?.replaceState) {
+        window.history.replaceState(null, "", `#${id}`);
+      } else {
+        window.location.hash = id;
+      }
     } else {
-      window.location.hash = id;
+      clearHash();
     }
     const scrollToTarget = () => {
       const headerOffset = 80;
@@ -45,6 +67,38 @@
     scrollToTarget();
   }
   window.scrollToSection = scrollToSection;
+  window.scrollToSectionNoHash = (id) =>
+    scrollToSection(id, { updateHash: false });
+
+  const handleTargetScroll = (trigger, targetId) => {
+    if (!targetId) return;
+    if (targetId === "bookingForm") {
+      setBookingOpen(true);
+    } else {
+      setBookingOpen(false);
+    }
+    scrollToSection(targetId, { updateHash: false });
+  };
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-scroll-target], a[href^=\"#\"]");
+    if (!trigger) return;
+    const dataTarget = trigger.getAttribute("data-scroll-target");
+    const href = trigger.getAttribute("href");
+    if (!dataTarget && href === "#") return;
+    const targetId =
+      dataTarget || (href && href.startsWith("#") ? href.slice(1) : "");
+    if (!targetId) return;
+    event.preventDefault();
+    handleTargetScroll(trigger, targetId);
+  });
+
+  if (window.location.hash) {
+    const initialTarget = window.location.hash.slice(1);
+    if (initialTarget) {
+      handleTargetScroll(document.body, initialTarget);
+    }
+  }
 
   const burger = document.getElementById("burger");
   const navMobile = document.getElementById("navMobile");
@@ -349,96 +403,95 @@
     residential: {
       title: "Residential Cleaning",
       intro:
-        "Weekly, bi-weekly, monthly, or seasonal visits that keep Hamilton and Burlington homes balanced between deep cleans.",
+        "Weekly, bi-weekly, monthly, or seasonal service that keeps your home consistently fresh.",
       subcopy:
-        "Handled by the same familiar pair using eco-friendly kits, low-moisture steam tools, and low-scent finishing sprays.",
+        "Handled by a consistent team with eco-friendly products, low-moisture steam, and low-scent finishing.",
       bullets: [
-        "Bed styling and toy-zone resets as requested",
-        "Kitchen, bath, and common-area detailing with gentle products",
-        "Steam touch-ups for grout or textiles when needed",
-        "Photos or care notes sent after every first visit",
+        "Beds made and play areas reset as requested",
+        "Kitchen, bath, and main living areas detailed with gentle products",
+        "Steam touch-ups for grout and textiles when needed",
+        "Care notes or photos after the first visit if requested",
       ],
-      note: "Kid-safe and pet-conscious supplies are standard. Have your own favourites? We will happily use them.",
+      note: "Kid-safe and pet-conscious products are standard. Happy to use your preferred supplies.",
       bestFor: "busy households",
       typicalTime: "2–4 hrs",
     },
     commercial: {
       title: "Commercial & Studio Care",
       intro:
-        "After-hours or early morning resets for boutiques, salons, treatment studios, and private offices.",
+        "After-hours or early-morning cleaning for boutiques, studios, clinics, and private offices.",
       subcopy:
-        "Discreet service across Hamilton, Burlington, and surrounding hubs with steam-friendly detailing and fragrance-aware cleaners.",
+        "Discreet service with careful detailing and fragrance-aware products.",
       bullets: [
-        "Reception, display, and waiting areas polished and styled",
+        "Reception, display, and waiting areas reset and polished",
         "Treatment rooms sanitized, linens refreshed, amenities restocked",
-        "Floors, mirrors, and touchpoints refreshed without residue",
-        "Light admin zones tidied so teams can start fresh",
+        "Floors, mirrors, and touchpoints cleaned without residue",
+        "Back-of-house areas tidied for a smooth open",
       ],
-      note: "Need retail folding or inventory notes? Add them to your visit instructions.",
+      note: "Need retail folding or inventory notes? Add them to your visit notes.",
       bestFor: "small teams & studios",
       typicalTime: "1.5–3 hrs",
     },
     deep: {
       title: "Deep Cleaning Reset",
       intro:
-        "A meticulous scrub that lifts buildup, polishes fixtures, and slows down in the corners regular cleans can miss.",
+        "A detailed clean that lifts buildup, polishes fixtures, and reaches what routine visits miss.",
       subcopy:
-        "Perfect before move-ins, renovations, or seasonal resets across Hamilton and Burlington homes.",
+        "Ideal before move-ins, renovations, or seasonal resets.",
       bullets: [
-        "Degreased stove, hood, backsplash, and difficult kitchen finishes",
-        "Hand-detailed grout, fixtures, glass, and chrome",
+        "Stove, hood, backsplash, and kitchen finishes degreased",
+        "Grout, fixtures, glass, and chrome detailed by hand",
         "Doors, trim, vents, and baseboards wiped clean",
-        "Interior fridge or oven detailing available by request",
+        "Interior fridge or oven detailing by request",
       ],
-      note: "Low-moisture steam and speciality tools are included where safe for your surfaces.",
+      note: "Low-moisture steam and specialty tools used where safe for your surfaces.",
       bestFor: "seasonal deep resets",
       typicalTime: "3–5 hrs",
     },
     move: {
       title: "Move-In / Move-Out",
       intro:
-        "Realtor-ready detailing that clears every drawer, closet, vent, and appliance before keys change hands.",
+        "Move-ready detailing that refreshes drawers, closets, vents, and appliances before keys change hands.",
       subcopy:
-        "Trusted by landlords, renters, and Realtors preparing listings around Hamilton and Burlington.",
+        "Trusted by landlords, renters, and Realtors preparing listings.",
       bullets: [
         "Cabinets, closets, drawers, and shelving vacuumed and wiped",
-        "Appliance interiors, gaskets, and glass revived",
+        "Appliance interiors, gaskets, and glass detailed",
         "Walls, trim, switches, and vents dusted or spot-cleaned",
-        "Floors reset for inspection photos or staging day",
+        "Floors reset for inspections or staging",
       ],
-      note: "Need proof-of-clean photos or key hand-off support? Add it to your SmartQuote notes.",
+      note: "Need proof-of-clean photos or key handoff support? Add it to your notes.",
       bestFor: "transitions & staging",
       typicalTime: "4–6 hrs",
     },
     airbnb: {
       title: "Airbnb / Short-Term Rental",
       intro:
-        "Fast resets that keep listings guest-ready with steam sanitization between stays.",
+        "Fast turnovers that keep listings guest-ready between stays.",
       subcopy:
-        "Ideal for hosts who need consistent turnovers, tidy staging, and confident reviews.",
+        "Ideal for hosts who need reliable resets and tidy staging.",
       bullets: [
-        "High-touch points steam-sanitized between guests",
-        "Beds styled, linens refreshed, and surfaces reset",
-        "Kitchen and bath polished for next arrival",
+        "High-touch points sanitized between guests",
+        "Beds made, linens refreshed, and surfaces reset",
+        "Kitchen and bath polished for the next arrival",
         "Quick photo-ready finishing touches",
       ],
-      note: "Share your check-in window and any host notes so I can match your turnover flow.",
+      note: "Share check-in windows and host notes so we match your turnover flow.",
       bestFor: "short-term rentals",
       typicalTime: "1–2.5 hrs",
     },
     addons: {
       title: "Add-Ons & Specialty Care",
       intro:
-        "Layer extra care onto any visit: steam sanitizing, interior appliances, fabric care, and scent-aware touch-ups.",
+        "Add focused care to any visit: steam sanitizing, interior appliances, fabric care, and low-scent touch-ups.",
       subcopy:
-        "Ideal for allergy-sensitive homes and high-touch studios. Professional carpet extraction with a commercial machine launches soon.",
+        "Great for allergy-sensitive homes and high-touch studios. Professional carpet extraction coming soon.",
       bullets: [
-        "Steam detailing on grout, toys, upholstery, or pet zones",
+        "Steam detailing on grout, upholstery, or pet zones",
         "Interior fridge, oven, and cabinet refreshes",
-        "Laundry folding, linen changes, and delicate glass polishing",
-        "Stone sealing, stainless care, or fragrance-free cleaning",
+        "Fragrance-free cleaning available on request",
       ],
-      note: "Ask about upcoming carpet cleaning if you have high-traffic hallways or studio rugs.",
+      note: "Ask about carpet cleaning if you have high-traffic halls or studio rugs.",
       bestFor: "targeted refreshes",
       typicalTime: "0.5–2 hrs per add-on",
     },
@@ -474,7 +527,6 @@
       : "";
 
     serviceModalContent.innerHTML = `
-      <p class="modal-label">Hamilton &amp; Burlington Service</p>
       <h3>${service.title}</h3>
       ${metaMarkup}
       <p>${service.intro}</p>
@@ -749,11 +801,24 @@
   // ===============================
 
   const FORM_ENDPOINT = "https://formspree.io/f/xlgdjnzn";
-  const wizardForm = document.getElementById("smartquoteForm");
-  if (wizardForm) {
-    const steps = Array.from(wizardForm.querySelectorAll(".wizard-step"));
-    const progressFill = document.getElementById("wizardProgressFill");
-    const stepLabel = document.getElementById("wizardStepLabel");
+    const wizardForm = document.getElementById("smartquoteForm");
+    if (wizardForm) {
+      const extrasLabelMap = {
+        windows: "Windows (interior)",
+        baseboards: "Baseboards",
+        spotWalls: "Spot clean walls / doors",
+        dishes: "Dishes",
+        changeBedding: "Change bedding",
+        petHair: "Pet hair focus",
+        fragranceFree: "Fragrance-free / allergy friendly",
+        petSafeProducts: "Pet-safe products only",
+        fragranceSensitive: "Fragrance-sensitive / low-odor",
+      };
+      const normalizeExtras = (values) =>
+        values.map((value) => extrasLabelMap[value] || value);
+      const steps = Array.from(wizardForm.querySelectorAll(".wizard-step"));
+      const progressFill = document.getElementById("wizardProgressFill");
+      const stepLabel = document.getElementById("wizardStepLabel");
     const stepTitle = document.getElementById("wizardStepTitle");
     const backBtn = document.getElementById("wizardBackBtn");
     const nextBtn = document.getElementById("wizardNextBtn");
@@ -868,6 +933,7 @@
         const extras = Array.from(
           wizardForm.querySelectorAll('input[name="extras"]:checked')
         ).map((input) => input.value);
+        const normalizedExtras = normalizeExtras(extras);
         const contactPreference = Array.from(
           wizardForm.querySelectorAll('input[name="contactPreference"]:checked')
         ).map((input) => input.value);
@@ -896,7 +962,7 @@
           mediaOption: getChecked("mediaOption"),
           mediaDescription: getValue("mediaDescription"),
           conditionLevel: getValue("conditionLevel"),
-          extras: extras.join(", "),
+          extras: normalizedExtras.join(", "),
           hasPets: getChecked("hasPets"),
           hasKids: getChecked("hasKids"),
           referral_code: getValue("referral_code"),
@@ -1031,10 +1097,11 @@
           wizardForm.querySelectorAll('input[name="extras"]:checked')
         ).map((input) => input.value);
         if (extras.length) {
+          const normalizedExtras = normalizeExtras(extras);
           summaryParts.push(
             `<p><strong>Extras:</strong> ${escapeText(
-              extras.slice(0, 5).join(", ")
-            )}${extras.length > 5 ? "..." : ""}</p>`
+              normalizedExtras.slice(0, 5).join(", ")
+            )}${normalizedExtras.length > 5 ? "..." : ""}</p>`
           );
         }
         summaryParts.push(

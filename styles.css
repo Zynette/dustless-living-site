@@ -3176,6 +3176,7 @@ body.dark .service-card {
   line-height: 1.6;
 }
 
+
 .terms-agreement {
   margin-top: 0.6rem;
 }
@@ -5354,26 +5355,26 @@ body.dark #process {
     display: none;
   }
 
-  #bookingForm:target {
+  body.booking-open #bookingForm {
     display: block;
   }
 
-  .smartquote-section .container:has(#bookingForm:target) .mobile-cta-section {
+  body.booking-open .smartquote-section .mobile-cta-section {
     display: none;
   }
 
-  body:has(#bookingForm:target) {
+  body.booking-open {
     overflow: hidden;
   }
 
-  body:has(#bookingForm:target) .header,
-  body:has(#bookingForm:target) .footer,
-  body:has(#bookingForm:target) .mobile-cta-bar,
-  body:has(#bookingForm:target) .section:not(.smartquote-section) {
+  body.booking-open .header,
+  body.booking-open .footer,
+  body.booking-open .mobile-cta-bar,
+  body.booking-open .section:not(.smartquote-section) {
     display: none;
   }
 
-  .smartquote-section:has(#bookingForm:target) {
+  body.booking-open .smartquote-section {
     position: fixed;
     inset: 0;
     z-index: 220;
@@ -5381,7 +5382,7 @@ body.dark #process {
     overflow: auto;
   }
 
-  .smartquote-section:has(#bookingForm:target) .section-header {
+  body.booking-open .smartquote-section .section-header {
     text-align: left;
   }
 
