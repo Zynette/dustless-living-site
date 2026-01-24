@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Basic Meta -->
@@ -78,7 +78,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Dustless Living Cleaning Services",
-        "telephone": "+1-289-401-7321",
+        "telephone": "+1-289-698-9281",
         "email": "hello@dustlessliving.com",
         "address": {
           "@type": "PostalAddress",
@@ -147,8 +147,8 @@
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="btn btn-primary nav-cta" href="tel:+1-289-401-7321">
-            +1 (289) 401-7321
+          <a class="btn btn-primary nav-cta" href="tel:+1-289-698-9281">
+            +1 (289) 698-9281
           </a>
           <div class="header-icons">
             <button
@@ -219,7 +219,7 @@
           </button>
         </div>
         <div class="nav-mobile-cta">
-          <a class="btn btn-outline btn-full" href="tel:+1-289-401-7321">
+          <a class="btn btn-outline btn-full" href="tel:+1-289-698-9281">
             Call Now
           </a>
         </div>
@@ -823,6 +823,11 @@
                   events beyond our control, including severe weather, power
                   outages, and emergencies.
                 </li>
+                <li>
+                  If travel is unsafe due to weather, we will reschedule your
+                  visit. Your deposit remains on file and applies to the
+                  rescheduled appointment.
+                </li>
               </ul>
 
               <h4>13) Contact</h4>
@@ -924,6 +929,20 @@
                       id="termsAgreeError"
                       aria-live="polite"
                     ></small>
+                  </div>
+                  <div class="field">
+                    <label class="checkbox-label" for="promoOptIn">
+                      <input
+                        type="checkbox"
+                        id="promoOptIn"
+                        name="promo_opt_in"
+                        value="yes"
+                      />
+                      <span>
+                        Send me seasonal offers and updates by email/SMS. I can
+                        unsubscribe anytime.
+                      </span>
+                    </label>
                   </div>
                   <div class="form-grid">
                     <div class="field required">
@@ -1541,7 +1560,7 @@
 
                   <div class="toggle-grid">
                     <div class="toggle-field">
-                      <p>Pets on site?</p>
+                      <p>Pets on site? *</p>
                       <div class="pill-group">
                         <label class="pill-option">
                           <input
@@ -1556,6 +1575,33 @@
                           <input type="radio" name="hasPets" value="no" />
                           <span>No</span>
                         </label>
+                      </div>
+                      <div class="form-grid hidden" id="petDetails">
+                        <div class="field">
+                          <label for="petCount">
+                            How many?
+                            <span class="pet-required-indicator hidden">*</span>
+                          </label>
+                          <input
+                            type="number"
+                            id="petCount"
+                            name="petCount"
+                            min="1"
+                            placeholder="e.g. 2"
+                          />
+                        </div>
+                        <div class="field">
+                          <label for="petType">
+                            Type of pets
+                            <span class="pet-required-indicator hidden">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="petType"
+                            name="petType"
+                            placeholder="e.g. 1 dog, 1 cat"
+                          />
+                        </div>
                       </div>
                       <small class="field-error" aria-live="polite"></small>
                     </div>
@@ -1856,8 +1902,8 @@
               <ul class="contact-list">
                 <li>
                   <strong>Phone:</strong>
-                  <a class="contact-phone" href="tel:+1-289-401-7321"
-                    >+1 (289) 401-7321</a
+                  <a class="contact-phone" href="tel:+1-289-698-9281"
+                    >+1 (289) 698-9281</a
                   >
                 </li>
                 <li>
@@ -2022,8 +2068,8 @@
         data-scroll-target="bookingForm"
         >Get a Quote</a
       >
-      <a class="mobile-cta-number" href="tel:+1-289-401-7321">
-        <span class="mobile-cta-number__value">289-401-7321</span>
+      <a class="mobile-cta-number" href="tel:+1-289-698-9281">
+        <span class="mobile-cta-number__value">289-698-9281</span>
         <span class="mobile-cta-number__label">Call Now</span>
       </a>
     </div>
