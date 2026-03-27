@@ -9,7 +9,7 @@
   --color-surface-2: #FFFFFF;
   --border-color: rgba(31, 45, 43, 0.12);
   --color-text: #1F2D2B;
-  --color-muted: #6B7F7A;
+  --color-muted: #2A3D37;
   --color-brand: #7FAFA3;
   --color-brand-dark: #4E7C73;
   --color-accent: #BFE3D6;
@@ -5747,6 +5747,120 @@ body.dark #process {
 .safety-readmore {
   margin-top: 1rem;
   text-align: center;
+}
+
+/* =========================
+   Cookie Consent Banner
+   ========================= */
+
+.cookie-consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-surface-2);
+  border-top: 1px solid var(--border-color);
+  padding: var(--space-5);
+  z-index: 1000;
+  box-shadow: 0 -4px 16px rgba(31, 45, 43, 0.1);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.cookie-consent-content {
+  max-width: var(--max-container);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.cookie-consent-text {
+  margin: 0;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.cookie-consent-text a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.cookie-consent-text a:hover {
+  color: var(--color-brand-dark);
+}
+
+.cookie-consent-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.cookie-consent-banner.hidden {
+  display: none;
+}
+
+/* Dark Mode */
+body.dark .cookie-consent-banner {
+  background: var(--color-surface-2);
+  border-top-color: var(--border-color);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cookie-consent-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cookie-consent-actions {
+    width: 100%;
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+}
+
+/* =========================
+   Privacy Disclosure
+   ========================= */
+
+.privacy-disclosure {
+  background: rgba(127, 175, 163, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin: var(--space-5) 0;
+  font-size: 0.875rem;
+}
+
+.privacy-disclosure-text {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.privacy-disclosure-text a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.privacy-disclosure-text a:hover {
+  color: var(--color-brand-dark);
+}
+
+body.dark .privacy-disclosure {
+  background: rgba(127, 175, 163, 0.15);
 }
 
 .safety-readmore a {

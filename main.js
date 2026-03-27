@@ -852,6 +852,8 @@
     );
     const termsAgree = wizardForm.querySelector("#termsAgree");
     const termsAgreeError = document.getElementById("termsAgreeError");
+    const privacyConsent = wizardForm.querySelector("#privacyConsent");
+    const privacyConsentError = document.getElementById("privacyConsentError");
 
     if (steps.length) {
       const defaultNextLabel =
@@ -901,6 +903,20 @@
 
       const isTermsAccepted = () => !termsAgree || termsAgree.checked;
 
+      const setPrivacyError = (message) => {
+        if (!privacyConsentError) return;
+        privacyConsentError.textContent = message || "";
+        const field = privacyConsentError.closest(".field");
+        if (field) {
+          field.classList.toggle("has-error", Boolean(message));
+        }
+        if (privacyConsent) {
+          privacyConsent.setAttribute("aria-invalid", message ? "true" : "false");
+        }
+      };
+
+      const isPrivacyConsented = () => !privacyConsent || privacyConsent.checked;
+
       const setSubmittingState = (submitting) => {
         isSubmitting = submitting;
         if (nextBtn) {
@@ -948,6 +964,7 @@
           phone: getValue("phone"),
           contactPreference: contactPreference.join(", "),
           marketingConsent: isChecked("marketing_consent") ? "Yes" : "No",
+          privacyConsent: isChecked("privacy_consent") ? "Yes" : "No",
           address: getValue("address"),
           homeType: getValue("homeType"),
           serviceType: getValue("serviceType"),
@@ -977,6 +994,7 @@
           `Phone: ${data.phone}`,
           `Contact preference: ${data.contactPreference}`,
           `Marketing consent: ${data.marketingConsent}`,
+          `Privacy consent: ${data.privacyConsent}`,
           `Address: ${data.address}`,
           `Space type: ${data.homeType}`,
           `Service type: ${data.serviceType}`,
@@ -1031,6 +1049,13 @@
         summaryParts.push(
           `<p><strong>Marketing consent:</strong> ${
             wizardForm.querySelector('input[name="marketing_consent"]:checked')
+              ? "Yes"
+              : "No"
+          }</p>`
+        );
+        summaryParts.push(
+          `<p><strong>Privacy consent:</strong> ${
+            wizardForm.querySelector('input[name="privacy_consent"]:checked')
               ? "Yes"
               : "No"
           }</p>`
@@ -1270,6 +1295,13 @@
         });
       }
 
+      if (privacyConsent) {
+        privacyConsent.addEventListener("change", () => {
+          setPrivacyError("");
+          refreshNavigation();
+        });
+      }
+
       const updateProgress = (index) => {
         if (!progressFill) return;
         const ratio =
@@ -1326,20 +1358,94 @@
       const validateCurrentStep = () => {
         const activeStep = steps[currentStepIndex];
         if (!activeStep) return true;
+        
+        // Check Terms
         if (activeStep.contains(termsAgree) && !isTermsAccepted()) {
           setTermsError("Please agree to the Terms & Conditions to continue.");
           termsAgree?.focus();
           return false;
         }
         setTermsError("");
-        const invalidField = activeStep.querySelector(
-          "input:invalid, select:invalid, textarea:invalid"
-        );
-        if (invalidField) {
-          invalidField.reportValidity();
-          invalidField.focus();
+        
+        // Check Privacy Consent
+        if (activeStep.contains(privacyConsent) && !isPrivacyConsented()) {
+          setPrivacyError("Please consent to the Privacy Policy to continue.");
+          privacyConsent?.focus();
           return false;
         }
+        setPrivacyError("");
+        
+        // Check all required fields in the active step
+        const requiredFields = activeStep.querySelectorAll("[required]");
+        for (const field of requiredFields) {
+          // Skip terms and privacy checkboxes as they're handled above
+          if (field.id === "termsAgree" || field.id === "privacyConsent") continue;
+          
+          // Get the field container
+          const fieldContainer = field.closest(".field");
+          if (!fieldContainer) continue;
+          
+          const errorEl = fieldContainer.querySelector(".field-error");
+          let isValid = true;
+          let errorMsg = "";
+          
+          if (field.type === "checkbox") {
+            // Checkbox validation
+            if (!field.checked) {
+              isValid = false;
+              errorMsg = "This field is required.";
+            }
+          } else if (field.type === "email") {
+            // Email validation
+            if (!field.value.trim()) {
+              isValid = false;
+              errorMsg = "Email is required.";
+            } else if (!field.validity.valid) {
+              isValid = false;
+              errorMsg = "Please enter a valid email address.";
+            }
+          } else if (field.type === "tel") {
+            // Phone validation
+            if (!field.value.trim()) {
+              isValid = false;
+              errorMsg = "Phone number is required.";
+            }
+          } else if (field.tagName === "SELECT") {
+            // Select validation
+            if (!field.value) {
+              isValid = false;
+              errorMsg = "Please select an option.";
+            }
+          } else if (field.tagName === "TEXTAREA") {
+            // Textarea validation
+            if (!field.value.trim()) {
+              isValid = false;
+              errorMsg = "This field is required.";
+            }
+          } else {
+            // Text input validation
+            if (!field.value.trim()) {
+              isValid = false;
+              errorMsg = "This field is required.";
+            }
+          }
+          
+          if (!isValid) {
+            fieldContainer.classList.add("has-error");
+            if (errorEl) {
+              errorEl.textContent = errorMsg;
+            }
+            field.focus();
+            return false;
+          } else {
+            fieldContainer.classList.remove("has-error");
+            if (errorEl) {
+              errorEl.textContent = "";
+            }
+          }
+        }
+        
+        // Check contact preference if in this step
         const contactPrefField = activeStep.querySelector(
           "[data-contact-preference]"
         );
@@ -1375,6 +1481,10 @@
           if (hasSubmitted || isSubmitting) return;
           if (!isTermsAccepted()) {
             setTermsError("Please agree to the Terms & Conditions to continue.");
+            return;
+          }
+          if (!isPrivacyConsented()) {
+            setPrivacyError("Please consent to the Privacy Policy to continue.");
             return;
           }
           if (!wizardForm.checkValidity()) {
@@ -1480,6 +1590,10 @@
             setTermsError("Please agree to the Terms & Conditions to continue.");
             return;
           }
+          if (!isPrivacyConsented()) {
+            setPrivacyError("Please consent to the Privacy Policy to continue.");
+            return;
+          }
           await handleFormSubmit();
           return;
         }
@@ -1514,6 +1628,53 @@
         });
       }
     }
+  }
+
+  // ===============================
+  // 20. Cookie Consent Banner
+  // ===============================
+
+  function initCookieConsent() {
+    const cookieBanner = document.getElementById("cookieConsent");
+    const acceptButton = document.getElementById("acceptCookies");
+
+    if (!cookieBanner) return;
+
+    // Check if user has already accepted cookies
+    const cookieAccepted = localStorage.getItem("dustless-cookies-accepted");
+
+    if (cookieAccepted === "true") {
+      cookieBanner.classList.add("hidden");
+      return;
+    }
+
+    // Show cookie banner
+    cookieBanner.classList.remove("hidden");
+    cookieBanner.style.display = "block";
+
+    // Handle accept button
+    if (acceptButton) {
+      acceptButton.addEventListener("click", () => {
+        localStorage.setItem("dustless-cookies-accepted", "true");
+        cookieBanner.classList.add("hidden");
+      });
+    }
+
+    // Close banner when clicking Learn More (user will see privacy policy)
+    const learnMoreLinks = cookieBanner.querySelectorAll("a");
+    learnMoreLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        localStorage.setItem("dustless-cookies-accepted", "true");
+        cookieBanner.classList.add("hidden");
+      });
+    });
+  }
+
+  // Initialize cookie consent when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCookieConsent);
+  } else {
+    initCookieConsent();
   }
 
   document.addEventListener("keydown", (event) => {
